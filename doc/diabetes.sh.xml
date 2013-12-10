@@ -1,0 +1,669 @@
+<?xml version='1.0'?>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:math='http://www.w3.org/1998/Math/MathML'
+>
+<head>
+<title>A Diabetes Incidence Estimation Example</title>
+<meta name="description" id="description" content="A Diabetes Incidence Estimation Example"/>
+<meta name="keywords" id="keywords" content=" diabetes incidence estimation "/>
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_diabetes.sh_xml.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="get_started.py.xml" target="_top">Prev</a>
+</td><td><a href="gaussian.sh.xml" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>example</option>
+<option>diabetes.sh</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>example-&gt;</option>
+<option>get_started.sh</option>
+<option>diabetes.sh</option>
+<option>gaussian.sh</option>
+</select>
+</td>
+<td>diabetes.sh</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>python_path</option>
+<option>dismod_pde_path</option>
+<option>grid function</option>
+<option>Global Parameters</option>
+<option>parameter.csv</option>
+<option>effect_in.csv</option>
+<option>measure_in.csv</option>
+<option>template.csv</option>
+<option>sfun_in.csv</option>
+<option>Running dismod_pde_csv</option>
+<option>prevalence_residual</option>
+<option>sfun_grid.csv</option>
+<option>sfun_der.csv</option>
+<option>prevalence_compare</option>
+<option>Prevalence Contour Plot</option>
+<option>Rate Contour Plots</option>
+<option>---..omega_estimate</option>
+<option>---..chi_estimate</option>
+<option>---..iota_estimate</option>
+<option>Final Message</option>
+</select>
+</td>
+</tr></table><br/>
+ 
+
+
+<center><b><big><big>A Diabetes Incidence Estimation Example</big></big></b></center>
+<br/>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<code><font color="blue"><br/>
+./diabetes.sh</font></code>
+
+<br/>
+<br/>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br/>
+This is a real world example and test of dismod_pde.
+It exits with status one if it detects an error 
+and with status zero otherwise.
+This example is located in the file
+	
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i><font color="blue"><span style='white-space: nowrap'>/share/doc/dismod_pde-</span></font><i><font color="black"><span style='white-space: nowrap'>yyyymmdd</span></font></i><font color="blue"><span style='white-space: nowrap'>/example/diabetes.sh<br/>
+</span></font></code>
+where 
+<code><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i></code>
+ is the 
+<a href="install.xml#Prefix" target="_top"><span style='white-space: nowrap'>prefix</span></a>
+ 
+specified during the install procedure. 
+
+<br/>
+<br/>
+<b><big><a name="python_path" id="python_path">python_path</a></big></b>
+<br/>
+The following command sets the directory where the dismod_pde python
+scripts are located. This should not be necessary once dismod_pde is installed.
+<code><font color='blue'><pre style='display:inline'> 
+python_path=&quot;$top_builddir/python&quot;
+</pre></font></code>
+ 
+
+<br/>
+<br/>
+<b><big><a name="dismod_pde_path" id="dismod_pde_path">dismod_pde_path</a></big></b>
+<br/>
+The following command sets the directory where the binary <code><font color="blue">dismod_pde_csv</font></code>
+file is located. This should not be necessary once dismod_pde is installed.
+<code><font color='blue'><pre style='display:inline'> 
+dismod_pde_path=&quot;$top_builddir/cpp&quot;
+</pre></font></code>
+ 
+
+<br/>
+<br/>
+<b><big><a name="grid function" id="grid function">grid function</a></big></b>
+
+<code><font color='blue'><pre style='display:inline'> 
+make_grid() {
+	first=&quot;$1&quot; ; last=&quot;$2&quot; ; increment=&quot;$3&quot; ; grid=''
+	for (( value = first; value &lt; last+increment; value = value+increment ))
+	do
+		grid=&quot;$grid $value&quot;
+	done
+}
+</pre></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="Global Parameters" id="Global Parameters">Global Parameters</a></big></b>
+<br/>
+The following parameters are used globally in this file and do not change:
+<code><font color='blue'><pre style='display:inline'> 
+# step size between age and cohort grid points
+global_grid_step=4
+
+# age grid parameters
+global_age_min=20 
+global_age_max=80
+age_step=&quot;$global_grid_step&quot;
+make_grid $global_age_min $global_age_max $age_step
+global_age_grid=&quot;$grid&quot;  # age grid values
+echo &quot;age_grid=$global_age_grid&quot;
+#
+# minimum and maximum measurement time
+global_time_min=1980
+global_time_max=2010
+#
+age_max=`echo &quot;$global_age_grid&quot; | sed -e 's|.* ||'`
+cohort_min=`expr $global_time_min - $age_max`
+cohort_max=`expr $global_time_max - $global_age_min`
+cohort_step=&quot;$global_grid_step&quot;
+make_grid $cohort_min $cohort_max $cohort_step
+global_cohort_grid=&quot;$grid&quot;
+echo &quot;cohort_grid=$global_cohort_grid&quot;
+#
+global_zeta=1e-6   # value of zeta in all cases
+</pre></font></code>
+
+-----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="parameter.csv" id="parameter.csv">parameter.csv</a></big></b>
+<br/>
+The <a href="dismod_pde_csv.xml#parameter.csv" target="_top"><span style='white-space: nowrap'>parameter.csv</span></a>
+ 
+file for this example is as follows:
+
+<code><font color="blue">
+<br/>
+<pre style='display:inline'>name,value
+age_grid, 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80
+cohort_grid, 1900 1904 1908 1912 1916 1920 1924 1928 1932 1936 1940 1944 1948 1952 1956 1960 1964 1968 1972 1976 1980 1984 1988 1992
+max_ode_step,1.0
+print_level,5
+max_iteration,50
+converge_tolerance,1e-3
+debug_output,1
+</pre><br/>
+</font></code>-----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="effect_in.csv" id="effect_in.csv">effect_in.csv</a></big></b>
+<br/>
+For this example, there are no covariates and
+the <a href="dismod_pde_csv.xml#effect_in.csv" target="_top"><span style='white-space: nowrap'>effect_in.csv</span></a>
+ file is as follows:
+ 
+<code><font color="blue">
+<br/>
+<pre style='display:inline'>integrand,covariate,lower,initial,upper
+</pre><br/>
+</font></code>-----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="measure_in.csv" id="measure_in.csv">measure_in.csv</a></big></b>
+<br/>
+All cause mortality data (from www.mortality.org) is assumed to be perfect,
+relative risk data (from literature) is also assumed to be perfect,
+and prevalence data from measurements.
+
+<code><font color="blue">
+<br/>
+<pre style='display:inline'>integrand,age_lower,age_upper,time_lower,time_upper,meas_like,meas_zeta,meas_sigma,meas_value,c_iso3
+m_all,20.0,20.0,1980.0,1980.0,gaussian,1e-06,0.0,0.00196,AUT
+m_all,20.0,20.0,1990.0,1990.0,gaussian,1e-06,0.0,0.00152,AUT
+m_all,20.0,20.0,2000.0,2000.0,gaussian,1e-06,0.0,0.00096,AUT
+m_all,20.0,20.0,2010.0,2010.0,gaussian,1e-06,0.0,0.00098,AUT
+m_all,30.0,30.0,1980.0,1980.0,gaussian,1e-06,0.0,0.00148,AUT
+m_all,30.0,30.0,1990.0,1990.0,gaussian,1e-06,0.0,0.00153,AUT
+m_all,30.0,30.0,2000.0,2000.0,gaussian,1e-06,0.0,0.00079,AUT
+m_all,30.0,30.0,2010.0,2010.0,gaussian,1e-06,0.0,0.00067,AUT
+m_all,40.0,40.0,1980.0,1980.0,gaussian,1e-06,0.0,0.00315,AUT
+m_all,40.0,40.0,1990.0,1990.0,gaussian,1e-06,0.0,0.00252,AUT
+m_all,40.0,40.0,2000.0,2000.0,gaussian,1e-06,0.0,0.00198,AUT
+m_all,40.0,40.0,2010.0,2010.0,gaussian,1e-06,0.0,0.00107,AUT
+m_all,50.0,50.0,1980.0,1980.0,gaussian,1e-06,0.0,0.00857,AUT
+m_all,50.0,50.0,1990.0,1990.0,gaussian,1e-06,0.0,0.00602,AUT
+m_all,50.0,50.0,2000.0,2000.0,gaussian,1e-06,0.0,0.00506,AUT
+m_all,50.0,50.0,2010.0,2010.0,gaussian,1e-06,0.0,0.00403,AUT
+m_all,60.0,60.0,1980.0,1980.0,gaussian,1e-06,0.0,0.02262,AUT
+m_all,60.0,60.0,1990.0,1990.0,gaussian,1e-06,0.0,0.01592,AUT
+m_all,60.0,60.0,2000.0,2000.0,gaussian,1e-06,0.0,0.01242,AUT
+m_all,60.0,60.0,2010.0,2010.0,gaussian,1e-06,0.0,0.01051,AUT
+m_all,70.0,70.0,1980.0,1980.0,gaussian,1e-06,0.0,0.04714,AUT
+m_all,70.0,70.0,1990.0,1990.0,gaussian,1e-06,0.0,0.04599,AUT
+m_all,70.0,70.0,2000.0,2000.0,gaussian,1e-06,0.0,0.03061,AUT
+m_all,70.0,70.0,2010.0,2010.0,gaussian,1e-06,0.0,0.02303,AUT
+m_all,80.0,80.0,1980.0,1980.0,gaussian,1e-06,0.0,0.13060,AUT
+m_all,80.0,80.0,1990.0,1990.0,gaussian,1e-06,0.0,0.10618,AUT
+m_all,80.0,80.0,2000.0,2000.0,gaussian,1e-06,0.0,0.09771,AUT
+m_all,80.0,80.0,2010.0,2010.0,gaussian,1e-06,0.0,0.06313,AUT
+relative_risk,30.0,30.0,1980.0,1980.0,gaussian,1e-06,0.0,5.0,AUT
+relative_risk,30.0,30.0,1990.0,1990.0,gaussian,1e-06,0.0,5.0,AUT
+relative_risk,30.0,30.0,2000.0,2000.0,gaussian,1e-06,0.0,5.0,AUT
+relative_risk,30.0,30.0,2010.0,2010.0,gaussian,1e-06,0.0,5.0,AUT
+relative_risk,40.0,40.0,1980.0,1980.0,gaussian,1e-06,0.0,4.3,AUT
+relative_risk,40.0,40.0,1990.0,1990.0,gaussian,1e-06,0.0,4.3,AUT
+relative_risk,40.0,40.0,2000.0,2000.0,gaussian,1e-06,0.0,4.3,AUT
+relative_risk,40.0,40.0,2010.0,2010.0,gaussian,1e-06,0.0,4.3,AUT
+relative_risk,50.0,50.0,1980.0,1980.0,gaussian,1e-06,0.0,3.6,AUT
+relative_risk,50.0,50.0,1990.0,1990.0,gaussian,1e-06,0.0,3.6,AUT
+relative_risk,50.0,50.0,2000.0,2000.0,gaussian,1e-06,0.0,3.6,AUT
+relative_risk,50.0,50.0,2010.0,2010.0,gaussian,1e-06,0.0,3.6,AUT
+relative_risk,60.0,60.0,1980.0,1980.0,gaussian,1e-06,0.0,2.9,AUT
+relative_risk,60.0,60.0,1990.0,1990.0,gaussian,1e-06,0.0,2.9,AUT
+relative_risk,60.0,60.0,2000.0,2000.0,gaussian,1e-06,0.0,2.9,AUT
+relative_risk,60.0,60.0,2010.0,2010.0,gaussian,1e-06,0.0,2.9,AUT
+relative_risk,70.0,70.0,1980.0,1980.0,gaussian,1e-06,0.0,2.2,AUT
+relative_risk,70.0,70.0,1990.0,1990.0,gaussian,1e-06,0.0,2.2,AUT
+relative_risk,70.0,70.0,2000.0,2000.0,gaussian,1e-06,0.0,2.2,AUT
+relative_risk,70.0,70.0,2010.0,2010.0,gaussian,1e-06,0.0,2.2,AUT
+relative_risk,80.0,80.0,1980.0,1980.0,gaussian,1e-06,0.0,1.5,AUT
+relative_risk,80.0,80.0,1990.0,1990.0,gaussian,1e-06,0.0,1.5,AUT
+relative_risk,80.0,80.0,2000.0,2000.0,gaussian,1e-06,0.0,1.5,AUT
+relative_risk,80.0,80.0,2010.0,2010.0,gaussian,1e-06,0.0,1.5,AUT
+prevalence,75.0,75.0,1985.0,1985.0,gaussian,1.00e-06,9.53e-02,0.0359,AUT
+prevalence,75.0,75.0,1995.0,1995.0,gaussian,1.00e-06,9.53e-02,0.0764,AUT
+prevalence,75.0,75.0,2005.0,2005.0,gaussian,1.00e-06,9.53e-02,0.1161,AUT
+prevalence,65.0,65.0,1985.0,1985.0,gaussian,1.00e-06,9.53e-02,0.0383,AUT
+prevalence,65.0,65.0,1995.0,1995.0,gaussian,1.00e-06,9.53e-02,0.0580,AUT
+prevalence,65.0,65.0,2005.0,2005.0,gaussian,1.00e-06,9.53e-02,0.0911,AUT
+prevalence,55.0,55.0,1985.0,1985.0,gaussian,1.00e-06,9.53e-02,0.0231,AUT
+prevalence,55.0,55.0,1995.0,1995.0,gaussian,1.00e-06,9.53e-02,0.0434,AUT
+prevalence,55.0,55.0,2005.0,2005.0,gaussian,1.00e-06,9.53e-02,0.0664,AUT
+prevalence,45.0,45.0,1985.0,1985.0,gaussian,1.00e-06,9.53e-02,0.0125,AUT
+prevalence,45.0,45.0,1995.0,1995.0,gaussian,1.00e-06,9.53e-02,0.0239,AUT
+prevalence,45.0,45.0,2005.0,2005.0,gaussian,1.00e-06,9.53e-02,0.0317,AUT
+prevalence,35.0,35.0,1985.0,1985.0,gaussian,1.00e-06,9.53e-02,0.0065,AUT
+prevalence,35.0,35.0,1995.0,1995.0,gaussian,1.00e-06,9.53e-02,0.0118,AUT
+prevalence,35.0,35.0,2005.0,2005.0,gaussian,1.00e-06,9.53e-02,0.0179,AUT
+prevalence,25.0,25.0,1985.0,1985.0,gaussian,1.00e-06,9.53e-02,0.0035,AUT
+prevalence,25.0,25.0,1995.0,1995.0,gaussian,1.00e-06,9.53e-02,0.0062,AUT
+prevalence,25.0,25.0,2005.0,2005.0,gaussian,1.00e-06,9.53e-02,0.0186,AUT
+</pre><br/>
+</font></code>----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="template.csv" id="template.csv">template.csv</a></big></b>
+<br/>
+Remove the file 
+<a href="dismod_pde_csv.xml#sfun_in.csv.Output Template" target="_top"><span style='white-space: nowrap'>template.csv</span></a>
+ 
+(if it exists) and then recreate it.
+<code><font color='blue'><pre style='display:inline'> 
+echo 'create template.csv'
+rm -f template.csv
+echo 'dismod_pde_csv parameter.csv measure_in.csv template.csv'
+$dismod_pde_path/dismod_pde_csv parameter.csv measure_in.csv template.csv
+</pre></font></code>
+
+----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="sfun_in.csv" id="sfun_in.csv">sfun_in.csv</a></big></b>
+<br/>
+is a version of template.csv with certain values modified by 
+d4_change_sfun_in.py.
+Note that remission $code rho$$ is constrained to be zero
+by the optimization limits.
+<code><font color='blue'><pre style='display:inline'> 
+echo 'create sfun_in.csv'
+zeta=&quot;$global_zeta&quot;
+sigma=2e-1
+zero_inf='0.0 if a &lt; 20.1 else inf'
+$python_path/d4_change_sfun_in.py template.csv sfun_in.csv \
+-comment            'zeta      lower           initial          upper' \
+-optimize_S         $zeta        0.0             0.50            1.0 \
+-optimize_C         $zeta        0.0             1e-2            1.0 \
+-optimize_iota      $zeta        0.0             1e-2            1.0 \
+-optimize_rho       $zeta        0.0             0.00            0.0 \
+-optimize_chi       $zeta        0.0             1e-2            1.0 \
+-optimize_omega     $zeta        0.0             1e-2            1.0 \
+\
+-comment            'like       zeta            sigma           mean' \
+-prior_S         gaussian      $zeta       &quot;$zero_inf&quot;           1.0 \
+-prior_C         gaussian      $zeta              inf            0.0 \
+-prior_iota      gaussian      $zeta              inf            0.0 \
+-prior_rho       gaussian      $zeta              inf            0.0 \
+-prior_chi       gaussian      $zeta              inf            0.0 \
+-prior_omega     gaussian      $zeta              inf            0.0 \
+\
+-comment            'like       zeta            sigma          order' \
+-age_S           gaussian      $zeta              0.0             1 \
+-age_C           gaussian      $zeta              0.0             1 \
+-age_iota        gaussian      $zeta           $sigma             2 \
+-age_rho         gaussian      $zeta              inf             2 \
+-age_chi         gaussian      $zeta           $sigma             2 \
+-age_omega       gaussian      $zeta           $sigma             2 \
+\
+-comment            'like       zeta            sigma          order' \
+-cohort_S        gaussian      $zeta           $sigma             2 \
+-cohort_C        gaussian      $zeta           $sigma             2 \
+-cohort_iota     gaussian      $zeta           $sigma             2 \
+-cohort_rho      gaussian      $zeta              inf             2 \
+-cohort_chi      gaussian      $zeta           $sigma             2 \
+-cohort_omega    gaussian      $zeta           $sigma             2 \
+\
+-comment            'name       zeta            sigma' \
+-cross_S         gaussian      $zeta           $sigma  \
+-cross_C         gaussian      $zeta           $sigma  \
+-cross_iota      gaussian      $zeta           $sigma  \
+-cross_rho       gaussian      $zeta              inf  \
+-cross_chi       gaussian      $zeta           $sigma  \
+-cross_omega     gaussian      $zeta           $sigma  
+</pre></font></code>
+
+-----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="Running dismod_pde_csv" id="Running dismod_pde_csv">Running dismod_pde_csv</a></big></b>
+<br/>
+Next we create the files
+<a href="dismod_pde_csv.xml#measure_out.csv" target="_top"><span style='white-space: nowrap'>measure_out.csv</span></a>
+,
+<a href="dismod_pde_csv.xml#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+, and
+<a href="dismod_pde_csv.xml#effect_out.csv" target="_top"><span style='white-space: nowrap'>effect_out.csv</span></a>
+
+by running <code><font color="blue">dismod_pde_csv</font></code>.
+<code><font color='blue'><pre style='display:inline'> 
+echo 'create effect_out.csv, measure_out.csv, sfun_out.csv'
+echo 'dismod_pde_csv parameter.csv                 \\'
+echo '     measure_in.csv     measure_out.csv   \\'
+echo '     sfun_in.csv        sfun_out.csv      \\'
+echo '     effect_in.csv      effect_out.csv'
+if $dismod_pde_path/dismod_pde_csv parameter.csv  \
+     measure_in.csv     measure_out.csv   \
+     sfun_in.csv        sfun_out.csv      \
+     effect_in.csv      effect_out.csv
+then
+	dismod_pde_csv_ok='yes'
+else
+	dismod_pde_csv_ok='no'
+fi
+</pre></font></code>
+
+-----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="prevalence_residual" id="prevalence_residual">prevalence_residual</a></big></b>
+<br/>
+Next we use <a href="d4_bubble.py.xml" target="_top"><span style='white-space: nowrap'>d4_bubble.py</span></a>
+ to plot the prevalence
+residuals as a function of age and time.
+These plots are called 
+
+<code><font color="blue"><span style='white-space: nowrap'>prevalence_residual.</span></font><i><font color="black"><span style='white-space: nowrap'>ext</span></font></i></code>
+
+for 
+<code><i><font color="black"><span style='white-space: nowrap'>ext</span></font></i></code>
+ in <code><font color="blue">{ pdf , eps, png}</font></code>.
+<code><font color='blue'><pre style='display:inline'> 
+csv_file='measure_out.csv'
+x_name='time'
+x_min=&quot;$global_time_min&quot;
+x_max=&quot;$global_time_max&quot;
+y_name='age'
+y_min=&quot;$global_age_min&quot;
+y_max=&quot;$global_age_max&quot;
+s_name='scaled'
+s_min=0.25
+s_between=1.0
+s_max=2.0
+f_name='integrand'
+f_min='prevalence'
+f_max='prevalence'
+title='Scaled Prevalence Residuals'
+for ext in pdf eps png
+do
+	plot_file=&quot;prevalence_residual.$ext&quot;
+	echo &quot;create $plot_file&quot;
+	$python_path/d4_bubble.py $csv_file $plot_file &quot;$title&quot; \
+			$x_name $x_min $x_max $y_name $y_min $y_max \
+			$s_name $s_min $s_between $s_max $f_name $f_min $f_max
+done
+</pre></font></code>
+
+Below is the <code><font color="blue">png</font></code> version of this plot:
+<center><img src="diabetes_prevalence_residual.png"/>
+</center>----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="sfun_grid.csv" id="sfun_grid.csv">sfun_grid.csv</a></big></b>
+<br/>
+Next we use <a href="d4_sfun_grid.py.xml" target="_top"><span style='white-space: nowrap'>d4_sfun_grid.py</span></a>
+ 
+to create <code><font color="blue">sfun_grid.csv</font></code>, which is a version of 
+the stochastic function output information <code><font color="blue">sfun_out.csv</font></code>
+interpolated to a rectangular grid with respect to age and time.
+<code><font color='blue'><pre style='display:inline'> 
+n_age=`echo $global_age_grid | wc -w`
+time_start=&quot;$global_time_min&quot;
+time_end=&quot;$global_time_max&quot;
+n_time=&quot;$n_age&quot;
+echo 'create sfun_grid.csv'
+$python_path/d4_sfun_grid.py sfun_out.csv sfun_grid.csv \
+	$time_start $time_end $n_time
+</pre></font></code>
+
+---------------------------------------------------------------------------- 
+<br/>
+<br/>
+<b><big><a name="sfun_der.csv" id="sfun_der.csv">sfun_der.csv</a></big></b>
+<br/>
+Next we use <a href="d4_sfun_der.py.xml" target="_top"><span style='white-space: nowrap'>d4_sfun_der.py</span></a>
+ 
+to create <code><font color="blue">sfun_der.csv</font></code> which has the format expected
+by <a href="d4_contour.py.xml" target="_top"><span style='white-space: nowrap'>d4_contour.py</span></a>
+; 
+i.e., each variable has its own column.
+In addition, the columns are:
+<code><font color='blue'><pre style='display:inline'> 
+	age, cohort, time, S, C, iota, rho, chi, omega, prevalence, m_all, risk
+</pre></font></code>
+
+<code><font color='blue'><pre style='display:inline'> 
+echo 'create sfun_der.csv'
+$python_path/d4_sfun_der.py \
+	sfun_grid.csv sfun_der.csv \
+	age           age \
+	cohort        cohort \
+	time          time \
+	S             S_estimate \
+	C             C_estimate \
+	iota          iota_estimate \
+	rho           rho_estimate \
+	chi           chi_estimate \
+	omega         omega_estimate \
+	prevalence    &quot;C / (S + C)&quot; \
+	m_all         &quot;omega + chi * prevalence&quot;    \
+	risk          &quot;(omega + chi) / omega&quot;
+</pre></font></code>
+
+-----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="prevalence_compare" id="prevalence_compare">prevalence_compare</a></big></b>
+<br/>
+Next we generate a plot
+that compares the measured prevalence with the models fit to the data.
+This plot is called 
+
+<code><font color="blue"><span style='white-space: nowrap'>prevalence_compare.</span></font><i><font color="black"><span style='white-space: nowrap'>ext</span></font></i></code>
+ where 
+<code><i><font color="black"><span style='white-space: nowrap'>ext</span></font></i></code>
+ is equal to
+<code><font color="blue">pdf</font></code>, <code><font color="blue">eps</font></code>, and <code><font color="blue">png</font></code>:
+ <code><font color='blue'><pre style='display:inline'> 
+csv_file='measure_out.csv'
+title='Model=lines, s=1985, o=1995, *=2005'
+x_col='age'
+x_label='Age'
+x_min=&quot;$global_age_min&quot;
+x_max=&quot;$global_age_max&quot;
+s_col='integrand'
+s_value='prevalence'
+y_label='prevalence'
+y_min=0
+y_max=.12
+alpha=1
+symbol='so*'
+#
+for ext in pdf eps png
+do
+	plot_file=&quot;prevalence_compare.$ext&quot;
+	$python_path/d4_plot.py $csv_file &quot;$plot_file&quot; &quot;$title&quot; \
+		--points $x_col meas_value $symbol $alpha \
+		--line  $x_col model . $alpha \
+		--string $s_col $s_value  \
+		--axis   $x_label $x_min $x_max $y_label $y_min $y_max \
+		--connect time 1984,1986 1994,1996 2004,2006 
+done
+</pre></font></code>
+ 
+Below is the <code><font color="blue">png</font></code> version of this plot:
+<center><img src="diabetes_prevalence_compare.png"/>
+</center>-----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="Prevalence Contour Plot" id="Prevalence Contour Plot">Prevalence Contour Plot</a></big></b>
+<br/>
+Next we generate <a href="d4_contour.py.xml" target="_top"><span style='white-space: nowrap'>contour</span></a>
+ 
+plots of the model fit for prevalence 
+as a function of age and time.
+These plots are called 
+
+<code><font color="blue"><span style='white-space: nowrap'>prevalence_estimate.</span></font><i><font color="black"><span style='white-space: nowrap'>ext</span></font></i></code>
+ 
+for 
+<code><i><font color="black"><span style='white-space: nowrap'>ext</span></font></i></code>
+ in <code><font color="blue">{ pdf , eps , png}</font></code>.
+<code><font color='blue'><pre style='display:inline'> 
+csv_file='sfun_der.csv'
+x_name='time'
+x_min=&quot;$global_time_min&quot;
+x_max=&quot;$global_time_max&quot;
+y_name='age'
+y_min=&quot;$global_age_min&quot;
+y_max=&quot;$global_age_max&quot;
+z_name='prevalence'
+z_min=0.001
+z_max=1.0
+title='Contours of Prevalence Estimate'
+for ext in pdf eps png
+do
+	plot_file=&quot;prevalence_estimate.$ext&quot;
+	echo &quot;create $plot_file&quot;
+	../../python/d4_contour.py $csv_file $plot_file &quot;$title&quot; \
+		$x_name $x_min $x_max \
+		$y_name $y_min $y_max \
+		$z_name $z_min $z_max 
+done
+</pre></font></code>
+
+Below is the <code><font color="blue">png</font></code> version of this plot:
+<center><img src="diabetes_prevalence_estimate.png"/>
+</center>-----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="Rate Contour Plots" id="Rate Contour Plots">Rate Contour Plots</a></big></b>
+<br/>
+Next we generate <a href="d4_contour.py.xml" target="_top"><span style='white-space: nowrap'>contour</span></a>
+ plots for 
+other cause mortality <code><font color="blue">omega</font></code>, 
+excess mortality <code><font color="blue">chi</font></code>, 
+and incidence <code><font color="blue">iota</font></code>
+as a function of age and time.
+These plots are called 
+
+<code><i><font color="black"><span style='white-space: nowrap'>var</span></font></i><font color="blue"><span style='white-space: nowrap'>_estimate</span></font><i><font color="black"><span style='white-space: nowrap'>.</span></font></i><font color="blue"><span style='white-space: nowrap'>ext</span></font></code>
+
+for 
+<code><i><font color="black"><span style='white-space: nowrap'>var</span></font></i></code>
+ in <code><font color="blue">{ omega , chi , iota }</font></code>
+and 
+<code><i><font color="black"><span style='white-space: nowrap'>ext</span></font></i></code>
+ in <code><font color="blue">{ pdf , eps , png}</font></code>.
+<code><font color='blue'><pre style='display:inline'> 
+var_vec=(   'omega'                 'chi'              'iota'      )
+name_vec=(  'Other Cause Mortality' 'Excess Mortality' 'Incidence' )
+
+for var_index in 0 1 2
+do
+	var=&quot;${var_vec[$var_index]}&quot;
+	name=&quot;${name_vec[$var_index]}&quot;
+	csv_file='sfun_der.csv'
+	for ext in pdf eps png
+	do
+		plot_file=&quot;${var}_estimate.${ext}&quot;
+		title=&quot;Contours of $name Estimate&quot;
+		x_name='time'
+		x_min=&quot;$global_time_min&quot;
+		x_max=&quot;$global_time_max&quot;
+		y_name='age'
+		y_min=&quot;$global_age_min&quot;
+		y_max=&quot;$global_age_max&quot;
+		z_name=&quot;$var&quot;
+		z_min=0.0001
+		z_max=1.0
+		echo &quot;create $plot_file&quot;
+		../../python/d4_contour.py $csv_file $plot_file &quot;$title&quot; \
+			$x_name $x_min $x_max \
+			$y_name $y_min $y_max \
+			$z_name $z_min $z_max
+	done
+done
+</pre></font></code>
+
+<br/>
+<br/>
+<b><a name="Rate Contour Plots.omega_estimate" id="Rate Contour Plots.omega_estimate">omega_estimate</a></b>
+
+<center><img src="diabetes_omega_estimate.png"/>
+</center><br/>
+<b><a name="Rate Contour Plots.chi_estimate" id="Rate Contour Plots.chi_estimate">chi_estimate</a></b>
+
+<center><img src="diabetes_chi_estimate.png"/>
+</center><br/>
+<b><a name="Rate Contour Plots.iota_estimate" id="Rate Contour Plots.iota_estimate">iota_estimate</a></b>
+
+<center><img src="diabetes_iota_estimate.png"/>
+</center><br/>
+<b><big><a name="Final Message" id="Final Message">Final Message</a></big></b>
+<br/>
+If this shell script reaches here, then all the tests have passed
+(except that dismod_pde_csv may have returned an error flag).
+<code><font color='blue'><pre style='display:inline'> 
+if [ $dismod_pde_csv_ok == 'no' ]
+then
+	exit 1
+fi
+echo 'diabetes.sh: OK'
+</pre></font></code>
+
+
+<hr/>Input File: example/diabetes/diabetes.sh.in
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+#
+src_cpp_dir     = $(top_srcdir)/cpp
+build_cpp_dir   = $(top_builddir)/cpp
+#
+src_example_dir = $(top_srcdir)/example
+# --------------------------------------------------------------------------
+BUILT_SOURCES = dismoditis_data.cpp dismoditis_sim.cpp 
+#
+dismoditis_data.cpp:
+	./dismoditis.sh
+#
+dismoditis_sim.cpp:
+	./dismoditis.sh
+# --------------------------------------------------------------------------
+AM_CXXFLAGS = \
+	$(CXX_FLAGS) \
+	-I$(src_cpp_dir) \
+	-I$(CPPAD_PREFIX)/include \
+	-I$(IPOPT_PREFIX)/include
+#
+LDADD = \
+	$(ADD_LINK) \
+	-ldismod_pde  -L$(build_cpp_dir) \
+	-lcppad_ipopt -L$(CPPAD_PREFIX)/lib -L$(CPPAD_PREFIX)/lib64 \
+	$(IPOPT_LIBS) \
+	$(FCLIBS)
+#
+check_PROGRAMS = unit_test
+#
+unit_test_SOURCES = \
+	unit_test.cpp \
+	$(src_example_dir)/optimize_xam.cpp \
+	optimize_tst.cpp \
+	csv_header_tst.cpp  \
+	dismoditis_data.cpp \
+	dismoditis_sim.cpp \
+	dismoditis.cpp 
+# ----------------------------------------------------------------------------
+dist_noinst_SCRIPTS = \
+	plot_bilinear.sh \
+	plot_gaussian.sh 
+#
+test: check unit_test$(EXEEXT)
+	./age2_from0.sh
+	./constant.sh
+	./bilinear.sh
+	./gaussian.sh
+	./initial_C.sh
+	./unit_test

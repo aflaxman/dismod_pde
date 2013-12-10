@@ -1,0 +1,465 @@
+<?xml version='1.0'?>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:math='http://www.w3.org/1998/Math/MathML'
+>
+<head>
+<title>Line and Point Plots of CSV Files</title>
+<meta name="description" id="description" content="Line and Point Plots of CSV Files"/>
+<meta name="keywords" id="keywords" content=" "/>
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_d4_plot.py_xml.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="d4_cumulative.py.xml" target="_top">Prev</a>
+</td><td><a href="d4_sfun_der.py.xml" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>csv</option>
+<option>python_csv</option>
+<option>d4_plot.py</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>csv-&gt;</option>
+<option>dismod_pde_csv</option>
+<option>python_csv</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>python_csv-&gt;</option>
+<option>d4_bubble.py</option>
+<option>d4_change_sfun_in.py</option>
+<option>d4_compare_sfun.py</option>
+<option>d4_contour.py</option>
+<option>d4_cumulative.py</option>
+<option>d4_plot.py</option>
+<option>d4_sfun_der.py</option>
+<option>d4_sfun_grid.py</option>
+<option>d4_simulate.py</option>
+</select>
+</td>
+<td>d4_plot.py</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>csv_file</option>
+<option>plot_file</option>
+<option>title</option>
+<option>--line, --points</option>
+<option>---..x_col</option>
+<option>---..y_col</option>
+<option>---..symbol</option>
+<option>---..alpha</option>
+<option>--axis</option>
+<option>--string</option>
+<option>---..s_col</option>
+<option>---..s_value</option>
+<option>--numeric</option>
+<option>---..e_col</option>
+<option>---..expr</option>
+<option>--connect</option>
+<option>---..c_col</option>
+<option>---..c_limit_j</option>
+<option>--logx</option>
+<option>--logy</option>
+</select>
+</td>
+</tr></table><br/>
+ 
+ 
+
+
+<center><b><big><big>Line and Point Plots of CSV Files</big></big></b></center>
+<br/>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br/>
+
+<code><font color="blue"><span style='white-space: nowrap'>d4_plot.py&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>csv_file</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>plot_file</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>title</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;--line&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>x_col</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>y_col</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>symbol</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>alpha</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;--points&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>x_col</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>y_col</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>symbol</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>alpha</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;--axis&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>x_label</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>x_min</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>x_max</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>y_label</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>y_min</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>y_max</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;--string&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>s_col</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>s_value</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;--numeric&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>e_col</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>expr</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;--connect&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>c_col</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>c_limit_1</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>c_limit_2</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>...</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>c_limit_N</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;--logx&#xA0;--logy</span></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="csv_file" id="csv_file">csv_file</a></big></b>
+<br/>
+is the name of the Comma Separated Value (CSV) file 
+containing the data to be plotted.
+
+<br/>
+<br/>
+<b><big><a name="plot_file" id="plot_file">plot_file</a></big></b>
+<br/>
+Is the name of the plot file that is stored to disk. The extension
+for this file will determine the output format; e.g., <code><font color="blue">.pdf</font></code>
+or <code><font color="blue">.eps</font></code>.
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>plot_file</span></font></i></code>
+ is the string <code><font color="blue">'screen'</font></code>,
+the plot is displayed on the screen, and <code><font color="blue">d4_plot.py</font></code> waits 
+for the user to close the plot before returning.
+
+<br/>
+<br/>
+<b><big><a name="title" id="title">title</a></big></b>
+<br/>
+is the title that will be printed at the top of this plot.
+
+<br/>
+<br/>
+<b><big><a name="--line, --points" id="--line, --points">--line, --points</a></big></b>
+<br/>
+If the <code><font color="blue">--line</font></code> option (<code><font color="blue">--points</font></code> option)
+is specified, <code><font color="blue">d4_plot.py</font></code> will draw
+lines (not draw lines) between points.
+Either <code><font color="blue">--line</font></code> or <code><font color="blue">--points</font></code>
+must appear at least once.
+Each time they appear, the following must come after it:
+
+<br/>
+<br/>
+<b><a name="--line, --points.x_col" id="--line, --points.x_col">x_col</a></b>
+<br/>
+is the name of the column corresponding to the horizontal axis 
+for this 
+<code><font color="blue"><span style='white-space: nowrap'>(</span></font><i><font color="black"><span style='white-space: nowrap'>x_col</span></font></i><font color="blue"><span style='white-space: nowrap'>,&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>y_col</span></font></i><font color="blue"><span style='white-space: nowrap'>)</span></font></code>
+  pair.  
+The 
+<code><i><font color="black"><span style='white-space: nowrap'>x_col</span></font></i></code>
+ column must contain numeric data.
+Pairs are always plotted in ascending order for the value 
+on the horizontal axis; i.e., the value in column 
+<code><i><font color="black"><span style='white-space: nowrap'>x_col</span></font></i></code>
+.
+
+<br/>
+<br/>
+<b><a name="--line, --points.y_col" id="--line, --points.y_col">y_col</a></b>
+<br/>
+is the name of the column corresponding to the vertical axis 
+for this 
+<code><font color="blue"><span style='white-space: nowrap'>(</span></font><i><font color="black"><span style='white-space: nowrap'>x_col</span></font></i><font color="blue"><span style='white-space: nowrap'>,&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>y_col</span></font></i><font color="blue"><span style='white-space: nowrap'>)</span></font></code>
+  pair.  
+The 
+<code><i><font color="black"><span style='white-space: nowrap'>y_col</span></font></i></code>
+ column must contain numeric data.
+If a value in the column 
+<code><i><font color="black"><span style='white-space: nowrap'>y_col</span></font></i></code>
+ is <code><font color="blue">nan</font></code>,
+the corresponding pair is not plotted.
+
+<br/>
+<br/>
+<b><a name="--line, --points.symbol" id="--line, --points.symbol">symbol</a></b>
+<br/>
+is either one symbol, or a list of symbols for this pair (a list of symbols 
+is useful for the <a href="d4_plot.py.xml#--connect" target="_top"><span style='white-space: nowrap'>--connect</span></a>
+ option).
+Valid symbol choices are
+<code><font color="blue">'.'</font></code> (no symbol),
+<code><font color="blue">'s'</font></code> (square),  
+<code><font color="blue">'o'</font></code> (circle),  
+<code><font color="blue">'*'</font></code> (star),  
+<code><font color="blue">'x'</font></code> (cross),
+<code><font color="blue">'+'</font></code> (plus),
+
+<code><i><font color="black"><span style='white-space: nowrap'>'p'</span></font></i></code>
+ (pentagon),
+<code><font color="blue">'d'</font></code> (thin diamond),  
+<code><font color="blue">'D'</font></code> (thick diamond)  
+
+<code><i><font color="black"><span style='white-space: nowrap'>'h'</span></font></i></code>
+ (hexagon1),
+
+<code><i><font color="black"><span style='white-space: nowrap'>'H'</span></font></i></code>
+ (hexagon2),
+<code><font color="blue">'^'</font></code> (triangle up),  
+<code><font color="blue">'&gt;'</font></code> (triangle right),  
+<code><font color="blue">'v'</font></code> (triangle down),  
+<code><font color="blue">'&lt;'</font></code> (triangle left).
+The no symbol case <code><font color="blue">'.'</font></code> is useful when a line is 
+being plotted and we do not also want a symbol at every plot point. 
+
+<br/>
+<br/>
+<b><a name="--line, --points.alpha" id="--line, --points.alpha">alpha</a></b>
+
+<br/>
+
+<code><i><font color="black"><span style='white-space: nowrap'>alpha</span></font></i></code>
+ determines is how dark is the line or symbols is
+
+<code><font color="blue"><span style='white-space: nowrap'>0&#xA0;&lt;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>alpha</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;&lt;=&#xA0;1</span></font></code>
+.
+
+<br/>
+<br/>
+<b><big><a name="--axis" id="--axis">--axis</a></big></b>
+<br/>
+This command line argument is optional, 
+and can appear at most once.
+If it is not present, the axes are auto scaled.
+If it is present,  the following argument must follow directly after it:
+
+<code><i><font color="black"><span style='white-space: nowrap'>x_label</span></font></i></code>
+ is label used for x axis,
+
+<code><i><font color="black"><span style='white-space: nowrap'>x_min</span></font></i></code>
+ is minimum value on the x axis, and
+
+<code><i><font color="black"><span style='white-space: nowrap'>x_max</span></font></i></code>
+ is maximum value on the x axis.
+Any 
+<code><i><font color="black"><span style='white-space: nowrap'>x</span></font></i></code>
+ values less than (greater than)
+
+<code><i><font color="black"><span style='white-space: nowrap'>x_min</span></font></i></code>
+ (
+<code><i><font color="black"><span style='white-space: nowrap'>x_max</span></font></i></code>
+) are set to 
+<code><i><font color="black"><span style='white-space: nowrap'>x_min</span></font></i></code>
+ (
+<code><i><font color="black"><span style='white-space: nowrap'>x_max</span></font></i></code>
+)
+in the plot.  
+The values 
+<code><i><font color="black"><span style='white-space: nowrap'>y_label</span></font></i></code>
+, 
+<code><i><font color="black"><span style='white-space: nowrap'>y_min</span></font></i></code>
+ and 
+<code><i><font color="black"><span style='white-space: nowrap'>y_max</span></font></i></code>
+ have a 
+similar effect on the y axis.
+
+<br/>
+<br/>
+<b><big><a name="--string" id="--string">--string</a></big></b>
+<br/>
+This command line argument is optional
+and can appear any number of times.
+If it is present, arguments 
+<code><i><font color="black"><span style='white-space: nowrap'>s_col</span></font></i></code>
+ and 
+<code><i><font color="black"><span style='white-space: nowrap'>s_value</span></font></i></code>
+ 
+must follow directly after <code><font color="blue">--string</font></code>.
+This is used to select the subset of the rows in the data file 
+where the specified column has the specified value (as a string).
+If <code><font color="blue">--string</font></code> occurs more than once,
+all of the specified columns must have the specified value for the
+correspond data to be plotted.
+
+<br/>
+<br/>
+<b><a name="--string.s_col" id="--string.s_col">s_col</a></b>
+<br/>
+is the name of the column that is used to select the subset of rows
+that are plotted.
+
+<br/>
+<br/>
+<b><a name="--string.s_value" id="--string.s_value">s_value</a></b>
+<br/>
+only rows that match this value in the specified column will be plotted.
+
+<br/>
+<br/>
+<b><big><a name="--numeric" id="--numeric">--numeric</a></big></b>
+<br/>
+This command line argument is optional
+and can appear any number of times.
+If it is present, arguments 
+<code><i><font color="black"><span style='white-space: nowrap'>e_col</span></font></i></code>
+ and 
+<code><i><font color="black"><span style='white-space: nowrap'>expr</span></font></i></code>
+ 
+must follow directly after <code><font color="blue">--numeric</font></code>.
+This is used to select the subset of the rows in the data file 
+where the specified column has a numeric value that results in
+<code><font color="blue">True</font></code> for the expression 
+<code><i><font color="black"><span style='white-space: nowrap'>expr</span></font></i></code>
+.
+
+<br/>
+<br/>
+<b><a name="--numeric.e_col" id="--numeric.e_col">e_col</a></b>
+<br/>
+is the name of the column that is used to select the subset of rows
+that are plotted.
+
+<br/>
+<br/>
+<b><a name="--numeric.expr" id="--numeric.expr">expr</a></b>
+<br/>
+only rows that match this value in the specified column will be plotted.
+The result of 
+<code><i><font color="black"><span style='white-space: nowrap'>expr</span></font></i></code>
+ must be <code><font color="blue">True</font></code> 
+(included) or <code><font color="blue">False</font></code> (not included).
+The name used for the selecting column 
+<code><i><font color="black"><span style='white-space: nowrap'>e_col</span></font></i></code>
+, is defined as
+a variable and equal to the value in that column as a float.
+The name <code><font color="blue">inf</font></code> is equal to the value plus infinity.
+Expressions are otherwise limited to the conditional expression syntax,
+the operators <code><font color="blue">+</font></code>, <code><font color="blue">-</font></code>, <code><font color="blue">*</font></code>, <code><font color="blue">/</font></code>, <code><font color="blue">**</font></code>,
+the <code><font color="blue">max</font></code> function, and numeric constants.
+For example, to exclude rows where the value in the <code><font color="blue">age</font></code> column
+is zero, one would use
+<code><font color='blue'><pre style='display:inline'> 
+	--numeric age 'age &gt; 0'
+</pre></font></code>
+
+Note that the quotes around <code><font color="blue">'age &gt; 0'</font></code> group the expression
+as one command line argument.
+
+<br/>
+<br/>
+<b><big><a name="--connect" id="--connect">--connect</a></big></b>
+<br/>
+This command line argument is optional,
+and can appear only once.
+If it is present, 
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>c_col</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>c_limit_1</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>c_limit_2</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>...</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>c_limit_N</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;<br/>
+</span></font></code>
+must follow directly after <code><font color="blue">--connect</font></code>.
+This is used to select subsets of rows in the data file 
+that will be connected by using the same symbol for plotting
+(and possibly also a connecting line).
+
+<br/>
+<br/>
+<b><a name="--connect.c_col" id="--connect.c_col">c_col</a></b>
+<br/>
+is the name of the column that contains the values which determine
+which points are to be connected. 
+Rows with 
+<code><i><font color="black"><span style='white-space: nowrap'>c_col</span></font></i></code>
+ values within the specified limits are connected.
+
+<br/>
+<br/>
+<b><a name="--connect.c_limit_j" id="--connect.c_limit_j">c_limit_j</a></b>
+<br/>
+If any of the 
+<code><i><font color="black"><span style='white-space: nowrap'>c_limit_j</span></font></i></code>
+ contains a comma, 
+then the column corresponding to 
+<code><i><font color="black"><span style='white-space: nowrap'>c_col</span></font></i></code>
+ must contain values
+that can be converted to <code><font color="blue">float</font></code>.
+Otherwise, all the 
+<code><i><font color="black"><span style='white-space: nowrap'>c_limit_j</span></font></i></code>
+ values can be arbitrary strings.
+For 
+<code><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;=&#xA0;1&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>,&#xA0;...&#xA0;,&#xA0;N</span></font></i></code>
+,
+if 
+<code><i><font color="black"><span style='white-space: nowrap'>c_limit_j</span></font></i></code>
+ contains a comma, 
+a lower limit comes before the comma and the upper limit comes after
+and values are connected if
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>lower</span></font></i><font color="blue"><span style='white-space: nowrap'>_j&#xA0;&lt;=&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>value</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;&lt;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>upper</span></font></i><font color="blue"><span style='white-space: nowrap'>_j<br/>
+</span></font></code>
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>c_limit_j</span></font></i></code>
+ does not contain a comma, then lower and
+upper limits are equal to the single value 
+<code><i><font color="black"><span style='white-space: nowrap'>c_limit_j</span></font></i></code>
+.
+and values are connected if
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;c_</span></font><i><font color="black"><span style='white-space: nowrap'>limit</span></font></i><font color="blue"><span style='white-space: nowrap'>_j&#xA0;==&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>value</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+The connection is represented by plotting the same symbol, 
+and possible a line, between the connected points.
+The connection corresponding to 
+<code><i><font color="black"><span style='white-space: nowrap'>c_limit_j</span></font></i></code>
+ uses the <i>j</i>-th
+<a href="d4_plot.py.xml#--line, --points.symbol" target="_top"><span style='white-space: nowrap'>symbol</span></a>
+ 
+for the corresponding pair.
+When there are more connections than symbols, the symbols are
+recycled starting with the first one (again).
+<code><span style='white-space: nowrap'><br/>
+<br/>
+</span></code>It is assumed that non of the 
+<code><i><font color="black"><span style='white-space: nowrap'>c_limit_j</span></font></i></code>
+ arguments
+start with the two characters <code><font color="blue">--</font></code>.
+There must be at least one connection; i.e., 
+<code><i><font color="black"><span style='white-space: nowrap'>N</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;&gt;=&#xA0;1</span></font></code>
+.
+
+<br/>
+<br/>
+<b><big><a name="--logx" id="--logx">--logx</a></big></b>
+<br/>
+This command line argument is optional,
+and can appear only once.
+If it is present, the 
+<code><i><font color="black"><span style='white-space: nowrap'>x</span></font></i></code>
+ axis is log scaled..
+
+<br/>
+<br/>
+<b><big><a name="--logy" id="--logy">--logy</a></big></b>
+<br/>
+This command line argument is optional,
+and can appear only once.
+If it is present, the 
+<code><i><font color="black"><span style='white-space: nowrap'>y</span></font></i></code>
+ axis is log scaled..
+
+
+<hr/>Input File: python/d4_plot.py.in
+
+</body>
+</html>

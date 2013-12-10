@@ -1,0 +1,217 @@
+<html><head>
+<title>Example and Test of dismod_pde csv_read Procedure</title>
+<meta name="description" id="description" content="Example and Test of dismod_pde csv_read Procedure">
+<meta name="keywords" id="keywords" content=" test csv_read example ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_csv_read_tst.cpp_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="csv_read.htm" target="_top">Prev</a>
+</td><td><a href="str_char_vec.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>cpp</option>
+<option>csv_read</option>
+<option>csv_read_tst.cpp</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>cpp-&gt;</option>
+<option>optimize</option>
+<option>create_grid</option>
+<option>pair2index</option>
+<option>csv_read</option>
+<option>str_char_vec</option>
+<option>atof_char_vec</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>csv_read-&gt;</option>
+<option>csv_read_tst.cpp</option>
+</select>
+</td>
+<td>csv_read_tst.cpp</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>ok</option>
+</select>
+</td>
+</tr></table><br>
+
+
+
+<center><b><big><big>Example and Test of dismod_pde csv_read Procedure</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><i><font color="black"><span style='white-space: nowrap'>ok</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;csv_read_tst()</span></font></code>
+
+
+<br>
+<br>
+<b><big><a name="ok" id="ok">ok</a></big></b>
+<br>
+The return value 
+<code><i><font color="black"><span style='white-space: nowrap'>ok</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>ok</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;<br>
+</span></font></code>
+If true, 
+the <a href="csv_read.htm" target="_top"><span style='white-space: nowrap'>csv_read</span></a>
+ passed this test.
+Otherwise this return value is false.
+
+<code><font color="blue">
+<pre style='display:inline'> 
+# include &lt;fstream&gt;
+# include &lt;dismod_pde/csv_read.hpp&gt;
+
+bool csv_read_tst(void)
+{	bool ok = true;
+	size_t j, k, start, length;
+
+	// name of temporary csv file
+	std::string file_name = &quot;csv_read_tst.tmp&quot;;
+
+	// data in the temporary file	
+	const char* data = 
+		&quot;name one,name two,name three\n&quot;            // header, row 0 
+		&quot;value 11,value 12,value 13\n&quot;              // row 1
+		&quot;value 21,value 22,value 23\n&quot;              // row 2
+		&quot;\&quot;value 31\&quot;,\&quot;value,32\&quot;,\&quot;value\n33\&quot;\n&quot; // quotes around values
+		&quot;value 41,value 42,\n&quot;;                     // end row with comma
+	
+
+	// create the temporary csv file
+	std::fstream file;
+	file.open(file_name.c_str(), std::fstream::out);
+	file &lt;&lt; data;
+	file.close();
+
+	// read the csv file file
+	size_t n_field = 3;
+	dismod_pde::vector&lt;std::string&gt; field(n_field);
+	field[0] = &quot;name three&quot;;
+	field[1] = &quot;name two&quot;;
+	field[2] = &quot;name one&quot;;
+	dismod_pde::vector&lt;char&gt;   raw;
+	dismod_pde::vector&lt; std::pair&lt;size_t,size_t&gt; &gt; sub_vec;
+	dismod_pde::csv_read(file_name, field, raw, sub_vec);
+
+	// check number of rows of data
+	size_t n_row = (sub_vec.size() / n_field);
+	ok           &amp;= n_row == 5;
+
+	// check the first row of the data file
+	size_t row = 0;
+	for(j = 0; j &lt; n_field; j++)
+	{	start   = sub_vec[ row * n_field + j].first;
+		length  = sub_vec[ row * n_field + j].second;	
+		ok &amp;= field[j].size() == length;   
+		for(k = 0; k &lt; length; k++)
+			ok &amp;= (field[j][k] == raw[ start + k ] );
+	}
+
+	// check the second row
+	row = 1;
+	field[0] = &quot;value 13&quot;;
+	field[1] = &quot;value 12&quot;;
+	field[2] = &quot;value 11&quot;;
+	for(j = 0; j &lt; n_field; j++)
+	{	start   = sub_vec[ row * n_field + j].first;
+		length  = sub_vec[ row * n_field + j].second;	
+		ok &amp;= field[j].size() == length;   
+		for(k = 0; k &lt; length; k++)
+			ok &amp;= (field[j][k] == raw[ start + k ] );
+	}
+
+	// check the third row
+	row = 2;
+	field[0] = &quot;value 23&quot;;
+	field[1] = &quot;value 22&quot;;
+	field[2] = &quot;value 21&quot;;
+	for(j = 0; j &lt; n_field; j++)
+	{	start   = sub_vec[ row * n_field + j].first;
+		length  = sub_vec[ row * n_field + j].second;	
+		ok &amp;= field[j].size() == length;   
+		for(k = 0; k &lt; length; k++)
+			ok &amp;= (field[j][k] == raw[ start + k ] );
+	}
+
+	// check the third row
+	row = 3;
+	field[0] = &quot;value\n33&quot;;
+	field[1] = &quot;value,32&quot;;
+	field[2] = &quot;value 31&quot;;
+	for(j = 0; j &lt; n_field; j++)
+	{	start   = sub_vec[ row * n_field + j].first;
+		length  = sub_vec[ row * n_field + j].second;	
+		ok &amp;= field[j].size() == length;   
+		for(k = 0; k &lt; length; k++)
+			ok &amp;= (field[j][k] == raw[ start + k ] );
+	}
+
+	// check the fourth row
+	row = 4;
+	field[0] = &quot;&quot;;
+	field[1] = &quot;value 42&quot;;
+	field[2] = &quot;value 41&quot;;
+	for(j = 0; j &lt; n_field; j++)
+	{	start   = sub_vec[ row * n_field + j].first;
+		length  = sub_vec[ row * n_field + j].second;	
+		ok &amp;= field[j].size() == length;   
+		for(k = 0; k &lt; length; k++)
+			ok &amp;= (field[j][k] == raw[ start + k ] );
+	}
+
+	return ok;
+}
+</pre>
+
+</font></code>
+
+
+<hr>Input File: example/csv_read_tst.cpp
+
+</body>
+</html>

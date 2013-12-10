@@ -1,0 +1,316 @@
+<html><head>
+<title>Bubble Plots of Values in Csv File</title>
+<meta name="description" id="description" content="Bubble Plots of Values in Csv File">
+<meta name="keywords" id="keywords" content=" ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_d4_bubble.py_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="python_csv.htm" target="_top">Prev</a>
+</td><td><a href="d4_change_sfun_in.py.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>csv</option>
+<option>python_csv</option>
+<option>d4_bubble.py</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>csv-&gt;</option>
+<option>dismod_pde_csv</option>
+<option>python_csv</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>python_csv-&gt;</option>
+<option>d4_bubble.py</option>
+<option>d4_change_sfun_in.py</option>
+<option>d4_compare_sfun.py</option>
+<option>d4_contour.py</option>
+<option>d4_cumulative.py</option>
+<option>d4_plot.py</option>
+<option>d4_sfun_der.py</option>
+<option>d4_sfun_grid.py</option>
+<option>d4_simulate.py</option>
+</select>
+</td>
+<td>d4_bubble.py</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>csv_file</option>
+<option>plot_file</option>
+<option>title</option>
+<option>x-axis</option>
+<option>---..x_name</option>
+<option>---..x_min</option>
+<option>---..x_max</option>
+<option>y-axis</option>
+<option>---..y_name</option>
+<option>---..y_min</option>
+<option>---..y_max</option>
+<option>Bubble size</option>
+<option>---..s_name</option>
+<option>---..s_min</option>
+<option>---..s_between</option>
+<option>---..s_max</option>
+<option>Filter</option>
+<option>---..f_name</option>
+<option>---..f_min</option>
+<option>---..f_max</option>
+<option>Nan</option>
+</select>
+</td>
+</tr></table><br>
+<center><b><big><big>Bubble Plots of Values in Csv File</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><font color="blue"><span style='white-space: nowrap'>d4_bubble.py&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>csv_file</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>plot_file</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>title</span></font></i></code>
+
+
+<code><font color="blue"><span style='white-space: nowrap'>\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>x_name</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>x_min</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>x_max</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y_name</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y_min</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y_max</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>s_name</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>s_min</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>s_between</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>s_max</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>f_name</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>f_min</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>f_max</span></font></i></code>
+
+
+<br>
+<br>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br>
+Make a bubble plot of the values in a csv file.
+
+<br>
+<br>
+<b><big><a name="csv_file" id="csv_file">csv_file</a></big></b>
+<br>
+is the name of <a href="csv.htm" target="_top"><span style='white-space: nowrap'>csv</span></a>
+ file to containing the values to be plotted.
+
+<br>
+<br>
+<b><big><a name="plot_file" id="plot_file">plot_file</a></big></b>
+<br>
+Is the name of the plot file stored to disk. The extension
+for this file will determine the output format; e.g., <code><font color="blue">.pdf</font></code>
+or <code><font color="blue">.eps</font></code>.
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>plot_file</span></font></i></code>
+ is the string <code><font color="blue">'screen'</font></code>,
+the plot is displayed on the screen, and <code><font color="blue">d4_bubble.py</font></code> waits 
+for the user to close the plot before returning.
+
+<br>
+<br>
+<b><big><a name="title" id="title">title</a></big></b>
+<br>
+is the title placed at the top of the plot.
+
+<br>
+<br>
+<b><big><a name="x-axis" id="x-axis">x-axis</a></big></b>
+<br>
+This is the horizontal axis in the plot.
+
+<br>
+<br>
+<b><a name="x-axis.x_name" id="x-axis.x_name">x_name</a></b>
+<br>
+name for the column corresponding to the x-axis.
+This column must contain numeric data.
+
+<br>
+<br>
+<b><a name="x-axis.x_min" id="x-axis.x_min">x_min</a></b>
+<br>
+lower limit for the x-axis in the plot
+(x values less than 
+<code><i><font color="black"><span style='white-space: nowrap'>x_min</span></font></i></code>
+ are plotted as 
+<code><i><font color="black"><span style='white-space: nowrap'>x_min</span></font></i></code>
+).
+
+<br>
+<br>
+<b><a name="x-axis.x_max" id="x-axis.x_max">x_max</a></b>
+<br>
+upper limit for the x-axis in the plot
+(x values greater than 
+<code><i><font color="black"><span style='white-space: nowrap'>x_max</span></font></i></code>
+ are plotted as 
+<code><i><font color="black"><span style='white-space: nowrap'>x_max</span></font></i></code>
+).
+
+<br>
+<br>
+<b><big><a name="y-axis" id="y-axis">y-axis</a></big></b>
+<br>
+This is the vertical axis in the plot.
+
+<br>
+<br>
+<b><a name="y-axis.y_name" id="y-axis.y_name">y_name</a></b>
+<br>
+name for the column corresponding to the y-axis.
+This column must contain numeric data.
+
+<br>
+<br>
+<b><a name="y-axis.y_min" id="y-axis.y_min">y_min</a></b>
+<br>
+lower limit for the y-axis in the plot
+(y values less than 
+<code><i><font color="black"><span style='white-space: nowrap'>y_min</span></font></i></code>
+ are plotted as 
+<code><i><font color="black"><span style='white-space: nowrap'>y_min</span></font></i></code>
+).
+
+<br>
+<br>
+<b><a name="y-axis.y_max" id="y-axis.y_max">y_max</a></b>
+<br>
+upper limit for the y-axis in the plot
+(y values greater than 
+<code><i><font color="black"><span style='white-space: nowrap'>y_max</span></font></i></code>
+ are plotted as 
+<code><i><font color="black"><span style='white-space: nowrap'>y_max</span></font></i></code>
+).
+
+<br>
+<br>
+<b><big><a name="Bubble size" id="Bubble size">Bubble size</a></big></b>
+<br>
+These arguments determine the size of the bubbles in the plot.
+
+<br>
+<br>
+<b><a name="Bubble size.s_name" id="Bubble size.s_name">s_name</a></b>
+<br>
+name for the column corresponding to the size of the bubbles in the plot.
+This column must contain numeric data.
+
+<br>
+<br>
+<b><a name="Bubble size.s_min" id="Bubble size.s_min">s_min</a></b>
+<br>
+absolute value corresponding to the minimum bubble size.
+Values with smaller absolute value are plotted at this size.
+Note that the value 
+<code><i><font color="black"><span style='white-space: nowrap'>s_min</span></font></i></code>
+ is used to label the corresponding 
+bubble size.
+
+<br>
+<br>
+<b><a name="Bubble size.s_between" id="Bubble size.s_between">s_between</a></b>
+<br>
+the value 
+<code><i><font color="black"><span style='white-space: nowrap'>s_between</span></font></i></code>
+ is used to label the corresponding 
+bubble size where
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>s_min</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&lt;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>s_between</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&lt;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>s_max</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+<br>
+<b><a name="Bubble size.s_max" id="Bubble size.s_max">s_max</a></b>
+<br>
+absolute value corresponding to the maximum bubble size.
+Values with larger absolute value are plotted at this size.
+Note that the value 
+<code><i><font color="black"><span style='white-space: nowrap'>s_max</span></font></i></code>
+ is used to label the corresponding 
+bubble size.
+
+<br>
+<br>
+<b><big><a name="Filter" id="Filter">Filter</a></big></b>
+<br>
+These arguments determine which lines in the csv file
+should be included in the plot. 
+
+<br>
+<br>
+<b><a name="Filter.f_name" id="Filter.f_name">f_name</a></b>
+<br>
+Is the name of the column used for determining which lines to include.
+
+<br>
+<br>
+<b><a name="Filter.f_min" id="Filter.f_min">f_min</a></b>
+<br>
+Is the minimum value for the filtering column that corresponds to lines
+that are included.
+
+<br>
+<br>
+<b><a name="Filter.f_max" id="Filter.f_max">f_max</a></b>
+<br>
+Is the maximum value for the filtering column that corresponds to lines
+that are included. 
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>f_min</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;==&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>f_max</span></font></i></code>
+ as strings, then the filtering
+column is treated as a string column and only those lines with that
+same value are included.
+Otherwise the filtering column must contain numeric data.
+
+<br>
+<br>
+<b><big><a name="Nan" id="Nan">Nan</a></big></b>
+<br>
+If the value in column 
+<code><i><font color="black"><span style='white-space: nowrap'>x_name</span></font></i></code>
+, 
+<code><i><font color="black"><span style='white-space: nowrap'>y_name</span></font></i></code>
+ or 
+<code><i><font color="black"><span style='white-space: nowrap'>s_name</span></font></i></code>
+
+is not a number <code><font color="blue">nan</font></code>, the corresponding line is not included
+in the plot. 
+
+
+<hr>Input File: python/d4_bubble.py.in
+
+</body>
+</html>

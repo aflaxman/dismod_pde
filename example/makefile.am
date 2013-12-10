@@ -1,0 +1,40 @@
+#
+src_cpp_dir       = $(top_srcdir)/cpp
+build_cpp_dir     = $(top_builddir)/cpp
+#
+src_python_dir    = $(top_srcdir)/python
+src_example_dir   = $(top_srcdir)/example
+#
+# -------------------------------------------------------------------------
+AM_CXXFLAGS = \
+	$(CXX_FLAGS) \
+	-I$(src_cpp_dir) \
+	-I$(CPPAD_PREFIX)/include \
+	-I$(IPOPT_PREFIX)/include
+#
+LDADD = \
+	$(ADD_LINK) \
+	-ldismod_pde  -L$(build_cpp_dir) \
+	-lcppad_ipopt  -L$(CPPAD_PREFIX)/lib -L$(CPPAD_PREFIX)/lib64 \
+	$(IPOPT_LIBS) \
+	$(FCLIBS)
+#
+check_PROGRAMS = \
+	main
+#
+main_SOURCES = \
+	atof_char_vec_tst.cpp \
+	csv_read_tst.cpp \
+	main.cpp \
+	optimize_xam.cpp \
+	pair2index.cpp \
+	str_char_vec_tst.cpp 
+# ---------------------------------------------------------------------------
+dist_noinst_SCRIPTS = \
+	change_sfun_in.sh \
+	sfun_grid.sh
+#
+test: check main$(EXEEXT) 
+	$(src_example_dir)/change_sfun_in.sh
+	$(src_example_dir)/sfun_grid.sh
+	./main

@@ -1,0 +1,246 @@
+<html><head>
+<title>Create C++ Files Corresponding to Dismod Data and Expected Results</title>
+<meta name="description" id="description" content="Create C++ Files Corresponding to Dismod Data and Expected Results">
+<meta name="keywords" id="keywords" content=" c++ example data structure ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_dismoditis.sh_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="dismoditis.cpp.htm" target="_top">Prev</a>
+</td><td><a href="create_grid.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>cpp</option>
+<option>optimize</option>
+<option>dismoditis.cpp</option>
+<option>dismoditis.sh</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down4(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>cpp-&gt;</option>
+<option>optimize</option>
+<option>create_grid</option>
+<option>pair2index</option>
+<option>csv_read</option>
+<option>str_char_vec</option>
+<option>atof_char_vec</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>optimize-&gt;</option>
+<option>ipopt_trace</option>
+<option>optimize_xam.cpp</option>
+<option>dismoditis.cpp</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>dismoditis.cpp-&gt;</option>
+<option>dismoditis.sh</option>
+</select>
+</td>
+<td>dismoditis.sh</td>
+<td>Headings</td>
+</tr></table><br>
+ 
+
+
+<center><b><big><big>Create C++ Files Corresponding to Dismod Data and Expected Results</big></big></b></center>
+<code><font color="blue"><pre style='display:inline'> 
+echo &quot;BEGIN: create the files dismoditis_data.cpp and dismoditis_sim.cpp.&quot;
+# 
+top_srcdir=@abs_top_srcdir@
+top_builddir=@abs_top_builddir@
+python_path=$top_builddir/python
+#
+# create the files dismoditis_data.csv and dismoditis_sim.csv
+number=20
+like='gaussian'
+sim_zeta='1.0'
+fit_zeta='1.0'
+sim_cv='0.0'
+fit_cv='.01'
+$python_path/d4_simulate.py \
+-files       dismoditis_data.csv dismoditis_sim.csv \
+-age         0 1 1 100 20 \
+-time        20 1 1990 2010 10 \
+-iota        2e-3 \
+-rho         3e-3 \
+-chi         4e-3 \
+-omega       5e-3 \
+-measure     incidence     $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure     remission     $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure     m_excess      $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure     relative_risk $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv 
+# 
+# Python script that converts dismoditis_data.csv and dismoditis_sim.csv to C++
+cat &lt;&lt; EOF &gt; dismoditis.py
+# input files
+csv_data_file  = 'dismoditis_data.csv'
+csv_sim_file   = 'dismoditis_sim.csv'
+# output files
+cpp_data_file  = 'dismoditis_data.cpp'
+cpp_sim_file   = 'dismoditis_sim.cpp'
+#
+import csv
+import math
+# -------------------------------------------------------------------------
+# read and write the data file
+csv_data_fp = open(csv_data_file, 'r')
+data        = csv.DictReader(csv_data_fp)
+#
+# A C++ source code file that defines the dismoditis_data[]
+cpp_data_fp    = open(cpp_data_file, 'w')
+#
+# Mapping dismoditis measurement name in input to intergrand name in output 
+name_map    = {
+	'incidence'        : '     dismod_pde::incidence_enum'    ,
+	'remission'        : '     dismod_pde::remission_enum'    ,
+	'm_excess'         : '     dismod_pde::m_excess_enum'     ,
+	'm_other'          : '     dismod_pde::m_other_enum'      ,
+	'm_with'           : '     dismod_pde::m_with_enum'       ,
+	'prevalence'       : '     dismod_pde::prevalence_enum'   ,
+	'm_prevalence'     : '     dismod_pde::m_prevalence_enum' ,
+	'm_specific'       : '     dismod_pde::m_specific_enum'   ,
+	'm_all'            : '     dismod_pde::m_all_enum'        ,
+	'm_standard'       : '     dismod_pde::m_standard_enum'   ,
+	'relative_risk'    : '     dismod_pde::relative_risk_enum'
+}
+#
+# stuff at the beginning of the cpp data file
+code = '''
+# include &lt;dismod_pde/dismod_pde.hpp&gt;
+
+dismod_pde::Measure_Input_Struct dismoditis_data[] = {
+'''
+cpp_data_fp.write(code)
+first = True
+for input_line in data :
+	# stuff on each line of the cpp data file
+	integrand   = name_map[ input_line['integrand'] ]
+	y_start     = input_line['time_lower']
+	y_end       = input_line['time_upper']
+	a_start     = input_line['age_lower']
+	a_end       = input_line['age_upper']
+	meas_like   = input_line['meas_like']
+	meas_zeta   = input_line['meas_zeta']
+	meas_sigma  = input_line['meas_sigma']
+	meas_value  = input_line['meas_value']
+	# type of liklihood to use on measurement residuals
+	meas_like   = 'dismod_pde::' + meas_like + '_enum'
+	# structure for the log likelihood
+	likelihood  =  meas_like + ', ' + meas_zeta + ', ' + meas_sigma
+	# structure for this measurement
+	measure = '{ ' + integrand + ', '
+	measure = measure + y_start + ', ' + y_end + ', '
+	measure = measure + a_start + ', ' + a_end + ', ' 
+	measure = measure + meas_like +   ', ' 
+	measure = measure + meas_zeta +   ', ' 
+	measure = measure + meas_sigma +  ', ' 
+	measure = measure + meas_value +  ' }\n'
+	if first :
+		cpp_data_fp.write('  ' + measure)
+	else :
+		cpp_data_fp.write(', ' + measure)
+	first   = False
+#
+# stuff at the end of the cpp data file
+code = '''
+}; 
+size_t n_dismoditis_data = 
+	sizeof(dismoditis_data) / sizeof(dismoditis_data[0]);
+'''
+cpp_data_fp.write(code)
+# -------------------------------------------------------------------------
+# read and write the solution file
+csv_sim_fp = open(csv_sim_file, 'r')
+solution     = csv.DictReader(csv_sim_fp)
+#
+# A C++ source code file that defines the dismoditis_sim[]
+cpp_sim_fp    = open(cpp_sim_file, 'w')
+#
+# Must use the same order for stochastic functions as in dismod_pde/define.hpp
+solve_header = [ 'cohort', 'age', 'S', 'C', 'iota', 'rho', 'chi', 'omega' ]
+#
+# stuff at the beginning of the cpp solution file
+cpp_sim_fp.write('# include &lt;dismod_pde/dismod_pde.hpp&gt;\n\n')
+first = True
+row   = '// '
+for field in solve_header :
+	if not first :
+		row = row + ', '
+	row   = row + field
+	first = False;
+row   = row + '\n'
+#
+cpp_sim_fp.write(row)
+cpp_sim_fp.write('double dismoditis_sim[] = {\n')
+first = True
+for input_line in solution :
+	# stuff on each line of the cpp data file
+	row     = '\t'
+	for field in solve_header :
+		if first :
+			row = row + ' '
+		else :
+			row = row + ','
+		first   = False
+		row     = row + input_line[field]
+	row = row + '\n'
+	cpp_sim_fp.write(row)
+#
+# stuff at the end of the cpp data file
+code = '''
+};
+size_t n_dismoditis_sim = 
+	sizeof(dismoditis_sim) / sizeof(dismoditis_sim[0]);
+'''
+cpp_sim_fp.write(code)
+EOF
+# Now create the C++ files dismoditis_data.cpp and dismoditis_sim.cpp
+$top_builddir/python.sh dismoditis.py
+#
+echo &quot;OK: created ./dismoditis_data.cpp and ./dismoditis_sim.cpp.&quot;
+</pre>
+
+</font></code>
+
+
+<hr>Input File: test/dismoditis.sh.in
+
+</body>
+</html>

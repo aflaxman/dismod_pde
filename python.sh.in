@@ -1,0 +1,45 @@
+#! /bin/bash -e
+# Script that runs version of python specified during Dismod4 configure command
+escape="#"
+star="\"'*'\""
+dquote='\\"'
+if [ $# -lt 1 ]
+then
+	@PYTHON_PREFIX@/bin/python
+else
+	if ( echo "$1" | grep "$escape")
+	then
+		echo "python.sh: $escape appeares in argument list"
+		exit 1
+	fi
+	arguments=`echo "$1" | sed \
+		-e "s|^|${escape}1|g" \
+		-e "s|.*|&${escape}2|g" \
+		-e "s|\*|${escape}3|g" \
+		-e "s|\"|${escape}4|g"
+	`
+	while [ $# -gt 1 ]
+	do
+		shift
+		arg=`echo "$1" | sed \
+			-e "s|^|${escape}1|g" \
+			-e "s|.*|&${escape}2|g" \
+			-e "s|\*|${escape}3|g" \
+			-e "s|\"|${escape}4|g"
+		`
+		arguments="$arguments $arg"
+	done
+	arguments=`echo "$arguments" | sed \
+		-e "s|${escape}1|\"|g" \
+		-e "s|${escape}2|\"|g" \
+		-e "s|${escape}3|$star|g"  \
+		-e "s|${escape}4|$dquote|g"
+	`
+	if ! eval @PYTHON_PREFIX@/bin/python $arguments
+	then
+		echo "python.sh: The following python command failed"
+		echo @PYTHON_PREFIX@/bin/python $arguments
+		exit 1
+	fi
+fi
+exit 0

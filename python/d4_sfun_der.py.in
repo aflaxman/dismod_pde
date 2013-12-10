@@ -1,0 +1,168 @@
+#! @PYTHON_PREFIX@/bin/python
+# $begin d4_sfun_der.py$$ $newlinech #$$
+# $escape $$
+# $spell
+# 	pde
+#	py
+#	omega
+#	dismod_pde
+#	csv
+#	sfun
+#	dvar
+#	expr
+# $$
+#
+# $section Create Derived Stochastic Function Output Files$$
+#
+# $head Syntax$$
+# $codei%d4_sfun_der.py %sfun_out_csv% %sfun_der_csv% \
+#	%dvar_1% %expr_1% % ... % %dvar_N% %expr_N%$$
+#
+# $head Purpose$$
+# This program converts a dismod_pde stochastic function output file; e.g.,
+# $cref/sfun_out.csv/dismod_pde_csv/sfun_out.csv/$$,
+# to from cycling though quantities to one quantity per column.
+#
+# $head sfun_out_csv$$
+# is the name the input file; e.g.,
+# $cref/sfun_out.csv/dismod_pde_csv/sfun_out.csv/$$ or
+# $cref/sfun_grid.csv/d4_sfun_grid.py/sfun_grid.csv/$$.
+# In general it can be any file that has the same column names and 
+# same grouping of the rows; i.e., for a given value of 
+# $code age$$, $code cohort$$ and $code time$$, the corresponding rows are
+# grouped together and
+# the $code function$$ column cycles through the values
+# $code S$$,
+# $code C$$,
+# $code iota$$,
+# $code rho$$,
+# $code chi$$, and
+# $code omega$$.
+# 
+# $head sfun_der_csv$$
+# is the name of the file written by $code d4_sfun_der.py$$.
+# The first line has the column names, 
+# $icode dvar_1$$, $icode dvar_2$$ ...
+# The other lines contain the corresponding values for
+# with one line for each value of age and cohort in $icode sfun_out.csv$$.
+# Each line corresponds to all the functions and one value for
+# $icode age$$, $icode cohort$$ and $code time$$.
+#
+# $head dvar_j$$
+# For $latex j = 1 , \ldots , N$$, $icode dvar_j$$ is the 
+# name for the $th j$$ derived variable; i.e., the $th j$$ column
+# in $icode sfun_der.csv$$.
+#
+# $head expr_j$$
+# For $latex j = 1 , \ldots , N$$, $icode expr_j$$ is the 
+# expression for the $th j$$ derived variable in terms of 
+# the variables in $icode sfun_out.csv$$ and other derived variables
+# that are defined before it (smaller value of $icode j$$).
+# The following variables are defined by $icode sfun_out.csv$$:
+# $list number$$
+# The variables $icode age$$, $icode cohort$$, $icode time$$ are
+# the corresponding constant values for the six lines in a group of
+# $icode sfun_out.csv$$ input.
+# $lnext
+# For each value of $icode q$$ in the set 
+# $icode%{% S %,% C %,% iota %,% rho %,% chi %,% omega %}%$$,
+# variables that begin with $icode%q%_%$$ have values coming from
+# a line in $icode sfun_out.csv$$ that has $icode q$$ in its
+# $code function$$ column.
+# $lnext
+# The possible variable names are 
+# $icode%q%_estimate%$$,
+# $icode%q%_prior_residual%$$,
+# $icode%q%_prior_scaled%$$,
+# $icode%q%_age_residual%$$,
+# $icode%q%_age_scaled%$$,
+# $icode%q%_cohort_residual%$$,
+# $icode%q%_cohort_scaled%$$.
+# $lnext
+# For each possible $icode name$$ list above,
+# the value for $icode%q%_%name%$$ comes from the column 
+# $icode name$$ in the $icode sfun_out.csv$$.
+# $lend
+# $end
+#
+def convert_float(row) :
+	for k in row.keys() :
+		try :
+			row[k] = float(row[k])
+		except ValueError :
+			pass
+#
+def safe_eval(expr, row) :
+	local_dict = row
+	global_dict = {'__builtins__' : None}
+	return eval(expr, global_dict, local_dict)
+#
+import sys
+import csv
+import copy
+#
+usage='''
+d4_sfun_der.py \\
+	sfun_out_csv sfun_der_csv dvar_1 expr_1 ... dvar_N expr_N
+
+sfun_out_csv: stochastic output function file with same format as sfun_out.csv.
+sfun_der_csv: derived output file that will be created by sfun_der.
+dvar_j:       name of the j-th derived variable 
+expr_j:       expression in terms of sfun_out and derived variables.
+
+The sfun_out variables are age, cohort, time, and <q>_<name>
+<q>    is one of S, C, iota, rho, chi, omega
+<name> is one of estimate, prior_residual, prior_scaled, age_residual
+       age_scaled, cohort_residual, cohort_scaled.
+'''
+argv = sys.argv
+if len(argv) < 5 or len(argv) % 2 != 1 :
+	sys.exit(usage)
+#
+sfun_fp     = open(argv[1], 'r')
+derived_fp  = open(argv[2], 'w')
+iarg        = 3
+dvar_list   = []
+expr_list   = []
+while iarg < len(argv) :
+	dvar_list.append(argv[iarg + 0])
+	expr_list.append(argv[iarg + 1])
+	iarg = iarg + 2
+#
+svar_list = [ 'S', 'C', 'iota', 'rho', 'chi', 'omega' ] 
+name_list = [ 'estimate' ]
+for a in [ 'prior' , 'age', 'cohort' ] :
+	for b in [ 'residual' , 'scaled' ] :
+		name_list.append( a + '_' + b )
+#
+reader      = csv.DictReader(sfun_fp, skipinitialspace=True)
+writer      = csv.writer(derived_fp)
+#
+writer.writerow(dvar_list)
+try :
+	while True :
+		next          = reader.next()
+		row           = {}
+		row['age']    = next['age']
+		row['cohort'] = next['cohort']
+		row['time']   = next['time']
+		fun           = next['function']
+		for name in name_list :
+			row[fun + '_' + name ] = next[name]
+		for i in range(5) :
+			next = reader.next()
+			assert next['age']    == row['age']
+			assert next['cohort'] == row['cohort']
+			assert next['time']   == row['time']
+			fun  = next['function']
+			for name in name_list :
+				row[fun + '_' + name ] = next[name]
+		convert_float(row)
+		value_list = []
+		for j in range( len(dvar_list) ) :
+			row[dvar_list[j]] = safe_eval(expr_list[j], row)
+			value_list.append( row[ dvar_list[j] ] )
+		writer.writerow(value_list)
+	pass
+except StopIteration :
+	pass

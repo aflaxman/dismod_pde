@@ -1,0 +1,281 @@
+<html><head>
+<title>Convert From Age-Cohort Grid to Age-Time Rectangular Grid</title>
+<meta name="description" id="description" content="Convert From Age-Cohort Grid to Age-Time Rectangular Grid">
+<meta name="keywords" id="keywords" content=" example d4_sfun_grid.py ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_d4_sfun_grid.py_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="d4_sfun_der.py.htm" target="_top">Prev</a>
+</td><td><a href="sfun_grid.sh.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>csv</option>
+<option>python_csv</option>
+<option>d4_sfun_grid.py</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>csv-&gt;</option>
+<option>dismod_pde_csv</option>
+<option>python_csv</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>python_csv-&gt;</option>
+<option>d4_bubble.py</option>
+<option>d4_change_sfun_in.py</option>
+<option>d4_compare_sfun.py</option>
+<option>d4_contour.py</option>
+<option>d4_cumulative.py</option>
+<option>d4_plot.py</option>
+<option>d4_sfun_der.py</option>
+<option>d4_sfun_grid.py</option>
+<option>d4_simulate.py</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down0(this)'>
+<option>d4_sfun_grid.py-&gt;</option>
+<option>sfun_grid.sh</option>
+</select>
+</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>sfun_out.csv</option>
+<option>---..age vector</option>
+<option>---..time bounds</option>
+<option>sfun_grid.csv</option>
+<option>time_start</option>
+<option>time_end</option>
+<option>n_time</option>
+<option>Example</option>
+</select>
+</td>
+</tr></table><br>
+  
+
+<code>
+<span style='white-space: nowrap'>&nbsp;\newcommand{\B}[1]{{\bf&nbsp;#1}}</span></code>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;\newcommand{\W}[1]{{\;&nbsp;#1&nbsp;\;}}</span></code>
+
+
+<center><b><big><big>Convert From Age-Cohort Grid to Age-Time Rectangular Grid</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+
+<br>
+
+<code><font color="blue"><span style='white-space: nowrap'>d4_sfun_grid.py&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+
+<code><font color="blue"><span style='white-space: nowrap'>d4_sfun_grid.py&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_grid.csv</span></font></i></code>
+
+
+<code><i><font color="black"><span style='white-space: nowrap'>time_start</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_end</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>n_time</span></font></i></code>
+
+
+<br>
+<br>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br>
+This program creates a csv file that has the same information as the
+<a href="dismod_pde_csv.htm#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+ file, but on a rectangular
+grid in age and time.
+
+<br>
+<br>
+<b><big><a name="sfun_out.csv" id="sfun_out.csv">sfun_out.csv</a></big></b>
+<br>
+is the name of <a href="dismod_pde_csv.htm#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+ file output
+by dismod_pde.
+
+<br>
+<br>
+<b><a name="sfun_out.csv.age vector" id="sfun_out.csv.age vector">age vector</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;A_i</span></code>
+ and <code>
+<span style='white-space: nowrap'>&nbsp;C_i</span></code>
+ to denote the age an cohort
+in the <i>i</i>-th record of 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i></code>
+. 
+We use <code>
+<span style='white-space: nowrap'>&nbsp;a&nbsp;\in&nbsp;\B{R}^J</span></code>
+ to denote a sorted vector containing 
+the set of values <code>
+<span style='white-space: nowrap'>&nbsp;\{&nbsp;A_i&nbsp;\}</span></code>
+.
+
+<br>
+<br>
+<b><a name="sfun_out.csv.time bounds" id="sfun_out.csv.time bounds">time bounds</a></b>
+<br>
+We define the lower and upper time bounds by
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+\begin{array}{rcl}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tl&nbsp;&amp;&nbsp;=&nbsp;&amp;&nbsp;\max_{j&nbsp;&gt;&nbsp;0}&nbsp;\min_i&nbsp;\{&nbsp;A_i&nbsp;+&nbsp;C_i&nbsp;\W{:}&nbsp;A_i&nbsp;=&nbsp;a_j&nbsp;\}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tu&nbsp;&amp;&nbsp;=&nbsp;&amp;&nbsp;\min_{j&nbsp;&gt;&nbsp;0}&nbsp;\max_i&nbsp;\{&nbsp;A_i&nbsp;+&nbsp;C_i&nbsp;\W{:}&nbsp;A_i&nbsp;=&nbsp;a_j&nbsp;\}<br>
+\end{array}<br>
+\]&nbsp;</span></code>
+
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i></code>
+, is the only command line argument,
+these bounds are printed to standard output in the following format
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;time_lower_bound&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>tl</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;time_upper_bound&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>tu</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+<br>
+<b><big><a name="sfun_grid.csv" id="sfun_grid.csv">sfun_grid.csv</a></big></b>
+<br>
+is the name of the <a href="csv.htm" target="_top"><span style='white-space: nowrap'>csv</span></a>
+ file written by <code><font color="blue">d4_sfun_grid.py</font></code>.
+The first line has the column names, which are the same as for
+
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i></code>
+.
+Let <code>
+<span style='white-space: nowrap'>&nbsp;a&nbsp;\in&nbsp;\B{R}^J</span></code>
+ be the age vector (see above),
+<code>
+<span style='white-space: nowrap'>&nbsp;t&nbsp;\in&nbsp;\B{R}^K</span></code>
+ be the time vector (see below),
+and <code>
+<span style='white-space: nowrap'>&nbsp;s</span></code>
+ be the vector of function names; i.e.
+<code>
+<span style='white-space: nowrap'>&nbsp;s&nbsp;=&nbsp;(&nbsp;S&nbsp;,&nbsp;C&nbsp;,&nbsp;\iota&nbsp;,&nbsp;\rho&nbsp;,&nbsp;\chi&nbsp;,&nbsp;\omega&nbsp;)</span></code>
+.
+The output times values lines are in the following order:
+For <code>
+<span style='white-space: nowrap'>&nbsp;j&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;J-1</span></code>
+,
+for <code>
+<span style='white-space: nowrap'>&nbsp;k&nbsp;=&nbsp;0,&nbsp;\ldots&nbsp;,&nbsp;K-1</span></code>
+,
+and for <code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;0,&nbsp;\ldots&nbsp;,&nbsp;N-1</span></code>
+
+the output line 
+<code><font color="blue"><span style='white-space: nowrap'>2&nbsp;+&nbsp;&nbsp;(&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>K</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;)&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>N</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i></code>
+
+corresponds to age value <code>
+<span style='white-space: nowrap'>&nbsp;a_j</span></code>
+
+time value <code>
+<span style='white-space: nowrap'>&nbsp;t_k</span></code>
+,
+and function <code>
+<span style='white-space: nowrap'>&nbsp;s^q</span></code>
+.
+
+<br>
+<br>
+<b><big><a name="time_start" id="time_start">time_start</a></big></b>
+<br>
+this command line argument is a floating point value
+that will be the first time grid point in the output file; i.e.,
+the value of <code>
+<span style='white-space: nowrap'>&nbsp;t_0</span></code>
+ above.
+It must hold that
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_lower_bound</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&lt;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_start</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+<br>
+<b><big><a name="time_end" id="time_end">time_end</a></big></b>
+<br>
+this command line argument is a floating point value
+that will be the last time grid point in the output file; i.e.,
+the value of <code>
+<span style='white-space: nowrap'>&nbsp;t_{K-1}</span></code>
+ above.
+It must hold that
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_start</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&lt;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_end</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&lt;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_upper_bound</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+<br>
+<b><big><a name="n_time" id="n_time">n_time</a></big></b>
+<br>
+this command line argument is a positive integer,
+greater than or equal to two,
+that specifies the number points <code>
+<span style='white-space: nowrap'>&nbsp;K</span></code>
+ in the time grid.
+Note that for <code>
+<span style='white-space: nowrap'>&nbsp;k&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;K-1</span></code>
+, 
+<code><span style='white-space: nowrap'><br>
+</span></code><code>
+<span style='white-space: nowrap'>&nbsp;t_k&nbsp;=&nbsp;</span></code>
+
+
+<code><i><font color="black"><span style='white-space: nowrap'>time_start</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;(</span></font><i><font color="black"><span style='white-space: nowrap'>time_end</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_start</span></font></i><font color="blue"><span style='white-space: nowrap'>)&nbsp;/&nbsp;(</span></font><i><font color="black"><span style='white-space: nowrap'>n_time</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;1)</span></font></code>
+
+
+
+<br>
+<br>
+<b><big><a name="Example" id="Example">Example</a></big></b>
+
+<br>
+The shell script <a href="sfun_grid.sh.htm" target="_top"><span style='white-space: nowrap'>sfun_grid.sh</span></a>
+ is an example and test
+of <code><font color="blue">d4_sfun_grid.py</font></code>.
+
+
+<hr>Input File: python/d4_sfun_grid.py.in
+
+</body>
+</html>

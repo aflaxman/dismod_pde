@@ -1,0 +1,56 @@
+$begin csv$$
+$spell
+	pde
+	newline
+	dismod
+	csv
+	skipinitialspace
+$$
+
+$section The CSV File Interface to dismod_pde$$
+
+$head dismod_pde CSV Files$$
+$index csv, file specification$$
+$index file, csv specification$$
+$index specification, csv file$$
+The following are the specifications for a dismod_pde CSV file:
+
+$list number$$
+It is an ascii file that does not contain any of the following characters:
+single quote, double quote, back quote, or semi-colon.
+
+$lnext 
+The comma is a special character because it separates columns in the file.
+There is no comma after the last column in a line.
+
+$lnext
+The newline is a special character because it separates lines in the file.
+
+$lnext
+The first line of a csv file contains the names for the corresponding columns,
+each subsequent line contains one value for each column.
+
+$lnext
+The carriage return is a special character because on Windows systems,
+it is combined with the newline to form an end of line.
+Therefore, a carriage return newline will be the same as a newline.
+On MAC OS, the carriage return is used in place of a newline,
+so if a carriage return is not followed by a newline, it is converted 
+to a newline.;
+
+$lnext
+The double quote is a special character because,
+when surrounded by a pair of double quote characters, 
+the special meaning of the comma and newline (see above) are suppressed.
+When present,
+the double quote must be both the first and last character in the field
+and are not included in the field data.
+
+$lend
+
+$contents%
+	cpp/dismod_pde_csv.cpp%
+	omh/python.omh
+%$$
+
+$end

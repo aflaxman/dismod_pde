@@ -1,0 +1,24 @@
+$begin python_csv$$
+$spell
+	pde
+	Dismod
+$$
+
+$section dismod_pde Python CSV Helper Scripts$$
+
+The following scripts help in using the 
+$cref dismod_pde_csv$$:
+
+$contents%
+	python/d4_bubble.py.in%
+	python/d4_change_sfun_in.py.in%
+	python/d4_compare_sfun.py.in%
+	python/d4_contour.py.in%
+	python/d4_cumulative.py.in%
+	python/d4_plot.py.in%
+	python/d4_sfun_der.py.in%
+	python/d4_sfun_grid.py.in%
+	python/d4_simulate.py.in
+%$$
+
+$end

@@ -1,0 +1,138 @@
+<html><head>
+<title>Example and Test of Conversion from Ascii to String</title>
+<meta name="description" id="description" content="Example and Test of Conversion from Ascii to String">
+<meta name="keywords" id="keywords" content=" test str_char_vec example ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_str_char_vec_tst.cpp_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="str_char_vec.htm" target="_top">Prev</a>
+</td><td><a href="atof_char_vec.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>cpp</option>
+<option>str_char_vec</option>
+<option>str_char_vec_tst.cpp</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>cpp-&gt;</option>
+<option>optimize</option>
+<option>create_grid</option>
+<option>pair2index</option>
+<option>csv_read</option>
+<option>str_char_vec</option>
+<option>atof_char_vec</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>str_char_vec-&gt;</option>
+<option>str_char_vec_tst.cpp</option>
+</select>
+</td>
+<td>str_char_vec_tst.cpp</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>ok</option>
+</select>
+</td>
+</tr></table><br>
+
+
+
+<center><b><big><big>Example and Test of Conversion from Ascii to String</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><i><font color="black"><span style='white-space: nowrap'>ok</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;str_char_vec_tst()</span></font></code>
+
+
+<br>
+<br>
+<b><big><a name="ok" id="ok">ok</a></big></b>
+<br>
+The return value 
+<code><i><font color="black"><span style='white-space: nowrap'>ok</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>ok</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;<br>
+</span></font></code>
+If true, 
+<a href="str_char_vec.htm" target="_top"><span style='white-space: nowrap'>str_char_vec</span></a>
+ passed this test.
+Otherwise this return value is false.
+
+<code><font color="blue">
+<pre style='display:inline'> 
+# include &lt;dismod_pde/str_char_vec.hpp&gt;
+
+bool str_char_vec_tst(void)
+{	bool ok = true;
+
+	// create the vector of characters
+	// (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+	dismod_pde::vector&lt;char&gt; char_vec(10);
+	size_t i;
+	for(i = 0; i &lt; 10; i++)
+		char_vec[i] = char( '0' + i );
+
+	std::pair&lt;size_t,size_t&gt; sub_vec;
+	std::string              str;
+	sub_vec.first  = 2;
+	sub_vec.second = 2;
+	str            = &quot;23&quot;;
+	ok &amp;= ( dismod_pde::str_char_vec(char_vec, sub_vec) == str );
+	sub_vec.first  = 2;
+	sub_vec.second = 3;
+	str            = &quot;234&quot;;
+	ok &amp;= ( dismod_pde::str_char_vec(char_vec, sub_vec) == str );
+
+	return ok;
+}
+</pre>
+
+</font></code>
+
+<hr>Input File: example/str_char_vec_tst.cpp
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+#
+test: 
+	./get_started.sh 
+	./get_started.py

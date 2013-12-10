@@ -1,0 +1,124 @@
+<html><head>
+<title>The CSV File Interface to dismod_pde</title>
+<meta name="description" id="description" content="The CSV File Interface to dismod_pde">
+<meta name="keywords" id="keywords" content=" csv file specification ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_csv_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="install.htm" target="_top">Prev</a>
+</td><td><a href="dismod_pde_csv.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>csv</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down0(this)'>
+<option>csv-&gt;</option>
+<option>dismod_pde_csv</option>
+<option>python_csv</option>
+</select>
+</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>dismod_pde CSV Files</option>
+<option>Contents</option>
+</select>
+</td>
+</tr></table><br>
+
+
+
+<center><b><big><big>The CSV File Interface to dismod_pde</big></big></b></center>
+<br>
+<b><big><a name="dismod_pde CSV Files" id="dismod_pde CSV Files">dismod_pde CSV Files</a></big></b>
+
+
+
+<br>
+The following are the specifications for a dismod_pde CSV file:
+
+<ol type="1"><li>
+It is an ascii file that does not contain any of the following characters:
+single quote, double quote, back quote, or semi-colon.
+
+</li><li>
+ 
+The comma is a special character because it separates columns in the file.
+There is no comma after the last column in a line.
+
+</li><li>
+
+The newline is a special character because it separates lines in the file.
+
+</li><li>
+
+The first line of a csv file contains the names for the corresponding columns,
+each subsequent line contains one value for each column.
+
+</li><li>
+
+The carriage return is a special character because on Windows systems,
+it is combined with the newline to form an end of line.
+Therefore, a carriage return newline will be the same as a newline.
+On MAC OS, the carriage return is used in place of a newline,
+so if a carriage return is not followed by a newline, it is converted 
+to a newline.;
+
+</li><li>
+
+The double quote is a special character because,
+when surrounded by a pair of double quote characters, 
+the special meaning of the comma and newline (see above) are suppressed.
+When present,
+the double quote must be both the first and last character in the field
+and are not included in the field data.
+
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="Contents" id="Contents">Contents</a></big></b>
+<br>
+<div><a href="dismod_pde_csv.htm" target="_top">dismod_pde&nbsp;Command&nbsp;Line&nbsp;Program</a><br>
+<a href="python_csv.htm" target="_top">dismod_pde&nbsp;Python&nbsp;CSV&nbsp;Helper&nbsp;Scripts</a><br>
+</div>
+<hr>Input File: omh/csv.omh
+
+</body>
+</html>

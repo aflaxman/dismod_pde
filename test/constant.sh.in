@@ -1,0 +1,138 @@
+#! /bin/bash -e
+top_builddir=@abs_top_builddir@
+python_path=$top_builddir/python
+# Test a case with all the integrands and constant mortality rates.
+# ----------------------------------------------------------------------------
+echo "constant.sh: create parameter.csv and effect_in.csv"
+cat << EOF > parameter.csv
+name,value
+age_grid,0 1 5 10 15 20
+cohort_grid,1920 1960 2000 2040
+max_ode_step,1
+print_level,5
+max_iteration,80
+converge_tolerance,1e-6
+EOF
+cat << EOF > effect_in.csv
+integrand,covariate,lower,initial,upper
+EOF
+# ----------------------------------------------------------------------------
+echo "constant.sh: create measure_in.csv and solution.csv"
+#
+measure_in_csv='measure_in.csv'
+solution_csv='solution.csv'
+number='20'
+like='gaussian' 
+sim_zeta='1.0'
+fit_zeta='1.0'
+sim_cv='0.0'
+fit_cv='0.10'
+age_init='0'
+age_step='1'
+age_min='2'
+age_max='20'
+age_bound='0'
+time_add='40'
+time_step='1'
+time_min='1960'
+time_max='2010'
+time_bound='1'
+iota_exp='4e-2'
+rho_exp='3e-2'
+chi_exp='2e-2'
+omega_exp='1e-2'
+#
+$python_path/d4_simulate.py  \
+-files      $measure_in_csv $solution_csv \
+-age        $age_init $age_step $age_min $age_max $age_bound \
+-time       $time_add $time_step $time_min $time_max $time_bound \
+-iota       "$iota_exp" \
+-rho        "$rho_exp" \
+-chi        "$chi_exp" \
+-omega      "$omega_exp" \
+-measure incidence      $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure remission      $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure m_excess       $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure m_other        $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure m_with         $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure prevalence     $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure m_prevalence   $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure m_specific     $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure m_all          $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure m_standard     $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure relative_risk  $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv 
+#
+# ----------------------------------------------------------------------------
+echo "constant.sh: create template.csv"
+if [ -e template.csv ]
+then
+	rm template.csv
+fi
+$top_builddir/cpp/dismod_pde_csv  parameter.csv measure_in.csv template.csv
+# ----------------------------------------------------------------------------
+echo "constant.sh: create sfun_in.csv"
+zero_inf='0.0 if a == 0.0 else inf'
+$python_path/d4_change_sfun_in.py template.csv sfun_in.csv \
+-comment           'zeta      lower           initial           upper' \
+-optimize_S         1e-2       1e-6              1.0              1.0 \
+-optimize_C         1e-2        0.0              0.0              1.0 \
+-optimize_iota      1e-4        0.0              1e-2             1.0 \
+-optimize_rho       1e-4        0.0              1e-2             1.0 \
+-optimize_chi       1e-4        0.0              1e-2             1.0 \
+-optimize_omega     1e-4       1e-6              1e-2             1.0 \
+\
+-comment            'name       zeta            sigma            mean' \
+-prior_S         gaussian         1.      "$zero_inf"             1.0 \
+-prior_C         gaussian         1.      "$zero_inf"             0.0 \
+-prior_iota      gaussian         1.              inf             0.0 \
+-prior_rho       gaussian         1.              inf             0.0 \
+-prior_chi       gaussian         1.              inf             0.0 \
+-prior_omega     gaussian         1.              inf             0.0 \
+\
+-comment            'name       zeta            sigma           order' \
+-age_S           gaussian         1.              0.0               1 \
+-age_C           gaussian         1.              0.0               1 \
+-age_iota        gaussian         1.             1e-2               1 \
+-age_rho         gaussian         1.             1e-2               1 \
+-age_chi         gaussian         1.             1e-2               1 \
+-age_omega       gaussian         1.             1e-2               1 \
+\
+-comment            'name       zeta            sigma           order' \
+-cohort_S        gaussian         1.             1e-2               1 \
+-cohort_C        gaussian         1.             1e-2               1 \
+-cohort_iota     gaussian         1.             1e-2               1 \
+-cohort_rho      gaussian         1.             1e-2               1 \
+-cohort_chi      gaussian         1.             1e-2               1 \
+-cohort_omega    gaussian         1.             1e-2               1 \
+\
+-comment            'name       zeta            sigma' \
+-cross_S         gaussian         1.              inf  \
+-cross_C         gaussian         1.              inf  \
+-cross_iota      gaussian         1.              inf  \
+-cross_rho       gaussian         1.              inf  \
+-cross_chi       gaussian         1.              inf  \
+-cross_omega     gaussian         1.              inf  
+# ----------------------------------------------------------------------------
+echo "constant.sh: create effect_out.csv, measure_out.csv, sfun_out.csv"
+$top_builddir/cpp/dismod_pde_csv parameter.csv \
+	measure_in.csv measure_out.csv \
+	sfun_in.csv    sfun_out.csv \
+	effect_in.csv  effect_out.csv 
+# ----------------------------------------------------------------------------
+echo "constant.sh: check sfun_out.csv"
+include_expr="s != 0.0"
+value_expr='nan if s == 0.0 else abs(1-e/s)'
+median_bound="$fit_cv"
+average_bound="$fit_cv"
+maximum_bound=`echo "4. * $fit_cv" | bc` 
+$python_path/d4_compare_sfun.py \
+	--sfun_out  sfun_out.csv \
+	--solution  solution.csv \
+	--compare   compare.csv \
+	--include   "$include_expr" \
+	--value     "$value_expr" \
+	--median    "$median_bound" \
+	--average   "$average_bound" \
+	--maximum   "$maximum_bound"
+# ----------------------------------------------------------------------------
+echo "constant.sh: OK"

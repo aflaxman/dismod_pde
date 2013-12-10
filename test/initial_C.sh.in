@@ -1,0 +1,137 @@
+#! /bin/bash -e
+top_builddir=@abs_top_builddir@
+python_path=$top_builddir/python
+# Test a case where we are estimating the initial value of C
+zeta=1e-6
+sigma=1e-3
+# ----------------------------------------------------------------------------
+# disable file name expansion (so can use * as multiply operator)
+set -f
+#
+# ----------------------------------------------------------------------------
+echo "initial_C.sh: create parameter.csv and effect_in.csv"
+cat << EOF > parameter.csv
+name,value
+age_grid,0 20 40 60 80 100
+cohort_grid,1860 1880 1900 1920 1940 1960 1980 2000 2020
+max_ode_step,1
+print_level,5
+max_iteration,50
+converge_tolerance,1e-6
+EOF
+cat << EOF > effect_in.csv
+integrand,covariate,lower,initial,upper
+EOF
+# ----------------------------------------------------------------------------
+echo "initial_C.sh: create measure_in.csv and solution.csv"
+#
+measure_in_csv='measure_in.csv'
+solution_csv='solution.csv'
+number='50'
+like='gaussian' 
+sim_zeta="$zeta"
+fit_zeta="$zeta"
+sim_cv='0.0'
+fit_cv='0.01'
+age_init='0'
+age_step='1'
+age_min='1'
+age_max='100'
+age_bound='10'
+time_add='40'
+time_step='1'
+time_min='1960'
+time_max='2010'
+time_bound='20'
+iota_exp='1e-3'
+rho_exp='2e-3'
+chi_exp='3e-3'
+omega_exp='4e-3'
+#
+$python_path/d4_simulate.py  \
+-files      $measure_in_csv $solution_csv \
+-age        $age_init $age_step $age_min $age_max $age_bound \
+-time       $time_add $time_step $time_min $time_max $time_bound \
+-iota       "$iota_exp" \
+-rho        "$rho_exp" \
+-chi        "$chi_exp" \
+-omega      "$omega_exp" \
+-measure    prevalence $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure    remission  $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure    m_excess   $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure    m_other    $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv 
+#
+# ----------------------------------------------------------------------------
+echo "initial_C.sh: create template.csv"
+if [ -e template.csv ]
+then
+	rm template.csv
+fi
+$top_builddir/cpp/dismod_pde_csv  parameter.csv measure_in.csv template.csv
+# ----------------------------------------------------------------------------
+echo "initial_C.sh: create sfun_in.csv"
+zero_inf='0.0 if a == 0.0 else inf'
+$python_path/d4_change_sfun_in.py template.csv sfun_in.csv \
+-comment           'zeta      lower           initial           upper' \
+-optimize_S        $zeta        0.0              1.0              1.0 \
+-optimize_C        $zeta        0.0              1e-2             1.0 \
+-optimize_iota     $zeta        0.0              1e-2             1.0 \
+-optimize_rho      $zeta        0.0              1e-2             1.0 \
+-optimize_chi      $zeta        0.0              1e-2             1.0 \
+-optimize_omega    $zeta        0.0              1e-2             1.0 \
+\
+-comment            'name       zeta            sigma            mean' \
+-prior_S         gaussian      $zeta       "$zero_inf"            1.0 \
+-prior_C         gaussian      $zeta              inf             0.0 \
+-prior_iota      gaussian      $zeta              inf             0.0 \
+-prior_rho       gaussian      $zeta              inf             0.0 \
+-prior_chi       gaussian      $zeta              inf             0.0 \
+-prior_omega     gaussian      $zeta              inf             0.0 \
+\
+-comment            'name       zeta            sigma           order' \
+-age_S           gaussian      $zeta              0.0               1 \
+-age_C           gaussian      $zeta              0.0               1 \
+-age_iota        gaussian      $zeta           $sigma               1 \
+-age_rho         gaussian      $zeta           $sigma               1 \
+-age_chi         gaussian      $zeta           $sigma               1 \
+-age_omega       gaussian      $zeta           $sigma               1 \
+\
+-comment            'name       zeta            sigma           order' \
+-cohort_S        gaussian      $zeta           $sigma               1 \
+-cohort_C        gaussian      $zeta           $sigma               1 \
+-cohort_iota     gaussian      $zeta           $sigma               1 \
+-cohort_rho      gaussian      $zeta           $sigma               1 \
+-cohort_chi      gaussian      $zeta           $sigma               1 \
+-cohort_omega    gaussian      $zeta           $sigma               1 \
+\
+-comment            'name       zeta            sigma' \
+-cross_S         gaussian      $zeta              inf  \
+-cross_C         gaussian      $zeta              inf  \
+-cross_iota      gaussian      $zeta              inf  \
+-cross_rho       gaussian      $zeta              inf  \
+-cross_chi       gaussian      $zeta              inf  \
+-cross_omega     gaussian      $zeta              inf  
+# ----------------------------------------------------------------------------
+echo "initial_C.sh: create effect_out.csv, measure_out.csv, sfun_out.csv"
+$top_builddir/cpp/dismod_pde_csv parameter.csv \
+	measure_in.csv measure_out.csv \
+	sfun_in.csv sfun_out.csv \
+	effect_in.csv effect_out.csv
+# ----------------------------------------------------------------------------
+echo "initial_C.sh: check sfun_out.csv"
+include_expr="s != 0.0"
+value_expr='nan if s == 0.0 else abs(1-e/s)'
+median_bound="$fit_cv"
+average_bound="$fit_cv"
+maximum_bound=`echo "4. * $fit_cv" | bc` 
+$python_path/d4_compare_sfun.py \
+	--sfun_out  sfun_out.csv \
+	--solution  solution.csv \
+	--compare   compare.csv \
+	--include   "$include_expr" \
+	--value     "$value_expr" \
+	--median    "$median_bound" \
+	--average   "$average_bound" \
+	--maximum   "$maximum_bound"
+# ----------------------------------------------------------------------------
+echo "initial_C.sh: OK"

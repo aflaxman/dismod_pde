@@ -1,0 +1,13 @@
+#
+EXTRA_DIST = \
+	measure_in.sh \
+	deaths.txt \
+	population.txt
+# ---------------------------------------------------------------------------
+dist_noinst_SCRIPTS = \
+     tabular.py 
+#
+test: 
+	./diabetes.sh 4 
+	$(top_srcdir)/example/diabetes/tabular.py m_all
+	$(top_srcdir)/example/diabetes/tabular.py relative_risk

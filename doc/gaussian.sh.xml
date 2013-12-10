@@ -1,0 +1,727 @@
+<?xml version='1.0'?>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:math='http://www.w3.org/1998/Math/MathML'
+>
+<head>
+<title>Simulate and Fit Where Incidence is Gaussian in Age an Cohort</title>
+<meta name="description" id="description" content="Simulate and Fit Where Incidence is Gaussian in Age an Cohort"/>
+<meta name="keywords" id="keywords" content=" simulate gaussian fit simulated "/>
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_gaussian.sh_xml.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="diabetes.sh.xml" target="_top">Prev</a>
+</td><td><a href="wish_list.xml" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>example</option>
+<option>gaussian.sh</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>example-&gt;</option>
+<option>get_started.sh</option>
+<option>diabetes.sh</option>
+<option>gaussian.sh</option>
+</select>
+</td>
+<td>gaussian.sh</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>grid_step</option>
+<option>prevalence_cv</option>
+<option>python_path</option>
+<option>dismod_pde_path</option>
+<option>grid function</option>
+<option>Global Parameters</option>
+<option>parameter.csv</option>
+<option>effect_in.csv</option>
+<option>measure_in.csv</option>
+<option>template.csv</option>
+<option>sfun_in.csv</option>
+<option>Running dismod_pde_csv</option>
+<option>prevalence_residual</option>
+<option>sfun_grid.csv</option>
+<option>sfun_der.csv</option>
+<option>Prevalence Contour Plot</option>
+<option>Rate Contour Plots</option>
+<option>---..omega_estimate</option>
+<option>---..omega_true</option>
+<option>---..chi_estimate</option>
+<option>---..chi_true</option>
+<option>---..iota_estimate</option>
+<option>---..iota_true</option>
+<option>Check Solution</option>
+<option>Final Message</option>
+</select>
+</td>
+</tr></table><br/>
+ 
+
+<center><b><big><big>Simulate and Fit Where Incidence is Gaussian in Age an Cohort</big></big></b></center>
+<br/>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br/>
+
+<code><font color="blue"><span style='white-space: nowrap'>./gaussian.sh&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_step</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>prevalence_cv</span></font></i></code>
+
+<code><font color='blue'><pre style='display:inline'> 
+if [ &quot;$2&quot; == '' ]
+then
+	echo 'usage: ./gaussian grid_step prevalence_cv'
+	exit 1
+fi
+</pre></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br/>
+This is a simulation example and test of the dismod_pde. 
+It exits with status zero if the test passes
+and with status one if the test fails.
+This example is located in the file
+	
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i><font color="blue"><span style='white-space: nowrap'>/share/doc/dismod_pde-</span></font><i><font color="black"><span style='white-space: nowrap'>yyyymmdd</span></font></i><font color="blue"><span style='white-space: nowrap'>/example/gaussian.sh<br/>
+</span></font></code>
+where 
+<code><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i></code>
+ is the 
+<a href="install.xml#Prefix" target="_top"><span style='white-space: nowrap'>prefix</span></a>
+ 
+specified during the install procedure. 
+
+<br/>
+<br/>
+<b><big><a name="grid_step" id="grid_step">grid_step</a></big></b>
+<br/>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>grid_step</span></font></i></code>
+ is a positive integer that
+specifies the step between age and cohort grid points.
+<code><font color='blue'><pre style='display:inline'> 
+global_grid_step=&quot;$1&quot;
+</pre></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="prevalence_cv" id="prevalence_cv">prevalence_cv</a></big></b>
+<br/>
+Coefficient of variation for the prevalence data, 
+
+<code><font color="blue"><span style='white-space: nowrap'>prevalence_cv</span></font><i><font color="black"><span style='white-space: nowrap'>&#xA0;=&#xA0;.1</span></font></i></code>
+ corresponds to ten percent
+coefficient of variation.
+<code><font color='blue'><pre style='display:inline'> 
+global_prevalence_cv=&quot;$2&quot;
+</pre></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="python_path" id="python_path">python_path</a></big></b>
+<br/>
+The following command sets the directory where the dismod_pde python
+scripts are located. This should not be necessary once dismod_pde is installed.
+<code><font color='blue'><pre style='display:inline'> 
+global_python_path=&quot;$top_builddir/python&quot;
+</pre></font></code>
+ 
+
+<br/>
+<br/>
+<b><big><a name="dismod_pde_path" id="dismod_pde_path">dismod_pde_path</a></big></b>
+<br/>
+The following command sets the directory where the binary <code><font color="blue">dismod_pde_csv</font></code>
+file is located. This should not be necessary once dismod_pde is installed.
+<code><font color='blue'><pre style='display:inline'> 
+global_dismod_pde_path=&quot;$top_builddir/cpp&quot;
+</pre></font></code>
+ 
+
+<br/>
+<br/>
+<b><big><a name="grid function" id="grid function">grid function</a></big></b>
+<br/>
+first argument is initial value,
+second argument is the ending value, and the third argument
+is the increment between values.
+The grid will include the initial value and a value at least as large
+as the ending value.
+<code><font color='blue'><pre style='display:inline'> 
+make_grid() {
+	initial=&quot;$1&quot; ; ending=&quot;$2&quot; ; inc=&quot;$3&quot; ; grid=''
+	for (( value = initial; value &lt; ending+inc; value = value+inc ))
+	do
+		grid=&quot;$grid $value&quot;
+	done
+}
+</pre></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="Global Parameters" id="Global Parameters">Global Parameters</a></big></b>
+<br/>
+The following parameters are used globally in this file and do not change:
+<code><font color='blue'><pre style='display:inline'> 
+# age grid parameters
+global_age_min=20 
+global_age_max=80
+age_step=&quot;$global_grid_step&quot;
+make_grid $global_age_min $global_age_max $age_step
+global_age_grid=&quot;$grid&quot;  # age grid values
+echo &quot;age_grid=$global_age_grid&quot;
+#
+# minimum and maximum time value in the data
+global_time_min=1975
+global_time_max=2010
+#
+# cohort grid
+age_max=`echo &quot;$global_age_grid&quot; | sed -e 's|.* ||'`
+cohort_min=`expr $global_time_min - $age_max`
+cohort_max=`expr $global_time_max - $global_age_min`
+cohort_step=&quot;$global_grid_step&quot;
+make_grid $cohort_min $cohort_max $cohort_step
+global_cohort_grid=&quot;$grid&quot;
+echo &quot;cohort_grid=$global_cohort_grid&quot;
+#
+global_zeta=1e-6         # value of zeta in all cases
+</pre></font></code>
+
+
+
+----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="parameter.csv" id="parameter.csv">parameter.csv</a></big></b>
+<br/>
+The <a href="dismod_pde_csv.xml#parameter.csv" target="_top"><span style='white-space: nowrap'>parameter.csv</span></a>
+ 
+file for this example is as follows:
+
+<code><font color="blue">
+<br/>
+<pre style='display:inline'>name,value
+age_grid, 20 24 28 32 36 40 44 48 52 56 60 64 68 72 76 80
+cohort_grid, 1895 1899 1903 1907 1911 1915 1919 1923 1927 1931 1935 1939 1943 1947 1951 1955 1959 1963 1967 1971 1975 1979 1983 1987 1991
+max_ode_step,1.0
+print_level,5
+max_iteration,50
+converge_tolerance,1e-3
+debug_output,1
+</pre><br/>
+</font></code>----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="effect_in.csv" id="effect_in.csv">effect_in.csv</a></big></b>
+<br/>
+For this example, there are no covariates and
+the <a href="dismod_pde_csv.xml#effect_in.csv" target="_top"><span style='white-space: nowrap'>effect_in.csv</span></a>
+ file is as follows:
+ 
+<code><font color="blue">
+<br/>
+<pre style='display:inline'>integrand,covariate,lower,initial,upper
+</pre><br/>
+</font></code>----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="measure_in.csv" id="measure_in.csv">measure_in.csv</a></big></b>
+<br/>
+Use <a href="d4_simulate.py.xml" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+ to simulate the file
+<a href="dismod_pde_csv.xml#measure_in.csv" target="_top"><span style='white-space: nowrap'>measure_in.csv</span></a>
+.
+<code><font color='blue'><pre style='display:inline'> 
+echo 'create measure_in.csv'
+measure_in_csv='measure_in.csv'
+solution_csv='solution.csv'
+age_init=0
+age_step=1
+age_min=&quot;$global_age_min&quot;
+age_max=&quot;$global_age_max&quot;
+age_bound=10
+n_age=7
+n_time=4
+grid=&quot;$n_age.$n_time&quot;
+number=30
+like='gaussian'
+sim_zeta=&quot;$global_zeta&quot;
+fit_zeta=&quot;$global_zeta&quot;
+sim_cv=&quot;$global_prevalence_cv&quot;
+fit_cv=&quot;$global_prevalence_cv&quot;
+time_add=10
+time_step=1
+time_min=&quot;$global_time_min&quot;
+time_max=&quot;$global_time_max&quot;
+time_bound=10
+rho_true=0.0
+#
+time_plus=`expr $time_max + $time_add`
+age_max=&quot;$global_age_max&quot;
+age_min=&quot;$global_age_min&quot;
+age_mid=`expr $age_max / 2 + $age_min / 2`
+time_mid=`expr $time_max / 2 + $time_min / 2`
+scale=`echo &quot;($age_max - $age_min) / 4&quot; | bc`
+linear=&quot;(.01 + a/$age_max. + ($time_plus.-t)/($time_plus.-$time_min))/2.01&quot;
+quadratic=&quot;- ((a-$age_mid)/$scale.)**2 - ((t-$time_mid)/$scale.)**2&quot;
+#
+chi_true=&quot;1e-1 * $linear&quot;
+omega_true=&quot;1e-2 * $linear&quot;
+iota_max=1e-2
+iota_min=1e-3
+iota_true=&quot;($iota_max-$iota_min)*exp($quadratic) + $iota_min&quot;
+#
+$global_python_path/d4_simulate.py  \
+-files      $measure_in_csv $solution_csv \
+-age        $age_init $age_step $age_min  $age_max $age_bound \
+-time       $time_add $time_step $time_min $time_max $time_bound \
+-iota       &quot;$iota_true&quot; \
+-rho         $rho_true  \
+-chi        &quot;$chi_true&quot; \
+-omega      &quot;$omega_true&quot; \
+-measure    prevalence    $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv  \
+-measure    relative_risk $grid   $like $sim_zeta $fit_zeta     0.0     0.0  \
+-measure    m_all         $grid   $like $sim_zeta $fit_zeta     0.0     0.0
+</pre></font></code>
+
+----------------------------------------------------------------------------
+
+<br/>
+<br/>
+<b><big><a name="template.csv" id="template.csv">template.csv</a></big></b>
+<br/>
+Remove the file 
+<a href="dismod_pde_csv.xml#sfun_in.csv.Output Template" target="_top"><span style='white-space: nowrap'>template.csv</span></a>
+ 
+(if it exists) and then recreate it.
+<code><font color='blue'><pre style='display:inline'> 
+echo 'create template.csv'
+rm -f template.csv
+echo 'dismod_pde_csv parameter.csv measure_in.csv template.csv'
+$global_dismod_pde_path/dismod_pde_csv parameter.csv measure_in.csv template.csv
+</pre></font></code>
+
+----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="sfun_in.csv" id="sfun_in.csv">sfun_in.csv</a></big></b>
+<br/>
+is a version of template.csv with certain values modified by 
+d4_change_sfun_in.py.
+<code><font color='blue'><pre style='display:inline'> 
+echo 'create sfun_in.csv'
+zeta=&quot;$global_zeta&quot;
+sigma=2e-1
+zero_inf='0.0 if a &lt; 20.1 else inf'
+$global_python_path/d4_change_sfun_in.py template.csv sfun_in.csv \
+-comment            'zeta      lower           initial          upper' \
+-optimize_S         $zeta        0.0             0.50            1.0 \
+-optimize_C         $zeta        0.0             1e-2            1.0 \
+-optimize_iota      $zeta        0.0             1e-2            1.0 \
+-optimize_rho       $zeta        0.0             0.00            0.0 \
+-optimize_chi       $zeta        0.0             1e-2            1.0 \
+-optimize_omega     $zeta        0.0             1e-2            1.0 \
+\
+-comment            'like       zeta            sigma           mean' \
+-prior_S         gaussian      $zeta       &quot;$zero_inf&quot;           1.0 \
+-prior_C         gaussian      $zeta              inf            0.0 \
+-prior_iota      gaussian      $zeta              inf    &quot;$iota_true&quot; \
+-prior_rho       gaussian      $zeta              inf      $rho_true  \
+-prior_chi       gaussian      $zeta              inf     &quot;$chi_true&quot; \
+-prior_omega     gaussian      $zeta              inf   &quot;$omega_true&quot; \
+\
+-comment            'like       zeta            sigma          order' \
+-age_S           gaussian      $zeta              0.0             1 \
+-age_C           gaussian      $zeta              0.0             1 \
+-age_iota        gaussian      $zeta           $sigma             2 \
+-age_rho         gaussian      $zeta              inf             2 \
+-age_chi         gaussian      $zeta           $sigma             2 \
+-age_omega       gaussian      $zeta           $sigma             2 \
+\
+-comment            'like       zeta            sigma          order' \
+-cohort_S        gaussian      $zeta           $sigma             2 \
+-cohort_C        gaussian      $zeta           $sigma             2 \
+-cohort_iota     gaussian      $zeta           $sigma             2 \
+-cohort_rho      gaussian      $zeta              inf             2 \
+-cohort_chi      gaussian      $zeta           $sigma             2 \
+-cohort_omega    gaussian      $zeta           $sigma             2 \
+\
+-comment            'name       zeta            sigma' \
+-cross_S         gaussian      $zeta           $sigma  \
+-cross_C         gaussian      $zeta           $sigma  \
+-cross_iota      gaussian      $zeta           $sigma  \
+-cross_rho       gaussian      $zeta              inf  \
+-cross_chi       gaussian      $zeta           $sigma  \
+-cross_omega     gaussian      $zeta           $sigma  
+</pre></font></code>
+
+----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="Running dismod_pde_csv" id="Running dismod_pde_csv">Running dismod_pde_csv</a></big></b>
+<br/>
+Next we use <a href="dismod_pde_csv.xml" target="_top"><span style='white-space: nowrap'>dismod_pde_csv</span></a>
+ to generate the files
+<a href="dismod_pde_csv.xml#measure_out.csv" target="_top"><span style='white-space: nowrap'>measure_out.csv</span></a>
+,
+<a href="dismod_pde_csv.xml#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+, and
+<a href="dismod_pde_csv.xml#effect_out.csv" target="_top"><span style='white-space: nowrap'>effect_out.csv</span></a>
+.
+<code><font color='blue'><pre style='display:inline'> 
+echo 'create effect_out.csv, measure_out.csv, sfun_out.csv'
+echo 'dismod_pde_csv parameter.csv                 \\'
+echo '     measure_in.csv     measure_out.csv   \\'
+echo '     sfun_in.csv        sfun_out.csv      \\'
+echo '     effect_in.csv      effect_out.csv'
+if $global_dismod_pde_path/dismod_pde_csv parameter.csv  \
+     measure_in.csv     measure_out.csv   \
+     sfun_in.csv        sfun_out.csv      \
+     effect_in.csv      effect_out.csv
+then
+	dismod_pde_csv_ok='yes'
+else
+	dismod_pde_csv_ok='no'
+fi
+</pre></font></code>
+
+----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="prevalence_residual" id="prevalence_residual">prevalence_residual</a></big></b>
+<br/>
+Next we use <a href="d4_bubble.py.xml" target="_top"><span style='white-space: nowrap'>d4_bubble.py</span></a>
+ to plot of the prevalence
+residuals as a function of age and time.
+These plots are called 
+
+<code><font color="blue"><span style='white-space: nowrap'>prevalence_residual.</span></font><i><font color="black"><span style='white-space: nowrap'>ext</span></font></i></code>
+
+for 
+<code><i><font color="black"><span style='white-space: nowrap'>ext</span></font></i></code>
+ in <code><font color="blue">{ pdf , eps, png}</font></code>.
+<code><font color='blue'><pre style='display:inline'> 
+csv_file='measure_out.csv'
+x_name='time'
+x_min=&quot;$global_time_min&quot;
+x_max=&quot;$global_time_max&quot;
+y_name='age'
+y_min=&quot;$global_age_min&quot;
+y_max=&quot;$global_age_max&quot;
+s_name='scaled'
+s_min=0.25
+s_between=1.0
+s_max=2.0
+f_name='integrand'
+f_min='prevalence'
+f_max='prevalence'
+title='Scaled Prevalence Residuals'
+for ext in pdf eps png
+do
+	plot_file=&quot;prevalence_residual.$ext&quot;
+	echo &quot;create $plot_file&quot;
+	$global_python_path/d4_bubble.py $csv_file $plot_file &quot;$title&quot; \
+			$x_name $x_min $x_max $y_name $y_min $y_max \
+			$s_name $s_min $s_between $s_max $f_name $f_min $f_max
+done
+</pre></font></code>
+
+Below is the <code><font color="blue">png</font></code> version of this plot:
+<center><img src="gaussian_prevalence_residual.png"/>
+</center>-----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="sfun_grid.csv" id="sfun_grid.csv">sfun_grid.csv</a></big></b>
+<br/>
+Next we use <a href="d4_sfun_grid.py.xml" target="_top"><span style='white-space: nowrap'>d4_sfun_grid.py</span></a>
+ 
+to create <code><font color="blue">sfun_grid.csv</font></code>, which is a version of 
+the stochastic function output information <code><font color="blue">sfun_out.csv</font></code>
+interpolated to a rectangular grid with respect to age and time.
+<code><font color='blue'><pre style='display:inline'> 
+n_age=`echo $global_age_grid | wc -w`
+time_start=&quot;$global_time_min&quot;
+time_end=&quot;$global_time_max&quot;
+n_time=&quot;$n_age&quot;
+echo 'create sfun_grid.csv'
+$global_python_path/d4_sfun_grid.py sfun_out.csv sfun_grid.csv \
+	$time_start $time_end $n_time
+</pre></font></code>
+
+---------------------------------------------------------------------------- 
+<br/>
+<br/>
+<b><big><a name="sfun_der.csv" id="sfun_der.csv">sfun_der.csv</a></big></b>
+<br/>
+Next we use <a href="d4_sfun_der.py.xml" target="_top"><span style='white-space: nowrap'>d4_sfun_der.py</span></a>
+ 
+to create <code><font color="blue">sfun_der.csv</font></code> which has the format expected
+by <a href="d4_contour.py.xml" target="_top"><span style='white-space: nowrap'>d4_contour.py</span></a>
+; 
+i.e., each variable has its own column.
+In addition, the columns are:
+<code><font color='blue'><pre style='display:inline'> 
+	age, cohort, time, S, C, iota, rho, chi, omega, prevalence, m_all, risk
+</pre></font></code>
+
+<code><font color='blue'><pre style='display:inline'> 
+echo 'create sfun_der.csv'
+$global_python_path/d4_sfun_der.py \
+	sfun_grid.csv sfun_der.csv \
+	age           age \
+	cohort        cohort \
+	time          time \
+	S             S_estimate \
+	C             C_estimate \
+	iota          iota_estimate \
+	rho           rho_estimate \
+	chi           chi_estimate \
+	omega         omega_estimate \
+	prevalence    &quot;C / (S + C)&quot; \
+	m_all         &quot;omega + chi * prevalence&quot;    \
+	risk          &quot;(omega + chi) / omega&quot;
+</pre></font></code>
+
+-----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="Prevalence Contour Plot" id="Prevalence Contour Plot">Prevalence Contour Plot</a></big></b>
+<br/>
+Next we generate <a href="d4_contour.py.xml" target="_top"><span style='white-space: nowrap'>contour</span></a>
+ 
+plots of the model fit for prevalence 
+as a function of age and time.
+These plots are called 
+
+<code><font color="blue"><span style='white-space: nowrap'>prevalence_estimate.</span></font><i><font color="black"><span style='white-space: nowrap'>ext</span></font></i></code>
+ 
+for 
+<code><i><font color="black"><span style='white-space: nowrap'>ext</span></font></i></code>
+ in <code><font color="blue">{ pdf , eps , png}</font></code>.
+<code><font color='blue'><pre style='display:inline'> 
+csv_file='sfun_der.csv'
+x_name='time'
+x_min=&quot;$global_time_min&quot;
+x_max=&quot;$global_time_max&quot;
+y_name='age'
+y_min=&quot;$global_age_min&quot;
+y_max=&quot;$global_age_max&quot;
+z_name='prevalence'
+z_min=0.001
+z_max=1.0
+title='Contours of Prevalence Estimate'
+for ext in pdf eps png
+do
+	plot_file=&quot;prevalence_estimate.$ext&quot;
+	echo &quot;create $plot_file&quot;
+	../../python/d4_contour.py $csv_file $plot_file &quot;$title&quot; \
+		$x_name $x_min $x_max \
+		$y_name $y_min $y_max \
+		$z_name $z_min $z_max
+done
+</pre></font></code>
+
+Below is the <code><font color="blue">png</font></code> version of this plot:
+<center><img src="gaussian_prevalence_estimate.png"/>
+</center>-----------------------------------------------------------------------------
+<br/>
+<br/>
+<b><big><a name="Rate Contour Plots" id="Rate Contour Plots">Rate Contour Plots</a></big></b>
+<br/>
+Next we generate <a href="d4_contour.py.xml" target="_top"><span style='white-space: nowrap'>contour</span></a>
+ plots for 
+other cause mortality <code><font color="blue">omega</font></code>, 
+excess mortality <code><font color="blue">chi</font></code>, 
+and incidence <code><font color="blue">iota</font></code>
+as a function of age and time.
+These plots are called 
+
+<code><i><font color="black"><span style='white-space: nowrap'>var</span></font></i><font color="blue"><span style='white-space: nowrap'>_</span></font><i><font color="black"><span style='white-space: nowrap'>type</span></font></i><font color="blue"><span style='white-space: nowrap'>.</span></font><i><font color="black"><span style='white-space: nowrap'>ext</span></font></i></code>
+
+for 
+<code><i><font color="black"><span style='white-space: nowrap'>var</span></font></i></code>
+ in <code><font color="blue">{ omega , chi , iota }</font></code>,
+
+<code><i><font color="black"><span style='white-space: nowrap'>type</span></font></i></code>
+ in <code><font color="blue">{ estimate , true }</font></code>,
+and 
+<code><i><font color="black"><span style='white-space: nowrap'>ext</span></font></i></code>
+ in <code><font color="blue">{ pdf , eps , png}</font></code>.
+<code><font color='blue'><pre style='display:inline'> 
+var_vec=(   'omega'                 'chi'              'iota'      )
+name_vec=(  'Other Cause Mortality' 'Excess Mortality' 'Incidence' )
+
+csv_file_vec=(  'sfun_der.csv'  'solution.csv'  )
+plot_type_vec=( 'estimate'       'true'         ) 
+
+for var_index in 0 1 2
+do
+	var=&quot;${var_vec[$var_index]}&quot;
+	name=&quot;${name_vec[$var_index]}&quot;
+	for type_index in 0 1
+	do
+		plot_type=&quot;${plot_type_vec[$type_index]}&quot;
+		csv_file=&quot;${csv_file_vec[$type_index]}&quot;
+		for ext in pdf eps png
+		do
+			plot_file=&quot;${var}_${plot_type}.${ext}&quot;
+			if [ &quot;$plot_type&quot; == 'estimate' ]
+			then
+				title=&quot;Contours of $name Estimate&quot;
+			else
+				title=&quot;Contours of $name Truth&quot;
+			fi
+			x_name='time'
+			x_min=&quot;$global_time_min&quot;
+			x_max=&quot;$global_time_max&quot;
+			y_name='age'
+			y_min=&quot;$global_age_min&quot;
+			y_max=&quot;$global_age_max&quot;
+			z_name=&quot;$var&quot;
+			z_min=0.001
+			z_max=1.0
+			echo &quot;create $plot_file&quot;
+			../../python/d4_contour.py $csv_file $plot_file &quot;$title&quot; \
+				$x_name $x_min $x_max \
+				$y_name $y_min $y_max \
+				$z_name $z_min $z_max
+		done
+	done
+done
+</pre></font></code>
+
+<br/>
+<br/>
+<b><a name="Rate Contour Plots.omega_estimate" id="Rate Contour Plots.omega_estimate">omega_estimate</a></b>
+
+<center><img src="gaussian_omega_estimate.png"/>
+</center><br/>
+<b><a name="Rate Contour Plots.omega_true" id="Rate Contour Plots.omega_true">omega_true</a></b>
+
+<center><img src="gaussian_omega_true.png"/>
+</center><br/>
+<b><a name="Rate Contour Plots.chi_estimate" id="Rate Contour Plots.chi_estimate">chi_estimate</a></b>
+
+<center><img src="gaussian_chi_estimate.png"/>
+</center><br/>
+<b><a name="Rate Contour Plots.chi_true" id="Rate Contour Plots.chi_true">chi_true</a></b>
+
+<center><img src="gaussian_chi_true.png"/>
+</center><br/>
+<b><a name="Rate Contour Plots.iota_estimate" id="Rate Contour Plots.iota_estimate">iota_estimate</a></b>
+
+<center><img src="gaussian_iota_estimate.png"/>
+</center><br/>
+<b><a name="Rate Contour Plots.iota_true" id="Rate Contour Plots.iota_true">iota_true</a></b>
+
+<center><img src="gaussian_iota_true.png"/>
+</center><br/>
+<b><big><a name="Check Solution" id="Check Solution">Check Solution</a></big></b>
+<br/>
+Next we check that the solution matches the simulated values for the
+functions 
+<code><i><font color="black"><span style='white-space: nowrap'>iota</span></font></i></code>
+, 
+<code><i><font color="black"><span style='white-space: nowrap'>rho</span></font></i></code>
+, 
+<code><i><font color="black"><span style='white-space: nowrap'>chi</span></font></i></code>
+, and 
+<code><i><font color="black"><span style='white-space: nowrap'>omega</span></font></i></code>
+.
+Note that only the times and ages within the data limits are checked.
+Note that the functions 
+<code><i><font color="black"><span style='white-space: nowrap'>S</span></font></i></code>
+ and 
+<code><i><font color="black"><span style='white-space: nowrap'>C</span></font></i></code>
+ are not checked because
+the fit has re-scaled 
+<code><i><font color="black"><span style='white-space: nowrap'>S</span></font></i></code>
+ to be one at age
+
+<code><i><font color="black"><span style='white-space: nowrap'>global_age_min</span></font></i></code>
+ (it is one at age zero for the simulations).
+The function 
+<code><i><font color="black"><span style='white-space: nowrap'>rho</span></font></i></code>
+ is not checked because it is zero
+(hence relative errors are <code><font color="blue">nan</font></code>).
+<code><font color='blue'><pre style='display:inline'> 
+echo 'gaussian.sh: check sfun_out.csv'
+include_expr=&quot;f!='S' and f!='C' and f!='rho'&quot;
+include_expr=&quot;$include_expr and $global_time_min&lt;=t and t&lt;=$global_time_max&quot; 
+value_expr='nan if s == 0. else abs(1-e/s)'
+median_bound=&quot;$global_prevalence_cv&quot;
+average_bound=`echo &quot;1.5 * $global_prevalence_cv&quot; | bc -l`
+maximum_bound=`echo &quot;10. * $global_prevalence_cv&quot; | bc -l` 
+$global_python_path/d4_compare_sfun.py \
+	--sfun_out  sfun_out.csv \
+	--solution  solution.csv \
+	--compare   compare.csv \
+	--include   &quot;$include_expr&quot; \
+	--value     &quot;$value_expr&quot; \
+	--median    &quot;$median_bound&quot; \
+	--average   &quot;$average_bound&quot; \
+	--maximum   &quot;$maximum_bound&quot;
+</pre></font></code>
+
+---------------------------------------------------------------------------- 
+<br/>
+<br/>
+<b><big><a name="Final Message" id="Final Message">Final Message</a></big></b>
+<br/>
+If this shell script reaches here, then all the tests have passed
+(except that dismod_pde_csv may have returned an error flag).
+<code><font color='blue'><pre style='display:inline'> 
+if [ $dismod_pde_csv_ok == 'no' ]
+then
+	exit 1
+fi
+echo &quot;gaussian.sh: $global_grid_step $global_prevalence_cv OK&quot;
+</pre></font></code>
+
+
+<hr/>Input File: example/gaussian/gaussian.sh.in
+
+</body>
+</html>

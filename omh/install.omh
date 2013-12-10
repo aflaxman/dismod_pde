@@ -1,0 +1,219 @@
+$begin install$$
+$dollar @$$
+$spell
+	pde
+	wget
+	py
+	dismod
+	numpy
+	matplotlib
+	pdflatex
+	libdismod_pde
+	pdf
+	ipopt
+	cppad
+	omhelp
+	doxygen
+	htm
+	doxydoc
+	csv
+	xml
+	cd
+	cwd
+	yyyy mm dd
+	tarball
+	tar -xzf dismod_pde-2013.tgz
+$$
+
+$section Installing dismod_pde$$
+$index install, dismod_pde$$
+$index dismod_pde, install$$
+
+$head Requirements$$
+$index requirements$$
+
+$list number$$
+The following standard unix utilities:
+$code bash$$ scripting shell, 
+$code tar$$ archiving program,
+$code wget$$ web downloading program, and the
+$code patch$$ source code patching program.
+$lnext
+A Fortran, C, C++ compiler and Python (>=2.5) interpreter.
+$lnext
+The $code doxygen$$ documentation program.
+$lnext
+Python is required to used the python utilities.
+In addition, these utilities use the following packages not in the python
+$href%http://docs.python.org/library/%standard library%$$:
+$code numpy$$, $code matplotlib$$.
+$lend
+
+$head Download$$
+$index download$$
+$comment This link works after ./build.sh dist is executed$$
+$table
+$href%dismod_pde-2013.1130.tgz%$$ $cnext most recent version of dismod_pde
+$rnext
+$href%dismod_pde-2013.0000.1.tgz%$$  $cnext version at beginning of 2013
+$tend
+
+$head Unpack Distribution$$
+Let $icode version$$ be either $code 2013.1130$$ or $code 2013.0000.1$$.
+The following commands will create the distribution directory
+$codei%dismod_pde-%version%$$ and change into that directory:
+$codei%
+	tar -xzf dismod_pde-%version%.tgz
+	cd dismod_pde-%version%
+%$$
+If you are using version $code 2013.0000.1$$, you should now switch
+to the instructions in 
+$codep
+	dismod_pde-2013.0000.1/doc/install.htm
+$$
+Otherwise, continue with the instructions below.
+	
+
+$head External Packages$$
+$index external, packages$$
+$index packages, externals$$
+dismod_pde uses the packages
+$href%https://projects.coin-or.org/Ipopt%ipopt%$$,
+$href%http://www.coin-or.org/CppAD%cppad%$$,
+and
+$href%http://www.seanet.com/~bradbell/omhelp/overview.xml%omhelp%$$.
+The following command:
+$codei%
+	./build.sh external
+%$$
+will download and compile these packages in the 
+$code dismod_pde-2013.1130/external$$ directory.
+It will then install the packages using the prefixes
+$code @HOME/prefix/ipopt$$,
+$code @HOME/prefix/cppad$$, and
+$code @HOME/prefix/omhelp$$, respectively
+If this command succeeds, its last output line will be
+$codei%
+	OK build.sh external
+%$$
+This step can take some time
+and you do not need to preform this step if you already have these packages
+installed.
+
+$head Configure$$
+The following command will configure dismod_pde to compile and run
+on your system:
+$codei%
+	./build.sh configure
+%$$
+If this command succeeds, its last output line will be
+$codei%
+     OK build.sh configure
+%$$
+If your systems default python interpreter version is less than 2.5,
+in the file $code build.sh$$ you will have to make the change
+$codei%
+     PYTHON_PREFIX=`which python%...%`  %->% PYTHON_PREFIX=%python_prefix%
+%$$
+where $icode%python_prefix%/bin/python%$$ is a Python executable
+with version number >= 2.5.
+
+$head make$$
+The following command will compile dismod_pde and all its tests:
+$codei%
+	./build.sh make
+%$$
+If this command succeeds, its last output line will be
+$codei%
+     OK build.sh make
+%$$
+
+$head Documentation$$
+$index documentation, build$$
+$index build, documentation$$
+The following command will build the dismod_pde 
+developer documentation:
+$codei%
+	./build.sh doxydoc
+%$$
+If this command succeeds, its last output line will be
+$codei%
+	OK build.sh doxydoc
+%$$
+
+$head Test$$
+$index test, dismod_pde$$
+$index dismod_pde, test$$
+The  following command will run all the dismod_pde tests:
+$codei%
+	./build.sh test
+%$$
+If this command succeeds, its last output line will be
+$codei%
+	OK build.sh test 
+%$$
+
+$head Install$$
+The following command will install dismod_pde using the prefix
+$code @HOME/prefix/dismod_pde$$:
+$codep
+	cd build
+	make install
+$$
+The $cref dismod_pde_csv$$ executable file, 
+$codei%
+	%dismod_pde_prefix%/bin/dismod_pde_csv
+%$$
+The $cref python_csv$$ scripts
+$codei%
+	%dismod_pde_prefix%/bin/d4_%*%.py
+%$$
+The library file,
+and include directory, for using the $cref optimize$$ routine,
+$codei%
+	%dismod_pde_prefix%/lib/libdismod_pde.a
+	%dismod_pde_prefix%/include/dismod_pde
+%$$
+The user documentation directory, 
+the example directory,
+and the developer documentation directory,
+$codei%
+	%dismod_pde_prefix%/share/doc/dismod_pde-2013.1130/doc
+	%dismod_pde_prefix%/share/doc/dismod_pde-2013.1130/example
+	%dismod_pde_prefix%/share/doc/dismod_pde-2013.1130/doxydoc
+%$$
+
+$head Prefix$$
+You can change the $icode dismod_pde_prefix$$ by 
+opening the file
+$codei%
+	dismod_pde-2013.1130/build.sh
+%$$ 
+in your editor and making the following change:
+$codei%
+	DISMOD4_PREFIX="@HOME/prefix/dismod_pde"  %->% DISMOD4_PREFIX=%dismod_pde_prefix%
+%$$ 
+where $icode dismod_pde_prefix$$ is the directory you choose.
+Then return to the $code dismod_pde-2013.1130$$ directory and 
+execute the commands
+$codei%
+	./build.sh configure
+	cd build
+	make install
+%$$
+Note that you can also change the other prefixes set at the top of
+$code build.sh$$.
+
+$head Optimized Version$$
+By default $code dismod_pde$$ is compiled with debugging.
+You can compile a version that is faster,
+but that does not have as good error detection and reporting.
+In your editor, make the following change:
+$codei%
+	DISMOD4_DEBUG='true'  %->% DISMOD4_DEBUG='false'
+%$$ 
+and rerun the $code build.sh$$ commands.
+(It is not necessary to re-build the documentation.)
+
+
+$end

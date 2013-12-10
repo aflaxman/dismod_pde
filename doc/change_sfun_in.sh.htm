@@ -1,0 +1,270 @@
+<html><head>
+<title>d4_change_sfun_in.py: Example and Test</title>
+<meta name="description" id="description" content="d4_change_sfun_in.py: Example and Test">
+<meta name="keywords" id="keywords" content=" d4_change_sfun_in.py example test ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_change_sfun_in.sh_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="d4_change_sfun_in.py.htm" target="_top">Prev</a>
+</td><td><a href="d4_compare_sfun.py.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>csv</option>
+<option>python_csv</option>
+<option>d4_change_sfun_in.py</option>
+<option>change_sfun_in.sh</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down4(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>csv-&gt;</option>
+<option>dismod_pde_csv</option>
+<option>python_csv</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>python_csv-&gt;</option>
+<option>d4_bubble.py</option>
+<option>d4_change_sfun_in.py</option>
+<option>d4_compare_sfun.py</option>
+<option>d4_contour.py</option>
+<option>d4_cumulative.py</option>
+<option>d4_plot.py</option>
+<option>d4_sfun_der.py</option>
+<option>d4_sfun_grid.py</option>
+<option>d4_simulate.py</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>d4_change_sfun_in.py-&gt;</option>
+<option>change_sfun_in.sh</option>
+</select>
+</td>
+<td>change_sfun_in.sh</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>Abort on Any Error</option>
+<option>parameter.csv</option>
+<option>measure_in.csv</option>
+<option>template.csv</option>
+<option>Running d4_change_sfun_in.py</option>
+<option>---..Check sfun_in.csv</option>
+<option>Final Message</option>
+</select>
+</td>
+</tr></table><br>
+ 
+
+<center><b><big><big>d4_change_sfun_in.py: Example and Test</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<code><font color="blue"><br>
+change_sfun_in.sh</font></code>
+
+<br>
+<br>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br>
+This bash shell script is a simple example and test of
+<code><font color="blue">d4_change_sfun_in.py</font></code>.
+It exits with status zero if the test passes
+and with status one if the test fails.
+
+<br>
+<br>
+<b><big><a name="Abort on Any Error" id="Abort on Any Error">Abort on Any Error</a></big></b>
+
+<code><font color='blue'><pre style='display:inline'> 
+set -e
+</pre></font></code>
+
+
+<br>
+<br>
+<b><big><a name="parameter.csv" id="parameter.csv">parameter.csv</a></big></b>
+<br>
+The first thing we do is create the
+<a href="dismod_pde_csv.htm#parameter.csv" target="_top"><span style='white-space: nowrap'>parameter.csv</span></a>
+ file 
+as follows:
+<code><font color='blue'><pre style='display:inline'> 
+cat &lt;&lt; EOF &gt; parameter.csv
+name,value
+age_grid,0 10 20
+cohort_grid,1950 1990 2030 
+max_ode_step,1
+print_level,5
+max_iteration,80
+converge_tolerance,1e-6
+EOF
+</pre></font></code>
+
+For this example,
+we use large values for <code><font color="blue">delta_age</font></code> and <code><font color="blue">delta_cohort</font></code>
+so that the resulting file <code><font color="blue">sfun_in.csv</font></code> is small.
+Note that the first and last lines above are bash command that
+instruct bash to create the file <code><font color="blue">parameter.csv</font></code> with the
+contents between them.
+
+<br>
+<br>
+<b><big><a name="measure_in.csv" id="measure_in.csv">measure_in.csv</a></big></b>
+<br>
+Next we create a very simple
+<a href="dismod_pde_csv.htm#measure_in.csv" target="_top"><span style='white-space: nowrap'>measure_in.csv</span></a>
+ file.
+<code><font color='blue'><pre style='display:inline'> 
+cat &lt;&lt; EOF &gt; measure_in.csv
+integrand,age_lower,age_upper,time_lower,time_upper,meas_like,meas_zeta,meas_sigma,meas_value,c_notes
+remission,10,20,1990,2000,gaussian,1,1e-5,1e-1,no_comment
+EOF
+</pre></font></code>
+
+The text above is in a form that makes it easier to read in this example,
+but it does not conform to the csv file 
+<a href="csv.htm#dismod_pde CSV Files" target="_top"><span style='white-space: nowrap'>specifications</span></a>
+.  
+The command <code><font color="blue">tr '\n;' ' \n'</font></code>
+replaces all the new-lines by spaces and the semi-colons by new-lines 
+which converts the text to csv format.
+The command <code><font color="blue"> sed -e 's/  */ /g' -e '/^ *$/d'</font></code>
+converts multiple contiguous spaces to a single space,
+which is not necessary, but helps make the result readable in an editor.
+It also deletes line that only have spaces in then.
+(This is necessary for this example because the new-line after the last
+semi-colon gets converted to a space.)
+
+<br>
+<br>
+<b><big><a name="template.csv" id="template.csv">template.csv</a></big></b>
+<br>
+Remove the file 
+<a href="dismod_pde_csv.htm#sfun_in.csv.Output Template" target="_top"><span style='white-space: nowrap'>template.csv</span></a>
+ 
+(if it exists) and then recreate it.
+<code><font color='blue'><pre style='display:inline'> 
+rm -f template.csv
+../cpp/dismod_pde_csv \
+	parameter.csv measure_in.csv template.csv
+</pre></font></code>
+
+
+<br>
+<br>
+<b><big><a name="Running d4_change_sfun_in.py" id="Running d4_change_sfun_in.py">Running d4_change_sfun_in.py</a></big></b>
+
+<code><font color='blue'><pre style='display:inline'> 
+$top_builddir/python/d4_change_sfun_in.py template.csv sfun_in.csv \
+\
+-comment            'zeta          lower      initial          upper' \
+-optimize_S           1.0            0.0         1e-2            1.0 \
+\
+-comment            'name           zeta        sigma           mean' \
+-prior_S         gaussian            1.0          inf            0.0  \
+\
+-comment            'name           zeta        sigma          order' \
+-age_S           gaussian            1.0         2e-2              1  \
+-cohort_S         laplace            1.0         3e-2              2  \
+-cross_S          laplace            2.0         3e-2
+</pre></font></code>
+
+
+<br>
+<br>
+<b><a name="Running d4_change_sfun_in.py.Check sfun_in.csv" id="Running d4_change_sfun_in.py.Check sfun_in.csv">Check sfun_in.csv</a></b>
+
+<code><font color='blue'><pre style='display:inline'> 
+cat &lt;&lt; EOF &gt; check_sfun_in.py
+import csv
+import sys
+file   = open('sfun_in.csv', 'r')
+reader = csv.DictReader(file, skipinitialspace=True)
+ok     = True
+for row in reader :
+	if row['function'] == 'S' : 
+		ok = ok and float( row['optimize_lower'] )   == 0.0 
+		ok = ok and float( row['optimize_initial'] ) == 0.01
+		ok = ok and float( row['optimize_upper'] )   == 1.0 
+
+		ok = ok and row['prior_like']                == 'gaussian'
+		ok = ok and float(row['prior_zeta'])         == 1.
+		ok = ok and row['prior_sigma']               == 'inf'
+		ok = ok and float(row['prior_mean'] )        == 0.
+
+		ok = ok and row['age_like']                  == 'gaussian'
+		ok = ok and float(row['age_zeta'] )          == 1.
+		ok = ok and float(row['age_sigma'] )         == .02
+		ok = ok and int(row['age_order'])            == 1
+
+		ok = ok and row['cohort_like']               == 'laplace'
+		ok = ok and float(row['cohort_zeta'] )       == 1.
+		ok = ok and float(row['cohort_sigma'] )      == .03
+		ok = ok and int(row['cohort_order'])         == 2
+
+		ok = ok and row['cross_like']                == 'laplace'
+		ok = ok and float(row['cross_zeta'] )        == 2.0
+		ok = ok and float(row['cross_sigma'] )       == .03
+	if not ok :
+		print row
+		sys.exit('Error in d4_change_sfun_in.py')
+sys.exit(None)
+EOF
+$top_builddir/python.sh \
+	check_sfun_in.py
+</pre></font></code>
+
+
+<br>
+<br>
+<b><big><a name="Final Message" id="Final Message">Final Message</a></big></b>
+<br>
+If this shell script reaches here, then test has passed.
+<code><font color='blue'><pre style='display:inline'> 
+echo &quot;change_sfun_in.sh: OK&quot;
+</pre></font></code>
+
+
+
+<hr>Input File: example/change_sfun_in.sh
+
+</body>
+</html>

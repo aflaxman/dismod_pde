@@ -1,0 +1,87 @@
+<?xml version='1.0'?>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:math='http://www.w3.org/1998/Math/MathML'
+>
+<head>
+<title>The C++ Interface to dismod_pde</title>
+<meta name="description" id="description" content="The C++ Interface to dismod_pde"/>
+<meta name="keywords" id="keywords" content=" "/>
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_cpp_xml.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="d4_simulate.py.xml" target="_top">Prev</a>
+</td><td><a href="optimize.xml" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>cpp</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down0(this)'>
+<option>cpp-&gt;</option>
+<option>optimize</option>
+<option>create_grid</option>
+<option>pair2index</option>
+<option>csv_read</option>
+<option>str_char_vec</option>
+<option>atof_char_vec</option>
+</select>
+</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Contents</option>
+</select>
+</td>
+</tr></table><br/>
+
+
+
+<center><b><big><big>The C++ Interface to dismod_pde</big></big></b></center>
+<br/>
+<b><big><a name="Contents" id="Contents">Contents</a></big></b>
+<br/>
+<div><a href="optimize.xml" target="_top">Optimization&#xA0;of&#xA0;dismod_pde&#xA0;Objective&#xA0;Function</a><br/>
+<a href="create_grid.xml" target="_top">Create&#xA0;an&#xA0;Age-Cohort&#xA0;Grid&#xA0;For&#xA0;a&#xA0;Measurement&#xA0;Set</a><br/>
+<a href="pair2index.xml" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index</a><br/>
+<a href="csv_read.xml" target="_top">Read&#xA0;an&#xA0;Entire&#xA0;CSV&#xA0;File&#xA0;Into&#xA0;Memory</a><br/>
+<a href="str_char_vec.xml" target="_top">Convert&#xA0;a&#xA0;Sub-vector&#xA0;of&#xA0;a&#xA0;Character&#xA0;Vector&#xA0;to&#xA0;a&#xA0;String</a><br/>
+<a href="atof_char_vec.xml" target="_top">Convert&#xA0;a&#xA0;Sub-vector&#xA0;of&#xA0;a&#xA0;Character&#xA0;Vector&#xA0;to&#xA0;Double</a><br/>
+</div>
+<hr/>Input File: omh/cpp.omh
+
+</body>
+</html>

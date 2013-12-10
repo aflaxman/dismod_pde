@@ -1,0 +1,174 @@
+<html><head>
+<title>Example and Test of dismod_pde pair2index Procedure</title>
+<meta name="description" id="description" content="Example and Test of dismod_pde pair2index Procedure">
+<meta name="keywords" id="keywords" content=" test pair2index example grid ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_pair2index.cpp_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="pair2index.htm" target="_top">Prev</a>
+</td><td><a href="csv_read.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>cpp</option>
+<option>pair2index</option>
+<option>pair2index.cpp</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>cpp-&gt;</option>
+<option>optimize</option>
+<option>create_grid</option>
+<option>pair2index</option>
+<option>csv_read</option>
+<option>str_char_vec</option>
+<option>atof_char_vec</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>pair2index-&gt;</option>
+<option>pair2index.cpp</option>
+</select>
+</td>
+<td>pair2index.cpp</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>ok</option>
+</select>
+</td>
+</tr></table><br>
+
+
+
+<center><b><big><big>Example and Test of dismod_pde pair2index Procedure</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><i><font color="black"><span style='white-space: nowrap'>ok</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;pair2index()</span></font></code>
+
+
+<br>
+<br>
+<b><big><a name="ok" id="ok">ok</a></big></b>
+<br>
+The return value 
+<code><i><font color="black"><span style='white-space: nowrap'>ok</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>ok</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;<br>
+</span></font></code>
+If true, the <a href="pair2index.htm" target="_top"><span style='white-space: nowrap'>pair2index</span></a>
+ procedure returned a successful status; i.e.,
+estimated values agreed with the simulated values.
+
+<code><font color="blue">
+<pre style='display:inline'> 
+# include &lt;dismod_pde/dismod_pde.hpp&gt;
+
+bool pair2index(void)
+{	// initialize return value
+	bool ok = true;
+
+	// Example in Lexis Diagram in dismod_pde Numerical Methods Paper
+	double time_lower = 1950.;
+	double time_upper = 2000.;
+	size_t j, J = 3;
+	size_t k, K = 5;
+	dismod_pde::vector&lt;double&gt; age(J), cohort(K);
+	for(j = 0; j &lt; J; j++)
+		age[j] = 15 + j * 25.;
+	for(k = 0; k &lt; K; k++)
+		cohort[k] = 1880 + k * 30.; 
+	dismod_pde::pair2index grid(age, cohort, time_lower, time_upper);
+
+	// Enumerate all the valid grid points in Lexis Diagram in paper
+	size_t n_grid = 0;
+	size_t age_index, cohort_index, grid_pack;
+	size_t age_unpack, cohort_unpack, grid_index;
+	bool   valid;
+	age_index = 0;
+	for(k = 1; k &lt; 5; k++)
+	{	cohort_index = k;	
+		valid = grid.pack(age_index, cohort_index, grid_pack); 
+		grid_index = grid_pack;
+		grid.unpack(age_unpack, cohort_unpack, grid_index);
+		ok   &amp;= age_unpack == age_index;
+		ok   &amp;= cohort_unpack == cohort_index;
+		ok   &amp;= valid;
+		n_grid++;
+	}
+	age_index = 1;
+	for(k = 1; k &lt; 4; k++)
+	{	cohort_index = k;	
+		valid = grid.pack(age_index, cohort_index, grid_pack); 
+		grid_index = grid_pack;
+		grid.unpack(age_unpack, cohort_unpack, grid_index);
+		ok   &amp;= age_unpack == age_index;
+		ok   &amp;= cohort_unpack == cohort_index;
+		ok   &amp;= valid;
+		n_grid++;
+	}
+	age_index = 2;
+	for(k = 0; k &lt; 3; k++)
+	{	cohort_index = k;	
+		valid = grid.pack(age_index, cohort_index, grid_pack); 
+		grid_index = grid_pack;
+		grid.unpack(age_unpack, cohort_unpack, grid_index);
+		ok   &amp;= age_unpack == age_index;
+		ok   &amp;= cohort_unpack == cohort_index;
+		ok   &amp;= valid;
+		n_grid++;
+	}
+	// check that these are all the valid grid points
+	ok &amp;= n_grid == grid.size();
+
+	return ok;
+}
+</pre>
+
+</font></code>
+
+
+<hr>Input File: example/pair2index.cpp
+
+</body>
+</html>

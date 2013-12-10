@@ -1,0 +1,162 @@
+<?xml version='1.0'?>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:math='http://www.w3.org/1998/Math/MathML'
+>
+<head>
+<title>Create an Age-Cohort Grid For a Measurement Set</title>
+<meta name="description" id="description" content="Create an Age-Cohort Grid For a Measurement Set"/>
+<meta name="keywords" id="keywords" content=" create grid delta age cohort measure_in "/>
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_create_grid_xml.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="dismoditis.sh.xml" target="_top">Prev</a>
+</td><td><a href="pair2index.xml" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>cpp</option>
+<option>create_grid</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>cpp-&gt;</option>
+<option>optimize</option>
+<option>create_grid</option>
+<option>pair2index</option>
+<option>csv_read</option>
+<option>str_char_vec</option>
+<option>atof_char_vec</option>
+</select>
+</td>
+<td>create_grid</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>delta_age</option>
+<option>delta_cohort</option>
+<option>measure_in</option>
+<option>grid</option>
+</select>
+</td>
+</tr></table><br/>
+
+
+
+<center><b><big><big>Create an Age-Cohort Grid For a Measurement Set</big></big></b></center>
+<br/>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br/>
+
+<code><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;=&#xA0;create_grid(</span></font><i><font color="black"><span style='white-space: nowrap'>delta_age</span></font></i><font color="blue"><span style='white-space: nowrap'>,&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>delta_cohort</span></font></i><font color="blue"><span style='white-space: nowrap'>,&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i><font color="blue"><span style='white-space: nowrap'>)</span></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="delta_age" id="delta_age">delta_age</a></big></b>
+
+
+<br/>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>delta_age</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;double&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>delta_age</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+It must be greater than zero and 
+specifies the step size used between age values in the grid.
+
+<br/>
+<br/>
+<b><big><a name="delta_cohort" id="delta_cohort">delta_cohort</a></big></b>
+
+
+<br/>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>delta_cohort</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;double&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>delta_cohort</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+It must be greater than zero and 
+specifies the step size used between cohort values in the grid.
+
+<br/>
+<br/>
+<b><big><a name="measure_in" id="measure_in">measure_in</a></big></b>
+
+<br/>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;const&#xA0;dismod_pde::vector&lt;dismod_pde::Measure_Input_Struct&gt;&amp;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+It has the exact same specifications as
+<a href="optimize.xml#measure_in" target="_top"><span style='white-space: nowrap'>measure_in</span></a>
+ in the <code><font color="blue">optimize</font></code> routine.
+
+<br/>
+<br/>
+<b><big><a name="grid" id="grid">grid</a></big></b>
+
+<br/>
+The return value 
+<code><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;dismod_pde::pair2index&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+see <a href="pair2index.xml" target="_top"><span style='white-space: nowrap'>pair2index</span></a>
+.
+There is an age cohort grid that surrounds the measurement values
+by a spacing of 
+<code><i><font color="black"><span style='white-space: nowrap'>delta_age</span></font></i></code>
+ and 
+<code><i><font color="black"><span style='white-space: nowrap'>delta_cohort</span></font></i></code>
+.
+In addition, the age grid is expanded to start at age zero.
+
+
+<hr/>Input File: cpp/dismod_pde/create_grid.hpp
+
+</body>
+</html>

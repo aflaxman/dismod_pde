@@ -1,0 +1,238 @@
+<?xml version='1.0'?>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:math='http://www.w3.org/1998/Math/MathML'
+>
+<head>
+<title>Wish List For Improvements to dismod_pde</title>
+<meta name="description" id="description" content="Wish List For Improvements to dismod_pde"/>
+<meta name="keywords" id="keywords" content=" wish list which lower age limit age_lower measurement model integral approximation integrand estimate standard deviation accuracy of variance information matrix posterior distribution covariates "/>
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_wish_list_xml.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="gaussian.sh.xml" target="_top">Prev</a>
+</td><td><a href="bug_list.xml" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>wish_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>wish_list</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Continuing Fitting</option>
+<option>Objective and Constraint Retaping</option>
+<option>Lower Age Limit</option>
+<option>Measurement Model Integral</option>
+<option>Estimator Standard Deviation</option>
+<option>Information Matrix</option>
+<option>Example</option>
+<option>examples</option>
+<option>Covariates</option>
+<option>External Packages</option>
+<option>Import Dismod3 Data</option>
+</select>
+</td>
+</tr></table><br/>
+
+
+
+<center><b><big><big>Wish List For Improvements to dismod_pde</big></big></b></center>
+<br/>
+<b><big><a name="Continuing Fitting" id="Continuing Fitting">Continuing Fitting</a></big></b>
+<br/>
+It would be good to write out a version of the
+<a href="dismod_pde_csv.xml#sfun_in.csv" target="_top"><span style='white-space: nowrap'>sfun_in.csv</span></a>
+ that could be used to start
+fitting (optimization) where a previous fitting stopped.
+
+<br/>
+<br/>
+<b><big><a name="Objective and Constraint Retaping" id="Objective and Constraint Retaping">Objective and Constraint Retaping</a></big></b>
+<br/>
+Error detection and reporting can be improved by having the object
+and constraint functions retape for every evaluation (which is much slower).
+Perhaps we should add an option so the user can turn this on and perhaps
+get better error reporting.
+
+<br/>
+<br/>
+<b><big><a name="Lower Age Limit" id="Lower Age Limit">Lower Age Limit</a></big></b>
+
+
+
+<br/>
+Each <a href="dismod_pde_csv.xml#measure_in.csv.age_lower, age_upper" target="_top"><span style='white-space: nowrap'>age_lower</span></a>
+
+value must be greater than zero. 
+It would be nice it could equal zero.
+
+<br/>
+<br/>
+<b><big><a name="Measurement Model Integral" id="Measurement Model Integral">Measurement Model Integral</a></big></b>
+
+
+
+
+
+
+<br/>
+Currently a mid-point approximation is used to model the measurement values.
+measurement measurements with large age and time spans, this may not be accurate
+and perhaps we should use some other method.
+
+<br/>
+<br/>
+<b><big><a name="Estimator Standard Deviation" id="Estimator Standard Deviation">Estimator Standard Deviation</a></big></b>
+
+
+
+
+
+
+<ol type="1"><li>
+Standard maximum likelihood theory could be used to approximate the
+diagonal of the covariance of the estimate for the
+<a href="optimize.xml#Stochastic Functions" target="_top"><span style='white-space: nowrap'>stochastic&#xA0;functions</span></a>
+.
+Note that the diagonal of the covariance is the auto covariance for
+each stochastic function estimate at each age and time grid point.
+
+</li><li>
+
+Bootstrap methods could also be used to determine statistical
+properties for the estimates.
+</li></ol>
+
+
+<br/>
+<br/>
+<b><big><a name="Information Matrix" id="Information Matrix">Information Matrix</a></big></b>
+
+
+
+
+<br/>
+The information matrix (inverse of the covariance matrix) is useful
+if one wants to use the results of dismod_pde to create a posterior distribution
+for the stochastic functions (to use in some other estimation procedure).
+The number of entries in the information matrix is 
+the square of the number of age-cohort grid points (which can be huge).
+Fortunately, the information matrix is sparse and it would be feasible
+output some representation for it.
+
+<br/>
+<br/>
+<b><big><a name="Example" id="Example">Example</a></big></b>
+
+<br/>
+<br/>
+<b><big><a name="examples" id="examples">examples</a></big></b>
+
+
+<ol type="1"><li>
+The <code><font color="blue">constant.sh</font></code>, <code><font color="blue">bilinear.sh</font></code> 
+tests (in the <code><font color="blue">test</font></code> directory) could be made into
+examples by adding documentation.
+
+</li><li>
+
+Convert the <a href="dismoditis.sh.xml" target="_top"><span style='white-space: nowrap'>dismoditis.sh</span></a>
+ documentation to be like 
+<a href="d4_simulate.py.xml" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+; i.e., specifications instead of entire 
+implementation.
+</li></ol>
+
+
+<br/>
+<br/>
+<b><big><a name="Covariates" id="Covariates">Covariates</a></big></b>
+
+
+
+<ol type="1"><li>
+Allow for prior distributions (besides uniform) for the
+covariate multiplier vector 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='normal'>&#x003B2;</mi>
+</mrow></math>
+
+.
+
+</li><li>
+
+Allow for a discrete covariate with a different multiplier for
+each value that the covariate assumes.
+
+</li><li>
+
+Integrate with respect to the  stochastic function when estimating
+the covariate multipliers.
+
+</li><li>
+
+Allow for the covariate multipliers to include fixed and random effects.
+
+</li></ol>
+
+
+<br/>
+<br/>
+<b><big><a name="External Packages" id="External Packages">External Packages</a></big></b>
+<br/>
+Create instructions for installing the 
+<a href="install.xml#External Packages" target="_top"><span style='white-space: nowrap'>external&#xA0;packages</span></a>
+ 
+that could be used when the automated install failed.
+(The automated install only supports the Gnu compiler and has other
+simplifications that are not necessary.)
+
+<br/>
+<br/>
+<b><big><a name="Import Dismod3 Data" id="Import Dismod3 Data">Import Dismod3 Data</a></big></b>
+<br/>
+There is a prototype program that converts 
+<a href="/http://winthrop.ihme.washington.edu/public/intro.html" target="_top"><span style='white-space: nowrap'>Dismod3</span></a>
+
+data files to dismod_pde format. 
+Perhaps this should be turned into a supported application.
+
+
+<hr/>Input File: omh/wish_list.omh
+
+</body>
+</html>

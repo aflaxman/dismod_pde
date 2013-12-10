@@ -1,0 +1,264 @@
+#! @PYTHON_PREFIX@/bin/python
+# $begin d4_bubble.py$$ $newlinech #$$ 
+# $spell
+#	csv
+#	pdf
+#	eps
+#	py
+# $$
+# $escape $$
+#
+# $section Bubble Plots of Values in Csv File$$
+#
+# $head Syntax$$
+# $codei%d4_bubble.py %csv_file% %plot_file% %title%$$
+# $codei%\
+#	%x_name% %x_min% %x_max% \
+#	%y_name% %y_min% %y_max% \
+#	%s_name% %s_min% %s_between% %s_max% \
+#	%f_name% %f_min% %f_max%$$
+#
+# $head Purpose$$
+# Make a bubble plot of the values in a csv file.
+#
+# $head csv_file$$
+# is the name of $cref/csv/$$ file to containing the values to be plotted.
+#
+# $head plot_file$$
+# Is the name of the plot file stored to disk. The extension
+# for this file will determine the output format; e.g., $code .pdf$$
+# or $code .eps$$.
+# If $icode plot_file$$ is the string $code 'screen'$$,
+# the plot is displayed on the screen, and $code d4_bubble.py$$ waits 
+# for the user to close the plot before returning.
+#
+# $head title$$
+# is the title placed at the top of the plot.
+#
+# $head x-axis$$
+# This is the horizontal axis in the plot.
+#
+# $subhead x_name$$
+# name for the column corresponding to the x-axis.
+# This column must contain numeric data.
+#
+# $subhead x_min$$
+# lower limit for the x-axis in the plot
+# (x values less than $icode x_min$$ are plotted as $icode x_min$$).
+# 
+# $subhead x_max$$
+# upper limit for the x-axis in the plot
+# (x values greater than $icode x_max$$ are plotted as $icode x_max$$).
+#
+# $head y-axis$$
+# This is the vertical axis in the plot.
+#
+# $subhead y_name$$
+# name for the column corresponding to the y-axis.
+# This column must contain numeric data.
+#
+# $subhead y_min$$
+# lower limit for the y-axis in the plot
+# (y values less than $icode y_min$$ are plotted as $icode y_min$$).
+#
+# $subhead y_max$$
+# upper limit for the y-axis in the plot
+# (y values greater than $icode y_max$$ are plotted as $icode y_max$$).
+#
+# $head Bubble size$$
+# These arguments determine the size of the bubbles in the plot.
+#
+# $subhead s_name$$
+# name for the column corresponding to the size of the bubbles in the plot.
+# This column must contain numeric data.
+#
+# $subhead s_min$$
+# absolute value corresponding to the minimum bubble size.
+# Values with smaller absolute value are plotted at this size.
+# Note that the value $icode s_min$$ is used to label the corresponding 
+# bubble size.
+#
+# $subhead s_between$$
+# the value $icode s_between$$ is used to label the corresponding 
+# bubble size where
+# $codei%
+#	%s_min% <= %s_between% <= %s_max%
+# %$$
+#
+# $subhead s_max$$
+# absolute value corresponding to the maximum bubble size.
+# Values with larger absolute value are plotted at this size.
+# Note that the value $icode s_max$$ is used to label the corresponding 
+# bubble size.
+#
+# $head Filter$$
+# These arguments determine which lines in the csv file
+# should be included in the plot. 
+#
+# $subhead f_name$$
+# Is the name of the column used for determining which lines to include.
+#
+# $subhead f_min$$
+# Is the minimum value for the filtering column that corresponds to lines
+# that are included.
+#
+# $subhead f_max$$
+# Is the maximum value for the filtering column that corresponds to lines
+# that are included. 
+# If $icode%f_min% == %f_max%$$ as strings, then the filtering
+# column is treated as a string column and only those lines with that
+# same value are included.
+# Otherwise the filtering column must contain numeric data.
+#
+# $head Nan$$
+# If the value in column $icode x_name$$, $icode y_name$$ or $icode s_name$$
+# is not a number $code nan$$, the corresponding line is not included
+# in the plot. 
+#
+# $end
+#
+import sys
+import csv
+import numpy 
+import matplotlib
+from numpy import isnan
+#
+usage='''
+d4_bubble.py csv_file plot_file title \\
+	x_name x_min x_max \\
+	y_name y_min y_max \\
+	s_name s_min s_max \\
+	f_name f_min f_max
+
+csv_file:  csv file containing values to be plotted.
+plot_file: file where a copy of the plot will be stored.
+title:     title placed at the top of the plot.
+x_name:    column name for values on horizontal axis.
+x_min:     minimum value on horizontal axis.
+x_max:     maximum value on horizontal axis.
+y_name:    column name for values on vertical axis.
+y_min:     minimum value on vertical axis.
+y_max:     maximum value on vertical axis.
+s_name:    column name for values corresponding to the bubble sizes.
+s_min:     absolute value corresponding to minimum bubble size.
+s_between: an absolute value between s_min and s_max used for labeling.
+s_max:     absolute value corresponding to maximum bubble size.
+f_name:    column name for values that determine which lines to include.
+f_min:     minimum value corresponding to a line to include.
+f_max:     maximum value corresponding to a line to include.
+'''
+argv = sys.argv
+if len(argv) != 17 :
+	print usage
+	print "expected 17 arguments counting d4_bubble.py but found", len(argv)
+	sys.exit(1)
+iarg       = 1
+csv_file   = argv[iarg]         ; iarg = iarg + 1
+plot_file  = argv[iarg]         ; iarg = iarg + 1
+title      = argv[iarg]         ; iarg = iarg + 1
+x_name     = argv[iarg]         ; iarg = iarg + 1
+x_min      = float(argv[iarg])  ; iarg = iarg + 1
+x_max      = float(argv[iarg])  ; iarg = iarg + 1
+y_name     = argv[iarg]         ; iarg = iarg + 1
+y_min      = float(argv[iarg])  ; iarg = iarg + 1
+y_max      = float(argv[iarg])  ; iarg = iarg + 1
+s_name     = argv[iarg]         ; iarg = iarg + 1
+s_min      = float(argv[iarg])  ; iarg = iarg + 1
+s_between  = float(argv[iarg])  ; iarg = iarg + 1
+s_max      = float(argv[iarg])  ; iarg = iarg + 1
+f_name     = argv[iarg]         ; iarg = iarg + 1
+f_min      = argv[iarg]         ; iarg = iarg + 1
+f_max      = argv[iarg]         ; iarg = iarg + 1
+assert iarg == 17
+#
+if plot_file != 'screen' :
+	matplotlib.use('Agg') # no X-window display connect so can run remotely
+import matplotlib.pyplot as plt
+#
+# open csv.csv file
+fp_in       = open(csv_file, 'r')
+reader      = csv.DictReader(fp_in, skipinitialspace=True)
+#
+f_string    = f_min == f_max
+if not f_string :
+	f_min = float(f_min)
+	f_max = float(f_max)
+#
+# read csv file data
+x_vec = []
+y_vec = []
+s_vec = []
+for row in reader :
+	if f_string :
+		include = row[f_name] == f_min
+	else :
+		f = float(row[f_name])
+		include = f_min <= f and f <= f_max
+	if include : 
+		x = float( row[x_name] )
+		y = float( row[y_name] )
+		s = float( row[s_name] )
+		if not ( isnan(x) or isnan(y) or isnan(s) ) :
+			# clip x and y to be within range
+			x = min( max(x, x_min) , x_max)
+			y = min( max(y, y_min) , y_max)
+			x_vec.append(x)
+			y_vec.append(y)
+			s_vec.append(s)
+if len(x_vec) == 0 :
+	sys.exit('d4_bubble.py: no data is between specified limits')
+#
+# alpha and color values for bubbles
+bubble_a  = 1.0
+bubble_c  = 'w'
+#
+# maximum bubble area in points
+b_max   = 25**2
+# factor to scale bubbles from user units to points
+b_scale = b_max / s_max
+# minimum bubble area in points
+b_min   = b_scale * s_min
+# converting from s value to bubble area
+b_vec   = [ b_scale * abs(s) for s in s_vec]
+# now clip the bubble areas to between b_max and b_min
+b_vec   = [ min(b_max, max(b_min, b) ) for b in b_vec ]
+#
+# plot the bubbles
+for i in range(len(x_vec)) :
+	plt.scatter([x_vec[i]], [y_vec[i]], s=b_vec[i], c=bubble_c, alpha=bubble_a)
+	symbol = '+' if s_vec[i] >= 0. else 'x'
+	plt.plot([x_vec[i]], [y_vec[i]], symbol+'k')
+#
+# Draw a line at y_min
+plt.plot( [x_min , x_max] , [y_min, y_min], linestyle='-', color='k')
+# Add an extra 10% to y axis values for labeling the bubble sizes
+y_below  = y_min - .1 * (y_max - y_min)
+y_bubble = y_below + .5 * (y_min - y_below) 
+y_text   = y_below + .8 * (y_min - y_below)
+#
+key_value = [ s_max , s_between, s_min, -s_min, -s_between, -s_max ]
+for k in range(6) :
+	x      = x_min + (.05 + k * .15) * (x_max - x_min) 
+	a_size = abs(key_value[k]) 
+	b_size = b_scale * a_size
+	symbol = '+' if key_value[k] >= 0. else 'x'
+	plt.scatter([x], [y_bubble], s=b_size, c=bubble_c, alpha=bubble_a)
+	plt.plot([x], [y_bubble], symbol+'k')
+	if key_value[k] > 0 :
+		plt.text(x, y_text, '+%g' %  a_size, ha='center', va='center')
+	else :
+		plt.text(x, y_text, '-%g' %  a_size, ha='center', va='center')
+#
+x        = x_min + .99 * (x_max - x_min) 
+plt.text(x, y_text, s_name,
+	horizontalalignment='right', verticalalignment='center')
+#
+plt.axis( [ x_min, x_max, y_below, y_max ] )
+plt.xlabel(x_name)
+plt.ylabel(y_name)
+plt.title(title)
+#
+if plot_file == 'screen' :
+	plt.show()
+else :
+	plt.savefig(plot_file)

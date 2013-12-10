@@ -1,0 +1,148 @@
+<html><head>
+<title>Convert a Sub-vector of a Character Vector to a String</title>
+<meta name="description" id="description" content="Convert a Sub-vector of a Character Vector to a String">
+<meta name="keywords" id="keywords" content=" ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_str_char_vec_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="csv_read_tst.cpp.htm" target="_top">Prev</a>
+</td><td><a href="str_char_vec_tst.cpp.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>cpp</option>
+<option>str_char_vec</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>cpp-&gt;</option>
+<option>optimize</option>
+<option>create_grid</option>
+<option>pair2index</option>
+<option>csv_read</option>
+<option>str_char_vec</option>
+<option>atof_char_vec</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down0(this)'>
+<option>str_char_vec-&gt;</option>
+<option>str_char_vec_tst.cpp</option>
+</select>
+</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>char_vec</option>
+<option>sub_vec</option>
+<option>str</option>
+<option>Example</option>
+</select>
+</td>
+</tr></table><br>
+
+
+
+<center><b><big><big>Convert a Sub-vector of a Character Vector to a String</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><i><font color="black"><span style='white-space: nowrap'>str</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;str_char_vec(</span></font><i><font color="black"><span style='white-space: nowrap'>char_vec</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sub_vec</span></font></i><font color="blue"><span style='white-space: nowrap'>)</span></font></code>
+
+
+<br>
+<br>
+<b><big><a name="char_vec" id="char_vec">char_vec</a></big></b>
+<br>
+this argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dismod_pde::vector&lt;char&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>char_vec</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It is a character vector containing this value (and possibly other values).
+
+
+<br>
+<br>
+<b><big><a name="sub_vec" id="sub_vec">sub_vec</a></big></b>
+<br>
+this argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;std::pair&lt;size_t,&nbsp;size_t&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sub_vec</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The first character of the string is
+
+<code><i><font color="black"><span style='white-space: nowrap'>char_vec</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sub_vec</span></font></i><font color="blue"><span style='white-space: nowrap'>.first&nbsp;]</span></font></code>
+.
+The number of character in the string is
+
+<code><i><font color="black"><span style='white-space: nowrap'>sub_vec</span></font></i><font color="blue"><span style='white-space: nowrap'>.second</span></font></code>
+.
+
+<br>
+<br>
+<b><big><a name="str" id="str">str</a></big></b>
+<br>
+The return value has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::string&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>str</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+and is the string that has the corresponding characters 
+in the vector 
+<code><i><font color="black"><span style='white-space: nowrap'>char_vec</span></font></i></code>
+.
+
+
+
+<br>
+<br>
+<b><big><a name="Example" id="Example">Example</a></big></b>
+<br>
+The file <a href="str_char_vec_tst.cpp.htm" target="_top"><span style='white-space: nowrap'>str_char_vec_tst.cpp</span></a>
+ contains
+and example and test of <code><font color="blue">str_char_vec</font></code>.
+It returns true for success and false for failure.
+
+
+<hr>Input File: cpp/dismod_pde/str_char_vec.hpp
+
+</body>
+</html>

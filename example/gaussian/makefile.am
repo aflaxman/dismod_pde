@@ -1,0 +1,13 @@
+#
+#
+test: 
+	./gaussian.sh  8 .1
+	cp iota_estimate.png       iota_estimate-8-1.png
+	cp iota_estimate.pdf       iota_estimate-8-1.pdf
+	cp iota_estimate.eps       iota_estimate-8-1.eps
+	./gaussian.sh  4 .2
+	cp iota_estimate.png       iota_estimate-4-2.png
+	cp iota_estimate.pdf       iota_estimate-4-2.pdf
+	cp iota_estimate.eps       iota_estimate-4-2.eps
+	echo 'final values correspond to grid_step = 4 and prevalence_cv = .1'
+	./gaussian.sh  4 .1

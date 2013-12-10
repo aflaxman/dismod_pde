@@ -1,0 +1,45 @@
+# build library and main program in cpp directory first
+SUBDIRS = \
+	cpp \
+	example \
+	example/diabetes \
+	example/get_started \
+	example/gaussian \
+	test
+
+EXTRA_DIST = \
+	bin \
+	omh \
+	doc \
+	\
+	build.sh \
+	dismod_pde.omh \
+	doxyfile 
+
+
+test_not_doc:
+	make
+	(cd example; make test)
+	(cd test; make test)
+
+# Remove svn soruce code control files from distribution
+dist-hook:
+	rm -rf `find . -name .svn`
+
+# install the developer and user documentation
+doc_dir     = $(DESTDIR)$(datadir)/doc/$(PACKAGE)-$(VERSION)
+xam_from    = $(top_builddir)/example
+xam_to      = $(doc_dir)/example
+install-data-hook:
+	if [ ! -d $(xam_to) ] ; then mkdir -p $(xam_to) ; fi
+	cp -r $(top_builddir)/doxydoc   $(doc_dir)
+	cp -r $(top_srcdir)/doc         $(doc_dir)
+	cp $(xam_from)/get_started/get_started.py $(xam_to)/get_started.py
+	cp $(xam_from)/get_started/get_started.sh $(xam_to)/get_started.sh
+	cp $(xam_from)/gaussian/gaussian.sh       $(xam_to)/gaussian.sh
+	cp $(xam_from)/diabetes/diabetes.sh       $(xam_to)/diabetes.sh
+
+# install python files created by configure command
+bin_dir     = $(DESTDIR)$(bindir)
+install-exec-hook:
+	cp -r $(top_builddir)/python/*.py $(bin_dir)

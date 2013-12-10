@@ -1,0 +1,58 @@
+$begin dismod_pde$$
+$spell
+	pde
+	dismod
+	mathml
+$$
+
+$section dismod_pde: 
+Estimation of Disease Mortality as a Stochastic Function of Age and Cohort 
+$$
+$index dismod_pde$$
+$index mathml, display$$
+$index display, mathml$$
+$index latex, display$$
+$index display, latex$$
+$index top, tree$$
+$index tree, top$$
+
+$table
+$cnext One web page per Section $pre  $$ $cnext All as one web page
+
+$rnext
+	$cnext (fast to load)           $pre  $$ $cnext (slow to load)
+$rnext 
+Math displayed using Latex
+$pre  $$ $cnext $href%index.htm%$$   $pre  $$ $cnext $href%_printable.htm%$$
+$rnext
+Math displayed using MathML
+$pre  $$ $cnext $href%index.xml%$$   $pre  $$ $cnext $href%_printable.xml%$$
+$tend
+
+$head Purpose$$
+Estimate disease incidence, remission, 
+excess mortality, and other cause mortality, as 
+$cref/stochastic functions/optimize/Stochastic Functions/$$ of 
+age and cohort.
+
+$head Author$$
+$href%http://www.seanet.com/~bradbell%Bradley M. Bell%$$
+
+$head Copyright$$
+Copyright (C) University of Washington
+
+$head License$$
+This program is distributed under the terms of
+$href%http://www.opensource.org/licenses/gpl-3.0.html%GPLv3%$$
+
+$contents%
+	omh/whats_new.omh%
+	omh/install.omh%
+	omh/csv.omh%
+	omh/cpp.omh%
+	omh/example.omh%
+	omh/wish_list.omh%
+	omh/bug_list.omh
+%$$
+
+$end

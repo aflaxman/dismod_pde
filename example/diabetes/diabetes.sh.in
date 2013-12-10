@@ -1,0 +1,470 @@
+#! /bin/bash -e
+# $OMhelpKeyCharacter=&
+#
+# The following commands are only useful during testing of diabetes.sh before
+# dismod_pde is installed, you can ignore them:
+top_builddir=@abs_top_builddir@
+top_srcdir=@abs_top_srcdir@
+# --------------------------------------------------------------------------
+# &begin diabetes.sh&& &newlinech #&&
+# &spell
+# 	pde
+#	wc
+#	vec
+#	var
+#	done done
+#	www.org
+#	expr
+#	yyyymmdd
+#	cmd
+#	tr
+#	sed
+#	fi
+#	builddir
+#	cpp
+#	time time
+#	age age
+#	cohort cohort
+#	iota iota
+#	rho rho
+#	omega omega
+#	chi chi
+#	png
+#	pdf
+#	eps
+#	covariate
+#	covariates
+#	dir
+#	dismod
+#	csv
+#	rm
+#	sfun
+#	py
+#	inf
+#	omega
+# &&
+#
+# &section A Diabetes Incidence Estimation Example&&
+# &index diabetes, incidence estimation&&
+# &index estimation, diabetes incidence&&
+# &index incidence, estimation diabetes&&
+#
+# &head Syntax&&
+# &code ./diabetes.sh&&
+#
+# &head Purpose&&
+# This is a real world example and test of dismod_pde.
+# It exits with status one if it detects an error 
+# and with status zero otherwise.
+# This example is located in the file
+#	&codei%
+#	%dismod_pde_prefix%/share/doc/dismod_pde-%yyyymmdd%/example/diabetes.sh
+# %&&
+# where &icode dismod_pde_prefix&& is the 
+# &cref/prefix/install/Prefix/&& 
+# specified during the install procedure. 
+#
+# &head python_path&&
+# The following command sets the directory where the dismod_pde python
+# scripts are located. This should not be necessary once dismod_pde is installed.
+# &codep
+python_path="$top_builddir/python"
+# && 
+#
+# &head dismod_pde_path&&
+# The following command sets the directory where the binary &code dismod_pde_csv&&
+# file is located. This should not be necessary once dismod_pde is installed.
+# &codep
+dismod_pde_path="$top_builddir/cpp"
+# && 
+#
+# &head grid function&&
+# &codep
+make_grid() {
+	first="$1" ; last="$2" ; increment="$3" ; grid=''
+	for (( value = first; value < last+increment; value = value+increment ))
+	do
+		grid="$grid $value"
+	done
+}
+# &&
+#
+# &head Global Parameters&&
+# The following parameters are used globally in this file and do not change:
+# &codep
+## step size between age and cohort grid points
+global_grid_step=4
+#
+## age grid parameters
+global_age_min=20 
+global_age_max=80
+age_step="$global_grid_step"
+make_grid $global_age_min $global_age_max $age_step
+global_age_grid="$grid"  # age grid values
+echo "age_grid=$global_age_grid"
+##
+## minimum and maximum measurement time
+global_time_min=1980
+global_time_max=2010
+##
+age_max=`echo "$global_age_grid" | sed -e 's|.* ||'`
+cohort_min=`expr $global_time_min - $age_max`
+cohort_max=`expr $global_time_max - $global_age_min`
+cohort_step="$global_grid_step"
+make_grid $cohort_min $cohort_max $cohort_step
+global_cohort_grid="$grid"
+echo "cohort_grid=$global_cohort_grid"
+##
+global_zeta=1e-6   # value of zeta in all cases
+# &&
+# -----------------------------------------------------------------------------
+# &head parameter.csv&&
+# The &cref/parameter.csv/dismod_pde_csv/parameter.csv/&& 
+# file for this example is as follows:
+# &comment BEGIN COMMENT
+echo 'create paraemter.csv'
+cat << EOF > parameter.csv
+name,value
+age_grid,$global_age_grid
+cohort_grid,$global_cohort_grid
+max_ode_step,1.0
+print_level,5
+max_iteration,50
+converge_tolerance,1e-3
+debug_output,1
+EOF
+# END COMMENT&&
+# &code
+# &verbatim%build/example/diabetes/parameter.csv%&&
+# &&
+# -----------------------------------------------------------------------------
+# &head effect_in.csv&&
+# For this example, there are no covariates and
+# the &cref/effect_in.csv/dismod_pde_csv/effect_in.csv/&& file is as follows:
+# &comment BEGIN COMMENT
+echo 'create effect_in.csv'
+cat << EOF > effect_in.csv
+integrand,covariate,lower,initial,upper
+EOF
+# END COMMENT&& 
+# &code
+# &verbatim%build/example/diabetes/effect_in.csv%&&
+# &&
+# -----------------------------------------------------------------------------
+# &head measure_in.csv&&
+# All cause mortality data (from www.mortality.org) is assumed to be perfect,
+# relative risk data (from literature) is also assumed to be perfect,
+# and prevalence data from measurements.
+# &comment BEGIN COMMENT
+echo "$top_srcdir/example/diabetes/measure_in.sh"
+$top_srcdir/example/diabetes/measure_in.sh
+# END COMMENT&&
+# &code
+# &verbatim%build/example/diabetes/measure_in.csv%&&
+# &&
+# ----------------------------------------------------------------------------
+# &head template.csv&&
+# Remove the file 
+# &cref/template.csv/dismod_pde_csv/sfun_in.csv/Output Template/&& 
+# (if it exists) and then recreate it.
+# &codep
+echo 'create template.csv'
+rm -f template.csv
+echo 'dismod_pde_csv parameter.csv measure_in.csv template.csv'
+$dismod_pde_path/dismod_pde_csv parameter.csv measure_in.csv template.csv
+# &&
+# ----------------------------------------------------------------------------
+# &head sfun_in.csv&&
+# is a version of template.csv with certain values modified by 
+# d4_change_sfun_in.py.
+# Note that remission $code rho$$ is constrained to be zero
+# by the optimization limits.
+# &codep
+echo 'create sfun_in.csv'
+zeta="$global_zeta"
+sigma=2e-1
+zero_inf='0.0 if a < 20.1 else inf'
+$python_path/d4_change_sfun_in.py template.csv sfun_in.csv \
+-comment            'zeta      lower           initial          upper' \
+-optimize_S         $zeta        0.0             0.50            1.0 \
+-optimize_C         $zeta        0.0             1e-2            1.0 \
+-optimize_iota      $zeta        0.0             1e-2            1.0 \
+-optimize_rho       $zeta        0.0             0.00            0.0 \
+-optimize_chi       $zeta        0.0             1e-2            1.0 \
+-optimize_omega     $zeta        0.0             1e-2            1.0 \
+\
+-comment            'like       zeta            sigma           mean' \
+-prior_S         gaussian      $zeta       "$zero_inf"           1.0 \
+-prior_C         gaussian      $zeta              inf            0.0 \
+-prior_iota      gaussian      $zeta              inf            0.0 \
+-prior_rho       gaussian      $zeta              inf            0.0 \
+-prior_chi       gaussian      $zeta              inf            0.0 \
+-prior_omega     gaussian      $zeta              inf            0.0 \
+\
+-comment            'like       zeta            sigma          order' \
+-age_S           gaussian      $zeta              0.0             1 \
+-age_C           gaussian      $zeta              0.0             1 \
+-age_iota        gaussian      $zeta           $sigma             2 \
+-age_rho         gaussian      $zeta              inf             2 \
+-age_chi         gaussian      $zeta           $sigma             2 \
+-age_omega       gaussian      $zeta           $sigma             2 \
+\
+-comment            'like       zeta            sigma          order' \
+-cohort_S        gaussian      $zeta           $sigma             2 \
+-cohort_C        gaussian      $zeta           $sigma             2 \
+-cohort_iota     gaussian      $zeta           $sigma             2 \
+-cohort_rho      gaussian      $zeta              inf             2 \
+-cohort_chi      gaussian      $zeta           $sigma             2 \
+-cohort_omega    gaussian      $zeta           $sigma             2 \
+\
+-comment            'name       zeta            sigma' \
+-cross_S         gaussian      $zeta           $sigma  \
+-cross_C         gaussian      $zeta           $sigma  \
+-cross_iota      gaussian      $zeta           $sigma  \
+-cross_rho       gaussian      $zeta              inf  \
+-cross_chi       gaussian      $zeta           $sigma  \
+-cross_omega     gaussian      $zeta           $sigma  
+# &&
+# -----------------------------------------------------------------------------
+# &head Running dismod_pde_csv&&
+# Next we create the files
+# &cref/measure_out.csv/dismod_pde_csv/measure_out.csv/&&,
+# &cref/sfun_out.csv/dismod_pde_csv/sfun_out.csv/&&, and
+# &cref/effect_out.csv/dismod_pde_csv/effect_out.csv/&&
+# by running &code dismod_pde_csv&&.
+# &codep
+echo 'create effect_out.csv, measure_out.csv, sfun_out.csv'
+echo 'dismod_pde_csv parameter.csv                 \\'
+echo '     measure_in.csv     measure_out.csv   \\'
+echo '     sfun_in.csv        sfun_out.csv      \\'
+echo '     effect_in.csv      effect_out.csv'
+if $dismod_pde_path/dismod_pde_csv parameter.csv  \
+     measure_in.csv     measure_out.csv   \
+     sfun_in.csv        sfun_out.csv      \
+     effect_in.csv      effect_out.csv
+then
+	dismod_pde_csv_ok='yes'
+else
+	dismod_pde_csv_ok='no'
+fi
+# &&
+# -----------------------------------------------------------------------------
+# &head prevalence_residual&&
+# Next we use &cref d4_bubble.py&& to plot the prevalence
+# residuals as a function of age and time.
+# These plots are called 
+# &codei%prevalence_residual.%ext%&&
+# for &icode ext&& in &code { pdf , eps, png}&&.
+# &codep
+csv_file='measure_out.csv'
+x_name='time'
+x_min="$global_time_min"
+x_max="$global_time_max"
+y_name='age'
+y_min="$global_age_min"
+y_max="$global_age_max"
+s_name='scaled'
+s_min=0.25
+s_between=1.0
+s_max=2.0
+f_name='integrand'
+f_min='prevalence'
+f_max='prevalence'
+title='Scaled Prevalence Residuals'
+for ext in pdf eps png
+do
+	plot_file="prevalence_residual.$ext"
+	echo "create $plot_file"
+	$python_path/d4_bubble.py $csv_file $plot_file "$title" \
+			$x_name $x_min $x_max $y_name $y_min $y_max \
+			$s_name $s_min $s_between $s_max $f_name $f_min $f_max
+done
+# &&
+# Below is the &code png&& version of this plot:
+# &image%
+#	build/example/diabetes/prevalence_residual.png%
+#	diabetes_prevalence_residual.png
+# %&&
+# ----------------------------------------------------------------------------
+# &head sfun_grid.csv&&
+# Next we use &cref d4_sfun_grid.py&& 
+# to create &code sfun_grid.csv&&, which is a version of 
+# the stochastic function output information &code sfun_out.csv&&
+# interpolated to a rectangular grid with respect to age and time.
+# &codep
+n_age=`echo $global_age_grid | wc -w`
+time_start="$global_time_min"
+time_end="$global_time_max"
+n_time="$n_age"
+echo 'create sfun_grid.csv'
+$python_path/d4_sfun_grid.py sfun_out.csv sfun_grid.csv \
+	$time_start $time_end $n_time
+# &&
+# ---------------------------------------------------------------------------- 
+# &head sfun_der.csv&&
+# Next we use &cref d4_sfun_der.py&& 
+# to create &code sfun_der.csv&& which has the format expected
+# by &cref d4_contour.py&&; 
+# i.e., each variable has its own column.
+# In addition, the columns are:
+# &codep
+# 	age, cohort, time, S, C, iota, rho, chi, omega, prevalence, m_all, risk
+# &&
+# &codep
+echo 'create sfun_der.csv'
+$python_path/d4_sfun_der.py \
+	sfun_grid.csv sfun_der.csv \
+	age           age \
+	cohort        cohort \
+	time          time \
+	S             S_estimate \
+	C             C_estimate \
+	iota          iota_estimate \
+	rho           rho_estimate \
+	chi           chi_estimate \
+	omega         omega_estimate \
+	prevalence    "C / (S + C)" \
+	m_all         "omega + chi * prevalence"    \
+	risk          "(omega + chi) / omega"
+# &&
+# -----------------------------------------------------------------------------
+# &head prevalence_compare&&
+# Next we generate a plot
+# that compares the measured prevalence with the models fit to the data.
+# This plot is called 
+# &codei%prevalence_compare.%ext%&& where &icode ext&& is equal to
+# &code pdf&&, &code eps&&, and &code png&&:
+# &newlinech && &codep
+csv_file='measure_out.csv'
+title='Model=lines, s=1985, o=1995, *=2005'
+x_col='age'
+x_label='Age'
+x_min="$global_age_min"
+x_max="$global_age_max"
+s_col='integrand'
+s_value='prevalence'
+y_label='prevalence'
+y_min=0
+y_max=.12
+alpha=1
+symbol='so*'
+#
+for ext in pdf eps png
+do
+	plot_file="prevalence_compare.$ext"
+	$python_path/d4_plot.py $csv_file "$plot_file" "$title" \
+		--points $x_col meas_value $symbol $alpha \
+		--line  $x_col model . $alpha \
+		--string $s_col $s_value  \
+		--axis   $x_label $x_min $x_max $y_label $y_min $y_max \
+		--connect time 1984,1986 1994,1996 2004,2006 
+done
+# && &newlinech #&&
+# Below is the &code png&& version of this plot:
+# &image%
+#	build/example/diabetes/prevalence_compare.png%
+#	diabetes_prevalence_compare.png
+# %&&
+# -----------------------------------------------------------------------------
+# &head Prevalence Contour Plot&&
+# Next we generate &cref/contour/d4_contour.py/&& 
+# plots of the model fit for prevalence 
+# as a function of age and time.
+# These plots are called 
+# &codei%prevalence_estimate.%ext%&& 
+# for &icode ext&& in &code { pdf , eps , png}&&.
+# &codep
+csv_file='sfun_der.csv'
+x_name='time'
+x_min="$global_time_min"
+x_max="$global_time_max"
+y_name='age'
+y_min="$global_age_min"
+y_max="$global_age_max"
+z_name='prevalence'
+z_min=0.001
+z_max=1.0
+title='Contours of Prevalence Estimate'
+for ext in pdf eps png
+do
+	plot_file="prevalence_estimate.$ext"
+	echo "create $plot_file"
+	../../python/d4_contour.py $csv_file $plot_file "$title" \
+		$x_name $x_min $x_max \
+		$y_name $y_min $y_max \
+		$z_name $z_min $z_max 
+done
+# &&
+# Below is the &code png&& version of this plot:
+# &image%
+#	build/example/diabetes/prevalence_estimate.png%
+#	diabetes_prevalence_estimate.png
+# %&&
+# -----------------------------------------------------------------------------
+# &head Rate Contour Plots&&
+# Next we generate &cref/contour/d4_contour.py/&& plots for 
+# other cause mortality &code omega&&, 
+# excess mortality &code chi&&, 
+# and incidence &code iota&&
+# as a function of age and time.
+# These plots are called 
+# &icode%var%_estimate%.%ext%&&
+# for &icode var&& in &code { omega , chi , iota }&&
+# and &icode ext&& in &code { pdf , eps , png}&&.
+# &codep
+var_vec=(   'omega'                 'chi'              'iota'      )
+name_vec=(  'Other Cause Mortality' 'Excess Mortality' 'Incidence' )
+#
+for var_index in 0 1 2
+do
+	var="${var_vec[$var_index]}"
+	name="${name_vec[$var_index]}"
+	csv_file='sfun_der.csv'
+	for ext in pdf eps png
+	do
+		plot_file="${var}_estimate.${ext}"
+		title="Contours of $name Estimate"
+		x_name='time'
+		x_min="$global_time_min"
+		x_max="$global_time_max"
+		y_name='age'
+		y_min="$global_age_min"
+		y_max="$global_age_max"
+		z_name="$var"
+		z_min=0.0001
+		z_max=1.0
+		echo "create $plot_file"
+		../../python/d4_contour.py $csv_file $plot_file "$title" \
+			$x_name $x_min $x_max \
+			$y_name $y_min $y_max \
+			$z_name $z_min $z_max
+	done
+done
+# &&
+# &subhead omega_estimate&&
+# &image%
+#	build/example/diabetes/omega_estimate.png%
+#	diabetes_omega_estimate.png
+# %&&
+# &subhead chi_estimate&&
+# &image%
+#	build/example/diabetes/chi_estimate.png%
+#	diabetes_chi_estimate.png
+# %&&
+# &subhead iota_estimate&&
+# &image%
+#	build/example/diabetes/iota_estimate.png%
+#	diabetes_iota_estimate.png
+# %&&
+# &comment ----------------------------------------------------------------&&
+# &head Final Message&&
+# If this shell script reaches here, then all the tests have passed
+# (except that dismod_pde_csv may have returned an error flag).
+# &codep
+if [ $dismod_pde_csv_ok == 'no' ]
+then
+	exit 1
+fi
+echo 'diabetes.sh: OK'
+# &&
+# &end

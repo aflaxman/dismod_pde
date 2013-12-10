@@ -1,0 +1,338 @@
+<?xml version='1.0'?>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:math='http://www.w3.org/1998/Math/MathML'
+>
+<head>
+<title>Installing dismod_pde</title>
+<meta name="description" id="description" content="Installing dismod_pde"/>
+<meta name="keywords" id="keywords" content=" install dismod_pde requirements download external packages externals documentation build test "/>
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_install_xml.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="whats_new.xml" target="_top">Prev</a>
+</td><td><a href="csv.xml" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>install</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>install</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Requirements</option>
+<option>Download</option>
+<option>Unpack Distribution</option>
+<option>External Packages</option>
+<option>Configure</option>
+<option>make</option>
+<option>Documentation</option>
+<option>Test</option>
+<option>Install</option>
+<option>Prefix</option>
+<option>Optimized Version</option>
+</select>
+</td>
+</tr></table><br/>
+
+
+
+
+<center><b><big><big>Installing dismod_pde</big></big></b></center>
+<br/>
+<b><big><a name="Requirements" id="Requirements">Requirements</a></big></b>
+
+
+
+<ol type="1"><li>
+The following standard unix utilities:
+<code><font color="blue">bash</font></code> scripting shell, 
+<code><font color="blue">tar</font></code> archiving program,
+<code><font color="blue">wget</font></code> web downloading program, and the
+<code><font color="blue">patch</font></code> source code patching program.
+</li><li>
+
+A Fortran, C, C++ compiler and Python (&gt;=2.5) interpreter.
+</li><li>
+
+The <code><font color="blue">doxygen</font></code> documentation program.
+</li><li>
+
+Python is required to used the python utilities.
+In addition, these utilities use the following packages not in the python
+<a href="http://docs.python.org/library/" target="_top"><span style='white-space: nowrap'>standard&#xA0;library</span></a>
+:
+<code><font color="blue">numpy</font></code>, <code><font color="blue">matplotlib</font></code>.
+</li></ol>
+
+
+<br/>
+<br/>
+<b><big><a name="Download" id="Download">Download</a></big></b>
+
+
+
+<table><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde-2013.1130.tgz" target="_top"><span style='white-space: nowrap'>dismod_pde-2013.1130.tgz</span></a>
+ </td><td align='left'  valign='top'>
+ most recent version of dismod_pde
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde-2013.0000.1.tgz" target="_top"><span style='white-space: nowrap'>dismod_pde-2013.0000.1.tgz</span></a>
+  </td><td align='left'  valign='top'>
+ version at beginning of 2013
+</td></tr>
+</table>
+<br/>
+<b><big><a name="Unpack Distribution" id="Unpack Distribution">Unpack Distribution</a></big></b>
+<br/>
+Let 
+<code><i><font color="black"><span style='white-space: nowrap'>version</span></font></i></code>
+ be either <code><font color="blue">2013.1130</font></code> or <code><font color="blue">2013.0000.1</font></code>.
+The following commands will create the distribution directory
+
+<code><font color="blue"><span style='white-space: nowrap'>dismod_pde-</span></font><i><font color="black"><span style='white-space: nowrap'>version</span></font></i></code>
+ and change into that directory:
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;tar&#xA0;-xzf&#xA0;dismod_pde-</span></font><i><font color="black"><span style='white-space: nowrap'>version</span></font></i><font color="blue"><span style='white-space: nowrap'>.tgz<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;cd&#xA0;dismod_pde-</span></font><i><font color="black"><span style='white-space: nowrap'>version</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+If you are using version <code><font color="blue">2013.0000.1</font></code>, you should now switch
+to the instructions in 
+<code><font color='blue'><pre style='display:inline'> 
+	dismod_pde-2013.0000.1/doc/install.htm
+</pre></font></code>
+
+Otherwise, continue with the instructions below.
+	
+
+<br/>
+<br/>
+<b><big><a name="External Packages" id="External Packages">External Packages</a></big></b>
+
+
+<br/>
+dismod_pde uses the packages
+<a href="https://projects.coin-or.org/Ipopt" target="_top"><span style='white-space: nowrap'>ipopt</span></a>
+,
+<a href="http://www.coin-or.org/CppAD" target="_top"><span style='white-space: nowrap'>cppad</span></a>
+,
+and
+<a href="http://www.seanet.com/~bradbell/omhelp/overview.xml" target="_top"><span style='white-space: nowrap'>omhelp</span></a>
+.
+The following command:
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;./build.sh&#xA0;external<br/>
+</span></font></code>
+will download and compile these packages in the 
+<code><font color="blue">dismod_pde-2013.1130/external</font></code> directory.
+It will then install the packages using the prefixes
+<code><font color="blue">$HOME/prefix/ipopt</font></code>,
+<code><font color="blue">$HOME/prefix/cppad</font></code>, and
+<code><font color="blue">$HOME/prefix/omhelp</font></code>, respectively
+If this command succeeds, its last output line will be
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;OK&#xA0;build.sh&#xA0;external<br/>
+</span></font></code>
+This step can take some time
+and you do not need to preform this step if you already have these packages
+installed.
+
+<br/>
+<br/>
+<b><big><a name="Configure" id="Configure">Configure</a></big></b>
+<br/>
+The following command will configure dismod_pde to compile and run
+on your system:
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;./build.sh&#xA0;configure<br/>
+</span></font></code>
+If this command succeeds, its last output line will be
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;OK&#xA0;build.sh&#xA0;configure<br/>
+</span></font></code>
+If your systems default python interpreter version is less than 2.5,
+in the file <code><font color="blue">build.sh</font></code> you will have to make the change
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;PYTHON_PREFIX=`which&#xA0;python</span></font><i><font color="black"><span style='white-space: nowrap'>...</span></font></i><font color="blue"><span style='white-space: nowrap'>`&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>-&gt;</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;PYTHON_PREFIX=</span></font><i><font color="black"><span style='white-space: nowrap'>python_prefix</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+where 
+<code><i><font color="black"><span style='white-space: nowrap'>python_prefix</span></font></i><font color="blue"><span style='white-space: nowrap'>/bin/python</span></font></code>
+ is a Python executable
+with version number &gt;= 2.5.
+
+<br/>
+<br/>
+<b><big><a name="make" id="make">make</a></big></b>
+<br/>
+The following command will compile dismod_pde and all its tests:
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;./build.sh&#xA0;make<br/>
+</span></font></code>
+If this command succeeds, its last output line will be
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;OK&#xA0;build.sh&#xA0;make<br/>
+</span></font></code>
+<br/>
+<b><big><a name="Documentation" id="Documentation">Documentation</a></big></b>
+
+
+<br/>
+The following command will build the dismod_pde 
+developer documentation:
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;./build.sh&#xA0;doxydoc<br/>
+</span></font></code>
+If this command succeeds, its last output line will be
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;OK&#xA0;build.sh&#xA0;doxydoc<br/>
+</span></font></code>
+<br/>
+<b><big><a name="Test" id="Test">Test</a></big></b>
+
+
+<br/>
+The  following command will run all the dismod_pde tests:
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;./build.sh&#xA0;test<br/>
+</span></font></code>
+If this command succeeds, its last output line will be
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;OK&#xA0;build.sh&#xA0;test&#xA0;<br/>
+</span></font></code>
+<br/>
+<b><big><a name="Install" id="Install">Install</a></big></b>
+<br/>
+The following command will install dismod_pde using the prefix
+<code><font color="blue">$HOME/prefix/dismod_pde</font></code>:
+<code><font color='blue'><pre style='display:inline'> 
+	cd build
+	make install
+</pre></font></code>
+
+The <a href="dismod_pde_csv.xml" target="_top"><span style='white-space: nowrap'>dismod_pde_csv</span></a>
+ executable file, 
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i><font color="blue"><span style='white-space: nowrap'>/bin/dismod_pde_csv<br/>
+</span></font></code>
+The <a href="python_csv.xml" target="_top"><span style='white-space: nowrap'>python_csv</span></a>
+ scripts
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i><font color="blue"><span style='white-space: nowrap'>/bin/d4_</span></font><i><font color="black"><span style='white-space: nowrap'>*</span></font></i><font color="blue"><span style='white-space: nowrap'>.py<br/>
+</span></font></code>
+The library file,
+and include directory, for using the <a href="optimize.xml" target="_top"><span style='white-space: nowrap'>optimize</span></a>
+ routine,
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i><font color="blue"><span style='white-space: nowrap'>/lib/libdismod_pde.a<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i><font color="blue"><span style='white-space: nowrap'>/include/dismod_pde<br/>
+</span></font></code>
+The user documentation directory, 
+the example directory,
+and the developer documentation directory,
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i><font color="blue"><span style='white-space: nowrap'>/share/doc/dismod_pde-2013.1130/doc<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i><font color="blue"><span style='white-space: nowrap'>/share/doc/dismod_pde-2013.1130/example<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i><font color="blue"><span style='white-space: nowrap'>/share/doc/dismod_pde-2013.1130/doxydoc<br/>
+</span></font></code>
+<br/>
+<b><big><a name="Prefix" id="Prefix">Prefix</a></big></b>
+<br/>
+You can change the 
+<code><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i></code>
+ by 
+opening the file
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;dismod_pde-2013.1130/build.sh<br/>
+</span></font></code>
+in your editor and making the following change:
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;DISMOD4_PREFIX=&quot;$HOME/prefix/dismod_pde&quot;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>-&gt;</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;DISMOD4_PREFIX=</span></font><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+where 
+<code><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i></code>
+ is the directory you choose.
+Then return to the <code><font color="blue">dismod_pde-2013.1130</font></code> directory and 
+execute the commands
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;./build.sh&#xA0;configure<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;cd&#xA0;build<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;make&#xA0;install<br/>
+</span></font></code>
+Note that you can also change the other prefixes set at the top of
+<code><font color="blue">build.sh</font></code>.
+
+<br/>
+<br/>
+<b><big><a name="Optimized Version" id="Optimized Version">Optimized Version</a></big></b>
+<br/>
+By default <code><font color="blue">dismod_pde</font></code> is compiled with debugging.
+You can compile a version that is faster,
+but that does not have as good error detection and reporting.
+In your editor, make the following change:
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;DISMOD4_DEBUG='true'&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>-&gt;</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;DISMOD4_DEBUG='false'<br/>
+</span></font></code>
+and rerun the <code><font color="blue">build.sh</font></code> commands.
+(It is not necessary to re-build the documentation.)
+
+
+
+<hr/>Input File: omh/install.omh
+
+</body>
+</html>

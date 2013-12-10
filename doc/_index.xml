@@ -1,0 +1,456 @@
+<?xml version='1.0'?>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:math='http://www.w3.org/1998/Math/MathML'
+>
+<head>
+<title>Keyword Index</title>
+<meta name="description" id="description" content="Keyword Index"/>
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='__index_xml.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="_reference.xml" target="_top">Prev</a>
+</td><td><a href="_search_xml.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>_index</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>_index</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>A</option>
+<option>B</option>
+<option>C</option>
+<option>D</option>
+<option>E</option>
+<option>F</option>
+<option>G</option>
+<option>I</option>
+<option>K</option>
+<option>L</option>
+<option>M</option>
+<option>N</option>
+<option>O</option>
+<option>P</option>
+<option>R</option>
+<option>S</option>
+<option>T</option>
+<option>U</option>
+<option>V</option>
+<option>W</option>
+<option>X</option>
+<option>Z</option>
+</select>
+</td>
+</tr></table><br/>
+<center><b><big><big>Keyword Index</big></big></b></center>
+
+<b><big><a name="A">A</a></big></b>
+<br/>
+accuracy<br/>
+&#160;&#160;&#160;&#160;&#160;of<b>&#xA0;</b>estimate&#160;<a href="wish_list.xml#Estimator Standard Deviation" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Estimator&#xA0;Standard&#xA0;Deviation</a><br/>
+age&#160;<a href="pair2index.xml#age" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;age</a><br/>
+&#160;&#160;&#160;&#160;&#160;delta&#160;<a href="create_grid.xml#delta_age" target="_top">Create&#xA0;an&#xA0;Age-Cohort&#xA0;Grid&#xA0;For&#xA0;a&#xA0;Measurement&#xA0;Set:&#160;delta_age</a><br/>
+&#160;&#160;&#160;&#160;&#160;grid&#160;<a href="dismod_pde_csv.xml#parameter.csv.age_grid" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;parameter.csv.age_grid</a><br/>
+&#160;&#160;&#160;&#160;&#160;limits&#160;<a href="dismod_pde_csv.xml#measure_in.csv.age_lower, age_upper" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv.age_lower,&#xA0;age_upper</a><br/>
+&#160;&#160;&#160;&#160;&#160;order&#160;<a href="dismod_pde_csv.xml#sfun_in.csv.order" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_in.csv.order</a><br/>
+age<b>-</b>cohort<br/>
+&#160;&#160;&#160;&#160;&#160;grid<b>&#xA0;</b>index&#160;<a href="pair2index.xml" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index</a><br/>
+age<b>_</b>index&#160;<a href="pair2index.xml#age_index" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;age_index</a><br/>
+age<b>_</b>lower&#160;<a href="wish_list.xml#Lower Age Limit" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Lower&#xA0;Age&#xA0;Limit</a><br/>
+age<b>_</b>unpack&#160;<a href="pair2index.xml#age_unpack" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;age_unpack</a><br/>
+api<br/>
+&#160;&#160;&#160;&#160;&#160;changes&#160;<a href="whats_new.xml" target="_top">Changes&#xA0;and&#xA0;Additions&#xA0;to&#xA0;dismod_pde</a><br/>
+approximation<br/>
+&#160;&#160;&#160;&#160;&#160;integral&#160;<a href="wish_list.xml#Measurement Model Integral" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Measurement&#xA0;Model&#xA0;Integral</a><br/>
+
+<b><big><a name="B">B</a></big></b>
+<br/>
+bug<br/>
+&#160;&#160;&#160;&#160;&#160;fixes&#160;<a href="whats_new.xml" target="_top">Changes&#xA0;and&#xA0;Additions&#xA0;to&#xA0;dismod_pde</a><br/>
+&#160;&#160;&#160;&#160;&#160;list&#160;<a href="bug_list.xml" target="_top">List&#xA0;of&#xA0;Known&#xA0;Bugs</a><br/>
+build<br/>
+&#160;&#160;&#160;&#160;&#160;documentation&#160;<a href="install.xml#Documentation" target="_top">Installing&#xA0;dismod_pde:&#160;Documentation</a><br/>
+
+<b><big><a name="C">C</a></big></b>
+<br/>
+Comment&#160;<a href="dismod_pde_csv.xml#measure_in.csv.Comments" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv.Comments</a><br/>
+c<b>++</b><br/>
+&#160;&#160;&#160;&#160;&#160;example<b>&#xA0;</b>data<b>&#xA0;</b>structure&#160;<a href="dismoditis.sh.xml" target="_top">Create&#xA0;C++&#xA0;Files&#xA0;Corresponding&#xA0;to&#xA0;Dismod&#xA0;Data&#xA0;and&#xA0;Expected&#xA0;Results</a><br/>
+&#160;&#160;&#160;&#160;&#160;optimize<b>&#xA0;</b>example&#160;<a href="dismoditis.cpp.xml" target="_top">A&#xA0;dismod_pde&#xA0;C++&#xA0;Optimize&#xA0;Example&#xA0;and&#xA0;Test</a><br/>
+&#160;&#160;&#160;&#160;&#160;optimize<b>&#xA0;</b>example&#160;<a href="optimize_xam.cpp.xml" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde&#xA0;C++&#xA0;Optimize&#xA0;Procedure</a><br/>
+changelog&#160;<a href="whats_new.xml" target="_top">Changes&#xA0;and&#xA0;Additions&#xA0;to&#xA0;dismod_pde</a><br/>
+changes<br/>
+&#160;&#160;&#160;&#160;&#160;api&#160;<a href="whats_new.xml" target="_top">Changes&#xA0;and&#xA0;Additions&#xA0;to&#xA0;dismod_pde</a><br/>
+cohort&#160;<a href="pair2index.xml#cohort" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;cohort</a><br/>
+&#160;&#160;&#160;&#160;&#160;delta&#160;<a href="create_grid.xml#delta_cohort" target="_top">Create&#xA0;an&#xA0;Age-Cohort&#xA0;Grid&#xA0;For&#xA0;a&#xA0;Measurement&#xA0;Set:&#160;delta_cohort</a><br/>
+&#160;&#160;&#160;&#160;&#160;grid&#160;<a href="dismod_pde_csv.xml#parameter.csv.cohort_grid" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;parameter.csv.cohort_grid</a><br/>
+&#160;&#160;&#160;&#160;&#160;order&#160;<a href="dismod_pde_csv.xml#sfun_in.csv.order" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_in.csv.order</a><br/>
+cohort<b>_</b>index&#160;<a href="pair2index.xml#cohort_index" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;cohort_index</a><br/>
+cohort<b>_</b>unpack&#160;<a href="pair2index.xml#cohort_unpack" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;cohort_unpack</a><br/>
+column<br/>
+&#160;&#160;&#160;&#160;&#160;function&#160;<a href="dismod_pde_csv.xml#sfun_in.csv.function" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_in.csv.function</a><br/>
+covariate<br/>
+&#160;&#160;&#160;&#160;&#160;effect<b>&#xA0;</b>initial&#160;<a href="dismod_pde_csv.xml#effect_in.csv.initial" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_in.csv.initial</a><br/>
+&#160;&#160;&#160;&#160;&#160;effect<b>&#xA0;</b>lower&#160;<a href="dismod_pde_csv.xml#effect_in.csv.lower" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_in.csv.lower</a><br/>
+&#160;&#160;&#160;&#160;&#160;effect<b>&#xA0;</b>upper&#160;<a href="dismod_pde_csv.xml#effect_in.csv.upper" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_in.csv.upper</a><br/>
+&#160;&#160;&#160;&#160;&#160;name<b>&#xA0;</b>x<b>_</b>&#160;<a href="dismod_pde_csv.xml#effect_in.csv.covariate" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_in.csv.covariate</a><br/>
+&#160;&#160;&#160;&#160;&#160;value<b>&#xA0;</b>X&#160;<a href="optimize.xml#covariate_value" target="_top">Optimization&#xA0;of&#xA0;dismod_pde&#xA0;Objective&#xA0;Function:&#160;covariate_value</a><br/>
+covariates&#160;<a href="wish_list.xml#Covariates" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Covariates</a><br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="dismod_pde_csv.xml#measure_in.csv.Covariates" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv.Covariates</a><br/>
+create<br/>
+&#160;&#160;&#160;&#160;&#160;grid&#160;<a href="create_grid.xml" target="_top">Create&#xA0;an&#xA0;Age-Cohort&#xA0;Grid&#xA0;For&#xA0;a&#xA0;Measurement&#xA0;Set</a><br/>
+csv<br/>
+&#160;&#160;&#160;&#160;&#160;file<b>&#xA0;</b>specification&#160;<a href="csv.xml#dismod_pde CSV Files" target="_top">The&#xA0;CSV&#xA0;File&#xA0;Interface&#xA0;to&#xA0;dismod_pde:&#160;dismod_pde&#xA0;CSV&#xA0;Files</a><br/>
+
+<b><big><a name="D">D</a></big></b>
+<br/>
+d4<b>_</b>change<b>_</b>sfun<b>_</b>in<b>.</b>py<br/>
+&#160;&#160;&#160;&#160;&#160;example&#160;<a href="change_sfun_in.sh.xml" target="_top">d4_change_sfun_in.py:&#xA0;Example&#xA0;and&#xA0;Test</a><br/>
+d4<b>_</b>sfun<b>_</b>grid<b>.</b>py<br/>
+&#160;&#160;&#160;&#160;&#160;example&#160;<a href="sfun_grid.sh.xml" target="_top">d4_sfun_grid.py:&#xA0;Example&#xA0;and&#xA0;Test</a><br/>
+delta<br/>
+&#160;&#160;&#160;&#160;&#160;age&#160;<a href="create_grid.xml#delta_age" target="_top">Create&#xA0;an&#xA0;Age-Cohort&#xA0;Grid&#xA0;For&#xA0;a&#xA0;Measurement&#xA0;Set:&#160;delta_age</a><br/>
+&#160;&#160;&#160;&#160;&#160;cohort&#160;<a href="create_grid.xml#delta_cohort" target="_top">Create&#xA0;an&#xA0;Age-Cohort&#xA0;Grid&#xA0;For&#xA0;a&#xA0;Measurement&#xA0;Set:&#160;delta_cohort</a><br/>
+diabetes<br/>
+&#160;&#160;&#160;&#160;&#160;incidence<b>&#xA0;</b>estimation&#160;<a href="diabetes.sh.xml" target="_top">A&#xA0;Diabetes&#xA0;Incidence&#xA0;Estimation&#xA0;Example</a><br/>
+dismod<b>_</b>pde&#160;<a href="dismod_pde.xml" target="_top">dismod_pde:&#xA0;<br/>
+Estimation&#xA0;of&#xA0;Disease&#xA0;Mortality&#xA0;as&#xA0;a&#xA0;Stochastic&#xA0;Function&#xA0;of&#xA0;Age&#xA0;and&#xA0;Cohort</a><br/>
+&#160;&#160;&#160;&#160;&#160;install&#160;<a href="install.xml" target="_top">Installing&#xA0;dismod_pde</a><br/>
+&#160;&#160;&#160;&#160;&#160;test&#160;<a href="install.xml#Test" target="_top">Installing&#xA0;dismod_pde:&#160;Test</a><br/>
+dismod<b>_</b>pde<b>_</b>csv<br/>
+&#160;&#160;&#160;&#160;&#160;example&#160;<a href="get_started.sh.xml" target="_top">get_started.sh:&#xA0;Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde_csv</a><br/>
+&#160;&#160;&#160;&#160;&#160;example&#160;<a href="example.xml" target="_top">dismod_pde&#xA0;Examples</a><br/>
+&#160;&#160;&#160;&#160;&#160;get<b>_</b>started&#160;<a href="get_started.sh.xml" target="_top">get_started.sh:&#xA0;Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde_csv</a><br/>
+&#160;&#160;&#160;&#160;&#160;program&#160;<a href="dismod_pde_csv.xml" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program</a><br/>
+display<br/>
+&#160;&#160;&#160;&#160;&#160;latex&#160;<a href="dismod_pde.xml" target="_top">dismod_pde:&#xA0;<br/>
+Estimation&#xA0;of&#xA0;Disease&#xA0;Mortality&#xA0;as&#xA0;a&#xA0;Stochastic&#xA0;Function&#xA0;of&#xA0;Age&#xA0;and&#xA0;Cohort</a><br/>
+&#160;&#160;&#160;&#160;&#160;mathml&#160;<a href="dismod_pde.xml" target="_top">dismod_pde:&#xA0;<br/>
+Estimation&#xA0;of&#xA0;Disease&#xA0;Mortality&#xA0;as&#xA0;a&#xA0;Stochastic&#xA0;Function&#xA0;of&#xA0;Age&#xA0;and&#xA0;Cohort</a><br/>
+distribution<br/>
+&#160;&#160;&#160;&#160;&#160;posterior&#160;<a href="wish_list.xml#Information Matrix" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Information&#xA0;Matrix</a><br/>
+documentation<br/>
+&#160;&#160;&#160;&#160;&#160;build&#160;<a href="install.xml#Documentation" target="_top">Installing&#xA0;dismod_pde:&#160;Documentation</a><br/>
+download&#160;<a href="install.xml#Download" target="_top">Installing&#xA0;dismod_pde:&#160;Download</a><br/>
+
+<b><big><a name="E">E</a></big></b>
+<br/>
+effect<br/>
+&#160;&#160;&#160;&#160;&#160;covariate<b>&#xA0;</b>initial&#160;<a href="dismod_pde_csv.xml#effect_in.csv.initial" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_in.csv.initial</a><br/>
+&#160;&#160;&#160;&#160;&#160;covariate<b>&#xA0;</b>lower&#160;<a href="dismod_pde_csv.xml#effect_in.csv.lower" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_in.csv.lower</a><br/>
+&#160;&#160;&#160;&#160;&#160;covariate<b>&#xA0;</b>upper&#160;<a href="dismod_pde_csv.xml#effect_in.csv.upper" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_in.csv.upper</a><br/>
+&#160;&#160;&#160;&#160;&#160;measurement<b>&#xA0;</b>estimate&#160;<a href="dismod_pde_csv.xml#effect_out.csv.effect" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_out.csv.effect</a><br/>
+effect<b>_</b>in<b>.</b>csv&#160;<a href="dismod_pde_csv.xml#effect_in.csv" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_in.csv</a><br/>
+effect<b>_</b>out<b>.</b>csv&#160;<a href="dismod_pde_csv.xml#effect_out.csv" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_out.csv</a><br/>
+estimate<br/>
+&#160;&#160;&#160;&#160;&#160;measurement<b>&#xA0;</b>effect&#160;<a href="dismod_pde_csv.xml#effect_out.csv.effect" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_out.csv.effect</a><br/>
+&#160;&#160;&#160;&#160;&#160;standard<b>&#xA0;</b>deviation&#160;<a href="wish_list.xml#Estimator Standard Deviation" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Estimator&#xA0;Standard&#xA0;Deviation</a><br/>
+estimation<br/>
+&#160;&#160;&#160;&#160;&#160;diabetes<b>&#xA0;</b>incidence&#160;<a href="diabetes.sh.xml" target="_top">A&#xA0;Diabetes&#xA0;Incidence&#xA0;Estimation&#xA0;Example</a><br/>
+example<br/>
+&#160;&#160;&#160;&#160;&#160;atof<b>_</b>char<b>_</b>vec&#160;<a href="atof_char_vec_tst.cpp.xml" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;Conversion&#xA0;from&#xA0;Ascii&#xA0;to&#xA0;Double</a><br/>
+&#160;&#160;&#160;&#160;&#160;c<b>++&#xA0;</b>data<b>&#xA0;</b>structure&#160;<a href="dismoditis.sh.xml" target="_top">Create&#xA0;C++&#xA0;Files&#xA0;Corresponding&#xA0;to&#xA0;Dismod&#xA0;Data&#xA0;and&#xA0;Expected&#xA0;Results</a><br/>
+&#160;&#160;&#160;&#160;&#160;c<b>++&#xA0;</b>optimize&#160;<a href="dismoditis.cpp.xml" target="_top">A&#xA0;dismod_pde&#xA0;C++&#xA0;Optimize&#xA0;Example&#xA0;and&#xA0;Test</a><br/>
+&#160;&#160;&#160;&#160;&#160;c<b>++&#xA0;</b>optimize&#160;<a href="optimize_xam.cpp.xml" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde&#xA0;C++&#xA0;Optimize&#xA0;Procedure</a><br/>
+&#160;&#160;&#160;&#160;&#160;csv<b>_</b>read&#160;<a href="csv_read_tst.cpp.xml" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde&#xA0;csv_read&#xA0;Procedure</a><br/>
+&#160;&#160;&#160;&#160;&#160;d4<b>_</b>change<b>_</b>sfun<b>_</b>in<b>.</b>py&#160;<a href="change_sfun_in.sh.xml" target="_top">d4_change_sfun_in.py:&#xA0;Example&#xA0;and&#xA0;Test</a><br/>
+&#160;&#160;&#160;&#160;&#160;d4<b>_</b>change<b>_</b>sfun<b>_</b>in<b>.</b>py&#160;<a href="d4_change_sfun_in.py.xml#Example" target="_top">Change&#xA0;The&#xA0;dismod_pde&#xA0;Stochastic&#xA0;Function&#xA0;Input&#xA0;File:&#160;Example</a><br/>
+&#160;&#160;&#160;&#160;&#160;d4<b>_</b>sfun<b>_</b>grid<b>.</b>py&#160;<a href="sfun_grid.sh.xml" target="_top">d4_sfun_grid.py:&#xA0;Example&#xA0;and&#xA0;Test</a><br/>
+&#160;&#160;&#160;&#160;&#160;d4<b>_</b>sfun<b>_</b>grid<b>.</b>py&#160;<a href="d4_sfun_grid.py.xml#Example" target="_top">Convert&#xA0;From&#xA0;Age-Cohort&#xA0;Grid&#xA0;to&#xA0;Age-Time&#xA0;Rectangular&#xA0;Grid:&#160;Example</a><br/>
+&#160;&#160;&#160;&#160;&#160;dismod<b>_</b>pde<b>_</b>csv&#160;<a href="get_started.sh.xml" target="_top">get_started.sh:&#xA0;Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde_csv</a><br/>
+&#160;&#160;&#160;&#160;&#160;dismod<b>_</b>pde<b>_</b>csv&#160;<a href="example.xml" target="_top">dismod_pde&#xA0;Examples</a><br/>
+&#160;&#160;&#160;&#160;&#160;pair2index&#160;<a href="pair2index.cpp.xml" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde&#xA0;pair2index&#xA0;Procedure</a><br/>
+&#160;&#160;&#160;&#160;&#160;str<b>_</b>char<b>_</b>vec&#160;<a href="str_char_vec_tst.cpp.xml" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;Conversion&#xA0;from&#xA0;Ascii&#xA0;to&#xA0;String</a><br/>
+example<b>&#xA0;</b>grid&#160;<a href="pair2index.cpp.xml" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde&#xA0;pair2index&#xA0;Procedure</a><br/>
+external<br/>
+&#160;&#160;&#160;&#160;&#160;packages&#160;<a href="install.xml#External Packages" target="_top">Installing&#xA0;dismod_pde:&#160;External&#xA0;Packages</a><br/>
+
+<b><big><a name="F">F</a></big></b>
+<br/>
+feature<br/>
+&#160;&#160;&#160;&#160;&#160;changes&#160;<a href="whats_new.xml" target="_top">Changes&#xA0;and&#xA0;Additions&#xA0;to&#xA0;dismod_pde</a><br/>
+field<br/>
+&#160;&#160;&#160;&#160;&#160;function&#160;<a href="dismod_pde_csv.xml#sfun_in.csv.function" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_in.csv.function</a><br/>
+file<br/>
+&#160;&#160;&#160;&#160;&#160;csv<b>&#xA0;</b>specification&#160;<a href="csv.xml#dismod_pde CSV Files" target="_top">The&#xA0;CSV&#xA0;File&#xA0;Interface&#xA0;to&#xA0;dismod_pde:&#160;dismod_pde&#xA0;CSV&#xA0;Files</a><br/>
+fit<br/>
+&#160;&#160;&#160;&#160;&#160;simulated<b>&#xA0;</b>gaussian&#160;<a href="gaussian.sh.xml" target="_top">Simulate&#xA0;and&#xA0;Fit&#xA0;Where&#xA0;Incidence&#xA0;is&#xA0;Gaussian&#xA0;in&#xA0;Age&#xA0;an&#xA0;Cohort</a><br/>
+fixes<br/>
+&#160;&#160;&#160;&#160;&#160;bugs&#160;<a href="whats_new.xml" target="_top">Changes&#xA0;and&#xA0;Additions&#xA0;to&#xA0;dismod_pde</a><br/>
+function<br/>
+&#160;&#160;&#160;&#160;&#160;column&#160;<a href="dismod_pde_csv.xml#sfun_in.csv.function" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_in.csv.function</a><br/>
+
+<b><big><a name="G">G</a></big></b>
+<br/>
+G&#160;<a href="optimize.xml#grid.G" target="_top">Optimization&#xA0;of&#xA0;dismod_pde&#xA0;Objective&#xA0;Function:&#160;grid.G</a><br/>
+gaussian<br/>
+&#160;&#160;&#160;&#160;&#160;simulate<b>&#xA0;</b>fit&#160;<a href="gaussian.sh.xml" target="_top">Simulate&#xA0;and&#xA0;Fit&#xA0;Where&#xA0;Incidence&#xA0;is&#xA0;Gaussian&#xA0;in&#xA0;Age&#xA0;an&#xA0;Cohort</a><br/>
+get<b>_</b>started<br/>
+&#160;&#160;&#160;&#160;&#160;dismod<b>_</b>pde<b>_</b>csv&#160;<a href="get_started.sh.xml" target="_top">get_started.sh:&#xA0;Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde_csv</a><br/>
+grid&#160;<a href="create_grid.xml#grid" target="_top">Create&#xA0;an&#xA0;Age-Cohort&#xA0;Grid&#xA0;For&#xA0;a&#xA0;Measurement&#xA0;Set:&#160;grid</a><br/>
+&#160;&#160;&#160;&#160;&#160;age&#160;<a href="dismod_pde_csv.xml#parameter.csv.age_grid" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;parameter.csv.age_grid</a><br/>
+&#160;&#160;&#160;&#160;&#160;cohort&#160;<a href="dismod_pde_csv.xml#parameter.csv.cohort_grid" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;parameter.csv.cohort_grid</a><br/>
+&#160;&#160;&#160;&#160;&#160;convert<b>&#xA0;</b>index&#160;<a href="pair2index.xml" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index</a><br/>
+&#160;&#160;&#160;&#160;&#160;convert<b>&#xA0;</b>pair&#160;<a href="pair2index.xml" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index</a><br/>
+&#160;&#160;&#160;&#160;&#160;create&#160;<a href="create_grid.xml" target="_top">Create&#xA0;an&#xA0;Age-Cohort&#xA0;Grid&#xA0;For&#xA0;a&#xA0;Measurement&#xA0;Set</a><br/>
+&#160;&#160;&#160;&#160;&#160;example&#160;<a href="pair2index.cpp.xml" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde&#xA0;pair2index&#xA0;Procedure</a><br/>
+&#160;&#160;&#160;&#160;&#160;notation&#160;<a href="pair2index.xml#Notation" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;Notation</a><br/>
+&#160;&#160;&#160;&#160;&#160;valid<b>&#xA0;</b>pair&#160;<a href="pair2index.xml#valid" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;valid</a><br/>
+&#160;&#160;&#160;&#160;&#160;valid<b>&#xA0;</b>pair&#160;<a href="pair2index.xml#Notation.Computational Grid" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;Notation.Computational&#xA0;Grid</a><br/>
+grid<b>.</b>age&#160;<a href="pair2index.xml#grid.age" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;grid.age</a><br/>
+grid<b>.</b>cohort&#160;<a href="pair2index.xml#grid.cohort" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;grid.cohort</a><br/>
+grid<b>.</b>size&#160;<a href="pair2index.xml#grid.size" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;grid.size</a><br/>
+grid<b>.</b>time<b>_</b>lower&#160;<a href="pair2index.xml#grid.time_lower" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;grid.time_lower</a><br/>
+grid<b>.</b>time<b>_</b>upper&#160;<a href="pair2index.xml#grid.time_upper" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;grid.time_upper</a><br/>
+grid<b>_</b>index<br/>
+&#160;&#160;&#160;&#160;&#160;convert<b>&#xA0;</b>to<b>&#xA0;</b>pair&#160;<a href="pair2index.xml#grid_index" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;grid_index</a><br/>
+grid<b>_</b>pack&#160;<a href="pair2index.xml#grid_pack" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;grid_pack</a><br/>
+
+<b><big><a name="I">I</a></big></b>
+<br/>
+incidence<br/>
+&#160;&#160;&#160;&#160;&#160;estimation<b>&#xA0;</b>diabetes&#160;<a href="diabetes.sh.xml" target="_top">A&#xA0;Diabetes&#xA0;Incidence&#xA0;Estimation&#xA0;Example</a><br/>
+index<br/>
+&#160;&#160;&#160;&#160;&#160;grid<b>&#xA0;</b>pair&#160;<a href="pair2index.xml" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index</a><br/>
+infinity&#160;<a href="dismod_pde_csv.xml#Infinity" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;Infinity</a><br/>
+information<br/>
+&#160;&#160;&#160;&#160;&#160;matrix&#160;<a href="wish_list.xml#Information Matrix" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Information&#xA0;Matrix</a><br/>
+initial<br/>
+&#160;&#160;&#160;&#160;&#160;change&#160;<a href="d4_change_sfun_in.py.xml#initial" target="_top">Change&#xA0;The&#xA0;dismod_pde&#xA0;Stochastic&#xA0;Function&#xA0;Input&#xA0;File:&#160;initial</a><br/>
+&#160;&#160;&#160;&#160;&#160;change&#160;<a href="d4_change_sfun_in.py.xml#comment" target="_top">Change&#xA0;The&#xA0;dismod_pde&#xA0;Stochastic&#xA0;Function&#xA0;Input&#xA0;File:&#160;comment</a><br/>
+&#160;&#160;&#160;&#160;&#160;covariate<b>&#xA0;</b>effect&#160;<a href="dismod_pde_csv.xml#effect_in.csv.initial" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_in.csv.initial</a><br/>
+input<br/>
+&#160;&#160;&#160;&#160;&#160;change<b>&#xA0;</b>sfun<b>_</b>in<b>.</b>csv&#160;<a href="d4_change_sfun_in.py.xml" target="_top">Change&#xA0;The&#xA0;dismod_pde&#xA0;Stochastic&#xA0;Function&#xA0;Input&#xA0;File</a><br/>
+&#160;&#160;&#160;&#160;&#160;sfun<b>_</b>in<b>.</b>csv&#160;<a href="dismod_pde_csv.xml#sfun_in.csv.Input File" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_in.csv.Input&#xA0;File</a><br/>
+install<br/>
+&#160;&#160;&#160;&#160;&#160;dismod<b>_</b>pde&#160;<a href="install.xml" target="_top">Installing&#xA0;dismod_pde</a><br/>
+integral<br/>
+&#160;&#160;&#160;&#160;&#160;measurement&#160;<a href="wish_list.xml#Measurement Model Integral" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Measurement&#xA0;Model&#xA0;Integral</a><br/>
+integrand&#160;<a href="wish_list.xml#Measurement Model Integral" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Measurement&#xA0;Model&#xA0;Integral</a><br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="dismod_pde_csv.xml#effect_in.csv.integrand" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_in.csv.integrand</a><br/>
+&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a href="dismod_pde_csv.xml#measure_in.csv.integrand" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv.integrand</a><br/>
+
+<b><big><a name="K">K</a></big></b>
+<br/>
+kappa<b>(</b>j<br/>
+&#160;&#160;&#160;&#160;&#160;l<b>)</b>&#160;<a href="pair2index.xml#Notation.kappa" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;Notation.kappa</a><br/>
+&#160;&#160;&#160;&#160;&#160;u<b>)</b>&#160;<a href="pair2index.xml#Notation.kappa" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;Notation.kappa</a><br/>
+
+<b><big><a name="L">L</a></big></b>
+<br/>
+Likelihood<b>_</b>Enum&#160;<a href="optimize.xml#Likelihood Functions.Likelihood_Enum" target="_top">Optimization&#xA0;of&#xA0;dismod_pde&#xA0;Objective&#xA0;Function:&#160;Likelihood&#xA0;Functions.Likelihood_Enum</a><br/>
+latex<br/>
+&#160;&#160;&#160;&#160;&#160;display&#160;<a href="dismod_pde.xml" target="_top">dismod_pde:&#xA0;<br/>
+Estimation&#xA0;of&#xA0;Disease&#xA0;Mortality&#xA0;as&#xA0;a&#xA0;Stochastic&#xA0;Function&#xA0;of&#xA0;Age&#xA0;and&#xA0;Cohort</a><br/>
+likelihood<br/>
+&#160;&#160;&#160;&#160;&#160;C<b>++&#xA0;</b>optimize<b>&#xA0;</b>example&#160;<a href="optimize_xam.cpp.xml#likelihood" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde&#xA0;C++&#xA0;Optimize&#xA0;Procedure:&#160;likelihood</a><br/>
+&#160;&#160;&#160;&#160;&#160;name&#160;<a href="dismod_pde_csv.xml#sfun_in.csv.name" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_in.csv.name</a><br/>
+&#160;&#160;&#160;&#160;&#160;name&#160;<a href="dismod_pde_csv.xml#measure_in.csv.meas_like" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv.meas_like</a><br/>
+&#160;&#160;&#160;&#160;&#160;sigma&#160;<a href="dismod_pde_csv.xml#measure_in.csv.meas_sigma" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv.meas_sigma</a><br/>
+&#160;&#160;&#160;&#160;&#160;zeta&#160;<a href="dismod_pde_csv.xml#measure_in.csv.meas_zeta" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv.meas_zeta</a><br/>
+limit<br/>
+&#160;&#160;&#160;&#160;&#160;age<b>_</b>lower&#160;<a href="wish_list.xml#Lower Age Limit" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Lower&#xA0;Age&#xA0;Limit</a><br/>
+list<br/>
+&#160;&#160;&#160;&#160;&#160;bug&#160;<a href="bug_list.xml" target="_top">List&#xA0;of&#xA0;Known&#xA0;Bugs</a><br/>
+&#160;&#160;&#160;&#160;&#160;which&#160;<a href="wish_list.xml" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde</a><br/>
+lower<br/>
+&#160;&#160;&#160;&#160;&#160;age&#160;<a href="dismod_pde_csv.xml#measure_in.csv.age_lower, age_upper" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv.age_lower,&#xA0;age_upper</a><br/>
+&#160;&#160;&#160;&#160;&#160;age<b>&#xA0;</b>limit&#160;<a href="wish_list.xml#Lower Age Limit" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Lower&#xA0;Age&#xA0;Limit</a><br/>
+&#160;&#160;&#160;&#160;&#160;change&#160;<a href="d4_change_sfun_in.py.xml#lower" target="_top">Change&#xA0;The&#xA0;dismod_pde&#xA0;Stochastic&#xA0;Function&#xA0;Input&#xA0;File:&#160;lower</a><br/>
+&#160;&#160;&#160;&#160;&#160;covariate<b>&#xA0;</b>effect&#160;<a href="dismod_pde_csv.xml#effect_in.csv.lower" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_in.csv.lower</a><br/>
+&#160;&#160;&#160;&#160;&#160;time&#160;<a href="dismod_pde_csv.xml#measure_in.csv.time_lower, time_upper" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv.time_lower,&#xA0;time_upper</a><br/>
+
+<b><big><a name="M">M</a></big></b>
+<br/>
+mathml<br/>
+&#160;&#160;&#160;&#160;&#160;display&#160;<a href="dismod_pde.xml" target="_top">dismod_pde:&#xA0;<br/>
+Estimation&#xA0;of&#xA0;Disease&#xA0;Mortality&#xA0;as&#xA0;a&#xA0;Stochastic&#xA0;Function&#xA0;of&#xA0;Age&#xA0;and&#xA0;Cohort</a><br/>
+matrix<br/>
+&#160;&#160;&#160;&#160;&#160;information&#160;<a href="wish_list.xml#Information Matrix" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Information&#xA0;Matrix</a><br/>
+max<br/>
+&#160;&#160;&#160;&#160;&#160;time&#160;<a href="pair2index.xml#time_upper" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;time_upper</a><br/>
+mean<br/>
+&#160;&#160;&#160;&#160;&#160;change&#160;<a href="d4_change_sfun_in.py.xml#mean" target="_top">Change&#xA0;The&#xA0;dismod_pde&#xA0;Stochastic&#xA0;Function&#xA0;Input&#xA0;File:&#160;mean</a><br/>
+measure<b>_</b>in&#160;<a href="create_grid.xml#measure_in" target="_top">Create&#xA0;an&#xA0;Age-Cohort&#xA0;Grid&#xA0;For&#xA0;a&#xA0;Measurement&#xA0;Set:&#160;measure_in</a><br/>
+measure<b>_</b>in<b>.</b>csv&#160;<a href="dismod_pde_csv.xml#measure_in.csv" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv</a><br/>
+measure<b>_</b>out<b>.</b>csv&#160;<a href="dismod_pde_csv.xml#measure_out.csv" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_out.csv</a><br/>
+measurement<br/>
+&#160;&#160;&#160;&#160;&#160;effect<b>&#xA0;</b>estimate&#160;<a href="dismod_pde_csv.xml#effect_out.csv.effect" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_out.csv.effect</a><br/>
+&#160;&#160;&#160;&#160;&#160;integral&#160;<a href="wish_list.xml#Measurement Model Integral" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Measurement&#xA0;Model&#xA0;Integral</a><br/>
+&#160;&#160;&#160;&#160;&#160;model&#160;<a href="wish_list.xml#Measurement Model Integral" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Measurement&#xA0;Model&#xA0;Integral</a><br/>
+min<br/>
+&#160;&#160;&#160;&#160;&#160;time&#160;<a href="pair2index.xml#time_lower" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;time_lower</a><br/>
+model<br/>
+&#160;&#160;&#160;&#160;&#160;measurement&#160;<a href="wish_list.xml#Measurement Model Integral" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Measurement&#xA0;Model&#xA0;Integral</a><br/>
+
+<b><big><a name="N">N</a></big></b>
+<br/>
+n<b>_</b>age<br/>
+&#160;&#160;&#160;&#160;&#160;C<b>++&#xA0;</b>optimize<b>&#xA0;</b>example&#160;<a href="optimize_xam.cpp.xml#n_age" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde&#xA0;C++&#xA0;Optimize&#xA0;Procedure:&#160;n_age</a><br/>
+n<b>_</b>cohort<br/>
+&#160;&#160;&#160;&#160;&#160;C<b>++&#xA0;</b>optimize<b>&#xA0;</b>example&#160;<a href="optimize_xam.cpp.xml#n_cohort" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde&#xA0;C++&#xA0;Optimize&#xA0;Procedure:&#160;n_cohort</a><br/>
+name<br/>
+&#160;&#160;&#160;&#160;&#160;covariate<b>&#xA0;</b>x<b>_</b>&#160;<a href="dismod_pde_csv.xml#effect_in.csv.covariate" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_in.csv.covariate</a><br/>
+&#160;&#160;&#160;&#160;&#160;likelihood&#160;<a href="dismod_pde_csv.xml#sfun_in.csv.name" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_in.csv.name</a><br/>
+&#160;&#160;&#160;&#160;&#160;likelihood&#160;<a href="dismod_pde_csv.xml#measure_in.csv.meas_like" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv.meas_like</a><br/>
+&#160;&#160;&#160;&#160;&#160;sfun<b>_</b>in<b>.</b>csv&#160;<a href="d4_change_sfun_in.py.xml#name" target="_top">Change&#xA0;The&#xA0;dismod_pde&#xA0;Stochastic&#xA0;Function&#xA0;Input&#xA0;File:&#160;name</a><br/>
+notation<br/>
+&#160;&#160;&#160;&#160;&#160;grid&#160;<a href="pair2index.xml#Notation" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;Notation</a><br/>
+
+<b><big><a name="O">O</a></big></b>
+<br/>
+optimize<br/>
+&#160;&#160;&#160;&#160;&#160;c<b>++&#xA0;</b>example&#160;<a href="dismoditis.cpp.xml" target="_top">A&#xA0;dismod_pde&#xA0;C++&#xA0;Optimize&#xA0;Example&#xA0;and&#xA0;Test</a><br/>
+&#160;&#160;&#160;&#160;&#160;c<b>++&#xA0;</b>example&#160;<a href="optimize_xam.cpp.xml" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde&#xA0;C++&#xA0;Optimize&#xA0;Procedure</a><br/>
+order<br/>
+&#160;&#160;&#160;&#160;&#160;age<b>&#xA0;</b>and<b>&#xA0;</b>cohort&#160;<a href="dismod_pde_csv.xml#sfun_in.csv.order" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_in.csv.order</a><br/>
+&#160;&#160;&#160;&#160;&#160;change&#160;<a href="d4_change_sfun_in.py.xml#order" target="_top">Change&#xA0;The&#xA0;dismod_pde&#xA0;Stochastic&#xA0;Function&#xA0;Input&#xA0;File:&#160;order</a><br/>
+
+<b><big><a name="P">P</a></big></b>
+<br/>
+pack<br/>
+&#160;&#160;&#160;&#160;&#160;index&#160;<a href="pair2index.xml#grid_pack" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;grid_pack</a><br/>
+packages<br/>
+&#160;&#160;&#160;&#160;&#160;externals&#160;<a href="install.xml#External Packages" target="_top">Installing&#xA0;dismod_pde:&#160;External&#xA0;Packages</a><br/>
+pair<br/>
+&#160;&#160;&#160;&#160;&#160;grid<b>&#xA0;</b>convert&#160;<a href="pair2index.xml" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index</a><br/>
+&#160;&#160;&#160;&#160;&#160;valid<b>&#xA0;</b>grid&#160;<a href="pair2index.xml#valid" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;valid</a><br/>
+&#160;&#160;&#160;&#160;&#160;valid<b>&#xA0;</b>grid&#160;<a href="pair2index.xml#Notation.Computational Grid" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;Notation.Computational&#xA0;Grid</a><br/>
+parameter<b>.</b>csv&#160;<a href="dismod_pde_csv.xml#parameter.csv" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;parameter.csv</a><br/>
+posterior<br/>
+&#160;&#160;&#160;&#160;&#160;distribution&#160;<a href="wish_list.xml#Information Matrix" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Information&#xA0;Matrix</a><br/>
+program<br/>
+&#160;&#160;&#160;&#160;&#160;dismod<b>_</b>pde<b>_</b>csv&#160;<a href="dismod_pde_csv.xml" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program</a><br/>
+
+<b><big><a name="R">R</a></big></b>
+<br/>
+requirements&#160;<a href="install.xml#Requirements" target="_top">Installing&#xA0;dismod_pde:&#160;Requirements</a><br/>
+residual<br/>
+&#160;&#160;&#160;&#160;&#160;scaled&#160;<a href="dismod_pde_csv.xml#sfun_out.csv.Scaled Residuals" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_out.csv.Scaled&#xA0;Residuals</a><br/>
+
+<b><big><a name="S">S</a></big></b>
+<br/>
+Stochastic<b>_</b>Enum&#160;<a href="optimize.xml#Stochastic_Enum" target="_top">Optimization&#xA0;of&#xA0;dismod_pde&#xA0;Objective&#xA0;Function:&#160;Stochastic_Enum</a><br/>
+scaled<br/>
+&#160;&#160;&#160;&#160;&#160;residual&#160;<a href="dismod_pde_csv.xml#sfun_out.csv.Scaled Residuals" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_out.csv.Scaled&#xA0;Residuals</a><br/>
+sfun<b>_</b>in<b>.</b>csv&#160;<a href="dismod_pde_csv.xml#sfun_in.csv" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_in.csv</a><br/>
+&#160;&#160;&#160;&#160;&#160;change&#160;<a href="d4_change_sfun_in.py.xml" target="_top">Change&#xA0;The&#xA0;dismod_pde&#xA0;Stochastic&#xA0;Function&#xA0;Input&#xA0;File</a><br/>
+&#160;&#160;&#160;&#160;&#160;input&#160;<a href="dismod_pde_csv.xml#sfun_in.csv.Input File" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_in.csv.Input&#xA0;File</a><br/>
+&#160;&#160;&#160;&#160;&#160;template&#160;<a href="dismod_pde_csv.xml#sfun_in.csv.Output Template" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_in.csv.Output&#xA0;Template</a><br/>
+sfun<b>_</b>out<b>.</b>csv&#160;<a href="dismod_pde_csv.xml#sfun_out.csv" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_out.csv</a><br/>
+sigma&#160;<a href="dismod_pde_csv.xml#sfun_in.csv.sigma" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_in.csv.sigma</a><br/>
+&#160;&#160;&#160;&#160;&#160;change&#160;<a href="d4_change_sfun_in.py.xml#sigma" target="_top">Change&#xA0;The&#xA0;dismod_pde&#xA0;Stochastic&#xA0;Function&#xA0;Input&#xA0;File:&#160;sigma</a><br/>
+&#160;&#160;&#160;&#160;&#160;likelihood&#160;<a href="dismod_pde_csv.xml#measure_in.csv.meas_sigma" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv.meas_sigma</a><br/>
+simulate<br/>
+&#160;&#160;&#160;&#160;&#160;gaussian<b>&#xA0;</b>fit&#160;<a href="gaussian.sh.xml" target="_top">Simulate&#xA0;and&#xA0;Fit&#xA0;Where&#xA0;Incidence&#xA0;is&#xA0;Gaussian&#xA0;in&#xA0;Age&#xA0;an&#xA0;Cohort</a><br/>
+specification<br/>
+&#160;&#160;&#160;&#160;&#160;csv<b>&#xA0;</b>file&#160;<a href="csv.xml#dismod_pde CSV Files" target="_top">The&#xA0;CSV&#xA0;File&#xA0;Interface&#xA0;to&#xA0;dismod_pde:&#160;dismod_pde&#xA0;CSV&#xA0;Files</a><br/>
+standard<b>&#xA0;</b>deviation<br/>
+&#160;&#160;&#160;&#160;&#160;estimate&#160;<a href="wish_list.xml#Estimator Standard Deviation" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Estimator&#xA0;Standard&#xA0;Deviation</a><br/>
+structure<br/>
+&#160;&#160;&#160;&#160;&#160;c<b>++&#xA0;</b>data<b>&#xA0;</b>example&#160;<a href="dismoditis.sh.xml" target="_top">Create&#xA0;C++&#xA0;Files&#xA0;Corresponding&#xA0;to&#xA0;Dismod&#xA0;Data&#xA0;and&#xA0;Expected&#xA0;Results</a><br/>
+
+<b><big><a name="T">T</a></big></b>
+<br/>
+template<br/>
+&#160;&#160;&#160;&#160;&#160;sfun<b>_</b>in<b>.</b>csv&#160;<a href="dismod_pde_csv.xml#sfun_in.csv.Output Template" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_in.csv.Output&#xA0;Template</a><br/>
+template<b>.</b>csv<br/>
+&#160;&#160;&#160;&#160;&#160;change&#160;<a href="d4_change_sfun_in.py.xml" target="_top">Change&#xA0;The&#xA0;dismod_pde&#xA0;Stochastic&#xA0;Function&#xA0;Input&#xA0;File</a><br/>
+test<br/>
+&#160;&#160;&#160;&#160;&#160;atof<b>_</b>char<b>_</b>vec&#160;<a href="atof_char_vec_tst.cpp.xml" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;Conversion&#xA0;from&#xA0;Ascii&#xA0;to&#xA0;Double</a><br/>
+&#160;&#160;&#160;&#160;&#160;c<b>++&#xA0;</b>optimize&#160;<a href="optimize_xam.cpp.xml" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde&#xA0;C++&#xA0;Optimize&#xA0;Procedure</a><br/>
+&#160;&#160;&#160;&#160;&#160;csv<b>_</b>read&#160;<a href="csv_read_tst.cpp.xml" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde&#xA0;csv_read&#xA0;Procedure</a><br/>
+&#160;&#160;&#160;&#160;&#160;d4<b>_</b>change<b>_</b>sfun<b>_</b>in<b>.</b>py&#160;<a href="change_sfun_in.sh.xml" target="_top">d4_change_sfun_in.py:&#xA0;Example&#xA0;and&#xA0;Test</a><br/>
+&#160;&#160;&#160;&#160;&#160;d4<b>_</b>sfun<b>_</b>grid<b>.</b>py&#160;<a href="sfun_grid.sh.xml" target="_top">d4_sfun_grid.py:&#xA0;Example&#xA0;and&#xA0;Test</a><br/>
+&#160;&#160;&#160;&#160;&#160;dismod<b>_</b>pde&#160;<a href="install.xml#Test" target="_top">Installing&#xA0;dismod_pde:&#160;Test</a><br/>
+&#160;&#160;&#160;&#160;&#160;dismod<b>_</b>pde<b>_</b>csv&#160;<a href="get_started.sh.xml" target="_top">get_started.sh:&#xA0;Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde_csv</a><br/>
+&#160;&#160;&#160;&#160;&#160;pair2index&#160;<a href="pair2index.cpp.xml" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;dismod_pde&#xA0;pair2index&#xA0;Procedure</a><br/>
+&#160;&#160;&#160;&#160;&#160;str<b>_</b>char<b>_</b>vec&#160;<a href="str_char_vec_tst.cpp.xml" target="_top">Example&#xA0;and&#xA0;Test&#xA0;of&#xA0;Conversion&#xA0;from&#xA0;Ascii&#xA0;to&#xA0;String</a><br/>
+time<br/>
+&#160;&#160;&#160;&#160;&#160;limits&#160;<a href="dismod_pde_csv.xml#measure_in.csv.time_lower, time_upper" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv.time_lower,&#xA0;time_upper</a><br/>
+&#160;&#160;&#160;&#160;&#160;max&#160;<a href="pair2index.xml#time_upper" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;time_upper</a><br/>
+&#160;&#160;&#160;&#160;&#160;min&#160;<a href="pair2index.xml#time_lower" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;time_lower</a><br/>
+top<br/>
+&#160;&#160;&#160;&#160;&#160;tree&#160;<a href="dismod_pde.xml" target="_top">dismod_pde:&#xA0;<br/>
+Estimation&#xA0;of&#xA0;Disease&#xA0;Mortality&#xA0;as&#xA0;a&#xA0;Stochastic&#xA0;Function&#xA0;of&#xA0;Age&#xA0;and&#xA0;Cohort</a><br/>
+tree<br/>
+&#160;&#160;&#160;&#160;&#160;top&#160;<a href="dismod_pde.xml" target="_top">dismod_pde:&#xA0;<br/>
+Estimation&#xA0;of&#xA0;Disease&#xA0;Mortality&#xA0;as&#xA0;a&#xA0;Stochastic&#xA0;Function&#xA0;of&#xA0;Age&#xA0;and&#xA0;Cohort</a><br/>
+
+<b><big><a name="U">U</a></big></b>
+<br/>
+unpack<br/>
+&#160;&#160;&#160;&#160;&#160;age&#160;<a href="pair2index.xml#age_unpack" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;age_unpack</a><br/>
+&#160;&#160;&#160;&#160;&#160;cohort&#160;<a href="pair2index.xml#cohort_unpack" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;cohort_unpack</a><br/>
+upper<br/>
+&#160;&#160;&#160;&#160;&#160;age&#160;<a href="dismod_pde_csv.xml#measure_in.csv.age_lower, age_upper" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv.age_lower,&#xA0;age_upper</a><br/>
+&#160;&#160;&#160;&#160;&#160;change&#160;<a href="d4_change_sfun_in.py.xml#upper" target="_top">Change&#xA0;The&#xA0;dismod_pde&#xA0;Stochastic&#xA0;Function&#xA0;Input&#xA0;File:&#160;upper</a><br/>
+&#160;&#160;&#160;&#160;&#160;covariate<b>&#xA0;</b>effect&#160;<a href="dismod_pde_csv.xml#effect_in.csv.upper" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_in.csv.upper</a><br/>
+&#160;&#160;&#160;&#160;&#160;time&#160;<a href="dismod_pde_csv.xml#measure_in.csv.time_lower, time_upper" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv.time_lower,&#xA0;time_upper</a><br/>
+
+<b><big><a name="V">V</a></big></b>
+<br/>
+valid<br/>
+&#160;&#160;&#160;&#160;&#160;grid<b>&#xA0;</b>pair&#160;<a href="pair2index.xml#valid" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;valid</a><br/>
+&#160;&#160;&#160;&#160;&#160;grid<b>&#xA0;</b>pair&#160;<a href="pair2index.xml#Notation.Computational Grid" target="_top">Convert&#xA0;Between&#xA0;Age-Cohort&#xA0;Pairs&#xA0;and&#xA0;a&#xA0;Single&#xA0;Grid&#xA0;Index:&#160;Notation.Computational&#xA0;Grid</a><br/>
+value<br/>
+&#160;&#160;&#160;&#160;&#160;covariate<b>&#xA0;</b>X&#160;<a href="optimize.xml#covariate_value" target="_top">Optimization&#xA0;of&#xA0;dismod_pde&#xA0;Objective&#xA0;Function:&#160;covariate_value</a><br/>
+variance<br/>
+&#160;&#160;&#160;&#160;&#160;estimate&#160;<a href="wish_list.xml#Estimator Standard Deviation" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde:&#160;Estimator&#xA0;Standard&#xA0;Deviation</a><br/>
+
+<b><big><a name="W">W</a></big></b>
+<br/>
+whats<b>_</b>new&#160;<a href="whats_new.xml" target="_top">Changes&#xA0;and&#xA0;Additions&#xA0;to&#xA0;dismod_pde</a><br/>
+wish<br/>
+&#160;&#160;&#160;&#160;&#160;list&#160;<a href="wish_list.xml" target="_top">Wish&#xA0;List&#xA0;For&#xA0;Improvements&#xA0;to&#xA0;dismod_pde</a><br/>
+
+<b><big><a name="X">X</a></big></b>
+<br/>
+X<br/>
+&#160;&#160;&#160;&#160;&#160;covariate<b>&#xA0;</b>value&#160;<a href="optimize.xml#covariate_value" target="_top">Optimization&#xA0;of&#xA0;dismod_pde&#xA0;Objective&#xA0;Function:&#160;covariate_value</a><br/>
+x<b>_</b><br/>
+&#160;&#160;&#160;&#160;&#160;covariate&#160;<a href="dismod_pde_csv.xml#effect_in.csv.covariate" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;effect_in.csv.covariate</a><br/>
+
+<b><big><a name="Z">Z</a></big></b>
+<br/>
+zeta&#160;<a href="dismod_pde_csv.xml#sfun_in.csv.zeta" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;sfun_in.csv.zeta</a><br/>
+&#160;&#160;&#160;&#160;&#160;change&#160;<a href="d4_change_sfun_in.py.xml#zeta" target="_top">Change&#xA0;The&#xA0;dismod_pde&#xA0;Stochastic&#xA0;Function&#xA0;Input&#xA0;File:&#160;zeta</a><br/>
+&#160;&#160;&#160;&#160;&#160;likelihood&#160;<a href="dismod_pde_csv.xml#measure_in.csv.meas_zeta" target="_top">dismod_pde&#xA0;Command&#xA0;Line&#xA0;Program:&#160;measure_in.csv.meas_zeta</a><br/>
+
+</body>
+</html>

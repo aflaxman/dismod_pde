@@ -1,0 +1,195 @@
+<?xml version='1.0'?>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:math='http://www.w3.org/1998/Math/MathML'
+>
+<head>
+<title>Read an Entire CSV File Into Memory</title>
+<meta name="description" id="description" content="Read an Entire CSV File Into Memory"/>
+<meta name="keywords" id="keywords" content=" "/>
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_csv_read_xml.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="pair2index.cpp.xml" target="_top">Prev</a>
+</td><td><a href="csv_read_tst.cpp.xml" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>cpp</option>
+<option>csv_read</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>cpp-&gt;</option>
+<option>optimize</option>
+<option>create_grid</option>
+<option>pair2index</option>
+<option>csv_read</option>
+<option>str_char_vec</option>
+<option>atof_char_vec</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down0(this)'>
+<option>csv_read-&gt;</option>
+<option>csv_read_tst.cpp</option>
+</select>
+</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>file</option>
+<option>field</option>
+<option>raw</option>
+<option>sub_vec</option>
+<option>Example</option>
+</select>
+</td>
+</tr></table><br/>
+
+
+
+<center><b><big><big>Read an Entire CSV File Into Memory</big></big></b></center>
+<br/>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br/>
+
+<code><font color="blue"><span style='white-space: nowrap'>csv_read(</span></font><i><font color="black"><span style='white-space: nowrap'>file</span></font></i><font color="blue"><span style='white-space: nowrap'>,&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>field</span></font></i><font color="blue"><span style='white-space: nowrap'>,&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>raw</span></font></i><font color="blue"><span style='white-space: nowrap'>,&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>sub_vec</span></font></i><font color="blue"><span style='white-space: nowrap'>)</span></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="file" id="file">file</a></big></b>
+<br/>
+Is the name of the file we are reading and has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;const&#xA0;std::string&amp;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>file</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+<br/>
+<b><big><a name="field" id="field">field</a></big></b>
+<br/>
+Is a vector of field names that are expected to be present in the file
+and has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;const&#xA0;dismod_pde::vector&lt;std::string&gt;&amp;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>field</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+We use 
+<code><i><font color="black"><span style='white-space: nowrap'>n_field</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;=&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>field</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()</span></font></code>
+.
+For 
+<code><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;=&#xA0;0&#xA0;,&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>...</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;,&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>n_field</span></font></i></code>
+
+it is assumed that there is not leading or trailing which space
+in any of the filed names; e.g., 
+
+<code><i><font color="black"><span style='white-space: nowrap'>field</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>][0]&#xA0;!=&#xA0;'&#xA0;'</span></font></code>
+.
+In addition, all the field names are non-empty; i.e.,
+
+<code><i><font color="black"><span style='white-space: nowrap'>field</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>]size()&#xA0;!=&#xA0;0</span></font></code>
+.
+
+<br/>
+<br/>
+<b><big><a name="raw" id="raw">raw</a></big></b>
+<br/>
+This argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;dismod_pde::vector&lt;char&gt;&amp;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>raw</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+The input size and content of this vector does not matter.
+Upon return, it contains the data read in from the file,
+including the first line of the file; i.e., the field names.
+
+<br/>
+<br/>
+<b><big><a name="sub_vec" id="sub_vec">sub_vec</a></big></b>
+<br/>
+This argument has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;dismod_pde::vector&lt;&#xA0;std::pair&lt;size_t,&#xA0;size_t&gt;&#xA0;&gt;&amp;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>sub_vec</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+The input size and content of this argument does not matter.
+We use 
+<code><i><font color="black"><span style='white-space: nowrap'>n_row</span></font></i></code>
+  for the number of rows of data in the file,
+including the first row which contains the field names.
+Upon return, the size of 
+<code><i><font color="black"><span style='white-space: nowrap'>sub_vec</span></font></i></code>
+ is 
+
+<code><i><font color="black"><span style='white-space: nowrap'>n_row</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;*&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>n_field</span></font></i></code>
+ and for
+
+<code><i><font color="black"><span style='white-space: nowrap'>i</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;=&#xA0;0&#xA0;,&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>...</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;,&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>n_row</span></font></i><font color="blue"><span style='white-space: nowrap'>-1</span></font></code>
+,
+
+<code><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;=&#xA0;0&#xA0;,&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>...</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;,&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>n_field</span></font></i><font color="blue"><span style='white-space: nowrap'>-1</span></font></code>
+,
+if 
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>start</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;=&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>sub_vec</span></font></i><font color="blue"><span style='white-space: nowrap'>[&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>i</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;*&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>n_field</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;+&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;].first<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>length</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;=&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>sub_vec</span></font></i><font color="blue"><span style='white-space: nowrap'>[&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>i</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;*&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>n_field</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;+&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;].second<br/>
+</span></font></code>
+then 
+<code><i><font color="black"><span style='white-space: nowrap'>raw</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>start</span></font></i><font color="blue"><span style='white-space: nowrap'>]</span></font></code>
+ is the first character of the corresponding value
+and 
+<code><i><font color="black"><span style='white-space: nowrap'>length</span></font></i></code>
+ is the number of characters in the corresponding value.
+
+
+
+<br/>
+<br/>
+<b><big><a name="Example" id="Example">Example</a></big></b>
+<br/>
+The file <a href="csv_read_tst.cpp.xml" target="_top"><span style='white-space: nowrap'>csv_read_tst.cpp</span></a>
+ contains
+and example and test of <code><font color="blue">csv_read</font></code>.
+It returns true for success and false for failure.
+
+
+<hr/>Input File: cpp/dismod_pde/csv_read.hpp
+
+</body>
+</html>

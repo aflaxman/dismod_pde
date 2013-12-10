@@ -1,0 +1,358 @@
+<html><head>
+<title>Compare sfun_out.csv and d4_simulate.py Solution File</title>
+<meta name="description" id="description" content="Compare sfun_out.csv and d4_simulate.py Solution File">
+<meta name="keywords" id="keywords" content=" ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_d4_compare_sfun.py_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="change_sfun_in.sh.htm" target="_top">Prev</a>
+</td><td><a href="d4_contour.py.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>csv</option>
+<option>python_csv</option>
+<option>d4_compare_sfun.py</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>csv-&gt;</option>
+<option>dismod_pde_csv</option>
+<option>python_csv</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>python_csv-&gt;</option>
+<option>d4_bubble.py</option>
+<option>d4_change_sfun_in.py</option>
+<option>d4_compare_sfun.py</option>
+<option>d4_contour.py</option>
+<option>d4_cumulative.py</option>
+<option>d4_plot.py</option>
+<option>d4_sfun_der.py</option>
+<option>d4_sfun_grid.py</option>
+<option>d4_simulate.py</option>
+</select>
+</td>
+<td>d4_compare_sfun.py</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>sfun_out.csv</option>
+<option>solution.csv</option>
+<option>compare.csv</option>
+<option>Expressions</option>
+<option>include_expr</option>
+<option>value_expr</option>
+<option>median_bound</option>
+<option>average_bound</option>
+<option>maximum_bound</option>
+<option>Exit Status</option>
+</select>
+</td>
+</tr></table><br>
+ 
+
+
+
+<center><b><big><big>Compare sfun_out.csv and d4_simulate.py Solution File</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><font color="blue"><span style='white-space: nowrap'>d4_compare_sfun.py&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--sfun_out&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--solution&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solution.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--compare&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>compare.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;&nbsp;\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--include&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>include_expr</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--value&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>value_expr</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;&nbsp;&nbsp;\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--median&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>median_bound</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--average&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>average_bound</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--maximum&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>maximum_bound</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+<br>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br>
+This program outputs a comparison of the stochastic function values
+corresponding to a <a href="d4_simulate.py.htm" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+ 
+solution file 
+<code><i><font color="black"><span style='white-space: nowrap'>solution.csv</span></font></i></code>
+ and a <code><font color="blue">dismod_pde_csv</font></code> 
+<a href="dismod_pde_csv.htm#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+ result file.
+ 
+<br>
+<br>
+<b><big><a name="sfun_out.csv" id="sfun_out.csv">sfun_out.csv</a></big></b>
+<br>
+This is an input file for <code><font color="blue">d4_compare_sfun.py</font></code> that was generate by
+<code><font color="blue">dismod_pde_csv</font></code>; see <a href="dismod_pde_csv.htm#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+.
+
+<br>
+<br>
+<b><big><a name="solution.csv" id="solution.csv">solution.csv</a></big></b>
+<br>
+This is an input file for <code><font color="blue">d4_compare_sfun.py</font></code> that was generated by
+<code><font color="blue">d4_simulate.py</font></code>; 
+see <a href="d4_simulate.py.htm#solution.csv" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+.
+We use piecewise bilinear interpolator of the values
+in this solution file to obtain the values of the solution on 
+the same age-cohort grid as 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="compare.csv" id="compare.csv">compare.csv</a></big></b>
+<br>
+This is the output file generated by <code><font color="blue">d4_compare_sfun.py</font></code>
+with the same age-cohort grid as 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i></code>
+.
+It is a <a href="csv.htm#dismod_pde CSV Files" target="_top"><span style='white-space: nowrap'>dismod_pde&nbsp;csv&nbsp;file</span></a>
+ with
+the following columns:
+<table><tr><td align='left'  valign='top'>
+
+<b>field</b>  <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code>
+	</td><td align='left'  valign='top'>
+ <b>Description</b> 
+</td></tr><tr><td align='left'  valign='top'>
+
+
+<code><i><font color="black"><span style='white-space: nowrap'>function</span></font></i></code>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code>
+	</td><td align='left'  valign='top'>
+ stochastic <a href="dismod_pde_csv.htm#sfun_in.csv.function" target="_top"><span style='white-space: nowrap'>function</span></a>
+; 
+	i.e., <code><font color="blue">S</font></code>, <code><font color="blue">C</font></code>, <code><font color="blue">iota</font></code>, <code><font color="blue">rho</font></code>, <code><font color="blue">chi</font></code>, or
+	<code><font color="blue">omega</font></code>.
+</td></tr><tr><td align='left'  valign='top'>
+
+
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i></code>
+    <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code>
+	</td><td align='left'  valign='top'>
+ age for the corresponding line in csv file, <code>
+<span style='white-space: nowrap'>&nbsp;a_j</span></code>
+
+</td></tr><tr><td align='left'  valign='top'>
+
+
+<code><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i></code>
+  <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code>
+	</td><td align='left'  valign='top'>
+ cohort for the corresponding line in csv file, <code>
+<span style='white-space: nowrap'>&nbsp;c_k</span></code>
+
+</td></tr><tr><td align='left'  valign='top'>
+
+
+<code><i><font color="black"><span style='white-space: nowrap'>time</span></font></i></code>
+  <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code>
+	</td><td align='left'  valign='top'>
+ time for the corresponding line in csv file, <code>
+<span style='white-space: nowrap'>&nbsp;a_k&nbsp;+&nbsp;c_k</span></code>
+
+</td></tr><tr><td align='left'  valign='top'>
+
+
+<code><i><font color="black"><span style='white-space: nowrap'>solution</span></font></i></code>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code>
+	</td><td align='left'  valign='top'>
+ interpolation of actual value used for simulation
+	from 
+<code><i><font color="black"><span style='white-space: nowrap'>solution.csv</span></font></i></code>
+ to <code>
+<span style='white-space: nowrap'>&nbsp;s^q&nbsp;(&nbsp;a_j&nbsp;,&nbsp;c_k&nbsp;)</span></code>
+.
+</td></tr><tr><td align='left'  valign='top'>
+
+
+<code><i><font color="black"><span style='white-space: nowrap'>estimate</span></font></i></code>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code>
+	</td><td align='left'  valign='top'>
+ the estimate in 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i></code>
+ for <code>
+<span style='white-space: nowrap'>&nbsp;s_{j,k}^q</span></code>
+.
+</td></tr><tr><td align='left'  valign='top'>
+
+
+<code><i><font color="black"><span style='white-space: nowrap'>value</span></font></i></code>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code>
+	</td><td align='left'  valign='top'>
+ result of <a href="d4_compare_sfun.py.htm#value_expr" target="_top"><span style='white-space: nowrap'>value_expr</span></a>
+
+	for this row.
+</td></tr>
+</table>
+The output files is on the same grid as the 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i></code>
+ file,
+and the values corresponding to the 
+<code><i><font color="black"><span style='white-space: nowrap'>solution.csv</span></font></i></code>
+ file
+are interpolated to that grid.
+
+<br>
+<br>
+<b><big><a name="Expressions" id="Expressions">Expressions</a></big></b>
+<br>
+The following variables, corresponding to one row of the output file,
+are available for use in 
+<code><i><font color="black"><span style='white-space: nowrap'>include_expr</span></font></i></code>
+ and 
+<code><i><font color="black"><span style='white-space: nowrap'>value_expr</span></font></i></code>
+: 
+<code><font color="blue">f</font></code> (
+<code><i><font color="black"><span style='white-space: nowrap'>function</span></font></i></code>
+),
+<code><font color="blue">a</font></code> (
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i></code>
+), 
+<code><font color="blue">c</font></code> (
+<code><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i></code>
+), 
+<code><font color="blue">t</font></code> (
+<code><i><font color="black"><span style='white-space: nowrap'>time</span></font></i></code>
+), 
+<code><font color="blue">s</font></code> (
+<code><i><font color="black"><span style='white-space: nowrap'>solution</span></font></i></code>
+), and
+<code><font color="blue">e</font></code> (
+<code><i><font color="black"><span style='white-space: nowrap'>estimate</span></font></i></code>
+).
+In addition, <code><font color="blue">inf</font></code> is equal to the value plus infinity,
+<code><font color="blue">nan</font></code> is not a number, 
+<code><font color="blue">True</font></code> is equal to true, and
+<code><font color="blue">False</font></code> is equal to false.
+All of these variables are numeric, except for 
+<code><i><font color="black"><span style='white-space: nowrap'>f</span></font></i></code>
+ which is a string.
+The expression is otherwise limited to the conditional expression syntax,
+the operators <code><font color="blue">+</font></code>, <code><font color="blue">-</font></code>, <code><font color="blue">*</font></code>, <code><font color="blue">/</font></code>, <code><font color="blue">**</font></code>,
+the <code><font color="blue">max</font></code> and <code><font color="blue">abs</font></code> functions, and numeric constants.
+
+<br>
+<br>
+<b><big><a name="include_expr" id="include_expr">include_expr</a></big></b>
+<br>
+The result of the expression
+
+<code><i><font color="black"><span style='white-space: nowrap'>include_expr</span></font></i></code>
+ must be <code><font color="blue">True</font></code> or <code><font color="blue">False</font></code>.
+If it is true, the corresponding row of the 
+output file 
+<code><i><font color="black"><span style='white-space: nowrap'>compare.csv</span></font></i></code>
+ is included in the bound comparisons.
+For example, to include all results between 1950 and 2000, one could use
+<code><font color='blue'><pre style='display:inline'> 
+	-include '(1950 &lt;= t) and (t &lt;= 2000)'
+</pre></font></code>
+
+
+<br>
+<br>
+<b><big><a name="value_expr" id="value_expr">value_expr</a></big></b>
+<br>
+The result of the expression
+
+<code><i><font color="black"><span style='white-space: nowrap'>value_expr</span></font></i></code>
+ must be a float that gets included in the comparisons
+(when 
+<code><i><font color="black"><span style='white-space: nowrap'>include_expr</span></font></i></code>
+ is true).
+For example, to use the absolute relative error in the comparisons,
+one could use
+<code><font color='blue'><pre style='display:inline'> 
+	-value 'abs( (s - e) / s )' 
+</pre></font></code>
+
+
+<br>
+<br>
+<b><big><a name="median_bound" id="median_bound">median_bound</a></big></b>
+<br>
+is an upper bound for the median of 
+<code><i><font color="black"><span style='white-space: nowrap'>value_expr</span></font></i></code>
+
+with respect to the rows where 
+<code><i><font color="black"><span style='white-space: nowrap'>include_expr</span></font></i></code>
+ is true.
+
+<br>
+<br>
+<b><big><a name="average_bound" id="average_bound">average_bound</a></big></b>
+<br>
+is an upper bound for the average of 
+<code><i><font color="black"><span style='white-space: nowrap'>value_expr</span></font></i></code>
+
+with respect to the rows where 
+<code><i><font color="black"><span style='white-space: nowrap'>include_expr</span></font></i></code>
+ is true.
+
+<br>
+<br>
+<b><big><a name="maximum_bound" id="maximum_bound">maximum_bound</a></big></b>
+<br>
+is an upper bound for the maximum of 
+<code><i><font color="black"><span style='white-space: nowrap'>value_expr</span></font></i></code>
+
+with respect to the rows where 
+<code><i><font color="black"><span style='white-space: nowrap'>include_expr</span></font></i></code>
+ is true.
+
+<br>
+<br>
+<b><big><a name="Exit Status" id="Exit Status">Exit Status</a></big></b>
+<br>
+The return status is zero if every row of the output file is OK,
+otherwise the return status is one.
+
+
+<hr>Input File: python/d4_compare_sfun.py.in
+
+</body>
+</html>

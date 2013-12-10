@@ -1,0 +1,2879 @@
+<html><head>
+<title>Changes and Additions to dismod_pde</title>
+<meta name="description" id="description" content="Changes and Additions to dismod_pde">
+<meta name="keywords" id="keywords" content=" whats_new changelog api changes feature bug fixes bugs ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_whats_new_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="_contents.htm" target="_top">Prev</a>
+</td><td><a href="install.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>whats_new</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>whats_new</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>2013-11-30</option>
+<option>2013-0404</option>
+<option>2013-0205</option>
+<option>2013-0119</option>
+<option>2013-0101</option>
+<option>2012-11-29</option>
+<option>2012-11-15</option>
+<option>2012-11-14</option>
+<option>2012-11-11</option>
+<option>2012-11-09</option>
+<option>2012-10-24</option>
+<option>2012-10-20</option>
+<option>2012-10-13</option>
+<option>2012-10-04</option>
+<option>2012-09-27</option>
+<option>2012-09-26</option>
+<option>2012-09-21</option>
+<option>2012-09-20</option>
+<option>2012-09-19</option>
+<option>2012-09-17</option>
+<option>2012-05-30</option>
+<option>2012-05-25</option>
+<option>2012-05-24</option>
+<option>2012-04-13</option>
+<option>2012-04-11</option>
+<option>2012-03-29</option>
+<option>2012-03-26</option>
+<option>2012-03-20</option>
+<option>2012-03-19</option>
+<option>2012-03-15</option>
+<option>2012-03-10</option>
+<option>2012-03-12</option>
+<option>2012-03-01</option>
+<option>2012-02-29</option>
+<option>2012-02-26</option>
+<option>2012-02-24</option>
+<option>2012-02-19</option>
+<option>2012-02-18</option>
+<option>2012-02-17</option>
+<option>2012-02-16</option>
+<option>2012-02-04</option>
+<option>2012-02-03</option>
+<option>2012-02-02</option>
+<option>2012-02-01</option>
+<option>2012-01-31</option>
+<option>2012-01-30</option>
+<option>2012-01-27</option>
+<option>2012-01-25</option>
+<option>2012-01-23</option>
+<option>2012-01-17</option>
+<option>2012-01-13</option>
+<option>2011-11-11</option>
+<option>2011-11-10</option>
+<option>2011-11-08</option>
+<option>2011-11-04</option>
+<option>2011-10-27</option>
+<option>2011-10-20</option>
+<option>2011-10-14</option>
+<option>2011-10-09</option>
+<option>2011-10-07</option>
+<option>2011-10-03</option>
+<option>2011-10-02</option>
+<option>2011-09-27</option>
+<option>2011-09-26</option>
+<option>2011-09-25</option>
+<option>2011-08-16</option>
+<option>2011-08-09</option>
+<option>2011-08-05</option>
+<option>2011-08-04</option>
+<option>2011-08-02</option>
+<option>2011-07-27</option>
+<option>2011-07-14</option>
+<option>2011-05-11</option>
+<option>2011-05-04</option>
+<option>2011-05-03</option>
+<option>2011-05-02</option>
+<option>2011-04-28</option>
+<option>2011-04-27</option>
+<option>2011-04-26</option>
+<option>2011-04-25</option>
+<option>2011-04-23</option>
+<option>2011-04-10</option>
+<option>2011-04-08</option>
+<option>2011-04-06</option>
+<option>2011-04-05</option>
+<option>2011-04-03</option>
+<option>2011-03-31</option>
+<option>2011-03-29</option>
+<option>2011-03-25</option>
+<option>2011-03-23</option>
+<option>2011-03-21</option>
+<option>2011-03-17</option>
+<option>2011-02-12</option>
+<option>2011-02-10</option>
+<option>2011-02-09</option>
+<option>2011-01-27</option>
+<option>2011-01-25</option>
+<option>2011-01-21</option>
+<option>2010-10-16</option>
+<option>2010-10-14</option>
+<option>2010-10-13</option>
+<option>2010-10-12</option>
+<option>2010-10-11</option>
+<option>2010-10-10</option>
+<option>2010-10-09</option>
+<option>2010-10-08</option>
+<option>2010-10-07</option>
+<option>2010-10-06</option>
+<option>2010-10-05</option>
+<option>2010-09-30</option>
+<option>2010-09-28</option>
+<option>2010-09-27</option>
+<option>2010-09-24</option>
+<option>2010-09-23</option>
+<option>2010-09-22</option>
+<option>2010-09-21</option>
+<option>2010-09-20</option>
+<option>2010-09-19</option>
+<option>2010-09-17</option>
+<option>2010-09-16</option>
+<option>2010-09-15</option>
+<option>2010-09-13</option>
+<option>2010-09-11</option>
+<option>2010-09-10</option>
+<option>2010-09-08</option>
+<option>2010-09-07</option>
+<option>2010-09-06</option>
+<option>2010-09-04</option>
+<option>2010-09-03</option>
+<option>2010-09-01</option>
+<option>2010-08-29</option>
+<option>2010-08-28</option>
+<option>2010-08-26</option>
+<option>2010-08-25</option>
+<option>2010-08-24</option>
+<option>2010-08-23</option>
+<option>2010-08-22</option>
+<option>2010-08-21</option>
+</select>
+</td>
+</tr></table><br>
+<center><b><big><big>Changes and Additions to dismod_pde</big></big></b></center>
+<br>
+<b><big><a name="2013-11-30" id="2013-11-30">2013-11-30</a></big></b>
+
+<ol type="1"><li>
+The 
+<a href="install.htm#External Packages" target="_top"><span style='white-space: nowrap'>external</span></a>
+ install of 
+<a href="https://projects.coin-or.org/Ipopt" target="_top"><span style='white-space: nowrap'>ipopt</span></a>
+
+was failing because the netlib server no longer supports ftp; see
+<a href="https://projects.coin-or.org/Ipopt/ticket/214" target="_top"><span style='white-space: nowrap'>https://projects.coin-or.org/Ipopt/ticket/214</span></a>
+.
+This has been fixed.
+</li><li>
+
+Use newer versions of the <code><font color="blue">ipopt</font></code> and <code><font color="blue">cppad</font></code> packages; see
+<a href="install.htm#External Packages" target="_top"><span style='white-space: nowrap'>external</span></a>
+.
+The newer version of <code><font color="blue">ipopt</font></code> supported the change above.
+The newer version of <code><font color="blue">cppad</font></code> avoided warnings during the
+build of <code><font color="blue">dismod_ode</font></code>.
+</li><li>
+
+Remove attempt to use <code><font color="blue">c++11</font></code> in build is <code><font color="blue">dismod_ode</font></code> because
+some old compilers do not support it.
+</li><li>
+
+Add an <a href="install.htm#External Packages" target="_top"><span style='white-space: nowrap'>external&nbsp;packages</span></a>
+ entry
+to the wish list.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2013-0404" id="2013-0404">2013-0404</a></big></b>
+<br>
+Fix a bug that caused the compiler error
+<code><font color='blue'><pre style='display:inline'> 
+	../../cpp/optimize.cpp:432: error: using 'typename' outside of template
+</pre></font></code>
+
+in both current version and version <code><font color="blue">2013.0000.1</font></code>.
+
+<br>
+<br>
+<b><big><a name="2013-0205" id="2013-0205">2013-0205</a></big></b>
+<br>
+Both the current version,
+and version <code><font color="blue">2013.0.0</font></code> are now available for
+<a href="install.htm#Download" target="_top"><span style='white-space: nowrap'>download</span></a>
+.
+
+<br>
+<br>
+<b><big><a name="2013-0119" id="2013-0119">2013-0119</a></big></b>
+<br>
+The name of this program was changed from <code><font color="blue">dismod4</font></code> to
+<code><font color="blue">dismod_pde</font></code> to distinguish it from a similar program that
+models disease as a function of age only.
+
+<br>
+<br>
+<b><big><a name="2013-0101" id="2013-0101">2013-0101</a></big></b>
+<br>
+Use the new <code><font color="blue">CppAD::ipopt:solve</font></code> Ipopt solver
+(instead of the <code><font color="blue">cppad_ipopt_nlp</font></code>  Ipopt interface).
+The results test out to be the same.
+Here is a comparison of the times reported by Ipopt
+(where NDEBUG and -O2 were specified during compile time):
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>cppad_ipopt_nlp</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total&nbsp;CPU&nbsp;secs&nbsp;in&nbsp;IPOPT&nbsp;(w/o&nbsp;function&nbsp;evaluations)&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.606<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total&nbsp;CPU&nbsp;secs&nbsp;in&nbsp;NLP&nbsp;function&nbsp;evaluations&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;32.287<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>CppAD::ipopt::solve</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total&nbsp;CPU&nbsp;secs&nbsp;in&nbsp;IPOPT&nbsp;(w/o&nbsp;function&nbsp;evaluations)&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.465<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Total&nbsp;CPU&nbsp;secs&nbsp;in&nbsp;NLP&nbsp;function&nbsp;evaluations&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.795<br>
+</span></font></code>
+<br>
+<b><big><a name="2012-11-29" id="2012-11-29">2012-11-29</a></big></b>
+<br>
+Search for CppAD and Ipopt libraries in both <code><font color="blue">lib</font></code> and <code><font color="blue">lib64</font></code>
+so that they will be found in either case.
+
+<br>
+<br>
+<b><big><a name="2012-11-15" id="2012-11-15">2012-11-15</a></big></b>
+<br>
+Document how to create an
+<a href="install.htm#Optimized Version" target="_top"><span style='white-space: nowrap'>optimized&nbsp;version</span></a>
+
+and fix warnings that occurred during the build of this version.
+
+<br>
+<br>
+<b><big><a name="2012-11-14" id="2012-11-14">2012-11-14</a></big></b>
+<br>
+The <a href="get_started.py.htm" target="_top"><span style='white-space: nowrap'>get_started.py</span></a>
+ example was failing because it was not
+closing the python csv file <code><font color="blue">sfun_in.csv</font></code> before <code><font color="blue">dismod_csv</font></code>
+attempted to read it.
+This has been fixed by closing all the python files
+(input and output) when they are completed (reading or writing).
+
+<br>
+<br>
+<b><big><a name="2012-11-11" id="2012-11-11">2012-11-11</a></big></b>
+<br>
+Remove use of the python <code><font color="blue">pandas</font></code>
+(use <code><font color="blue">csv.DictReader</font></code> and <code><font color="blue">csv.writer</font></code> instead).
+
+<br>
+<br>
+<b><big><a name="2012-11-09" id="2012-11-09">2012-11-09</a></big></b>
+<br>
+There was a problem installing 
+<a href="http://www.coin-or.org/CppAD/" target="_top"><span style='white-space: nowrap'>cppad</span></a>
+
+on Ubuntu 12.04.
+This has been fixed and the new version 
+(subversion revision number 2556 of cppad) is now used by dismod_pde.
+
+
+<br>
+<br>
+<b><big><a name="2012-10-24" id="2012-10-24">2012-10-24</a></big></b>
+<br>
+The <a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+ example was mistakenly using the
+plots for <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+ plots for the 
+<a href="diabetes.sh.htm#Rate Contour Plots" target="_top"><span style='white-space: nowrap'>rate&nbsp;contour&nbsp;plots</span></a>
+ of
+the estimate for
+other cause mortality 
+<code><i><font color="black"><span style='white-space: nowrap'>omega</span></font></i></code>
+, 
+excess mortality 
+<code><i><font color="black"><span style='white-space: nowrap'>chi</span></font></i></code>
+,
+and incidence 
+<code><i><font color="black"><span style='white-space: nowrap'>iota</span></font></i></code>
+.
+This has been fixed.
+
+<br>
+<br>
+<b><big><a name="2012-10-20" id="2012-10-20">2012-10-20</a></big></b>
+<br>
+The <a href="optimize.htm#sfun_out.cross_residual" target="_top"><span style='white-space: nowrap'>cross_residuals</span></a>
+
+that started at age index zero were not being included in the objective.
+This has been fixed.
+
+<br>
+<br>
+<b><big><a name="2012-10-13" id="2012-10-13">2012-10-13</a></big></b>
+<br>
+Improve error messaging when the file
+<a href="dismod_pde_csv.htm#measure_in.csv" target="_top"><span style='white-space: nowrap'>measure_in.csv</span></a>
+ 
+does not satisfy the following conditions:
+
+<code><i><font color="black"><span style='white-space: nowrap'>age_lower</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&lt;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age_upper</span></font></i></code>
+,
+
+<code><i><font color="black"><span style='white-space: nowrap'>time_lower</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&lt;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_upper</span></font></i></code>
+,
+
+<code><font color="blue"><span style='white-space: nowrap'>0&nbsp;&lt;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>meas_sigma</span></font></i></code>
+, and
+
+<code><font color="blue"><span style='white-space: nowrap'>0&nbsp;&lt;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>meas_zeta</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="2012-10-04" id="2012-10-04">2012-10-04</a></big></b>
+
+<ol type="1"><li>
+Simplify <a href="get_started.sh.htm" target="_top"><span style='white-space: nowrap'>get_started.sh</span></a>
+ using fact that we no longer need
+an age grid value at zero.
+</li><li>
+
+Create <a href="get_started.py.htm" target="_top"><span style='white-space: nowrap'>get_started.py</span></a>
+ a python version of <a href="get_started.sh.htm" target="_top"><span style='white-space: nowrap'>get_started.sh</span></a>
+.
+</li><li>
+
+Remove extra leading white space characters in 
+<a href="dismod_pde_csv.htm#effect_out.csv" target="_top"><span style='white-space: nowrap'>effect_out.csv</span></a>
+.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2012-09-27" id="2012-09-27">2012-09-27</a></big></b>
+
+<ol type="1"><li>
+Change the data in the <a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+ example to all be between
+the time limits 1980 and 2010.
+</li><li>
+
+Transfer simplifications in <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+ to <a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2012-09-26" id="2012-09-26">2012-09-26</a></big></b>
+
+<ol type="1"><li>
+Simplify and reorganize <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+ so that it is easier
+for a user to modify for her or his own simulation case.
+</li><li>
+
+Change <a href="d4_simulate.py.htm" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+ so that it used the formula
+<code>
+<span style='white-space: nowrap'>&nbsp;\sigma_\ell&nbsp;=&nbsp;\log(1.0&nbsp;+&nbsp;cv_\ell&nbsp;)</span></code>
+ where
+<code>
+<span style='white-space: nowrap'>&nbsp;cv_\ell</span></code>
+ is the user specified coefficient of variation.
+</li><li>
+
+Fix a problem with changing the age and cohort grid spacing in
+<a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+.
+In addition, use a separate smoothing 
+<code><i><font color="black"><span style='white-space: nowrap'>sigma</span></font></i></code>
+ value for 
+<code><i><font color="black"><span style='white-space: nowrap'>iota</span></font></i></code>
+.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2012-09-21" id="2012-09-21">2012-09-21</a></big></b>
+<br>
+Remove scaling of residuals by the square root of the corresponding 
+time difference; see
+<a href="optimize.htm#sfun_out.age_residual" target="_top"><span style='white-space: nowrap'>age</span></a>
+,
+<a href="optimize.htm#sfun_out.cohort_residual" target="_top"><span style='white-space: nowrap'>cohort</span></a>
+, and
+<a href="optimize.htm#sfun_out.cross_residual" target="_top"><span style='white-space: nowrap'>cross</span></a>
+ residuals.
+The scaling of the residuals with respect to time difference 
+should be chosen by the user and included in the corresponding 
+standard deviations.
+
+<br>
+<br>
+<b><big><a name="2012-09-20" id="2012-09-20">2012-09-20</a></big></b>
+
+<ol type="1"><li>
+Round off output values in <a href="d4_sfun_grid.py.htm" target="_top"><span style='white-space: nowrap'>d4_sfun_grid.py</span></a>
+
+so that the same time values always have the exact same representation
+in the output file (even when not an integer).
+</li><li>
+
+Change <a href="d4_sfun_grid.py.htm" target="_top"><span style='white-space: nowrap'>d4_sfun_grid.py</span></a>
+ so that it outputs values corresponding
+to first age value (used to be left output because it has special meaning).
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2012-09-19" id="2012-09-19">2012-09-19</a></big></b>
+
+<ol type="1"><li>
+Use age-time instead of age-cohort bilinear interpolation in the
+<a href="optimize.htm#measure_out.model" target="_top"><span style='white-space: nowrap'>measurement&nbsp;model</span></a>
+.
+</li><li>
+
+Simplify
+<a href="pair2index.htm#Notation.Computational Grid" target="_top"><span style='white-space: nowrap'>computational&nbsp;grid</span></a>
+
+to include fewer cohorts no special points at age zero.
+(possible because of new interpolation scheme)
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2012-09-17" id="2012-09-17">2012-09-17</a></big></b>
+<br>
+Add <a href="optimize.htm#sfun_out.cross_residual" target="_top"><span style='white-space: nowrap'>cross&nbsp;residuals</span></a>
+
+terms to the function smoothing.
+While these terms seem useful,
+we have not yet found an example case where this helps
+and so we suggest the <a href="optimize.htm#sfun_in.cross_sigma" target="_top"><span style='white-space: nowrap'>cross_sigma</span></a>
+ 
+be infinity.
+
+<br>
+<br>
+<b><big><a name="2012-05-30" id="2012-05-30">2012-05-30</a></big></b>
+<br>
+Add user API documentation for <a href="str_char_vec.htm" target="_top"><span style='white-space: nowrap'>str_char_vec</span></a>
+
+(so it can be used by other packages).
+
+<br>
+<br>
+<b><big><a name="2012-05-25" id="2012-05-25">2012-05-25</a></big></b>
+<br>
+Add user API documentation for <a href="atof_char_vec.htm" target="_top"><span style='white-space: nowrap'>atof_char_vec</span></a>
+
+(so it can be used by other packages).
+
+<br>
+<br>
+<b><big><a name="2012-05-24" id="2012-05-24">2012-05-24</a></big></b>
+<br>
+Add user API documentation for <a href="csv_read.htm" target="_top"><span style='white-space: nowrap'>csv_read</span></a>
+
+(so it can be used by other packages).
+
+<br>
+<br>
+<b><big><a name="2012-04-13" id="2012-04-13">2012-04-13</a></big></b>
+<br>
+The examples
+<a href="get_started.sh.htm" target="_top"><span style='white-space: nowrap'>get_started.sh</span></a>
+,
+<a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+, and
+<a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+,
+are now included in the installation in the directory
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i><font color="blue"><span style='white-space: nowrap'>/share/doc/dismod_pde-</span></font><i><font color="black"><span style='white-space: nowrap'>yyyymmdd</span></font></i><font color="blue"><span style='white-space: nowrap'>/example<br>
+</span></font></code>
+where 
+<code><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i></code>
+ is the 
+<a href="install.htm#Prefix" target="_top"><span style='white-space: nowrap'>prefix</span></a>
+ 
+specified during the install procedure. 
+<code><span style='white-space: nowrap'><br>
+<br>
+</span></code>The <a href="get_started.sh.htm" target="_top"><span style='white-space: nowrap'>get_started.sh</span></a>
+ example was moved under the 
+<a href="example.htm" target="_top"><span style='white-space: nowrap'>example</span></a>
+ section
+and the <a href="ipopt_trace.htm" target="_top"><span style='white-space: nowrap'>ipopt_trace</span></a>
+ description was moved under the
+<a href="optimize.htm" target="_top"><span style='white-space: nowrap'>optimize</span></a>
+ section.
+
+<br>
+<br>
+<b><big><a name="2012-04-11" id="2012-04-11">2012-04-11</a></big></b>
+<br>
+Update the <a href="wish_list.htm" target="_top"><span style='white-space: nowrap'>wish_list</span></a>
+.
+
+<br>
+<br>
+<b><big><a name="2012-03-29" id="2012-03-29">2012-03-29</a></big></b>
+<br>
+Fix a mistake where changing the 
+<a href="install.htm#Prefix" target="_top"><span style='white-space: nowrap'>prefix</span></a>
+ did not install Ipopt
+in the proper place.
+
+<br>
+<br>
+<b><big><a name="2012-03-26" id="2012-03-26">2012-03-26</a></big></b>
+
+<ol type="1"><li>
+Change the <code><font color="blue">ChangeLog</font></code>, <code><font color="blue">NEWS</font></code>, and <code><font color="blue">INSTALL</font></code>
+files to point to the web.
+</li><li>
+
+Remove the python files from the distribution because they are
+created by the installation procedure 
+<a href="install.htm#Configure" target="_top"><span style='white-space: nowrap'>configure</span></a>
+
+command.
+</li><li>
+
+The argument bubble size
+<a href="d4_bubble.py.htm#Bubble size.s_between" target="_top"><span style='white-space: nowrap'>s_between</span></a>
+
+was added and the labeling of the corresponding plots was improved.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2012-03-20" id="2012-03-20">2012-03-20</a></big></b>
+<br>
+Fix documentation of the effects
+<a href="optimize.htm#effect_in.integrand" target="_top"><span style='white-space: nowrap'>integrand</span></a>
+,
+<a href="optimize.htm#effect_in.covariate" target="_top"><span style='white-space: nowrap'>covariate</span></a>
+,
+and their connection to the 
+<a href="optimize.htm#covariate_value" target="_top"><span style='white-space: nowrap'>covariate_values</span></a>
+.
+
+
+<br>
+<br>
+<b><big><a name="2012-03-19" id="2012-03-19">2012-03-19</a></big></b>
+<br>
+Change 
+<code><font color="blue">chi_model</font></code>, <code><font color="blue">omega_model</font></code>, <code><font color="blue">iota_model</font></code> and
+<code><font color="blue">prevalence_model</font></code> to
+<a href="gaussian.sh.htm#Rate Contour Plots.chi_estimate" target="_top"><span style='white-space: nowrap'>chi_estimate</span></a>
+,
+<a href="gaussian.sh.htm#Rate Contour Plots.omega_estimate" target="_top"><span style='white-space: nowrap'>omega_estimate</span></a>
+,
+<a href="gaussian.sh.htm#Rate Contour Plots.iota_estimate" target="_top"><span style='white-space: nowrap'>iota_estimate</span></a>
+, and
+<a href="gaussian.sh.htm#Prevalence Contour Plot" target="_top"><span style='white-space: nowrap'>prevalence_estimate</span></a>
+.
+
+<br>
+<br>
+<b><big><a name="2012-03-15" id="2012-03-15">2012-03-15</a></big></b>
+
+<ol type="1"><li>
+In <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+, 
+simulate linear trend for excess mortality and other cause mortality.
+</li><li>
+
+First version that fits same mode for <a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+ 
+and <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+.
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2012-03-10" id="2012-03-10">2012-03-10</a></big></b>
+
+<ol type="1"><li>
+Include a linear trend with respect to age and time in the 
+<a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+ simulation.
+</li><li>
+
+Include plots of 
+<a href="gaussian.sh.htm#Rate Contour Plots.omega_true" target="_top"><span style='white-space: nowrap'>omega_true</span></a>
+ and
+<a href="gaussian.sh.htm#Rate Contour Plots.chi_true" target="_top"><span style='white-space: nowrap'>chi_true</span></a>
+ for the 
+<code><font color="blue">gaussian.sh</font></code> simulation.
+In addition, use a smaller step between contour lines.
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2012-03-12" id="2012-03-12">2012-03-12</a></big></b>
+<br>
+Change <code><font color="blue">incidence_model</font></code> and <code><font color="blue">incidence_true</font></code> to
+<code><font color="blue">iota_model</font></code> and
+<code><font color="blue">iota_true</font></code> respectively
+(so naming is similar to <code><font color="blue">omega_model</font></code>).
+
+<br>
+<br>
+<b><big><a name="2012-03-01" id="2012-03-01">2012-03-01</a></big></b>
+
+<ol type="1"><li>
+Have <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+ and <a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+ plot
+the model for other cause mortality <code><font color="blue">omega</font></code>
+and excess mortality <code><font color="blue">chi</font></code>, instead of 
+relative risk and all cause mortality.
+This makes it easier to compare the differences between the 
+diabetes simulation and the gaussian simulation.
+</li><li>
+
+Reduce the number of relative risk and all cause mortality
+constraints in <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+ and <a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+.
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2012-02-29" id="2012-02-29">2012-02-29</a></big></b>
+
+<ol type="1"><li>
+Give example of changing PYTHON_PREFIX as a comment in <code><font color="blue">build.sh</font></code>.
+</li><li>
+
+Expand time limits for plots in <a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+
+so that residuals are not along left time axis of plot.
+</li><li>
+
+In <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+,
+Sample constraints for all cause mortality and relative risk at twice the
+computational grid spacing.
+Also change to using order 2 smoothing for excess mortality and other cause
+mortality in <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+.
+</li><li>
+
+Advance to using newer version of CppAD, <code><font color="blue">cppad-20120227</font></code>
+(this builds and runs tests correctly on more systems).
+</li><li>
+
+Fix some problems in the <a href="install.htm" target="_top"><span style='white-space: nowrap'>install</span></a>
+ documentation.
+</li><li>
+
+Fix a problem with backward compatibility with 
+version 2.5.4 of python. 
+To be specific 
+use <code><font color="blue">numpy.isnan</font></code> instead <code><font color="blue">math.isnan</font></code>.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2012-02-26" id="2012-02-26">2012-02-26</a></big></b>
+<br>
+Change <a href="d4_contour.py.htm" target="_top"><span style='white-space: nowrap'>d4_contour.py</span></a>
+ to allow for both linear
+and log scaling of contour levels.
+
+<br>
+<br>
+<b><big><a name="2012-02-24" id="2012-02-24">2012-02-24</a></big></b>
+
+<ol type="1"><li>
+Start evolving the <a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+ and <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+ examples to
+be more alike in the parameters they choose and the plots they make.
+</li><li>
+
+Widen error check of <code><font color="blue">effect_out.csv</font></code> in
+<a href="get_started.sh.htm#effect_out.csv" target="_top"><span style='white-space: nowrap'>get_started.sh</span></a>
+
+to account better for round-off and inversion approximation of solution.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2012-02-19" id="2012-02-19">2012-02-19</a></big></b>
+<br>
+Changed <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+ to use second order smoothing 
+with respect to all the rates by making <code>
+<span style='white-space: nowrap'>&nbsp;\sigma</span></code>
+ for <code>
+<span style='white-space: nowrap'>&nbsp;\chi</span></code>
+
+and <code>
+<span style='white-space: nowrap'>&nbsp;\omega</span></code>
+ less that <code>
+<span style='white-space: nowrap'>&nbsp;\sigma</span></code>
+ for <code>
+<span style='white-space: nowrap'>&nbsp;\iota</span></code>
+. 
+
+<br>
+<br>
+<b><big><a name="2012-02-18" id="2012-02-18">2012-02-18</a></big></b>
+<br>
+Added 
+<a href="d4_simulate.py.htm#measure.sim_zeta" target="_top"><span style='white-space: nowrap'>sim_zeta</span></a>
+ and
+<a href="d4_simulate.py.htm#measure.fit_zeta" target="_top"><span style='white-space: nowrap'>fit_zeta</span></a>
+ to the parameters
+that can be controlled by
+<a href="d4_simulate.py.htm" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+.
+
+<br>
+<br>
+<b><big><a name="2012-02-17" id="2012-02-17">2012-02-17</a></big></b>
+<br>
+This program could crash during function evaluation
+with a <code><font color="blue">hasnan</font></code> because
+<a href="optimize.htm#sfun_in.prior_zeta" target="_top"><span style='white-space: nowrap'>prior_zeta</span></a>
+
+was being used in a place where 
+<a href="optimize.htm#sfun_in.optimize_zeta" target="_top"><span style='white-space: nowrap'>optimize_zeta</span></a>
+
+should have been used.
+This has been fixed.
+
+
+<br>
+<br>
+<b><big><a name="2012-02-16" id="2012-02-16">2012-02-16</a></big></b>
+
+<ol type="1"><li>
+Separate
+<a href="optimize.htm#sfun_in.optimize_zeta" target="_top"><span style='white-space: nowrap'>optimize_zeta</span></a>
+
+as a separate parameter instead of using
+<a href="optimize.htm#sfun_in.prior_zeta" target="_top"><span style='white-space: nowrap'>prior_zeta</span></a>
+
+for this value.
+</li><li>
+
+Improve convergence of <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+
+by adjusting the value of 
+<a href="optimize.htm#sfun_in.optimize_zeta" target="_top"><span style='white-space: nowrap'>optimize_zeta</span></a>
+.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2012-02-04" id="2012-02-04">2012-02-04</a></big></b>
+
+<ol type="1"><li>
+Make the simulation values for the rates <code><font color="blue">iota</font></code>,
+<code><font color="blue">rho</font></code>, <code><font color="blue">chi</font></code>, and <code><font color="blue">omega</font></code> the mean for the prior.
+This way, even though the prior is not used, the prior residuals are
+the error in the fit.
+</li><li>
+
+Echo the command line input values int the output generated by
+<a href="d4_change_sfun_in.py.htm" target="_top"><span style='white-space: nowrap'>d4_change_sfun_in.py</span></a>
+.
+</li><li>
+
+Add <code><font color="blue">max</font></code> to the list of functions allowed in 
+<code><font color="blue">d4_simulate.py</font></code>
+<a href="d4_simulate.py.htm#expressions" target="_top"><span style='white-space: nowrap'>expressions</span></a>
+.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2012-02-03" id="2012-02-03">2012-02-03</a></big></b>
+
+<ol type="1"><li>
+Change <a href="get_started.sh.htm" target="_top"><span style='white-space: nowrap'>get_started.sh</span></a>
+ to use configuration settings for 
+the <code><font color="blue">top_builddir</font></code> and <code><font color="blue">top_srcdir</font></code>,
+(like what <a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+ and <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+ do).
+</li><li>
+
+Change the <code><font color="blue">dismod_pde_csv</font></code>
+<a href="dismod_pde_csv.htm#sfun_in.csv.Output Template" target="_top"><span style='white-space: nowrap'>output&nbsp;template</span></a>
+
+to only define values for the fields that are not changed by user; i.e.,
+<code><font color="blue">age</font></code>, <code><font color="blue">cohort</font></code>, and <code><font color="blue">function</font></code>.
+All other numeric values and likelihood names now have a value
+that is easy to recognize and must be changed.
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2012-02-02" id="2012-02-02">2012-02-02</a></big></b>
+
+<ol type="1"><li>
+Better detection of error status returned by <code><font color="blue">dismod_pde_csv</font></code> to
+<a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+ and <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+.
+</li><li>
+
+The routine <code><font color="blue">print_results</font></code> was removed 
+(because the <a href="dismod_pde_csv.htm#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+ 
+contains the same information in a specified format.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2012-02-01" id="2012-02-01">2012-02-01</a></big></b>
+<br>
+Allow for different 
+<a href="d4_simulate.py.htm#measure.sim_cv" target="_top"><span style='white-space: nowrap'>sim_cv</span></a>
+ and
+<a href="d4_simulate.py.htm#measure.fit_cv" target="_top"><span style='white-space: nowrap'>fit_cv</span></a>
+ values
+for each integrand.
+
+<br>
+<br>
+<b><big><a name="2012-01-31" id="2012-01-31">2012-01-31</a></big></b>
+<br>
+Change <a href="d4_compare_sfun.py.htm" target="_top"><span style='white-space: nowrap'>d4_compare_sfun.py</span></a>
+ to check not only the maximum deviation,
+but also the average and median.
+In addition, separate the expression into two parts; an
+<a href="d4_compare_sfun.py.htm#include_expr" target="_top"><span style='white-space: nowrap'>include_expr</span></a>
+ and a
+<a href="d4_compare_sfun.py.htm#value_expr" target="_top"><span style='white-space: nowrap'>value_expr</span></a>
+.
+
+<br>
+<br>
+<b><big><a name="2012-01-30" id="2012-01-30">2012-01-30</a></big></b>
+<br>
+Add more noise to the <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+ simulation
+and fitting.
+
+<br>
+<br>
+<b><big><a name="2012-01-27" id="2012-01-27">2012-01-27</a></big></b>
+
+<ol type="1"><li>
+First version of <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+ that passes its 
+<a href="gaussian.sh.htm#Check Solution" target="_top"><span style='white-space: nowrap'>solution&nbsp;check</span></a>
+.
+</li><li>
+
+Add the arguments 
+<a href="d4_simulate.py.htm#measure.like" target="_top"><span style='white-space: nowrap'>like</span></a>
+,
+<a href="d4_simulate.py.htm#measure.sim_cv" target="_top"><span style='white-space: nowrap'>sim_cv</span></a>
+, and
+<a href="d4_simulate.py.htm#measure.fit_cv" target="_top"><span style='white-space: nowrap'>fit_cv</span></a>
+
+to the data simulator.
+</li><li>
+
+Fit <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+ with a small amount of Gaussian measurement noise.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2012-01-25" id="2012-01-25">2012-01-25</a></big></b>
+
+<ol type="1"><li>
+First version of <a href="gaussian.sh.htm" target="_top"><span style='white-space: nowrap'>gaussian.sh</span></a>
+, 
+an example / test that simulates and fits a Gaussian function
+of age and time.
+This is not yet passing its correctness check and hence is
+not yet included in the automated testing system.
+</li><li>
+
+Improve <a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+ by including the headers
+<a href="diabetes.sh.htm#python_path" target="_top"><span style='white-space: nowrap'>python_path</span></a>
+ and
+<a href="diabetes.sh.htm#dismod_pde_path" target="_top"><span style='white-space: nowrap'>dismod_pde_path</span></a>
+.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2012-01-23" id="2012-01-23">2012-01-23</a></big></b>
+
+<ol type="1"><li>
+Change <code><font color="blue">test/constant.sh</font></code> to test all of the possible
+<a href="dismod_pde_csv.htm#measure_in.csv.integrand" target="_top"><span style='white-space: nowrap'>integrands</span></a>
+.
+</li><li>
+
+Enable <a href="d4_simulate.py.htm" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+ to simulate data with lower and upper ages equal.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2012-01-17" id="2012-01-17">2012-01-17</a></big></b>
+<br>
+The value <a href="d4_simulate.py.htm#age_bound" target="_top"><span style='white-space: nowrap'>age_bound</span></a>
+
+used to have to be greater than zero,
+and 
+<code><i><font color="black"><span style='white-space: nowrap'>age_max</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age_min</span></font></i></code>
+ had to be greater than two.
+This has been changed so that 
+<code><i><font color="black"><span style='white-space: nowrap'>age_bound</span></font></i></code>
+
+and 
+<code><i><font color="black"><span style='white-space: nowrap'>age_max</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age_min</span></font></i></code>
+ can be zero.
+
+<br>
+<br>
+<b><big><a name="2012-01-13" id="2012-01-13">2012-01-13</a></big></b>
+
+<ol type="1"><li>
+Remove white space from 
+<a href="dismod_pde_csv.htm#measure_out.csv" target="_top"><span style='white-space: nowrap'>measure_out.csv</span></a>
+
+so that it white space removal is not necessary for reading.
+(Also done for <a href="dismod_pde_csv.htm#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+.)
+</li><li>
+
+Allow for all possible 
+<a href="dismod_pde_csv.htm#measure_in.csv.integrand" target="_top"><span style='white-space: nowrap'>integrands</span></a>
+
+in <a href="d4_simulate.py.htm" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2011-11-11" id="2011-11-11">2011-11-11</a></big></b>
+<br>
+Change <a href="get_started.sh.htm" target="_top"><span style='white-space: nowrap'>get_started.sh</span></a>
+ and <a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+ to use
+prior, instead of limits, to set initial C value.
+
+
+<br>
+<br>
+<b><big><a name="2011-11-10" id="2011-11-10">2011-11-10</a></big></b>
+
+<ol type="1"><li>
+Include all the 
+<a href="dismod_pde_csv.htm#measure_in.csv" target="_top"><span style='white-space: nowrap'>measure_in.csv</span></a>
+
+data columns in the
+<a href="dismod_pde_csv.htm#measure_out.csv" target="_top"><span style='white-space: nowrap'>measure_out.csv</span></a>
+ file.
+</li><li>
+
+Change the data column <code><font color="blue">measure</font></code> in 
+<a href="dismod_pde_csv.htm#measure_out.csv" target="_top"><span style='white-space: nowrap'>measure_out.csv</span></a>
+ to
+<a href="dismod_pde_csv.htm#measure_in.csv.meas_value" target="_top"><span style='white-space: nowrap'>meas_value</span></a>
+ so it has
+the same name as in 
+<code><i><font color="black"><span style='white-space: nowrap'>measure_in.csv</span></font></i></code>
+.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2011-11-08" id="2011-11-08">2011-11-08</a></big></b>
+<br>
+Change assert in <code><font color="blue">pair2index</font></code> to allow for case where 
+
+<code><i><font color="black"><span style='white-space: nowrap'>time_lower</span></font></i><font color="blue"><span style='white-space: nowrap'>==</span></font><i><font color="black"><span style='white-space: nowrap'>time_upper</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="2011-11-04" id="2011-11-04">2011-11-04</a></big></b>
+<br>
+Changed the definition of CSV file to allow for double quotes
+and not allow for trimming white space.
+<code><span style='white-space: nowrap'><br>
+<br>
+</span></code>Merged in following changes from effect branch:
+<ol type="1"><li>
+Change 
+<code><i><font color="black"><span style='white-space: nowrap'>covariate_in.csv</span></font></i></code>
+ to 
+<a href="dismod_pde_csv.htm#effect_in.csv" target="_top"><span style='white-space: nowrap'>effect_in.csv</span></a>
+ and
+change its column names from
+<code><font color="blue">name, beta_lower, beta_initial, beta_upper</font></code>, to
+<code><font color="blue">covariate, lower, initial, upper</font></code>.
+</li><li>
+
+Change 
+<code><i><font color="black"><span style='white-space: nowrap'>covariate_out.csv</span></font></i></code>
+ to 
+<a href="dismod_pde_csv.htm#effect_out.csv" target="_top"><span style='white-space: nowrap'>effect_out.csv</span></a>
+ and
+change its column names from
+<code><font color="blue">covariate, beta_estimate</font></code> to <code><font color="blue">covariate estimate</font></code>.
+</li><li>
+
+No longer require 
+<code><i><font color="black"><span style='white-space: nowrap'>covariate_in.csv</span></font></i></code>
+ when computing 
+template for <a href="dismod_pde_csv.htm#sfun_in.csv" target="_top"><span style='white-space: nowrap'>sfun_in.csv</span></a>
+.
+</li><li>
+
+Change the order of the arguments in the <code><font color="blue">dismod_pde_csv</font></code>
+<a href="dismod_pde_csv.htm#Syntax" target="_top"><span style='white-space: nowrap'>syntax</span></a>
+.
+</li><li>
+
+Change beta (measurement effect) to be a multiplier for
+each integrand, covariate pair (not just for each covariate).
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2011-10-27" id="2011-10-27">2011-10-27</a></big></b>
+<br>
+Allow for multiple 
+<a href="dismod_pde_csv.htm#measure_in.csv.Comments" target="_top"><span style='white-space: nowrap'>comment</span></a>
+ columns
+in the measurement input file.
+
+<br>
+<br>
+<b><big><a name="2011-10-20" id="2011-10-20">2011-10-20</a></big></b>
+
+<ol type="1"><li>
+Change the <a href="optimize.htm#measure_in.integrand" target="_top"><span style='white-space: nowrap'>integrand&nbsp;names</span></a>
+
+and extend the list of possible integrands.
+</li><li>
+
+Fix an order of initialization bug that came up when using
+<code><font color="blue">gcc</font></code> version 4.6.1.
+</li><li>
+
+Major improvement of <a href="get_started.sh.htm" target="_top"><span style='white-space: nowrap'>get_started.sh</span></a>
+ example.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2011-10-14" id="2011-10-14">2011-10-14</a></big></b>
+<br>
+Put time on horizontal axis for all plots in <a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+.
+
+<br>
+<br>
+<b><big><a name="2011-10-09" id="2011-10-09">2011-10-09</a></big></b>
+<br>
+Use <code>
+<span style='white-space: nowrap'>&nbsp;\omega</span></code>
+ instead of <code>
+<span style='white-space: nowrap'>&nbsp;\mu</span></code>
+ for the rate
+of other cause mortality (because omega begins with o).
+
+<br>
+<br>
+<b><big><a name="2011-10-07" id="2011-10-07">2011-10-07</a></big></b>
+<br>
+Use <a href="www.mortality.org" target="_top"><span style='white-space: nowrap'>www.mortality.org</span></a>
+ for all cause mortality data
+in <a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+ example; see <code><font color="blue">example/diabetes/measure_in.sh</font></code>.
+
+<br>
+<br>
+<b><big><a name="2011-10-03" id="2011-10-03">2011-10-03</a></big></b>
+
+<ol type="1"><li>
+Document the <a href="diabetes.sh.htm" target="_top"><span style='white-space: nowrap'>diabetes.sh</span></a>
+ example and use
+it to replace the <code><font color="blue">hep_c.sh</font></code> example.
+</li><li>
+
+Move <code><font color="blue">example/dismod_pde_csv.sh</font></code> to 
+<a href="get_started.sh.htm" target="_top"><span style='white-space: nowrap'>example/get_started</span></a>
+.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2011-10-02" id="2011-10-02">2011-10-02</a></big></b>
+
+<ol type="1"><li>
+Add <a href="optimize.htm#sfun_in.optimize_lower" target="_top"><span style='white-space: nowrap'>lower</span></a>
+
+and <a href="optimize.htm#sfun_in.optimize_upper" target="_top"><span style='white-space: nowrap'>upper</span></a>
+ limits
+to the 
+<a href="optimize.htm#MAP Optimization.Problem" target="_top"><span style='white-space: nowrap'>optimization&nbsp;problem</span></a>
+.
+In addition, group these with the optimizer
+<a href="optimize.htm#sfun_in.optimize_initial" target="_top"><span style='white-space: nowrap'>initial</span></a>
+ value
+(starting value).
+</li><li>
+
+Remove the uniform distribution from the possible
+<a href="optimize.htm#sfun_in.prior_like" target="_top"><span style='white-space: nowrap'>prior_like</span></a>
+ options
+(use lower and upper limits instead).
+</li><li>
+
+Add lower and upper bounds to <a href="d4_change_sfun_in.py.htm" target="_top"><span style='white-space: nowrap'>d4_change_sfun_in.py</span></a>
+ and
+organize input by the column groups,
+<code><font color="blue">optimize</font></code>, <code><font color="blue">prior</font></code>, <code><font color="blue">age</font></code> and <code><font color="blue">cohort</font></code> 
+instead of organizing by name.
+For example
+<code><font color="blue">-iota_prior</font></code> was changed to <code><font color="blue">-prior_iota</font></code>
+and the new group <code><font color="blue">-optimize_iota</font></code> was added.
+In addition, use <code><font color="blue">-comment</font></code> alone (without variable name)
+for comments.
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2011-09-27" id="2011-09-27">2011-09-27</a></big></b>
+<br>
+Change diabetes example to use uniform, instead of Gaussian, distribution
+for the prior on remission <code>
+<span style='white-space: nowrap'>&nbsp;\rho</span></code>
+.
+Since the lower and upper limits for the uniform were equal,
+this reduced the number of variables in the optimization problem by 
+about 18 percent.
+
+
+<br>
+<br>
+<b><big><a name="2011-09-26" id="2011-09-26">2011-09-26</a></big></b>
+
+<ol type="1"><li>
+Some values that were equal to 
+<a href="dismod_pde_csv.htm#Infinity" target="_top"><span style='white-space: nowrap'>infinity</span></a>
+ were being written as <code><font color="blue">1e19</font></code>
+instead of <code><font color="blue">inf</font></code>.  This has been fixed.
+</li><li>
+
+Use 
+<code><i><font color="black"><span style='white-space: nowrap'>plot_file</span></font></i><font color="blue"><span style='white-space: nowrap'>='screen'</span></font></code>
+ 
+for plots to the screen (not <code><font color="blue">''</font></code>).
+</li><li>
+
+There was a bug in <code><font color="blue">example/diabetes/plot_measure.sh</font></code> and it
+was plotting <code><font color="blue">prevalence</font></code> no matter what variable was chosen.
+This has been fixed.
+</li><li>
+
+Change <a href="d4_plot.py.htm" target="_top"><span style='white-space: nowrap'>d4_plot.py</span></a>
+ to only draw one figure
+and to allow for plots to either the screen of a file
+(not just the screen).
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2011-09-25" id="2011-09-25">2011-09-25</a></big></b>
+<br>
+The <code><font color="blue">bound</font></code> option has been changed to <code><font color="blue">uniform</font></code>
+(for the uniform distribution)
+and the role of <code><font color="blue">mean</font></code> and <code><font color="blue">sigma</font></code>, for this case, has been switch.
+In addition, lower as well as upper bounds have been included 
+and this option has been added to the dismod_pde API; see
+<a href="optimize.htm#Likelihood Functions.Huber Loss Function" target="_top"><span style='white-space: nowrap'>Huber&nbsp;loss&nbsp;function</span></a>
+ 
+and
+<a href="optimize.htm#sfun_out.prior_residual" target="_top"><span style='white-space: nowrap'>prior&nbsp;residual</span></a>
+.
+<code><span style='white-space: nowrap'><br>
+<br>
+</span></code>The bounds API entry, stiff integration entry, and
+optimization limits entry were removed from
+the <a href="wish_list.htm" target="_top"><span style='white-space: nowrap'>wish_list</span></a>
+ (they have been completed).
+<code><span style='white-space: nowrap'><br>
+<br>
+</span></code>The returned residuals were changed from zero to <code>
+<span style='white-space: nowrap'>&nbsp;\infty</span></code>
+
+in the undefined cases; e.g., see the <code>
+<span style='white-space: nowrap'>&nbsp;\infty</span></code>
+ cases for
+<a href="optimize.htm#sfun_out.age_residual" target="_top"><span style='white-space: nowrap'>age_residual</span></a>
+ and
+<a href="optimize.htm#sfun_out.age_scaled" target="_top"><span style='white-space: nowrap'>age_scaled</span></a>
+.
+
+<br>
+<br>
+<b><big><a name="2011-08-16" id="2011-08-16">2011-08-16</a></big></b>
+<br>
+Add feature where for prior likelihood is <code><font color="blue">bound</font></code>,
+the prior mean is an upper bound for the corresponding variable.
+(Just in testing phase and not yet documented).
+
+<br>
+<br>
+<b><big><a name="2011-08-09" id="2011-08-09">2011-08-09</a></big></b>
+
+<ol type="1"><li>
+Fix bug in <code><font color="blue">d4_cumulative.py</font></code>
+(the <a href="d4_cumulative.py.htm#f_name" target="_top"><span style='white-space: nowrap'>f_name</span></a>
+ argument was not working
+correctly). 
+</li><li>
+
+Change the sign of the covariate multipliers in the 
+<a href="optimize.htm#measure_out.adjusted" target="_top"><span style='white-space: nowrap'>adjusted</span></a>
+ data equation
+so that a positive multiplier means a positive correlation between
+the covariate and the corresponding data value.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2011-08-05" id="2011-08-05">2011-08-05</a></big></b>
+<br>
+Change the
+<a href="optimize.htm#sfun_out.age_residual" target="_top"><span style='white-space: nowrap'>age&nbsp;residual</span></a>
+ calculation
+to use the semi-stiff integrator
+<a href="http://www.coin-or.org/CppAD/Doc/rosen34.xml" target="_top"><span style='white-space: nowrap'>Rosen34</span></a>
+,
+instead of the non-stiff integrator
+<a href="http://www.coin-or.org/CppAD/Doc/runge45.xml" target="_top"><span style='white-space: nowrap'>Runge45</span></a>
+.
+This avoids the occurrence of not a number (nan), 
+and corresponding abort,
+when the optimizer tries a large and not realistic value for 
+the rate constants in the ODE for <code>
+<span style='white-space: nowrap'>&nbsp;S</span></code>
+ and <code>
+<span style='white-space: nowrap'>&nbsp;C</span></code>
+.
+
+<br>
+<br>
+<b><big><a name="2011-08-04" id="2011-08-04">2011-08-04</a></big></b>
+<br>
+The <a href="d4_contour.py.htm" target="_top"><span style='white-space: nowrap'>d4_contour.py</span></a>
+ command line arguments
+
+<code><i><font color="black"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x_min,&nbsp;x_max,&nbsp;y_min,&nbsp;y_max<br>
+</span></font></i></code>
+were not being used to limit the plot ranges.
+This has been fixed.
+
+<br>
+<br>
+<b><big><a name="2011-08-02" id="2011-08-02">2011-08-02</a></big></b>
+<br>
+Use new version of CppAD <code><font color="blue">PrintFor</font></code> command
+that enables us to print bad results during zero order forward mode.
+This way it is not necessary to recompile and run
+with retape <code><font color="blue">true</font></code> to get error message (this was a slow process).
+
+<br>
+<br>
+<b><big><a name="2011-07-27" id="2011-07-27">2011-07-27</a></big></b>
+
+<ol type="1"><li>
+Improve debugging output when approximation for <code>
+<span style='white-space: nowrap'>&nbsp;S</span></code>
+ or <code>
+<span style='white-space: nowrap'>&nbsp;C</span></code>
+
+becomes negative.
+</li><li>
+
+Add the 
+<a href="optimize.htm#parameter.debug_output" target="_top"><span style='white-space: nowrap'>debug_output</span></a>
+ parameter
+which improves the users ability to track down problems.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2011-07-14" id="2011-07-14">2011-07-14</a></big></b>
+<br>
+Add a <code><font color="blue">comment</font></code> column to the 
+
+<code><i><font color="black"><span style='white-space: nowrap'>measure_in.csv</span></font></i></code>
+ file.
+
+<br>
+<br>
+<b><big><a name="2011-05-11" id="2011-05-11">2011-05-11</a></big></b>
+<br>
+The correction on <a href="whats_new.htm#2011-05-03" target="_top"><span style='white-space: nowrap'>2011-05-03</span></a>
+
+introduced a bug whereby the <code>
+<span style='white-space: nowrap'>&nbsp;\sigma</span></code>
+ values  
+were not being set correctly. This has been fixed
+
+<br>
+<br>
+<b><big><a name="2011-05-04" id="2011-05-04">2011-05-04</a></big></b>
+
+<ol type="1"><li>
+Change the <code><font color="blue">hep_c.sh</font></code> example data from excess mortality
+to relative risk.
+(The <code><font color="blue">hep_c.sh</font></code> example has been replaced; see 
+<a href="whats_new.htm#2011-10-03" target="_top"><span style='white-space: nowrap'>2011-10-03</span></a>
+).
+
+</li><li>
+
+Advance to a newer version of CppAD (20110505) which detects and reports
+nans and infinities during the optimization procedure.
+
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2011-05-03" id="2011-05-03">2011-05-03</a></big></b>
+<br>
+Values written to the <a href="dismod_pde_csv.htm" target="_top"><span style='white-space: nowrap'>dismod_pde_csv</span></a>
+ output files
+were being rounded off so that they fit in a certain number of
+columns and the columns lined up.
+This lead to later errors where time was not equal to age plus cohort.
+The error has been fixed by no longer lining up the columns of the output files 
+(which is not a problem because one usually uses a spread sheet to 
+view the output files).
+
+<br>
+<br>
+<b><big><a name="2011-05-02" id="2011-05-02">2011-05-02</a></big></b>
+
+<ol type="1"><li>
+The optimizer would sometimes detect a <code><font color="blue">Nan</font></code>.
+This was due was a bug in the evaluations of the constraint equations
+during optimization.
+(Constraint equations corresponding <code>
+<span style='white-space: nowrap'>&nbsp;\sigma&nbsp;=&nbsp;0</span></code>
+ in the <a href="optimize.htm#Likelihood Functions.Huber Loss Function" target="_top"><span style='white-space: nowrap'>Huber&nbsp;Loss&nbsp;Function</span></a>
+.)
+
+</li><li>
+
+Another source of the <code><font color="blue">Nan</font></code> was that the ODE solver step size
+(of one year) was too large for some problems and the corresponding
+solution for S and C was negative.
+Therefore a <code><font color="blue">stiff ODE solver</font></code> 
+entry was added to the wish list 
+(complete on <a href="whats_new.htm#2011-09-25" target="_top"><span style='white-space: nowrap'>2011-09-25</span></a>
+).
+In addition, this problem could be detected if we used
+<a href="wish_list.htm#Objective and Constraint Retaping" target="_top"><span style='white-space: nowrap'>retaping</span></a>
+.
+
+</li><li>
+
+Add <code><font color="blue">exp</font></code> to the functions available to the expressions in
+<a href="d4_change_sfun_in.py.htm" target="_top"><span style='white-space: nowrap'>d4_change_sfun_in.py</span></a>
+.
+
+</li><li>
+
+The error messaging during reading the <a href="dismod_pde_csv.htm" target="_top"><span style='white-space: nowrap'>dismod_pde_csv</span></a>
+
+input files has been improved.
+
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2011-04-28" id="2011-04-28">2011-04-28</a></big></b>
+<br>
+Fix unix <code><font color="blue">sed</font></code> command error on install for Mac systems.
+
+<br>
+<br>
+<b><big><a name="2011-04-27" id="2011-04-27">2011-04-27</a></big></b>
+
+<ol type="1"><li>
+Make all of the installed <a href="python_csv.htm" target="_top"><span style='white-space: nowrap'>python_csv</span></a>
+ scripts
+automatically use the version of python chosen during the 
+<a href="install.htm#Configure" target="_top"><span style='white-space: nowrap'>configure</span></a>
+ command.
+</li><li>
+
+Improve the <a href="example.htm" target="_top"><span style='white-space: nowrap'>example</span></a>
+ and its documentation. 
+</li><li>
+
+Group all the <a href="python_csv.htm" target="_top"><span style='white-space: nowrap'>python_csv</span></a>
+ scripts together
+and include the <a href="d4_cumulative.py.htm" target="_top"><span style='white-space: nowrap'>d4_cumulative.py</span></a>
+ documentation
+(which was missing in previous versions).
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2011-04-26" id="2011-04-26">2011-04-26</a></big></b>
+<br>
+The <code><font color="blue">hep_c.sh</font></code>, <code><font color="blue">prevalence.csv.csv</font></code>, 
+and <code><font color="blue">all_cause.csv</font></code> files 
+were missing from the distribution.
+Fix this by reorganizing the <code><font color="blue">hep_c</font></code> example.
+
+<br>
+<br>
+<b><big><a name="2011-04-25" id="2011-04-25">2011-04-25</a></big></b>
+<br>
+Fix warning about using <code><font color="blue">abs</font></code> where should use <code><font color="blue">fabs</font></code>
+in <a href="optimize_xam.cpp.htm" target="_top"><span style='white-space: nowrap'>optimize_xam.cpp</span></a>
+ source code.
+
+<br>
+<br>
+<b><big><a name="2011-04-23" id="2011-04-23">2011-04-23</a></big></b>
+
+<ol type="1"><li>
+Change python script names to all begin with <code><font color="blue">d4_</font></code> 
+(for dismod_pde) and install them in the dismod_pde
+<a href="install.htm#Prefix" target="_top"><span style='white-space: nowrap'>prefix</span></a>
+ directory; see
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i><font color="blue"><span style='white-space: nowrap'>/bin/d4_</span></font><i><font color="black"><span style='white-space: nowrap'>name</span></font></i><font color="blue"><span style='white-space: nowrap'>.py<br>
+</span></font></code>
+.
+
+</li><li>
+
+Change 
+<code><i><font color="black"><span style='white-space: nowrap'>term</span></font></i><font color="blue"><span style='white-space: nowrap'>_name</span></font></code>
+ to 
+<code><i><font color="black"><span style='white-space: nowrap'>term_like</span></font></i></code>
+ for
+
+<code><i><font color="black"><span style='white-space: nowrap'>term</span></font></i></code>
+ equal to <code><font color="blue">meas</font></code>, <code><font color="blue">prior</font></code>, <code><font color="blue">age</font></code>, and
+<code><font color="blue">cohort</font></code>.
+
+</li><li>
+
+Improve <code><font color="blue">hep_c</font></code> documentation
+and include links to the input prevalence and all cause mortality data.
+
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2011-04-10" id="2011-04-10">2011-04-10</a></big></b>
+<br>
+Add the <code><font color="blue">PYTHON_PREFIX</font></code> argument to the configure command line
+so that we can use dismod_pde on omak (which by default uses a very old version 
+of python).
+
+<br>
+<br>
+<b><big><a name="2011-04-08" id="2011-04-08">2011-04-08</a></big></b>
+<br>
+The model for the Hepatitis C real data example <code><font color="blue">hep_c.sh</font></code> has been
+improved and it now runs on both with and without excess mortality
+and on the age and cohort grid spacings of 15, 10, and 5 years.
+(The <code><font color="blue">hep_c.sh</font></code> example has been replaced; see 
+<a href="whats_new.htm#2011-10-03" target="_top"><span style='white-space: nowrap'>2011-10-03</span></a>
+).
+
+<br>
+<br>
+<b><big><a name="2011-04-06" id="2011-04-06">2011-04-06</a></big></b>
+<br>
+Make the parameters in 
+<a href="dismod_pde_csv.htm#parameter.csv" target="_top"><span style='white-space: nowrap'>parameter.csv</span></a>
+ optional; 
+i.e., they get their default value if not present.
+
+<br>
+<br>
+<b><big><a name="2011-04-05" id="2011-04-05">2011-04-05</a></big></b>
+<br>
+The old version of the paper has been removed from the distribution.
+It is out of date and a new paper is being written for submission
+as a journal article.
+
+<br>
+<br>
+<b><big><a name="2011-04-03" id="2011-04-03">2011-04-03</a></big></b>
+<br>
+Add the real data <code><font color="blue">hep_c.sh</font></code> example and test.
+
+<br>
+<br>
+<b><big><a name="2011-03-31" id="2011-03-31">2011-03-31</a></big></b>
+<br>
+Add the <a href="d4_sfun_grid.py.htm" target="_top"><span style='white-space: nowrap'>d4_sfun_grid.py</span></a>
+ routine
+for interpolating the <a href="dismod_pde_csv.htm#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+ 
+values to a rectangular grid in age and time.
+
+<br>
+<br>
+<b><big><a name="2011-03-29" id="2011-03-29">2011-03-29</a></big></b>
+
+<ol type="1"><li>
+Make all the residuals use the same transformation; i.e.,
+use the <code><font color="blue">zeta</font></code> offset with all residuals and 
+make the scaled residual just the residual divided by the 
+corresponding <code><font color="blue">sigma</font></code>.
+</li><li>
+
+Extensive improvements to the 
+<a href="dismod_pde_csv.htm" target="_top"><span style='white-space: nowrap'>dismod_pde_csv</span></a>
+ and <a href="optimize.htm" target="_top"><span style='white-space: nowrap'>optimize</span></a>
+ documentation.
+</li><li>
+
+Remove the <code><font color="blue">check_opt</font></code> routine because it was not a reliable test
+(used difference of penalty functions for constraint checking).
+</li><li>
+
+Add test of residuals returned by <code><font color="blue">optimize</font></code>;
+see <a href="optimize_xam.cpp.htm" target="_top"><span style='white-space: nowrap'>optimize_xam.cpp</span></a>
+.
+</li><li>
+
+Change second order residuals so that they are defined
+in terms of first order residuals (simplifies notation).
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2011-03-25" id="2011-03-25">2011-03-25</a></big></b>
+
+<ol type="1"><li>
+For 
+<code><i><font color="black"><span style='white-space: nowrap'>param</span></font></i></code>
+ equal to <code><font color="blue">name</font></code>, <code><font color="blue">zeta</font></code> and <code><font color="blue">sigma</font></code>,
+change 
+<code><font color="blue"><span style='white-space: nowrap'>likelihood_</span></font><i><font color="black"><span style='white-space: nowrap'>param</span></font></i></code>
+ to 
+<code><font color="blue"><span style='white-space: nowrap'>meas_</span></font><i><font color="black"><span style='white-space: nowrap'>param</span></font></i></code>
+.
+This better distinguishes them from the other names, zetas, and sigmas.
+</li><li>
+
+Change the <code><font color="blue">value</font></code> column to the <code><font color="blue">meas_value</font></code> column in
+<a href="dismod_pde_csv.htm#measure_in.csv" target="_top"><span style='white-space: nowrap'>measure_in.csv</span></a>
+
+(so it looks more like <code><font color="blue">meas_like</font></code>, <code><font color="blue">meas_zeta</font></code>, ...).
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2011-03-23" id="2011-03-23">2011-03-23</a></big></b>
+<br>
+Fix bug in the second order age difference
+when it starts at <code>
+<span style='white-space: nowrap'>&nbsp;(0,&nbsp;k)</span></code>
+ and <code>
+<span style='white-space: nowrap'>&nbsp;(1,&nbsp;k)</span></code>
+ is not in the 
+computational grid.
+The <code><font color="blue">test/age2_from0.sh</font></code> test now passes.
+
+<br>
+<br>
+<b><big><a name="2011-03-21" id="2011-03-21">2011-03-21</a></big></b>
+<br>
+Add <code><font color="blue">test/age2_form0.sh</font></code>,
+a new test that demonstrates a bug in the second order age difference
+when it starts at <code>
+<span style='white-space: nowrap'>&nbsp;(0,&nbsp;k)</span></code>
+ and <code>
+<span style='white-space: nowrap'>&nbsp;(1,&nbsp;k)</span></code>
+ is not in the
+computational grid.
+
+<br>
+<br>
+<b><big><a name="2011-03-17" id="2011-03-17">2011-03-17</a></big></b>
+<br>
+Run the Hepatitis-C example in 
+the <code><font color="blue">build</font></code> subdirectory as part of the
+<a href="install.htm#Test" target="_top"><span style='white-space: nowrap'>make&nbsp;test_all</span></a>
+ command.
+(We are not yet checking the output, just making sure it runs.)
+
+<br>
+<br>
+<b><big><a name="2011-02-12" id="2011-02-12">2011-02-12</a></big></b>
+<br>
+More derived file generator to <a href="d4_sfun_der.py.htm" target="_top"><span style='white-space: nowrap'>d4_sfun_der.py</span></a>
+ and 
+change interface so an use any sfun_out values to define derived
+quantities.
+
+<br>
+<br>
+<b><big><a name="2011-02-10" id="2011-02-10">2011-02-10</a></big></b>
+<br>
+Create the <code><font color="blue">derived_csv.py</font></code> program so that we can plot
+derived quantities like the estimate for prevalence.
+
+<br>
+<br>
+<b><big><a name="2011-02-09" id="2011-02-09">2011-02-09</a></big></b>
+<br>
+The <a href="d4_plot.py.htm" target="_top"><span style='white-space: nowrap'>d4_plot.py</span></a>
+ program has been extended to
+control when <code><font color="blue">--lines</font></code> or just <code><font color="blue">--points</font></code> are plotted,
+and to used limits as well as values for 
+<a href="d4_plot.py.htm#--connect" target="_top"><span style='white-space: nowrap'>connections</span></a>
+.
+
+
+<br>
+<br>
+<b><big><a name="2011-01-27" id="2011-01-27">2011-01-27</a></big></b>
+<br>
+Remove mistaken comma at the end of each line in 
+<a href="dismod_pde_csv.htm#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+.
+
+<br>
+<br>
+<b><big><a name="2011-01-25" id="2011-01-25">2011-01-25</a></big></b>
+
+<ol type="1"><li>
+There was a bug in the <a href="csv.htm" target="_top"><span style='white-space: nowrap'>csv</span></a>
+ file reader when the 
+last field in line was completely empty; i.e., when a line ended 
+in a comma. This has been fixed.
+</li><li>
+
+The date in the columns <code><font color="blue">model</font></code> and <code><font color="blue">corrected</font></code>
+were switch in the file
+<a href="dismod_pde_csv.htm#measure_out.csv" target="_top"><span style='white-space: nowrap'>measure_out.csv</span></a>
+.
+This has been fixed.
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2011-01-21" id="2011-01-21">2011-01-21</a></big></b>
+<br>
+There was an error message bug that aborted <a href="dismod_pde_csv.htm" target="_top"><span style='white-space: nowrap'>dismod_pde_csv</span></a>
+
+when ever there was one and only one covariate column specified by
+
+<code><i><font color="black"><span style='white-space: nowrap'>covariate_in.csv</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="2010-10-16" id="2010-10-16">2010-10-16</a></big></b>
+
+<ol type="1"><li>
+Major changes were made to the <a href="wish_list.htm" target="_top"><span style='white-space: nowrap'>wish_list</span></a>
+.
+Completed entries were removed,
+new entries were added,
+and then some entries were combined under one heading.
+</li><li>
+
+One of the tests in <code><font color="blue">test/check_opt_tst.cpp/</font></code> did not work 
+under fedora (while it did work under cygwin).
+This is because the maximum number of iterations was to small
+(for the actual simulated noise sequence).
+This has been fixed.
+</li><li>
+
+Add time to the columns output by <a href="d4_simulate.py.htm" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+
+and change the column order from <code><font color="blue">cohort</font></code>, <code><font color="blue">age</font></code>, ...,
+to <code><font color="blue">age</font></code>, <code><font color="blue">cohort</font></code>, ...
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2010-10-14" id="2010-10-14">2010-10-14</a></big></b>
+
+<ol type="1"><li>
+The <a href="d4_plot.py.htm" target="_top"><span style='white-space: nowrap'>d4_plot.py</span></a>
+ option <code><font color="blue">--filter</font></code> was changed
+to <a href="d4_plot.py.htm#--string" target="_top"><span style='white-space: nowrap'>--string</span></a>
+ and the
+<a href="d4_plot.py.htm#--numeric" target="_top"><span style='white-space: nowrap'>--numeric</span></a>
+ option was added.
+This new option allows one to use expressions for the selection.
+So, for example, one can exclude age zero from the plots
+(there is often a large gap between age zero and the next point
+on the computational grid).
+
+</li><li>
+
+Change <a href="d4_compare_sfun.py.htm" target="_top"><span style='white-space: nowrap'>d4_compare_sfun.py</span></a>
+ so that the acceptance is
+an expression that can depend on the time and other factors
+(not just an absolute and relative tolerance that are constant).
+
+</li><li>
+
+Add non-monotonic test case that passes test
+(called <code><font color="blue">test/gaussian.sh</font></code> because incidence is Gaussian
+w.r.t. age).
+
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2010-10-13" id="2010-10-13">2010-10-13</a></big></b>
+
+<ol type="1"><li>
+Enable <a href="d4_plot.py.htm" target="_top"><span style='white-space: nowrap'>d4_plot.py</span></a>
+ to plot multiple figures.
+</li><li>
+
+Add 
+<code><i><font color="black"><span style='white-space: nowrap'>symbol</span></font></i></code>
+ to  <code><font color="blue">--pair</font></code>
+<code><font color="blue">d4_plot.py</font></code> plots.
+</li><li>
+
+A bilinear test case is now passing; see <code><font color="blue">test/bilinear.sh</font></code>.
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2010-10-12" id="2010-10-12">2010-10-12</a></big></b>
+<br>
+There was a bug for the last (largest) age and cohort differences
+when first and second 
+<a href="dismod_pde_csv.htm#sfun_in.csv.order" target="_top"><span style='white-space: nowrap'>order</span></a>
+
+differences were mixed between variables; e.g., 
+<code><font color="blue">iota</font></code> used second difference and <code><font color="blue">rho</font></code> used first differences.
+This has been fixed.
+
+
+<br>
+<br>
+<b><big><a name="2010-10-11" id="2010-10-11">2010-10-11</a></big></b>
+
+<ol type="1"><li>
+The <code><font color="blue">age_order</font></code> field was added
+to the stochastic function input information in
+<a href="optimize.htm#sfun_in" target="_top"><span style='white-space: nowrap'>sfun_in</span></a>
+ and
+<a href="dismod_pde_csv.htm#sfun_in.csv" target="_top"><span style='white-space: nowrap'>sfun_in.csv</span></a>
+.
+This enables one to use either first or second differences 
+with respect to age when modeling the stochastic functions.
+
+</li><li>
+
+The <a href="d4_change_sfun_in.py.htm" target="_top"><span style='white-space: nowrap'>d4_change_sfun_in.py</span></a>
+ was extended so that 
+the likelihood <a href="d4_change_sfun_in.py.htm#name" target="_top"><span style='white-space: nowrap'>name</span></a>
+
+can depend on the age and cohort values.
+
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2010-10-10" id="2010-10-10">2010-10-10</a></big></b>
+<br>
+Move <code><font color="blue">check_sfun_out.py</font></code>
+to <a href="d4_compare_sfun.py.htm" target="_top"><span style='white-space: nowrap'>d4_compare_sfun.py</span></a>
+ and change it from just a checker
+to program that outputs as csv file for comparison between
+estimate and true solution.
+
+<br>
+<br>
+<b><big><a name="2010-10-09" id="2010-10-09">2010-10-09</a></big></b>
+
+
+<ol type="1"><li>
+Add <a href="_index.htm" target="_top"><span style='white-space: nowrap'>_index</span></a>
+ entries to the user documentation.
+
+</li><li>
+
+Remove which space 
+the template version of 
+<a href="dismod_pde_csv.htm#sfun_in.csv.Output Template" target="_top"><span style='white-space: nowrap'>sfun_in.csv</span></a>
+
+so that each output row is less than 80 columns.
+
+</li><li>
+
+Add <a href="change_sfun_in.sh.htm" target="_top"><span style='white-space: nowrap'>change_sfun_in.sh</span></a>
+,
+an example and test of <a href="d4_change_sfun_in.py.htm" target="_top"><span style='white-space: nowrap'>d4_change_sfun_in.py</span></a>
+.
+
+</li></ol>
+
+
+
+
+<br>
+<br>
+<b><big><a name="2010-10-08" id="2010-10-08">2010-10-08</a></big></b>
+
+<ol type="1"><li>
+Split up the user documentation into separate sections for the 
+<a href="csv.htm" target="_top"><span style='white-space: nowrap'>csv</span></a>
+ and <a href="cpp.htm" target="_top"><span style='white-space: nowrap'>c++</span></a>
+ interfaces.
+
+</li><li>
+
+Added <a href="d4_plot.py.htm" target="_top"><span style='white-space: nowrap'>d4_plot.py</span></a>
+ for quick plots of the results in 
+<a href="dismod_pde_csv.htm#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+.
+
+</li><li>
+
+Update the <a href="wish_list.htm" target="_top"><span style='white-space: nowrap'>wish_list</span></a>
+.
+
+</li><li>
+
+Add documentation about the forward difference 
+standard deviation factor
+(this was later made unnecessary by including the factor in the 
+definition of the 
+<a href="optimize.htm#sfun_out.age_residual" target="_top"><span style='white-space: nowrap'>age</span></a>
+ and
+<a href="optimize.htm#sfun_out.cohort_residual" target="_top"><span style='white-space: nowrap'>cohort</span></a>
+
+residuals.
+
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2010-10-07" id="2010-10-07">2010-10-07</a></big></b>
+<br>
+Add the command line arguments
+<a href="d4_simulate.py.htm#measure.number" target="_top"><span style='white-space: nowrap'>number</span></a>
+ and
+<a href="d4_simulate.py.htm#measure.integrand" target="_top"><span style='white-space: nowrap'>integrand</span></a>
+ to
+the data simulator.
+
+
+<br>
+<br>
+<b><big><a name="2010-10-06" id="2010-10-06">2010-10-06</a></big></b>
+
+<ol type="1"><li>
+Create the python script <code><font color="blue">check_sfun_out.py</font></code>
+that check solutions by <a href="dismod_pde_csv.htm" target="_top"><span style='white-space: nowrap'>dismod_pde_csv</span></a>
+
+of problems simulated by <a href="d4_simulate.py.htm" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+.
+
+</li><li>
+
+Change names used inside of <a href="d4_simulate.py.htm" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+ to agree
+with data file column names; e.g.,
+
+<code><i><font color="black"><span style='white-space: nowrap'>age_lower</span></font></i></code>
+ and 
+<code><i><font color="black"><span style='white-space: nowrap'>age_upper</span></font></i></code>
+. 
+
+</li><li>
+
+Run <a href="d4_simulate.py.htm" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+ tests with larger values than one
+for 
+<code><i><font color="black"><span style='white-space: nowrap'>age_upper</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age_lower</span></font></i></code>
+ and
+
+<code><i><font color="black"><span style='white-space: nowrap'>time_upper</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_lower</span></font></i></code>
+.
+This turned up a bug in the setting of the 
+
+<code><i><font color="black"><span style='white-space: nowrap'>age_lower</span></font></i></code>
+ and 
+<code><i><font color="black"><span style='white-space: nowrap'>age_upper</span></font></i></code>
+
+for a simulated measurement (which has been fixed).
+
+</li><li>
+
+Add the following command line arguments to the data simulator
+<a href="d4_simulate.py.htm" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+: 
+<table><tr><td align='left'  valign='top'>
+
+age_bound   <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> </td><td align='left'  valign='top'>
+   
+	bound on age_upper - age_lower for a measurement (integer &gt; 0)
+</td></tr><tr><td align='left'  valign='top'>
+
+cohort_step <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> </td><td align='left'  valign='top'>
+
+	step size for cohort in solution.csv (positive integer)
+</td></tr><tr><td align='left'  valign='top'>
+
+time_min    <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> </td><td align='left'  valign='top'>
+
+	minimum lower time limit for a measurements (integer &gt; 0)
+</td></tr><tr><td align='left'  valign='top'>
+
+time_max    <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> </td><td align='left'  valign='top'>
+
+	maximum upper time limit for a measurements (integer &gt; 0)
+</td></tr><tr><td align='left'  valign='top'>
+
+time_bound  <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> </td><td align='left'  valign='top'>
+
+	bound on time_upper - time_lower for a measurement (integer &gt; 0)
+</td></tr><tr><td align='left'  valign='top'>
+
+iota_exp    <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> </td><td align='left'  valign='top'>
+
+	expression for <code>
+<span style='white-space: nowrap'>&nbsp;\iota&nbsp;(&nbsp;\cdot&nbsp;)</span></code>
+ 
+	as a function of 
+<code><i><font color="black"><span style='white-space: nowrap'>a</span></font></i></code>
+  and 
+<code><i><font color="black"><span style='white-space: nowrap'>c</span></font></i></code>
+ (age and cohort)
+</td></tr><tr><td align='left'  valign='top'>
+
+rho_exp     <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> </td><td align='left'  valign='top'>
+
+	expression for <code>
+<span style='white-space: nowrap'>&nbsp;\rho&nbsp;(&nbsp;\cdot&nbsp;)</span></code>
+ 
+	as a function of 
+<code><i><font color="black"><span style='white-space: nowrap'>a</span></font></i></code>
+  and 
+<code><i><font color="black"><span style='white-space: nowrap'>c</span></font></i></code>
+ (age and cohort)
+</td></tr><tr><td align='left'  valign='top'>
+
+chi_exp     <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> </td><td align='left'  valign='top'>
+
+	expression for <code>
+<span style='white-space: nowrap'>&nbsp;\iota&nbsp;(&nbsp;\cdot&nbsp;)</span></code>
+ 
+	as a function of 
+<code><i><font color="black"><span style='white-space: nowrap'>a</span></font></i></code>
+  and 
+<code><i><font color="black"><span style='white-space: nowrap'>c</span></font></i></code>
+ (age and cohort)
+</td></tr><tr><td align='left'  valign='top'>
+
+mu_exp      <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> </td><td align='left'  valign='top'>
+
+	expression for <code>
+<span style='white-space: nowrap'>&nbsp;\mu&nbsp;(&nbsp;\cdot&nbsp;)</span></code>
+ 
+	as a function of 
+<code><i><font color="black"><span style='white-space: nowrap'>a</span></font></i></code>
+  and 
+<code><i><font color="black"><span style='white-space: nowrap'>c</span></font></i></code>
+ (age and cohort)
+</td></tr>
+</table>
+</li></ol>
+<br>
+<b><big><a name="2010-10-05" id="2010-10-05">2010-10-05</a></big></b>
+<br>
+Improve documentation and automated testing in <a href="get_started.sh.htm" target="_top"><span style='white-space: nowrap'>get_started.sh</span></a>
+.
+
+<br>
+<br>
+<b><big><a name="2010-09-30" id="2010-09-30">2010-09-30</a></big></b>
+
+<ol type="1"><li>
+Added covariates input and output information.
+For the new csv <a href="dismod_pde_csv.htm" target="_top"><span style='white-space: nowrap'>dismod_pde_csv</span></a>
+ interface, see
+
+<code><i><font color="black"><span style='white-space: nowrap'>covariate_in.csv</span></font></i></code>
+ and
+
+<code><i><font color="black"><span style='white-space: nowrap'>covariate_out.csv</span></font></i></code>
+.
+For the new <a href="optimize.htm" target="_top"><span style='white-space: nowrap'>optimize</span></a>
+ interface, see
+<code><font color="blue">covariate_in</font></code> and
+<code><font color="blue">covariate_out</font></code> in <a href="optimize.htm" target="_top"><span style='white-space: nowrap'>optimize</span></a>
+.
+</li><li>
+
+Added <a href="get_started.sh.htm" target="_top"><span style='white-space: nowrap'>get_started.sh</span></a>
+, and example 
+and test for <a href="dismod_pde_csv.htm" target="_top"><span style='white-space: nowrap'>dismod_pde_csv</span></a>
+.
+</li><li>
+
+The anorexia example, 
+and its supporting scripts,
+were removed because we do not know the true answer
+(and hence it just serves to confuse).
+</li><li>
+
+The <a href="d4_simulate.py.htm" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+ script was moved to the 
+<code><font color="blue">src</font></code> directory because it is used by programs
+in both the <code><font color="blue">example</font></code> and <code><font color="blue">test</font></code> directories.
+The name of its input and output files 
+were changed to be command line arguments.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2010-09-28" id="2010-09-28">2010-09-28</a></big></b>
+
+<ol type="1"><li>
+Change the default 
+<a href="install.htm#Prefix" target="_top"><span style='white-space: nowrap'>prefixes</span></a>
+
+used to build the 
+<a href="install.htm#External Packages" target="_top"><span style='white-space: nowrap'>external&nbsp;packages</span></a>
+
+from the build subdirectory to 
+<code><font color="blue"><span style='white-space: nowrap'>$HOME/prefix/</span></font><i><font color="black"><span style='white-space: nowrap'>package</span></font></i></code>
+.
+This way one need not rebuild all the packages 
+each time they get a new version of dismod_pde.
+
+</li><li>
+
+Add some missing items to the list of 
+<a href="install.htm#Requirements" target="_top"><span style='white-space: nowrap'>requirements</span></a>
+.
+
+</li><li>
+
+Change <code>
+<span style='white-space: nowrap'>&nbsp;\beta</span></code>
+ and <code><font color="blue">beta</font></code> to
+<code>
+<span style='white-space: nowrap'>&nbsp;\zeta</span></code>
+ and <code><font color="blue">zeta</font></code>; for example, see
+<a href="optimize.htm#sfun_in.age_zeta" target="_top"><span style='white-space: nowrap'>age_zeta</span></a>
+.
+
+</li><li>
+
+In the csv files, 
+change 
+<code><font color="blue"><span style='white-space: nowrap'>age_like.</span></font><i><font color="black"><span style='white-space: nowrap'>field</span></font></i></code>
+ to 
+<code><font color="blue"><span style='white-space: nowrap'>age_like_</span></font><i><font color="black"><span style='white-space: nowrap'>field</span></font></i></code>
+, and
+change 
+<code><font color="blue"><span style='white-space: nowrap'>cohort_like.</span></font><i><font color="black"><span style='white-space: nowrap'>field</span></font></i></code>
+ to 
+<code><font color="blue"><span style='white-space: nowrap'>cohort_like_</span></font><i><font color="black"><span style='white-space: nowrap'>field</span></font></i></code>
+; e.g.,
+see <a href="dismod_pde_csv.htm#sfun_in.csv" target="_top"><span style='white-space: nowrap'>sfun_in.csv</span></a>
+.
+
+</li><li>
+
+Do not allow single quote, double quote, back quote, or semi-colon
+<a href="csv.htm#dismod_pde CSV Files" target="_top"><span style='white-space: nowrap'>dismod_pde&nbsp;csv&nbsp;files</span></a>
+.
+
+</li><li>
+
+Use <code><font color="blue">inf</font></code> instead of <code><font color="blue">1e+19</font></code> for plus 
+<a href="dismod_pde_csv.htm#Infinity" target="_top"><span style='white-space: nowrap'>infinity</span></a>
+ in CSV input files.
+
+</li></ol>
+
+
+ 
+
+<br>
+<br>
+<b><big><a name="2010-09-27" id="2010-09-27">2010-09-27</a></big></b>
+
+<ol type="1"><li>
+Include all four versions of the documentation and put a link to them
+on the <a href="dismod_pde.htm" target="_top"><span style='white-space: nowrap'>title&nbsp;page</span></a>
+ of the documentation.
+</li><li>
+
+First version that installs from a tarball 
+(in addition to installing from a clone of the git repository).
+</li><li>
+
+Add instructions for <a href="install.htm" target="_top"><span style='white-space: nowrap'>installing</span></a>
+ from a tarball. 
+</li><li>
+
+Avoid the last test in <code><font color="blue">test/check_opt_tst.cpp</font></code>.
+It is failing by a small amount on some machines and we need to determine why.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2010-09-24" id="2010-09-24">2010-09-24</a></big></b>
+
+<ol type="1"><li>
+Changed <code><font color="blue">DISMOD4_N_STOCHASTIC</font></code> to
+<code><font color="blue">dismod_pde::stochastic_enum.name().size()</font></code>; see
+<a href="optimize.htm#Stochastic_Enum" target="_top"><span style='white-space: nowrap'>Stochastic_Enum</span></a>
+
+</li><li>
+
+Changed <code><font color="blue">DISMOD4_N_INTEGRAND</font></code> to
+<code><font color="blue">dismod_pde::integrand_enum.name().size()</font></code>; see
+<a href="optimize.htm#measure_in.Integrand_Enum" target="_top"><span style='white-space: nowrap'>Integrand_Enum</span></a>
+.
+</li><li>
+
+Added mappings from each of the enum types to the corresponding string; see
+also <a href="optimize.htm#Likelihood Functions.Likelihood_Enum" target="_top"><span style='white-space: nowrap'>Likelihood_Enum</span></a>
+.
+</li><li>
+
+Changed <code><font color="blue">Likelihood_Name_Enum</font></code> to <code><font color="blue">Likelihood_Enum</font></code>
+so it was like the other enum types listed above.
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2010-09-23" id="2010-09-23">2010-09-23</a></big></b>
+
+<ol type="1"><li>
+Build program in the <code><font color="blue">build</font></code> subdirectory of the 
+top level git repository directory.
+</li><li>
+
+Add the shell scripts 
+<code><font color="blue">get_ipopt.sh</font></code>, 
+<code><font color="blue">get_cppad.sh</font></code>, and
+<code><font color="blue">get_omhelp.sh</font></code> which downloads and install
+externals that are necessary for building dismod_pde on an arbitrary machine.
+</li><li>
+
+First successful distribution of <a href="dismod_pde_csv.htm" target="_top"><span style='white-space: nowrap'>dismod_pde_csv</span></a>
+ to 
+<code><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></code> 
+<code><font color="blue">omak.ihme.washington.edu:/tmp/dismod_pde.0923/build/bin/dismod_pde_csv</font></code>
+</li><li>
+
+Fix bug in <a href="dismod_pde_csv.htm#measure_out.csv" target="_top"><span style='white-space: nowrap'>measure_out.csv</span></a>
+,
+the <code><font color="blue">integrand</font></code> column was missing.
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2010-09-22" id="2010-09-22">2010-09-22</a></big></b>
+
+<ol type="1"><li>
+The <a href="d4_simulate.py.htm" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+ program has been extended so that
+the lower and upper age limits as well as the step size in age
+are now command line arguments.
+This enables running <code><font color="blue">d4_simulate.py</font></code> with different parameters
+to do more extensive testing.
+(More parameters will become command line arguments as more tests
+are needed.)
+
+</li><li>
+
+There was a bug in <code><font color="blue">dismod_pde_csv</font></code> when 
+<code><font color="blue">delta_age</font></code> was greater
+than the minimum value for 
+
+<code><font color="blue"><span style='white-space: nowrap'>age_lower,&nbsp;age_upper</span></font></code>
+ 
+in the 
+<code><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i></code>
+ file.
+This has been fixed so it is no longer a problem for <code><font color="blue">dismod_pde_csv</font></code>.
+
+</li><li>
+
+The <a href="optimize.htm" target="_top"><span style='white-space: nowrap'>optimize</span></a>
+ has been improved to detect 
+when the first age grid point is larger than the minimum measurement age.
+In this case, it now aborts with an error message.
+
+</li><li>
+
+A <a href="wish_list.htm#Covariates" target="_top"><span style='white-space: nowrap'>covariate</span></a>
+ wish list item has been added.
+
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2010-09-21" id="2010-09-21">2010-09-21</a></big></b>
+<br>
+First release of <a href="dismod_pde_csv.htm" target="_top"><span style='white-space: nowrap'>dismod_pde_csv</span></a>
+, a program that uses CSV files
+for input to and output from <a href="optimize.htm" target="_top"><span style='white-space: nowrap'>optimize</span></a>
+.
+
+<br>
+<br>
+<b><big><a name="2010-09-20" id="2010-09-20">2010-09-20</a></big></b>
+
+<ol type="1"><li>
+Change 
+<code><i><font color="black"><span style='white-space: nowrap'>grid_in</span></font></i></code>
+ to <a href="optimize.htm#sfun_in" target="_top"><span style='white-space: nowrap'>sfun_in</span></a>
+ and
+<code><font color="blue">Grid_Input_Struct</font></code> to <code><font color="blue">Sfun_Input_Struct</font></code>.
+</li><li>
+
+Change 
+<code><i><font color="black"><span style='white-space: nowrap'>grid_out</span></font></i></code>
+ to <a href="optimize.htm#sfun_out" target="_top"><span style='white-space: nowrap'>sfun_out</span></a>
+ and
+<code><font color="blue">Grid_Output_Struct</font></code> to <code><font color="blue">Sfun_Output_Struct</font></code>.
+</li><li>
+
+Return both the residuals and scaled residuals.
+This removed the field 
+<code><i><font color="black"><span style='white-space: nowrap'>parameter</span></font></i><font color="blue"><span style='white-space: nowrap'>.scale_residuals</span></font></code>
+.
+It split 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i><font color="blue"><span style='white-space: nowrap'>.prior</span></font></code>
+ 
+<a href="optimize.htm#sfun_out.prior_residual" target="_top"><span style='white-space: nowrap'>prior_residual</span></a>
+ and
+<a href="optimize.htm#sfun_out.prior_scaled" target="_top"><span style='white-space: nowrap'>prior_scaled</span></a>
+.
+It also split 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i><font color="blue"><span style='white-space: nowrap'>.age</span></font></code>
+ and 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i><font color="blue"><span style='white-space: nowrap'>.cohort</span></font></code>
+.
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2010-09-19" id="2010-09-19">2010-09-19</a></big></b>
+<br>
+The <code><font color="blue">set_age_cohort.hpp</font></code> include file has been folded into the
+newly created and documented routine <a href="create_grid.htm" target="_top"><span style='white-space: nowrap'>create_grid</span></a>
+.
+
+<br>
+<br>
+<b><big><a name="2010-09-17" id="2010-09-17">2010-09-17</a></big></b>
+<br>
+Have <a href="optimize.htm" target="_top"><span style='white-space: nowrap'>optimize</span></a>
+ return the model, the residual, and the scaled
+residual for each measurement
+and have <code><font color="blue">print_result</font></code> output all of them.
+
+<br>
+<br>
+<b><big><a name="2010-09-16" id="2010-09-16">2010-09-16</a></big></b>
+
+<ol type="1"><li>
+The routine that automatically determines the age and cohort grid
+has been moved to its own file <code><font color="blue">example/set_age_cohort.hpp</font></code>
+so that it does not need to be repeated in each example.
+</li><li>
+
+The routine <code><font color="blue">print_result</font></code> now sorts the measurement output by age.
+In addition, the grid output is ordered first by age and then cohort 
+(used to be by cohort and then age).
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2010-09-15" id="2010-09-15">2010-09-15</a></big></b>
+<br>
+An option to used first or second order differences in the cohort direction
+<a href="optimize.htm#sfun_in.cohort_order" target="_top"><span style='white-space: nowrap'>cohort_order</span></a>
+ has been added.
+
+<br>
+<br>
+<b><big><a name="2010-09-13" id="2010-09-13">2010-09-13</a></big></b>
+
+<ol type="1"><li>
+The number of ode steps
+
+<code><i><font color="black"><span style='white-space: nowrap'>parameter</span></font></i><font color="blue"><span style='white-space: nowrap'>.number_ode_step</span></font></code>
+ 
+has been replace by the maximum ode step
+<a href="optimize.htm#parameter.max_ode_step" target="_top"><span style='white-space: nowrap'>max_ode_step</span></a>
+.
+This scales the number of steps to be large for large
+age intervals; e.g., between age zero and the next
+valid age for each cohort.
+</li><li>
+
+Add the <a href="d4_simulate.py.htm" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+ program to the user documentation.
+This includes <a href="dismoditis.sh.htm" target="_top"><span style='white-space: nowrap'>dismoditis.sh</span></a>
+ and <a href="dismoditis.cpp.htm" target="_top"><span style='white-space: nowrap'>dismoditis.cpp</span></a>
+
+as an example of its use. 
+</li><li>
+
+Change <a href="d4_simulate.py.htm" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+ data so that start year 1990 and end year 1991 has
+a span of one year (not two). This makes it the same as age limits
+and is easier for the user to keep track of.
+</li><li>
+
+Fix a bug in the determination of 
+
+<code><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>.age_lower</span></font></code>
+,
+which maps a cohort index to the corresponding first non-zero 
+age index in the 
+<a href="pair2index.htm#Notation.Computational Grid" target="_top"><span style='white-space: nowrap'>computational&nbsp;grid</span></a>
+.
+</li><li>
+
+Add <a href="dismoditis.cpp.htm" target="_top"><span style='white-space: nowrap'>dismoditis.cpp</span></a>
+ to the list of automated tests that work.
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2010-09-11" id="2010-09-11">2010-09-11</a></big></b>
+
+<ol type="1"><li>
+Improve the documentation for
+
+<code><i><font color="black"><span style='white-space: nowrap'>k(l,&nbsp;j)</span></font></i></code>
+,
+
+<code><i><font color="black"><span style='white-space: nowrap'>k(u,&nbsp;j)</span></font></i></code>
+,
+
+<code><i><font color="black"><span style='white-space: nowrap'>j(l,&nbsp;k)</span></font></i></code>
+, and
+
+<code><i><font color="black"><span style='white-space: nowrap'>j(u,&nbsp;k)</span></font></i></code>
+.
+Fix the cohort index limits in the definition of <code><font color="blue">f_a</font></code>.
+</li><li>
+
+Change 
+<code><font color="blue"><span style='white-space: nowrap'>Grid_</span></font><i><font color="black"><span style='white-space: nowrap'>*</span></font></i><font color="blue"><span style='white-space: nowrap'>_Struct</span></font></code>
+ to 
+<code><font color="blue"><span style='white-space: nowrap'>Optimize_</span></font><i><font color="black"><span style='white-space: nowrap'>*</span></font></i><font color="blue"><span style='white-space: nowrap'>_Struct</span></font></code>
+
+where 
+<code><i><font color="black"><span style='white-space: nowrap'>*</span></font></i></code>
+ is <code><font color="blue">Input</font></code> and <code><font color="blue">Output</font></code>.
+This is in preparation for using it off the grid.
+</li><li>
+
+Change the <a href="pair2index.htm#age" target="_top"><span style='white-space: nowrap'>age</span></a>
+ grid
+so that 
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i><font color="blue"><span style='white-space: nowrap'>[0]</span></font></code>
+ must be zero and
+
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i><font color="blue"><span style='white-space: nowrap'>[1]</span></font></code>
+ is the lower limit for the region of interest.
+This enables us to initialize the ODE in age at age zero
+with <code>
+<span style='white-space: nowrap'>&nbsp;S(0,&nbsp;c)&nbsp;=&nbsp;1</span></code>
+, and <code>
+<span style='white-space: nowrap'>&nbsp;C(0,&nbsp;c)&nbsp;=&nbsp;0</span></code>
+.
+This in turn fixed the <code><font color="blue">example/dismoditis.cpp</font></code> simulation
+program so that it inverts properly.
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2010-09-10" id="2010-09-10">2010-09-10</a></big></b>
+<br>
+Add the special case <code>
+<span style='white-space: nowrap'>&nbsp;\sigma&nbsp;=&nbsp;+&nbsp;\infty</span></code>
+ to drop terms
+from the likelihood function; e.g., see 
+<a href="optimize.htm#Likelihood Functions.Huber Loss Function" target="_top"><span style='white-space: nowrap'>Huber&nbsp;Loss&nbsp;Function</span></a>
+.
+<code><span style='white-space: nowrap'><br>
+<br>
+</span></code>Changed the <a href="optimize_xam.cpp.htm" target="_top"><span style='white-space: nowrap'>optimize_xam.cpp</span></a>
+ example so that it does not
+use any direct prior information, 
+just the measured values are used to do the inversion.
+
+<br>
+<br>
+<b><big><a name="2010-09-08" id="2010-09-08">2010-09-08</a></big></b>
+<br>
+Add the special case <code>
+<span style='white-space: nowrap'>&nbsp;\sigma&nbsp;=&nbsp;0</span></code>
+ to convert likelihood functions
+into constraints; e.g., see the discussion of 
+<a href="optimize.htm#Likelihood Functions.Huber Loss Function" target="_top"><span style='white-space: nowrap'>Huber&nbsp;Loss&nbsp;Function</span></a>
+.
+<code><span style='white-space: nowrap'><br>
+<br>
+</span></code>Change <code><font color="blue">example/d4_simulate.py</font></code> to sort its output csv file
+by average age corresponding to the measurements.
+This improves the printing of the measurement residuals after a fit.
+
+<br>
+<br>
+<b><big><a name="2010-09-07" id="2010-09-07">2010-09-07</a></big></b>
+
+<ol type="1"><li>
+Change 
+<code><i><font color="black"><span style='white-space: nowrap'>grid_res</span></font></i></code>
+ to <a href="optimize.htm#sfun_out" target="_top"><span style='white-space: nowrap'>sfun_out</span></a>
+ and 
+<code><font color="blue">Residual_Struct</font></code> to <code><font color="blue">Sfun_Output_Struct</font></code>.
+</li><li>
+
+Move 
+<code><i><font color="black"><span style='white-space: nowrap'>grid_est</span></font></i></code>
+ into the 
+<a href="optimize.htm#sfun_out.estimate" target="_top"><span style='white-space: nowrap'>estimate</span></a>
+ field of 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i></code>
+.
+</li><li>
+
+Move age and cohort residual information from 
+<a href="optimize.htm#parameter" target="_top"><span style='white-space: nowrap'>parameter</span></a>
+ to
+<a href="optimize.htm#sfun_in" target="_top"><span style='white-space: nowrap'>sfun_in</span></a>
+
+so they can depend on
+stochastic function index as well as computational grid point.
+</li><li>
+
+Add a <code>
+<span style='white-space: nowrap'>&nbsp;\zeta</span></code>
+ offset before taking the log in the 
+age and cohort residuals.
+This makes them more versatile (because one can always use <code>
+<span style='white-space: nowrap'>&nbsp;zeta&nbsp;=&nbsp;0</span></code>
+
+to get the log-normal case).
+</li></ol>
+
+
+<br>
+<br>
+<b><big><a name="2010-09-06" id="2010-09-06">2010-09-06</a></big></b>
+
+<ol type="1"><li>
+Add the dismoditis test case (simulated data in a csv file). 
+Adding this example found another problem with the choice of
+which age-cohort pairs to include in the computation.
+This has been fixed.
+</li><li>
+
+Include <code>
+<span style='white-space: nowrap'>&nbsp;\zeta_\ell</span></code>
+ inside the log for
+both the data and model terms in <code>
+<span style='white-space: nowrap'>&nbsp;R_\ell&nbsp;(s)</span></code>
+; see
+<a href="optimize.htm#measure_out" target="_top"><span style='white-space: nowrap'>measure_out</span></a>
+.
+</li><li>
+
+Remove 
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i></code>
+ and 
+<code><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i></code>
+ from 
+<a href="optimize.htm" target="_top"><span style='white-space: nowrap'>optimize</span></a>
+, <code><font color="blue">print_result</font></code> and <code><font color="blue">check_opt</font></code>
+(not needed because 
+<code><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i></code>
+ has that information).
+</li><li>
+
+Change 
+<code><i><font color="black"><span style='white-space: nowrap'>prior</span></font></i></code>
+ to 
+<a href="optimize.htm#sfun_in" target="_top"><span style='white-space: nowrap'>sfun_in</span></a>
+ and include the initial value 
+of the estimate there. 
+Change 
+<code><i><font color="black"><span style='white-space: nowrap'>estimate</span></font></i></code>
+ to 
+
+<code><i><font color="black"><span style='white-space: nowrap'>grid_est</span></font></i></code>
+ to emphasize that 
+it uses <a href="optimize.htm#grid" target="_top"><span style='white-space: nowrap'>grid</span></a>
+ for accessing elements.
+In addition, change the order so that the grid arguments
+and measurement arguments are grouped together in
+<a href="optimize.htm" target="_top"><span style='white-space: nowrap'>optimize</span></a>
+, <code><font color="blue">print_result</font></code> and <code><font color="blue">check_opt</font></code>.
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2010-09-04" id="2010-09-04">2010-09-04</a></big></b>
+<br>
+The anorexia case is now running on the non-rectangular grid.
+Getting this real data case to work demonstrated that a change
+was needed to the <a href="pair2index.htm" target="_top"><span style='white-space: nowrap'>pair2index</span></a>
+ routine to make it easier for the user.
+In addition, error messages have been added to aid the user when choosing
+rectangular limits in age and time (that correspond to non-rectangular
+limits in age and cohort).
+<code><span style='white-space: nowrap'><br>
+<br>
+</span></code>The <a href="optimize_xam.cpp.htm" target="_top"><span style='white-space: nowrap'>optimize_xam.cpp</span></a>
+ example was extended to have arguments
+so that separate code is no longer needed for the cases in the test
+directory (which now also run).
+
+
+<br>
+<br>
+<b><big><a name="2010-09-03" id="2010-09-03">2010-09-03</a></big></b>
+<br>
+First version of non-rectangular computational grid is working.
+Only one test has been converted so far. Also need to chang mathematical
+write-up to match code.
+
+
+<br>
+<br>
+<b><big><a name="2010-09-01" id="2010-09-01">2010-09-01</a></big></b>
+
+<ol type="1"><li>
+Use the method of multiple shooting, instead of the trapezoidal rule,
+when solving the ODE for <code>
+<span style='white-space: nowrap'>&nbsp;S(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+ and <code>
+<span style='white-space: nowrap'>&nbsp;C(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+ 
+with respect to age.
+</li><li>
+
+Add the following parameters to the optimization procedure:
+
+<code><i><font color="black"><span style='white-space: nowrap'>parameter</span></font></i><font color="blue"><span style='white-space: nowrap'>.number_ode_step</span></font></code>
+,
+<a href="optimize.htm#parameter.converge_tolerance" target="_top"><span style='white-space: nowrap'>converge_tolerance</span></a>
+, and
+<a href="optimize.htm#parameter.max_iteration" target="_top"><span style='white-space: nowrap'>max_iteration</span></a>
+.
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2010-08-29" id="2010-08-29">2010-08-29</a></big></b>
+
+<ol type="1"><li>
+Extend the list of possible measurements to include all cause mortality.
+</li><li>
+
+Add the <a href="optimize.htm#parameter.print_level" target="_top"><span style='white-space: nowrap'>print_level</span></a>
+ 
+parameter which can be used to trace the optimization procedure.
+</li><li>
+
+
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2010-08-28" id="2010-08-28">2010-08-28</a></big></b>
+<br>
+Residuals are very helpful when building a model.
+The <a href="optimize.htm#sfun_out" target="_top"><span style='white-space: nowrap'>sfun_out</span></a>
+ 
+and <a href="optimize.htm#measure_out" target="_top"><span style='white-space: nowrap'>measure_out</span></a>
+ 
+arguments to <code><font color="blue">optimize</font></code>
+returns the model residuals corresponding to its estimate.
+
+<br>
+<br>
+<b><big><a name="2010-08-26" id="2010-08-26">2010-08-26</a></big></b>
+<br>
+Convert the difference equation in age from an Euler's method to the 
+trapezoidal method which is more accurate and a stiff solver.
+(Euler's method seemed to be unstable in initial testing.)
+
+<br>
+<br>
+<b><big><a name="2010-08-25" id="2010-08-25">2010-08-25</a></big></b>
+
+<ol type="1"><li>
+The model for the measurements was missing the normalization term
+that converts from absolute counts to rates
+(both in dismod_pde and its tests).
+This has been fixed.
+</li><li>
+
+The midpoint approximation drops out the population density.
+This has been documented in the dismod_pde report.
+In addition, 
+<code><i><font color="black"><span style='white-space: nowrap'>density</span></font></i></code>
+ was
+removed from the <a href="optimize.htm" target="_top"><span style='white-space: nowrap'>optimize</span></a>
+ argument list
+(which makes it easier to use).
+</li><li>
+
+Improve <a href="optimize_xam.cpp.htm" target="_top"><span style='white-space: nowrap'>optimize_xam.cpp</span></a>
+, as an example of how to use <a href="optimize.htm" target="_top"><span style='white-space: nowrap'>optimize</span></a>
+
+(<code><font color="blue">test/optimize_tst.cpp</font></code> does more extensive testing).
+</li><li>
+
+Looking at the sample data,
+incidence, remission, and other rates look log normally
+or log exponentially distributed.
+Change the 
+<a href="optimize.htm#sfun_out.age_residual" target="_top"><span style='white-space: nowrap'>age_residual</span></a>
+
+and
+<a href="optimize.htm#sfun_out.cohort_residual" target="_top"><span style='white-space: nowrap'>cohort_residual</span></a>
+
+for
+<code>
+<span style='white-space: nowrap'>&nbsp;\iota&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+,
+<code>
+<span style='white-space: nowrap'>&nbsp;\rho&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+,
+<code>
+<span style='white-space: nowrap'>&nbsp;\chi&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+, and
+<code>
+<span style='white-space: nowrap'>&nbsp;\mu&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+ to be in terms of their logarithms.
+</li></ol>
+
+
+
+<br>
+<br>
+<b><big><a name="2010-08-24" id="2010-08-24">2010-08-24</a></big></b>
+<br>
+The measurement values (and system dynamics) do not depend on
+<code>
+<span style='white-space: nowrap'>&nbsp;D(&nbsp;\cdot&nbsp;)</span></code>
+ or <code>
+<span style='white-space: nowrap'>&nbsp;O(&nbsp;\cdot&nbsp;)</span></code>
+.
+Hence they were eliminated from the estimation procedure.
+This reduced the number of state variables per age-cohort grid
+point from eight to six.
+
+
+<br>
+<br>
+<b><big><a name="2010-08-23" id="2010-08-23">2010-08-23</a></big></b>
+<br>
+Change measurement limits of integration from rectangular in
+age and cohort to rectangular in age and time.
+In addition, the new measurement model is much more accurate because
+it interpolates the limits of integration and is exact for 
+bilinear functions.
+
+
+<br>
+<br>
+<b><big><a name="2010-08-22" id="2010-08-22">2010-08-22</a></big></b>
+<br>
+Change the following symbols:
+<table><tr><td align='left'  valign='top'>
+
+<b>Old Value</b>       <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code></td><td align='left'  valign='top'>
+ <b>New Value</b> <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code></td><td align='left'  valign='top'>
+ 
+	<b>Reason</b>
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">sigma_age</font></code>       <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code></td><td align='left'  valign='top'>
+ <code><font color="blue">age_sigma</font></code>  <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code></td><td align='left'  valign='top'>
+
+	Emphasize connection to <a href="optimize.htm#grid.age" target="_top"><span style='white-space: nowrap'>age</span></a>
+ 
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">sigma_cohort</font></code>    <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code></td><td align='left'  valign='top'>
+ <code><font color="blue">cohort_sigma</font></code>  <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code></td><td align='left'  valign='top'>
+
+	Emphasize connection to <a href="optimize.htm#grid.cohort" target="_top"><span style='white-space: nowrap'>cohort</span></a>
+ 
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">Optimize_Struct</font></code> <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code></td><td align='left'  valign='top'>
+ 
+	<code><font color="blue">Optimize_Parameter_Struct</font></code> <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code></td><td align='left'  valign='top'>
+
+	Emphasize connection to <a href="optimize.htm#parameter" target="_top"><span style='white-space: nowrap'>parameter</span></a>
+ 
+</td></tr>
+</table>
+<br>
+<b><big><a name="2010-08-21" id="2010-08-21">2010-08-21</a></big></b>
+<br>
+Initial version that passes its tests.
+
+
+<hr>Input File: omh/whats_new.omh
+
+</body>
+</html>

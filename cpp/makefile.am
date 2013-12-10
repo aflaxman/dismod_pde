@@ -1,0 +1,74 @@
+# --------------------------------------------------------------------
+# dismod_pde C++ source code
+# --------------------------------------------------------------------
+#
+nobase_include_HEADERS = \
+	dismod_pde/atof_char_vec.hpp \
+	dismod_pde/create_grid.hpp \
+	dismod_pde/csv_header.hpp \
+	dismod_pde/csv_read.hpp \
+	dismod_pde/define.hpp \
+	dismod_pde/dismod_pde.hpp \
+	dismod_pde/double2stream.hpp \
+	dismod_pde/fg_info.hpp \
+	dismod_pde/like_name2enum.hpp \
+	dismod_pde/neg_log_like.hpp \
+	dismod_pde/output.hpp \
+	dismod_pde/optimize.hpp \
+	dismod_pde/pair2index.hpp \
+	dismod_pde/read_effect_in.hpp \
+	dismod_pde/read_measure_in.hpp \
+	dismod_pde/sc_ode.hpp \
+	dismod_pde/str_char_vec.hpp \
+	dismod_pde/write_effect_out.hpp \
+	dismod_pde/write_measure_out.hpp
+# --------------------------------------------------------------------
+lib_LIBRARIES = libdismod_pde.a
+#
+libdismod_pde_a_SOURCES = \
+	atof_char_vec.cpp \
+	create_grid.cpp \
+	csv_header.cpp \
+	csv_read.cpp \
+	define.cpp \
+	double2stream.cpp \
+	fg_info/age.cpp \
+	fg_info/cohort.cpp \
+	fg_info/cross.cpp \
+	fg_info/adjusted.cpp \
+	fg_info/ctor.cpp \
+	fg_info/fg_eval.cpp \
+	fg_info/integrand.cpp \
+	fg_info/measure.cpp \
+	fg_info/model.cpp \
+	fg_info/pos.cpp \
+	fg_info/prior.cpp \
+	like_name2enum.cpp \
+	neg_log_like.cpp \
+	output.cpp \
+	optimize.cpp \
+	pair2index.cpp \
+	read_effect_in.cpp \
+	read_measure_in.cpp \
+	sc_ode.cpp \
+	str_char_vec.cpp \
+	write_effect_out.cpp \
+	write_measure_out.cpp
+#
+AM_CXXFLAGS = \
+	$(CXX_FLAGS) \
+	-I$(top_srcdir)/cpp \
+	-I$(CPPAD_PREFIX)/include \
+	-I$(IPOPT_PREFIX)/include 
+# --------------------------------------------------------------------
+bin_PROGRAMS = dismod_pde_csv
+#
+dismod_pde_csv_SOURCES  = dismod_pde_csv.cpp
+#
+# Note that -L$(top_builddir)/cpp/ should be the same as ./ 
+LDADD = \
+	$(ADD_LINK) \
+	-ldismod_pde -L$(top_builddir)/cpp \
+	-L$(CPPAD_PREFIX)/lib -L$(CPPAD_PREFIX)/lib64 \
+	$(IPOPT_LIBS) \
+	$(FCLIBS)

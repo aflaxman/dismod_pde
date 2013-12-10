@@ -1,0 +1,298 @@
+<?xml version='1.0'?>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:math='http://www.w3.org/1998/Math/MathML'
+>
+<head>
+<title>Change The dismod_pde Stochastic Function Input File</title>
+<meta name="description" id="description" content="Change The dismod_pde Stochastic Function Input File"/>
+<meta name="keywords" id="keywords" content=" sfun_in.csv change template.csv input initial lower upper name zeta sigma mean order example d4_change_sfun_in.py "/>
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_d4_change_sfun_in.py_xml.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="d4_bubble.py.xml" target="_top">Prev</a>
+</td><td><a href="change_sfun_in.sh.xml" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>csv</option>
+<option>python_csv</option>
+<option>d4_change_sfun_in.py</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>csv-&gt;</option>
+<option>dismod_pde_csv</option>
+<option>python_csv</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>python_csv-&gt;</option>
+<option>d4_bubble.py</option>
+<option>d4_change_sfun_in.py</option>
+<option>d4_compare_sfun.py</option>
+<option>d4_contour.py</option>
+<option>d4_cumulative.py</option>
+<option>d4_plot.py</option>
+<option>d4_sfun_der.py</option>
+<option>d4_sfun_grid.py</option>
+<option>d4_simulate.py</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down0(this)'>
+<option>d4_change_sfun_in.py-&gt;</option>
+<option>change_sfun_in.sh</option>
+</select>
+</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Expressions</option>
+<option>input.csv</option>
+<option>output.csv</option>
+<option>sfun</option>
+<option>comment</option>
+<option>lower</option>
+<option>initial</option>
+<option>upper</option>
+<option>name</option>
+<option>zeta</option>
+<option>sigma</option>
+<option>mean</option>
+<option>order</option>
+<option>Example</option>
+</select>
+</td>
+</tr></table><br/>
+ 
+ 
+
+
+<center><b><big><big>Change The dismod_pde Stochastic Function Input File</big></big></b></center>
+<br/>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br/>
+
+<code><font color="blue"><span style='white-space: nowrap'>d4_change_sfun_in.py&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>input.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>output.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>[</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;-comment&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>comment</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>]</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>[</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;-optimize_</span></font><i><font color="black"><span style='white-space: nowrap'>sfun</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>zeta</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>lower</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>initial</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>upper</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>]</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>[</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;-prior_</span></font><i><font color="black"><span style='white-space: nowrap'>sfun</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>name</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>zeta</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>sigma</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>mean</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>]</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>[</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;-age_</span></font><i><font color="black"><span style='white-space: nowrap'>sfun</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>name</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>zeta</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>sigma</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>order</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>]</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>[</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;-cohort_</span></font><i><font color="black"><span style='white-space: nowrap'>sfun</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>name</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>zeta</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>sigma</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>order</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>]</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>[</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;-cross_</span></font><i><font color="black"><span style='white-space: nowrap'>sfun</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>name</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>zeta</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>sigma</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>]</span></font></i></code>
+
+
+<br/>
+<br/>
+<b><big><a name="Expressions" id="Expressions">Expressions</a></big></b>
+<br/>
+The expressions mentioned below uses the variables 
+<code><font color="blue">a</font></code> for age, 
+<code><font color="blue">c</font></code> for cohort, 
+<code><font color="blue">t</font></code> for time which is equal to age plus cohort,
+<code><font color="blue">inf</font></code> for plus infinity,
+<code><font color="blue">gaussian</font></code> for <code><font color="blue">'gaussian'</font></code>, and
+<code><font color="blue">laplace</font></code> for <code><font color="blue">'laplace'</font></code>.
+The expressions are otherwise limited to the conditional expression syntax,
+the operators <code><font color="blue">+</font></code>, <code><font color="blue">-</font></code>, <code><font color="blue">*</font></code>, <code><font color="blue">/</font></code>, <code><font color="blue">**</font></code>,
+the <code><font color="blue">max</font></code> function, the <code><font color="blue">exp</font></code> function, and numeric constants.
+
+<br/>
+<br/>
+<b><big><a name="input.csv" id="input.csv">input.csv</a></big></b>
+<br/>
+is the first command line argument to <code><font color="blue">d4_change_sfun_in.py</font></code>.
+It is a <a href="dismod_pde_csv.xml#sfun_in.csv" target="_top"><span style='white-space: nowrap'>sfun_in.csv</span></a>
+ file
+that is input to <code><font color="blue">d4_change_sfun_in.py</font></code>.
+
+<br/>
+<br/>
+<b><big><a name="output.csv" id="output.csv">output.csv</a></big></b>
+<br/>
+is the second command line argument to <code><font color="blue">d4_change_sfun_in.py</font></code>.
+It is a  <a href="dismod_pde_csv.xml#sfun_in.csv" target="_top"><span style='white-space: nowrap'>sfun_in.csv</span></a>
+ file that is 
+output by <code><font color="blue">d4_change_sfun_in.py</font></code>. 
+The values in this file are the same as in 
+<code><i><font color="black"><span style='white-space: nowrap'>input.csv</span></font></i></code>
+ 
+except that terms that appear on the 
+command line are changed to the values specified on the command line.
+
+<br/>
+<br/>
+<b><big><a name="sfun" id="sfun">sfun</a></big></b>
+<br/>
+each appearance of 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun</span></font></i></code>
+ in the syntax above
+is one of the following:
+<code><font color="blue">C</font></code>,
+<code><font color="blue">S</font></code>,
+<code><font color="blue">iota</font></code>, 
+<code><font color="blue">rho</font></code>, 
+<code><font color="blue">chi</font></code>, or
+<code><font color="blue">omega</font></code>.
+
+<br/>
+<br/>
+<b><big><a name="comment" id="comment">comment</a></big></b>
+
+<br/>
+each appearance of 
+<code><i><font color="black"><span style='white-space: nowrap'>comment</span></font></i></code>
+ in the syntax above
+is a comment about the corresponding stochastic function 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun</span></font></i></code>
+.
+
+<br/>
+<br/>
+<b><big><a name="lower" id="lower">lower</a></big></b>
+
+<br/>
+each appearance of 
+<code><i><font color="black"><span style='white-space: nowrap'>lower</span></font></i></code>
+ in the syntax above
+is an expression specifying the corresponding lower value for the 
+optimization procedure.
+
+<br/>
+<br/>
+<b><big><a name="initial" id="initial">initial</a></big></b>
+
+<br/>
+each appearance of 
+<code><i><font color="black"><span style='white-space: nowrap'>initial</span></font></i></code>
+ in the syntax above
+is an expression specifying the corresponding initial value for the 
+optimization procedure.
+
+<br/>
+<br/>
+<b><big><a name="upper" id="upper">upper</a></big></b>
+
+<br/>
+each appearance of 
+<code><i><font color="black"><span style='white-space: nowrap'>upper</span></font></i></code>
+ in the syntax above
+is an expression specifying the corresponding upper value for the 
+optimization procedure.
+
+<br/>
+<br/>
+<b><big><a name="name" id="name">name</a></big></b>
+
+<br/>
+each appearance of 
+<code><i><font color="black"><span style='white-space: nowrap'>name</span></font></i></code>
+ in the syntax above
+is an expression that evaluates to one of the following:
+<code><font color="blue">gaussian</font></code>, <code><font color="blue">laplace</font></code>.
+It specifies which likelihood is used for the corresponding residuals.
+
+<br/>
+<br/>
+<b><big><a name="zeta" id="zeta">zeta</a></big></b>
+
+<br/>
+each appearance 
+<code><i><font color="black"><span style='white-space: nowrap'>zeta</span></font></i></code>
+ in the syntax above
+is an expression for the 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='normal'>&#x003B6;</mi>
+</mrow></math>
+
+ term in the scaling transformation;
+i.e. the value that is added to the stochastic function before taking the 
+log. In the case of 
+<code><font color="blue"><span style='white-space: nowrap'>optimize_</span></font><i><font color="black"><span style='white-space: nowrap'>sfun</span></font></i></code>
+ this is for the transformation
+of the optimization problem. In the other cases, the log values are then 
+subtracted to get the corresponding residuals.
+
+<br/>
+<br/>
+<b><big><a name="sigma" id="sigma">sigma</a></big></b>
+
+<br/>
+each appearance 
+<code><i><font color="black"><span style='white-space: nowrap'>sigma</span></font></i></code>
+ in the syntax above
+is an expression for the standard deviation of the corresponding 
+residual.
+
+<br/>
+<br/>
+<b><big><a name="mean" id="mean">mean</a></big></b>
+
+<br/>
+each appearance 
+<code><i><font color="black"><span style='white-space: nowrap'>mean</span></font></i></code>
+ in the syntax above
+is an expression for direct prior mean of the corresponding 
+stochastic function. 
+
+<br/>
+<br/>
+<b><big><a name="order" id="order">order</a></big></b>
+
+<br/>
+each appearance of 
+<code><i><font color="black"><span style='white-space: nowrap'>order</span></font></i></code>
+ is <code><font color="blue">1</font></code> or <code><font color="blue">2</font></code>.
+It specifies the order for the corresponding differences.
+
+
+<br/>
+<br/>
+<b><big><a name="Example" id="Example">Example</a></big></b>
+
+<br/>
+The shell script <a href="change_sfun_in.sh.xml" target="_top"><span style='white-space: nowrap'>change_sfun_in.sh</span></a>
+ is an example and test
+of <code><font color="blue">d4_change_sfun_in.py</font></code>.
+
+
+<hr/>Input File: python/d4_change_sfun_in.py.in
+
+</body>
+</html>

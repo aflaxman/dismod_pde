@@ -1,0 +1,255 @@
+<html><head>
+<title>Contour Plots of Values in Csv File</title>
+<meta name="description" id="description" content="Contour Plots of Values in Csv File">
+<meta name="keywords" id="keywords" content=" ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_d4_contour.py_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="d4_compare_sfun.py.htm" target="_top">Prev</a>
+</td><td><a href="d4_cumulative.py.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>csv</option>
+<option>python_csv</option>
+<option>d4_contour.py</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>csv-&gt;</option>
+<option>dismod_pde_csv</option>
+<option>python_csv</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>python_csv-&gt;</option>
+<option>d4_bubble.py</option>
+<option>d4_change_sfun_in.py</option>
+<option>d4_compare_sfun.py</option>
+<option>d4_contour.py</option>
+<option>d4_cumulative.py</option>
+<option>d4_plot.py</option>
+<option>d4_sfun_der.py</option>
+<option>d4_sfun_grid.py</option>
+<option>d4_simulate.py</option>
+</select>
+</td>
+<td>d4_contour.py</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>csv_file</option>
+<option>plot_file</option>
+<option>title</option>
+<option>x-axis</option>
+<option>---..x_name</option>
+<option>---..x_min</option>
+<option>---..x_max</option>
+<option>y-axis</option>
+<option>---..y_name</option>
+<option>---..y_min</option>
+<option>---..y_max</option>
+<option>z-axis</option>
+<option>---..z_name</option>
+<option>---..z_min</option>
+<option>---..z_max</option>
+<option>---..z_inc</option>
+</select>
+</td>
+</tr></table><br>
+  
+
+
+
+<center><b><big><big>Contour Plots of Values in Csv File</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><font color="blue"><span style='white-space: nowrap'>d4_contour.py&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>csv_file</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>plot_file</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>title</span></font></i></code>
+
+
+<code><font color="blue"><span style='white-space: nowrap'>\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>x_name</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>x_min</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>x_max</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y_name</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y_min</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>y_max</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>z_name</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>z_min</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>z_max</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;[</span></font><i><font color="black"><span style='white-space: nowrap'>z_inc</span></font></i><font color="blue"><span style='white-space: nowrap'>]<br>
+</span></font></code>
+<br>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br>
+Make a contour plot of the values in a csv file.
+
+<br>
+<br>
+<b><big><a name="csv_file" id="csv_file">csv_file</a></big></b>
+<br>
+is the name of <a href="csv.htm" target="_top"><span style='white-space: nowrap'>csv</span></a>
+ file to containing the values to be plotted.
+The x, y, values must correspond to a rectangular array; i.e.
+there is a vector <code>
+<span style='white-space: nowrap'>&nbsp;x</span></code>
+ of all x column input values,
+and a vector <code>
+<span style='white-space: nowrap'>&nbsp;y</span></code>
+ of all y column input values and every
+combination <code>
+<span style='white-space: nowrap'>&nbsp;x_i</span></code>
+ and <code>
+<span style='white-space: nowrap'>&nbsp;y_j</span></code>
+ appears
+in the file 
+<code><i><font color="black"><span style='white-space: nowrap'>csv_file</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="plot_file" id="plot_file">plot_file</a></big></b>
+<br>
+Is the name of the plot file stored to disk. The extension
+for this file will determine the output format; e.g., <code><font color="blue">.pdf</font></code>
+or <code><font color="blue">.eps</font></code>.
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>plot_file</span></font></i></code>
+ is the string <code><font color="blue">'screen'</font></code>,
+the plot is displayed on the screen and <code><font color="blue">d4_contour.py</font></code> waits
+for the user to close the plot before returning.
+
+<br>
+<br>
+<b><big><a name="title" id="title">title</a></big></b>
+<br>
+is the title placed at the top of the plot.
+
+<br>
+<br>
+<b><big><a name="x-axis" id="x-axis">x-axis</a></big></b>
+<br>
+This is the horizontal axis in the plot.
+
+<br>
+<br>
+<b><a name="x-axis.x_name" id="x-axis.x_name">x_name</a></b>
+<br>
+name for the column corresponding to the x-axis.
+This column must contain numeric data.
+
+<br>
+<br>
+<b><a name="x-axis.x_min" id="x-axis.x_min">x_min</a></b>
+<br>
+lower limit for the x-axis in the plot.
+
+<br>
+<br>
+<b><a name="x-axis.x_max" id="x-axis.x_max">x_max</a></b>
+<br>
+upper limit for the x-axis in the plot.
+
+<br>
+<br>
+<b><big><a name="y-axis" id="y-axis">y-axis</a></big></b>
+<br>
+This is the vertical axis in the plot.
+
+<br>
+<br>
+<b><a name="y-axis.y_name" id="y-axis.y_name">y_name</a></b>
+<br>
+name for the column corresponding to the y-axis.
+This column must contain numeric data.
+
+<br>
+<br>
+<b><a name="y-axis.y_min" id="y-axis.y_min">y_min</a></b>
+<br>
+lower limit for the y-axis in the plot.
+
+<br>
+<br>
+<b><a name="y-axis.y_max" id="y-axis.y_max">y_max</a></b>
+<br>
+upper limit for the y-axis in the plot.
+
+<br>
+<br>
+<b><big><a name="z-axis" id="z-axis">z-axis</a></big></b>
+<br>
+These arguments determine the variable corresponding to contour levels
+
+<br>
+<br>
+<b><a name="z-axis.z_name" id="z-axis.z_name">z_name</a></b>
+<br>
+name for the column corresponding to the contour levels in the plot.
+This column must contain numeric data.
+
+<br>
+<br>
+<b><a name="z-axis.z_min" id="z-axis.z_min">z_min</a></b>
+<br>
+minimum contour level (this is also the first contour level).
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>z_inc</span></font></i></code>
+ is not present, this is also used for the initial 
+increment and it must be greater than zero.
+
+<br>
+<br>
+<b><a name="z-axis.z_max" id="z-axis.z_max">z_max</a></b>
+<br>
+maximum contour level (all contour levels are less than this value).
+
+<br>
+<br>
+<b><a name="z-axis.z_inc" id="z-axis.z_inc">z_inc</a></b>
+<br>
+This argument is optional.
+If it is present, it is used as the increment between contour
+levels. Otherwise, 
+<code><i><font color="black"><span style='white-space: nowrap'>z_min</span></font></i></code>
+ is rounded down to a power of ten to
+obtain the initial increment. In addition, in this case the increment is
+increased as the level passes a power of ten.
+
+
+<hr>Input File: python/d4_contour.py.in
+
+</body>
+</html>

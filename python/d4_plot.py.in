@@ -1,0 +1,550 @@
+#! @PYTHON_PREFIX@/bin/python
+# $begin d4_plot.py$$ $newlinech #$$
+# $escape $$ $comment so \ is a normal character inside codei command$$
+# $spell
+#	pdf
+#	eps
+#	logx
+#	logy
+#	csv
+#	py
+#	dismod
+#	expr
+#	inf
+# $$
+#
+# $section Line and Point Plots of CSV Files$$
+#
+# $head Syntax$$
+# $codei%d4_plot.py \
+#	%csv_file% %plot_file% %title% \
+#	--line    %x_col% %y_col% %symbol% %alpha% \
+#	--points  %x_col% %y_col% %symbol% %alpha% \
+#	--axis    %x_label% %x_min% %x_max% %y_label% %y_min% %y_max% \
+#	--string  %s_col% %s_value% \
+#	--numeric %e_col% %expr% \
+#	--connect %c_col% %c_limit_1% %c_limit_2% %...% %c_limit_N% \
+#	--logx --logy%$$
+#
+# $head csv_file$$
+# is the name of the Comma Separated Value (CSV) file 
+# containing the data to be plotted.
+#
+# $head plot_file$$
+# Is the name of the plot file that is stored to disk. The extension
+# for this file will determine the output format; e.g., $code .pdf$$
+# or $code .eps$$.
+# If $icode plot_file$$ is the string $code 'screen'$$,
+# the plot is displayed on the screen, and $code d4_plot.py$$ waits 
+# for the user to close the plot before returning.
+#
+# $head title$$
+# is the title that will be printed at the top of this plot.
+# 
+# $head --line, --points$$
+# If the $code --line$$ option ($code --points$$ option)
+# is specified, $code d4_plot.py$$ will draw
+# lines (not draw lines) between points.
+# Either $code --line$$ or $code --points$$
+# must appear at least once.
+# Each time they appear, the following must come after it:
+# 
+# $subhead x_col$$
+# is the name of the column corresponding to the horizontal axis 
+# for this $codei%(%x_col%, %y_col%)%$$  pair.  
+# The $icode x_col$$ column must contain numeric data.
+# Pairs are always plotted in ascending order for the value 
+# on the horizontal axis; i.e., the value in column $icode x_col$$.
+#
+# $subhead y_col$$
+# is the name of the column corresponding to the vertical axis 
+# for this $codei%(%x_col%, %y_col%)%$$  pair.  
+# The $icode y_col$$ column must contain numeric data.
+# If a value in the column $icode y_col$$ is $code nan$$,
+# the corresponding pair is not plotted.
+#
+# $subhead symbol$$
+# is either one symbol, or a list of symbols for this pair (a list of symbols 
+# is useful for the $cref/--connect/d4_plot.py/--connect/$$ option).
+# Valid symbol choices are
+# $code '.'$$ (no symbol),
+# $code 's'$$ (square),  
+# $code 'o'$$ (circle),  
+# $code '*'$$ (star),  
+# $code 'x'$$ (cross),
+# $code '+'$$ (plus),
+# $icode 'p'$$ (pentagon),
+# $code 'd'$$ (thin diamond),  
+# $code 'D'$$ (thick diamond)  
+# $icode 'h'$$ (hexagon1),
+# $icode 'H'$$ (hexagon2),
+# $code '^'$$ (triangle up),  
+# $code '>'$$ (triangle right),  
+# $code 'v'$$ (triangle down),  
+# $code '<'$$ (triangle left).
+# The no symbol case $code '.'$$ is useful when a line is 
+# being plotted and we do not also want a symbol at every plot point. 
+#
+# $subhead alpha$$
+# $icode alpha$$ determines is how dark is the line or symbols is
+# $codei%0 < %alpha% <= 1%$$.
+#
+# $head --axis$$
+# This command line argument is optional, 
+# and can appear at most once.
+# If it is not present, the axes are auto scaled.
+# If it is present,  the following argument must follow directly after it:
+# $icode x_label$$ is label used for x axis,
+# $icode x_min$$ is minimum value on the x axis, and
+# $icode x_max$$ is maximum value on the x axis.
+# Any $icode x$$ values less than (greater than)
+# $icode x_min$$ ($icode x_max$$) are set to $icode x_min$$ ($icode x_max$$)
+# in the plot.  
+# The values $icode y_label$$, $icode y_min$$ and $icode y_max$$ have a 
+# similar effect on the y axis.
+#
+# $head --string$$
+# This command line argument is optional
+# and can appear any number of times.
+# If it is present, arguments $icode s_col$$ and $icode s_value$$ 
+# must follow directly after $code --string$$.
+# This is used to select the subset of the rows in the data file 
+# where the specified column has the specified value (as a string).
+# If $code --string$$ occurs more than once,
+# all of the specified columns must have the specified value for the
+# correspond data to be plotted.
+#
+# $subhead s_col$$
+# is the name of the column that is used to select the subset of rows
+# that are plotted.
+#
+# $subhead s_value$$
+# only rows that match this value in the specified column will be plotted.
+#
+# $head --numeric$$
+# This command line argument is optional
+# and can appear any number of times.
+# If it is present, arguments $icode e_col$$ and $icode expr$$ 
+# must follow directly after $code --numeric$$.
+# This is used to select the subset of the rows in the data file 
+# where the specified column has a numeric value that results in
+# $code True$$ for the expression $icode expr$$.
+#
+# $subhead e_col$$
+# is the name of the column that is used to select the subset of rows
+# that are plotted.
+#
+# $subhead expr$$
+# only rows that match this value in the specified column will be plotted.
+# The result of $icode expr$$ must be $code True$$ 
+# (included) or $code False$$ (not included).
+# The name used for the selecting column $icode e_col$$, is defined as
+# a variable and equal to the value in that column as a float.
+# The name $code inf$$ is equal to the value plus infinity.
+# Expressions are otherwise limited to the conditional expression syntax,
+# the operators $code +$$, $code -$$, $code *$$, $code /$$, $code **$$,
+# the $code max$$ function, and numeric constants.
+# For example, to exclude rows where the value in the $code age$$ column
+# is zero, one would use
+# $codep
+#	--numeric age 'age > 0'
+# $$
+# Note that the quotes around $code 'age > 0'$$ group the expression
+# as one command line argument.
+#
+# $head --connect$$
+# This command line argument is optional,
+# and can appear only once.
+# If it is present, 
+# $codei%
+#	%c_col% %c_limit_1% %c_limit_2% %...% %c_limit_N% 
+# %$$
+# must follow directly after $code --connect$$.
+# This is used to select subsets of rows in the data file 
+# that will be connected by using the same symbol for plotting
+# (and possibly also a connecting line).
+#
+# $subhead c_col$$
+# is the name of the column that contains the values which determine
+# which points are to be connected. 
+# Rows with $icode c_col$$ values within the specified limits are connected.
+#
+# $subhead c_limit_j$$
+# If any of the $icode c_limit_j$$ contains a comma, 
+# then the column corresponding to $icode c_col$$ must contain values
+# that can be converted to $code float$$.
+# Otherwise, all the $icode c_limit_j$$ values can be arbitrary strings.
+# For $icode%j% = 1 %, ... , N%$$,
+# if $icode c_limit_j$$ contains a comma, 
+# a lower limit comes before the comma and the upper limit comes after
+# and values are connected if
+# $codei%
+#	%lower%_j <= %value% < %upper%_j
+# %$$
+# If $icode c_limit_j$$ does not contain a comma, then lower and
+# upper limits are equal to the single value $icode c_limit_j$$.
+# and values are connected if
+# $codei%
+#	c_%limit%_j == %value%
+# %$$
+# The connection is represented by plotting the same symbol, 
+# and possible a line, between the connected points.
+# The connection corresponding to $icode c_limit_j$$ uses the $th j$$
+# $cref/symbol/d4_plot.py/--line, --points/symbol/$$ 
+# for the corresponding pair.
+# When there are more connections than symbols, the symbols are
+# recycled starting with the first one (again).
+# $pre
+#
+# $$
+# It is assumed that non of the $icode c_limit_j$$ arguments
+# start with the two characters $code --$$.
+# There must be at least one connection; i.e., $icode%N% >= 1%$$.
+#
+# $head --logx$$
+# This command line argument is optional,
+# and can appear only once.
+# If it is present, the $icode x$$ axis is log scaled..
+#
+# $head --logy$$
+# This command line argument is optional,
+# and can appear only once.
+# If it is present, the $icode y$$ axis is log scaled..
+#
+# $end
+# --------------------------------------------------------------------------
+import sys
+import string
+import csv
+import numpy
+import matplotlib
+import math
+#
+usage='''
+d4_plot.py \\
+	csv_file plot_file title \\
+	--line     x_col y_col symbol alpha \\
+	--points   x_col y_col symbol alpha \\
+	--axis     x_label x_min x_max y_label y_min y_max \\
+	--string   s_col s_value \\
+	--numeric  e_col expr \\
+	--connect  c_col c_limit_1 ... c_limit_N  \\
+	--logx --logy
+
+--line:    --line or --points must appear once
+--points:  both --line and --points may appear more times
+--axis:    may appear once
+--string:  may appear any number of times
+--numeric: may appear any number of times
+--connect: may appear once
+--logx:    may appear once
+--logy:    may appear once
+
+csv_file:  name of the file containing data for this plot
+plot_file: name of the output file (if 'screen', output is to screen)
+title:     title printed at top of this figure
+x_col:     numeric column for x component for this pair
+y_col:     numeric column for y component for this pair 
+symbol:    symbol used to mark each connection (.,s,o,*,x,+,p,d,D,h,H,^,>,v,<)
+alpha:     is how dark is the line or symbols (0 < alpha <= 1) 
+
+x_label:   label printed below the x axis 
+x_min:     minimum value on x axis
+x_max:     maximum value on x axis
+y_label    label printed left of the y axis
+y_min:     minimum value on y axis
+y_max:     maximum value on y axis
+
+s_col:     column name for string variable we are selecting on.
+s_value:   only include rows that match this value in the specified column.
+
+e_col:     column name for numeric variable (called e) we are selecting on.
+expr:      only include rows for which this expression returns True.
+
+c_col:     connect points for which this column has values with limits.
+c_limit_j: either c_limit_j is just one value or c_limit_j = c_low_j,c_up_j.
+'''
+# --------------------------------------------------------------------------
+# safe evalutation of expressions defined on the command line
+def safe_eval(expr, name, str_value) :
+	value = float(str_value)
+	inf   = float('inf')
+	loc = {
+		name : value , 
+		'inf' : inf  ,
+		'max' : max  
+	}
+	glo = {'__builtins__' : None}
+	return eval(expr, glo, loc)
+# --------------------------------------------------------------------------
+# print command line error message and exit
+def missing_exit(missing, option, iarg) :
+	print usage
+	format   = 'd4_plot.py: missing %s after %s at option number %d'
+	message  = format % (missing, option, iarg+1)
+	sys.exit(message)
+# --------------------------------------------------------------------------
+# Determine if values is within limits
+def in_limit(value, limit) :
+	j = string.find(limit, ',')
+	if j == -1 :
+		# only one limit so can intrepret as float or string
+		try :
+			# try float first
+			v  = float(value)
+			l  = float(limit)
+			return v == l
+		except ValueError :
+			# now try string
+			return value == limit
+	# get lower and upper limits
+	if j == 0 :
+		sys.exit('d4_plot.py: c_limit_j has no character before comma')
+	if j == len(limit) - 1 :
+		sys.exit('d4_plot.py: c_limit_j has no character after comma')
+	v     = float(value)
+	lower = float(limit[:j])
+	upper = float(limit[j+1:])
+	return lower <= v and v < upper
+# -------------------------------------------------------------------------
+# plot next figure
+def plot_curve(logx, logy, x, y, curve_type, alp) :
+	if logx :
+		if logy :
+			plt.loglog(x, y, curve_type, alpha=alp)
+		else :
+			plt.semilogx(x, y, curve_type, alpha=alp)
+	else :
+		if logy :
+			plt.semilogy(x, y, curve_type, alpha=alp)
+		else :
+			plt.plot(x, y, curve_type, alpha=alp)
+#
+def plot_figure(csv_file, title, logx, logy, points, x_col, y_col,  
+	symbol, s_col, s_value, e_col, expr, c_limit, a_label) :
+	plt.figure()
+	file_fp    = open(csv_file)
+	reader     = csv.DictReader(file_fp, skipinitialspace=True)
+	x_data     = []
+	y_data     = []
+	c_data     = []
+	connect    = len(c_limit) > 0
+	n_string   = len(s_col)
+	n_expr     = len(e_col)
+	n_pair     = len(points)
+	assert n_pair == len(x_col)
+	assert n_pair == len(y_col)
+	assert n_pair == len(symbol)
+	if len(a_label) > 0 :
+		x_min = float( a_label[1] )
+		x_max = float( a_label[2] )
+		y_min = float( a_label[4] )
+		y_max = float( a_label[5] )
+	else :
+		x_min = - sys.float_info.max
+		x_max = + sys.float_info.max
+		y_min = - sys.float_info.max
+		y_max = + sys.float_info.max
+	for row in reader :
+		include   = True
+		for j in range(n_string) :
+			include = include and row[s_col[j]] == s_value[j]
+		for j in range(n_expr) :
+			name      = e_col[j]
+			str_value = row[name]
+			include = include and safe_eval(expr[j], name, str_value)
+		if include :
+			x_data_i = []
+			y_data_i = []
+			for j in range(n_pair) :
+				x_ij = float( row[ x_col[j] ] )
+				x_ij = max( min( x_ij, x_max ), x_min )
+				x_data_i.append( x_ij )
+				#
+				y_ij = float( row[ y_col[j] ] )
+				y_ij = max( min( y_ij, y_max ), y_min )
+				y_data_i.append( y_ij )
+			x_data.append( x_data_i )
+			y_data.append( y_data_i ) 
+			if connect :
+				c_data.append( row[c_col] )
+	#
+	n_data = len(x_data)
+	assert n_data == len(y_data)
+	#
+	for j in range(n_pair) :
+		if connect :
+			assert n_data == len(c_data)
+			connect_count = 0
+			for limit in c_limit :
+				xy    = [ ]
+				for i in range(n_data) :
+					ok = not math.isnan( x_data[i][j] )
+					ok = ok and not math.isnan( y_data[i][j] )
+					if ok and in_limit(c_data[i], limit) :
+						xy.append( [ x_data[i][j] , y_data[i][j] ] )
+				xy    = sorted(xy, key= lambda xy_i : xy_i[0] )
+				x     = []
+				y     = []
+				for i in range( len(xy) ) :
+					x.append( xy[i][0] )
+					y.append( xy[i][1] )
+				if points[j] :
+					line_type = 'k'
+				else:
+					line_type = 'k-'
+				s = symbol[j][ connect_count % len(symbol[j]) ]
+				if s != '.' :
+					line_type = line_type + s
+				connect_count = connect_count + 1
+				plot_curve(logx, logy, x, y, line_type, alpha[j])
+		else :
+			xy    = [ ]
+			for i in range(n_data) :
+				ok = not math.isnan( x_data[i][j] )
+				ok = ok and not math.isnan( y_data[i][j] )
+				if ok :
+					xy.append( [ x_data[i][j] , y_data[i][j] ] )
+			xy    = sorted(xy, key= lambda xy_i : xy_i[0] )
+			x     = []
+			y     = []
+			for i in range( len(xy) ) :
+				x.append( xy[i][0] )
+				y.append( xy[i][1] )
+			if points[j] :
+				line_type = 'k'
+			else:
+				line_type = 'k-'
+			s = symbol[j][0]
+			if s != '.' :
+				line_type = line_type + s
+			plot_curve(logx, logy, x, y, line_type, alpha[j])
+	#
+	file_fp.close()
+	if len(a_label) > 0 :
+		plt.xlabel( a_label[0] )
+		plt.ylabel( a_label[3] )
+		x_min = float( a_label[1] )
+		x_max = float( a_label[2] )
+		y_min = float( a_label[4] )
+		y_max = float( a_label[5] )
+		plt.axis( [ x_min, x_max, y_min, y_max ] )
+	plt.title(title)
+# -------------------------------------------------------------------------
+# process command line arguments 
+#
+argv      = sys.argv
+iarg      = 0
+#
+if 4 >= len(argv) :
+	sys.exit('d4_plot.py: csv_file, plot_file, or title missing')
+csv_file  = argv[iarg+1]
+plot_file = argv[iarg+2]
+title     = argv[iarg+3]
+logx      = False
+logy      = False
+points    = []
+x_col     = []
+y_col     = []
+symbol    = []
+alpha     = []
+s_col     = []
+s_value   = []
+e_col     = []
+expr      = []
+c_limit   = []
+a_label   = []
+iarg      = 4
+while iarg < len(argv) :
+	if argv[iarg] == '--line' or argv[iarg] == '--points' :
+		if iarg + 4 >= len(argv) :
+			missing_exit('x_col y_col symbol alpha', argv[iarg], iarg)
+		valid = len( argv[iarg+3] ) >= 1
+		if valid :
+			possible = '.so*x+pdDhH^>v<'
+			for s in argv[iarg+3] :
+				valid = valid and possible.find(s) >= 0
+		if not valid :
+			print usage
+			format  = 'd4_plot.py: after ' + argv[iarg]
+			format  = format  + ' at option number %d, '
+			format  = format + 'invalid symbol = "%s"'
+			message = format % (iarg + 4, argv[iarg+3]) 
+			sys.exit(message)
+		points.append( argv[iarg] == '--points' )
+		x_col.append( argv[iarg+1] )
+		y_col.append( argv[iarg+2] )
+		symbol.append( argv[iarg+3] )
+		alpha.append( argv[iarg+4] )
+		iarg = iarg + 5
+	elif argv[iarg] == '--axis' :
+		if len(a_label) != 0 :
+			print usage
+			sys.exit('d4_plot.py: multiple --axis for one figure')
+		if iarg + 6 >= len(argv) :
+			print usage
+			missing_exit(
+				'x_label x_min x_max y_label y_min y_max', '--axis', iarg
+			)
+		iarg    = iarg + 1
+		for i in range(6) :
+			a_label.append( argv[iarg] )
+			iarg = iarg + 1
+	elif argv[iarg] == '--string' :
+		if iarg + 2 >= len(argv) :
+			missing_exit('s_col f_val', '--string', iarg)
+		s_col.append( argv[iarg+1] )
+		s_value.append( argv[iarg+2] )
+		iarg   = iarg + 3
+	elif argv[iarg] == '--numeric' :
+		if iarg + 2 >= len(argv) :
+			missing_exit('e_col expr', '--numeric', iarg)
+		e_col.append( argv[iarg+1] )
+		expr.append( argv[iarg+2] )
+		iarg   = iarg + 3
+	elif argv[iarg] == '--connect' :
+		if len(c_limit) != 0 :
+			print usage
+			sys.exit('d4_plot.py: multiple --connect for one figure')
+		if iarg + 2 >= len(argv) :
+			missing_exit('c_col c_limit_1 ... c_limit_N', '--connect', iarg)
+		c_col   = argv[iarg+1]
+		c_more  = True
+		iarg    = iarg + 2
+		while c_more :
+			c_limit.append( argv[iarg] )
+			iarg    = iarg + 1
+			c_more  = iarg < len(argv)
+			if c_more :
+				arg = argv[iarg]
+				if len(arg) >= 2 :
+					c_more = arg[0:2] != '--'
+		# end lines command
+	elif argv[iarg] == '--logx' :
+		if logx :
+			sys.exit('d4_plot.py: multiple --logx for one figure')
+		logx = True
+		iarg = iarg + 1
+	elif argv[iarg] == '--logy' :
+		if logy :
+			sys.exit('d4_plot.py: multiple --logy for one figure')
+		logy = True
+		iarg = iarg + 1
+	else :
+		print usage
+		fmt = 'd4_plot.py: invalid option, command line argument # %d is %s'
+		message = fmt % (iarg+1, argv[iarg])
+		sys.exit(message)
+#
+if plot_file != 'screen' :
+	matplotlib.use('Agg') # no X-window display connect so can run remotely
+import matplotlib.pyplot as plt
+#
+plot_figure(csv_file, title, logx, logy, points, x_col, y_col, 
+	symbol, s_col, s_value, e_col, expr, c_limit, a_label
+)
+#
+if plot_file == 'screen' :
+	plt.show()
+else :
+	plt.savefig(plot_file)

@@ -1,0 +1,1794 @@
+<?xml version='1.0'?>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:math='http://www.w3.org/1998/Math/MathML'
+>
+<head>
+<title>dismod_pde Command Line Program</title>
+<meta name="description" id="description" content="dismod_pde Command Line Program"/>
+<meta name="keywords" id="keywords" content=" program dismod_pde_csv infinity parameter.csv grid age cohort measure_in.csv integrand limits upper lower time likelihood name zeta sigma covariates Comment sfun_in.csv template input function column field order and effect_in.csv x_ covariate effect initial sfun_out.csv scaled residual measure_out.csv effect_out.csv measurement estimate "/>
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_dismod_pde_csv_xml.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="csv.xml" target="_top">Prev</a>
+</td><td><a href="python_csv.xml" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>csv</option>
+<option>dismod_pde_csv</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>csv-&gt;</option>
+<option>dismod_pde_csv</option>
+<option>python_csv</option>
+</select>
+</td>
+<td>dismod_pde_csv</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>CSV Files</option>
+<option>Infinity</option>
+<option>parameter.csv</option>
+<option>---..age_grid</option>
+<option>---..cohort_grid</option>
+<option>---..debug_output</option>
+<option>measure_in.csv</option>
+<option>---..ell</option>
+<option>---..integrand</option>
+<option>---..age_lower, age_upper</option>
+<option>---..time_lower, time_upper</option>
+<option>---..meas_like</option>
+<option>---..meas_zeta</option>
+<option>---..meas_sigma</option>
+<option>---..meas_value</option>
+<option>---..Covariates</option>
+<option>---..Comments</option>
+<option>sfun_in.csv</option>
+<option>---..Output Template</option>
+<option>---..Input File</option>
+<option>---..function</option>
+<option>---..name</option>
+<option>---..zeta</option>
+<option>---..sigma</option>
+<option>---..order</option>
+<option>effect_in.csv</option>
+<option>---..integrand</option>
+<option>---..covariate</option>
+<option>---..lower</option>
+<option>---..initial</option>
+<option>---..upper</option>
+<option>sfun_out.csv</option>
+<option>---..Scaled Residuals</option>
+<option>measure_out.csv</option>
+<option>effect_out.csv</option>
+<option>---..integrand</option>
+<option>---..covariate</option>
+<option>---..effect</option>
+<option>Example</option>
+</select>
+</td>
+</tr></table><br/>
+<center><b><big><big>dismod_pde Command Line Program</big></big></b></center>
+<br/>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br/>
+
+<code><font color="blue"><span style='white-space: nowrap'>dismod_pde_csv</span></font></code>
+
+
+<code><i><font color="black"><span style='white-space: nowrap'>parameter.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in.csv</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+
+<code><font color="blue"><span style='white-space: nowrap'>dismod_pde_csv&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>parameter.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_out.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;\<br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>effect_in.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>effect_out.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;<br/>
+</span></font></code>
+<br/>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br/>
+Runs <a href="optimize.xml" target="_top"><span style='white-space: nowrap'>dismod_pde::optimize</span></a>
+ with inputs
+and outputs from and to csv files.
+
+<br/>
+<br/>
+<b><big><a name="CSV Files" id="CSV Files">CSV Files</a></big></b>
+<br/>
+Each of the <code><font color="blue">dismod_pde_csv</font></code> command line arguments
+specify a <a href="csv.xml#dismod_pde CSV Files" target="_top"><span style='white-space: nowrap'>dismod_pde&#xA0;csv&#xA0;file</span></a>
+.
+This dismod_pde_csv uses the following csv files for its input and output:
+<table><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#parameter.csv" target="_top"><span style='white-space: nowrap'>parameter.csv</span></a>
+ <code><span style='white-space: nowrap'>&#xA0;&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	a small set of control parameters
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#effect_in.csv" target="_top"><span style='white-space: nowrap'>effect_in.csv</span></a>
+ <code><span style='white-space: nowrap'>&#xA0;&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	measurement effects, limits, and initial values during fitting
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#measure_in.csv" target="_top"><span style='white-space: nowrap'>measure_in.csv</span></a>
+ <code><span style='white-space: nowrap'>&#xA0;&#xA0;</span></code> </td><td align='left'  valign='top'>
+ 
+	defines the measurements
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#sfun_in.csv" target="_top"><span style='white-space: nowrap'>sfun_in.csv</span></a>
+ <code><span style='white-space: nowrap'>&#xA0;&#xA0;</span></code> </td><td align='left'  valign='top'>
+ 
+	stochastic function input values
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+ <code><span style='white-space: nowrap'>&#xA0;&#xA0;</span></code> </td><td align='left'  valign='top'>
+ 
+	stochastic function output values
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#measure_out.csv" target="_top"><span style='white-space: nowrap'>measure_out.csv</span></a>
+  <code><span style='white-space: nowrap'>&#xA0;&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	fitting residuals for each measurement 
+</td></tr>
+</table>
+<br/>
+<b><big><a name="Infinity" id="Infinity">Infinity</a></big></b>
+
+<br/>
+These data files use the special values <code><font color="blue">inf</font></code> and <code><font color="blue">-inf</font></code> to denote
+plus and minus infinity.
+
+
+
+<br/>
+<br/>
+<b><big><a name="parameter.csv" id="parameter.csv">parameter.csv</a></big></b>
+
+<br/>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>parameter.csv</span></font></i></code>
+ specifies
+the parameter file.
+This file has only two columns, the first column name is <code><font color="blue">name</font></code>
+and the second column name is <code><font color="blue">value</font></code>.
+For each name, the following table contains a description of the
+corresponding value (that the modeler chooses).
+The order of the lines in 
+<code><i><font color="black"><span style='white-space: nowrap'>parameter.csv</span></font></i></code>
+ is not important.
+All of the names must appear once and only once.
+Example value,
+used by <a href="get_started.sh.xml" target="_top"><span style='white-space: nowrap'>get_started.sh</span></a>
+, are listed below for each parameter.
+<table><tr><td align='left'  valign='top'>
+
+<b>name</b>         <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+ 
+	<b>Default</b> <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+ 
+	<b>Description</b> 
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#parameter.csv.age_grid" target="_top"><span style='white-space: nowrap'>age_grid</span></a>
+ <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	0 5 20 <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	Age values in the computational grid.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#parameter.csv.cohort_grid" target="_top"><span style='white-space: nowrap'>cohort_grid</span></a>
+ <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	1940 1960 1980 200 2020 2040 <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	Cohort values in the computational grid.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#parameter.max_ode_step" target="_top"><span style='white-space: nowrap'>max_ode_step</span></a>
+  <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	1 <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	Maximum step to use in age when solving for 
+	
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>S</mi>
+<mo stretchy="false">(</mo>
+<mo stretchy="false">&#x000B7;</mo>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+ and 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>C</mi>
+<mo stretchy="false">(</mo>
+<mo stretchy="false">&#x000B7;</mo>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#parameter.print_level" target="_top"><span style='white-space: nowrap'>print_level</span></a>
+  <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	5 <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	Level of 
+	<a href="ipopt_trace.xml" target="_top"><span style='white-space: nowrap'>tracing&#xA0;printed&#xA0;by&#xA0;optimization</span></a>
+ (0 for no tracing).
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#parameter.max_iteration" target="_top"><span style='white-space: nowrap'>max_iteration</span></a>
+  <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	80 <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	Maximum number of iterations the optimizer should attempt
+	before giving up.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#parameter.converge_tolerance" target="_top"><span style='white-space: nowrap'>converge_tolerance</span></a>
+  <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	1e-6 <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	Optimizer convergence tolerance.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#parameter.debug_output" target="_top"><span style='white-space: nowrap'>debug_output</span></a>
+  <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	0 <code><span style='white-space: nowrap'>&#xA0;</span></code> </td><td align='left'  valign='top'>
+
+	More debugging output.
+</td></tr>
+</table>
+<br/>
+<b><a name="parameter.csv.age_grid" id="parameter.csv.age_grid">age_grid</a></b>
+
+
+<br/>
+The value corresponding to the name <code><font color="blue">age_grid</font></code>
+is a vector with elements separated by one or more spaces.
+It must be monotone increasing.
+
+<br/>
+<br/>
+<b><a name="parameter.csv.cohort_grid" id="parameter.csv.cohort_grid">cohort_grid</a></b>
+
+
+<br/>
+The value corresponding to the name <code><font color="blue">cohort_grid</font></code>
+is a vector with elements separated by one or more spaces.
+It must be monotone increasing.
+The limits of the cohort grid must be large enough to surround the
+data in time.
+
+
+<br/>
+<br/>
+<b><a name="parameter.csv.debug_output" id="parameter.csv.debug_output">debug_output</a></b>
+<br/>
+In 
+<code><i><font color="black"><span style='white-space: nowrap'>parameter.csv</span></font></i></code>
+ file,
+this value must be either <code><font color="blue">0</font></code> (false) or <code><font color="blue">1</font></code> (true).
+If it is <code><font color="blue">1</font></code>, more debugging output is displayed 
+(possibly at the expense of slower execution).
+
+
+
+<br/>
+<br/>
+<b><big><a name="measure_in.csv" id="measure_in.csv">measure_in.csv</a></big></b>
+
+<br/>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>measure_in.csv</span></font></i></code>
+ specifies
+the measurement file which must contain the following columns:
+
+<table><tr><td align='left'  valign='top'>
+
+<b>Name</b> </td><td align='left'  valign='top'>
+ <b>Value</b> </td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#measure_in.csv.integrand" target="_top"><span style='white-space: nowrap'>integrand</span></a>
+ </td><td align='left'  valign='top'>
+
+	The <a href="optimize.xml#measure_in.integrand" target="_top"><span style='white-space: nowrap'>integrand</span></a>
+
+	used to model this measurement.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#measure_in.csv.age_lower, age_upper" target="_top"><span style='white-space: nowrap'>age_lower,&#xA0;age_upper</span></a>
+ </td><td align='left'  valign='top'>
+ 
+	The age limits for this measurement.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#measure_in.csv.time_lower, time_upper" target="_top"><span style='white-space: nowrap'>time_lower,&#xA0;time_upper</span></a>
+ </td><td align='left'  valign='top'>
+ 
+	The time limits for this measurement.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#measure_in.csv.meas_like" target="_top"><span style='white-space: nowrap'>meas_like</span></a>
+ </td><td align='left'  valign='top'>
+
+	name of the likelihood for this measurement.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#measure_in.csv.meas_zeta" target="_top"><span style='white-space: nowrap'>meas_zeta</span></a>
+ </td><td align='left'  valign='top'>
+
+	offset that is added before log scaling this measurement.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#measure_in.csv.meas_sigma" target="_top"><span style='white-space: nowrap'>meas_sigma</span></a>
+ </td><td align='left'  valign='top'>
+
+	standard deviation for this measurement.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#measure_in.csv.meas_value" target="_top"><span style='white-space: nowrap'>meas_value</span></a>
+ </td><td align='left'  valign='top'>
+
+	The value for this measurement. 
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#measure_in.csv.Covariates" target="_top"><span style='white-space: nowrap'>Covariates</span></a>
+ </td><td align='left'  valign='top'>
+
+	Zero or more covariate columns.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#measure_in.csv.Comments" target="_top"><span style='white-space: nowrap'>Comments</span></a>
+  </td><td align='left'  valign='top'>
+
+	Zero or more comment columns.
+</td></tr>
+</table>
+<table><tr><td align='left'  valign='top'>
+<b>Name</b> </td><td align='left'  valign='top'>
+ <b>Value</b> </td></tr><tr><td align='left'  valign='top'>
+
+
+<code><font color="blue"><span style='white-space: nowrap'>x_</span></font><i><font color="black"><span style='white-space: nowrap'>name</span></font></i></code>
+ </td><td align='left'  valign='top'>
+
+	value of the specified covariate for this measurement
+</td></tr>
+</table>
+<br/>
+<b><a name="measure_in.csv.ell" id="measure_in.csv.ell">ell</a></b>
+<br/>
+We use 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mo stretchy="false">&#x02113;</mo>
+</mrow></math>
+
+ to denote an index that starts at zero
+with the first value for each column.
+Since the first line contains the names for each column
+the first value for each column is in line number two; 
+i.e. 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mo stretchy="false">&#x02113;</mo>
+<mo stretchy="false">=</mo>
+<mn>0</mn>
+</mrow></math>
+
+ corresponds to line number two.
+
+<br/>
+<br/>
+<b><a name="measure_in.csv.integrand" id="measure_in.csv.integrand">integrand</a></b>
+
+<br/>
+The column with name <code><font color="blue">integrand</font></code> 
+must have one of the following values:
+<code><font color="blue">incidence</font></code>,
+<code><font color="blue">remission</font></code>.
+<code><font color="blue">m_excess</font></code>,
+<code><font color="blue">m_other</font></code>,
+<code><font color="blue">m_with</font></code>,
+<code><font color="blue">prevalence</font></code>
+<code><font color="blue">m_prevalence</font></code>,
+<code><font color="blue">m_specific</font></code>,
+<code><font color="blue">m_all</font></code>,
+<code><font color="blue">m_standard</font></code>,
+<code><font color="blue">relative_risk</font></code>.
+We use 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>i</mi>
+<mo stretchy="false">(</mo>
+<mo stretchy="false">&#x02113;</mo>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+ to denote the value for the integrand; see
+optimizer <a href="optimize.xml#measure_in.integrand" target="_top"><span style='white-space: nowrap'>integrand</span></a>
+.
+
+<br/>
+<br/>
+<b><a name="measure_in.csv.age_lower, age_upper" id="measure_in.csv.age_lower, age_upper">age_lower, age_upper</a></b>
+
+
+
+<br/>
+The column with name <code><font color="blue">age_lower</font></code> (<code><font color="blue">age_upper</font></code>) 
+contains the lower (upper) limit for integration with respect to age
+for this measurement.
+The lower age limit must be greater than zero.
+We use 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msub><mi mathvariant='italic'>a</mi>
+<mrow><mi mathvariant='italic'>l</mi>
+<mo stretchy="false">,</mo>
+<mo stretchy="false">&#x02113;</mo>
+</mrow>
+</msub>
+</mrow></math>
+
+ (
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msub><mi mathvariant='italic'>a</mi>
+<mrow><mi mathvariant='italic'>u</mi>
+<mo stretchy="false">,</mo>
+<mo stretchy="false">&#x02113;</mo>
+</mrow>
+</msub>
+</mrow></math>
+
+) to denote the
+corresponding limits; see optimizer 
+<a href="optimize.xml#measure_in.age_lower, age_upper" target="_top"><span style='white-space: nowrap'>age_lower,&#xA0;age_upper</span></a>
+.
+
+<br/>
+<br/>
+<b><a name="measure_in.csv.time_lower, time_upper" id="measure_in.csv.time_lower, time_upper">time_lower, time_upper</a></b>
+
+
+
+<br/>
+The column with name <code><font color="blue">time_lower</font></code> (<code><font color="blue">time_upper</font></code>) 
+contains the lower (upper) limit for integration with respect to time
+for this measurement.
+We use 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msub><mi mathvariant='italic'>t</mi>
+<mrow><mi mathvariant='italic'>l</mi>
+<mo stretchy="false">,</mo>
+<mo stretchy="false">&#x02113;</mo>
+</mrow>
+</msub>
+</mrow></math>
+
+ (
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msub><mi mathvariant='italic'>t</mi>
+<mrow><mi mathvariant='italic'>u</mi>
+<mo stretchy="false">,</mo>
+<mo stretchy="false">&#x02113;</mo>
+</mrow>
+</msub>
+</mrow></math>
+
+) to denote the
+corresponding limits; see optimizer
+<a href="optimize.xml#measure_in.time_lower, time_upper" target="_top"><span style='white-space: nowrap'>time_lower,&#xA0;time_upper</span></a>
+.
+
+<br/>
+<br/>
+<b><a name="measure_in.csv.meas_like" id="measure_in.csv.meas_like">meas_like</a></b>
+
+
+<br/>
+The column with name <code><font color="blue">meas_like</font></code> 
+must have one of the following values:
+<code><font color="blue">gaussian</font></code> (
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msub><mi mathvariant='italic'>h</mi>
+<mo stretchy="false">&#x02113;</mo>
+</msub>
+<mo stretchy="false">=</mo>
+<mn>2</mn>
+</mrow></math>
+
+), or 
+<code><font color="blue">laplace</font></code> (
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msub><mi mathvariant='italic'>h</mi>
+<mo stretchy="false">&#x02113;</mo>
+</msub>
+<mo stretchy="false">=</mo>
+<mn>1</mn>
+</mrow></math>
+
+).
+We use 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msub><mi mathvariant='italic'>h</mi>
+<mo stretchy="false">&#x02113;</mo>
+</msub>
+</mrow></math>
+
+ to denote which likelihood we are using; 
+see optimizer <a href="optimize.xml#measure_in.meas_like" target="_top"><span style='white-space: nowrap'>meas_like</span></a>
+.
+
+<br/>
+<br/>
+<b><a name="measure_in.csv.meas_zeta" id="measure_in.csv.meas_zeta">meas_zeta</a></b>
+
+
+<br/>
+The column with name <code><font color="blue">meas_zeta</font></code> 
+contains the offset 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msub><mi mathvariant='normal'>&#x003B6;</mi>
+<mo stretchy="false">&#x02113;</mo>
+</msub>
+</mrow></math>
+
+
+that is added to the measurement, and the model,
+before taking the log;
+see optimizer <a href="optimize.xml#measure_in.meas_zeta" target="_top"><span style='white-space: nowrap'>meas_zeta</span></a>
+.
+
+<br/>
+<br/>
+<b><a name="measure_in.csv.meas_sigma" id="measure_in.csv.meas_sigma">meas_sigma</a></b>
+
+
+<br/>
+The column with name <code><font color="blue">meas_sigma</font></code> 
+contains the standard deviation 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msub><mi mathvariant='normal'>&#x003C3;</mi>
+<mo stretchy="false">&#x02113;</mo>
+</msub>
+</mrow></math>
+
+ for this measurement;
+see optimizer <a href="optimize.xml#measure_in.meas_sigma" target="_top"><span style='white-space: nowrap'>meas_sigma</span></a>
+.
+If 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msub><mi mathvariant='normal'>&#x003C3;</mi>
+<mo stretchy="false">&#x02113;</mo>
+</msub>
+</mrow></math>
+
+ is <a href="dismod_pde_csv.xml#Infinity" target="_top"><span style='white-space: nowrap'>infinity</span></a>
+,
+the measurement is not included in the fit.
+If 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msub><mi mathvariant='normal'>&#x003C3;</mi>
+<mo stretchy="false">&#x02113;</mo>
+</msub>
+</mrow></math>
+
+ is zero,
+The measurement is treated like a constraint; i,e.,
+the fit must agree with no residual.
+
+<br/>
+<br/>
+<b><a name="measure_in.csv.meas_value" id="measure_in.csv.meas_value">meas_value</a></b>
+<br/>
+The column with name <code><font color="blue">meas_value</font></code> contains the values
+for this measurement 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msub><mi mathvariant='italic'>z</mi>
+<mo stretchy="false">&#x02113;</mo>
+</msub>
+</mrow></math>
+
+;
+see optimizer <a href="optimize.xml#measure_in.meas_value" target="_top"><span style='white-space: nowrap'>meas_value</span></a>
+.
+
+<br/>
+<br/>
+<b><a name="measure_in.csv.Covariates" id="measure_in.csv.Covariates">Covariates</a></b>
+
+<br/>
+Columns in the file 
+<code><i><font color="black"><span style='white-space: nowrap'>measure_in.csv</span></font></i></code>
+ that have
+names beginning with the two characters <code><font color="blue">x_</font></code>
+are covariate columns and corresponding measurement effects
+can be estimated; see
+<a href="dismod_pde_csv.xml#effect_in.csv" target="_top"><span style='white-space: nowrap'>effect_in.csv</span></a>
+.
+
+<br/>
+<br/>
+<b><a name="measure_in.csv.Comments" id="measure_in.csv.Comments">Comments</a></b>
+
+<br/>
+The file 
+<code><i><font color="black"><span style='white-space: nowrap'>measure_in.csv</span></font></i></code>
+ may contain
+one or more comment columns.
+The corresponding column names begin with the characters 
+<code><font color="blue">c_</font></code>:
+
+
+
+<br/>
+<br/>
+<b><big><a name="sfun_in.csv" id="sfun_in.csv">sfun_in.csv</a></big></b>
+
+
+
+<br/>
+<br/>
+<b><a name="sfun_in.csv.Output Template" id="sfun_in.csv.Output Template">Output Template</a></b>
+
+
+<br/>
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_in.csv</span></font></i></code>
+ is the last command line argument,
+this is an output file and its contents only depend on the values
+in 
+<code><i><font color="black"><span style='white-space: nowrap'>parameter.csv</span></font></i></code>
+ and 
+<code><i><font color="black"><span style='white-space: nowrap'>measurement.csv</span></font></i></code>
+.
+In this case, 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_in.csv</span></font></i></code>
+ it is a template for 
+the corresponding input file (when it is not the last command line argument).
+See the heading Input File directly below.
+
+<br/>
+<br/>
+<b><a name="sfun_in.csv.Input File" id="sfun_in.csv.Input File">Input File</a></b>
+
+
+<br/>
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_in.csv</span></font></i></code>
+ is not the last command line argument,
+it is an input file with the column names listed below.
+You cannot change any of the column names; i.e., 
+the names in the first row of the template version of 
+
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_in.csv</span></font></i></code>
+ (see the heading Output Template directly above).
+The following values are fixed for each line and should not be changed:
+<table><tr><td align='left'  valign='top'>
+
+<b>Name</b> 
+	</td><td align='left'  valign='top'>
+ <b>Value</b> 
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#grid.age" target="_top"><span style='white-space: nowrap'>age</span></a>
+   
+	</td><td align='left'  valign='top'>
+ age 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>a</mi>
+</mrow></math>
+
+ corresponding to this line
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#grid.cohort" target="_top"><span style='white-space: nowrap'>cohort</span></a>
+   
+	</td><td align='left'  valign='top'>
+ cohort 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>c</mi>
+</mrow></math>
+
+ corresponding to this line
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">time</font></code>  
+	</td><td align='left'  valign='top'>
+ time 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>t</mi>
+<mo stretchy="false">=</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">+</mo>
+<mi mathvariant='italic'>c</mi>
+</mrow></math>
+
+ corresponding to this line
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="dismod_pde_csv.xml#sfun_in.csv.function" target="_top"><span style='white-space: nowrap'>function</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ stochastic function index 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>q</mi>
+</mrow></math>
+
+ corresponding to this line
+</td></tr>
+</table>
+The following values are input for each line 
+and should be chosen by the modeler:
+<table><tr><td align='left'  valign='top'>
+
+<b>Name</b> 
+	</td><td align='left'  valign='top'>
+ <b>Value</b> 
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.optimize_zeta" target="_top"><span style='white-space: nowrap'>optimize_zeta</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ offset added before log scaling of optimization problem
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.optimize_lower" target="_top"><span style='white-space: nowrap'>optimize_lower</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ lower bound for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+ 
+		during the optimization procedure
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.optimize_initial" target="_top"><span style='white-space: nowrap'>optimize_initial</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ initial value for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+ 
+		where the optimization procedure begins 
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.optimize_upper" target="_top"><span style='white-space: nowrap'>optimize_upper</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ upper bound for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+ 
+		during the optimization procedure
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.prior_like" target="_top"><span style='white-space: nowrap'>prior_like</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ direct prior likelihood name for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.prior_zeta" target="_top"><span style='white-space: nowrap'>prior_zeta</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ offset added before log in direct prior residual for
+	
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+ 
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.prior_sigma" target="_top"><span style='white-space: nowrap'>prior_sigma</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ standard deviation for direct prior residual for
+	
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+ 
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.prior_mean" target="_top"><span style='white-space: nowrap'>prior_mean</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ direct prior value for 
+	
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+ 
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.age_like" target="_top"><span style='white-space: nowrap'>age_like</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ age direction forward difference likelihood for 
+	
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.age_zeta" target="_top"><span style='white-space: nowrap'>age_zeta</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ added before log for age direction forward differences for 
+	
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.age_sigma" target="_top"><span style='white-space: nowrap'>age_sigma</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ standard deviation for age direction forward differences for 
+	
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.age_order" target="_top"><span style='white-space: nowrap'>age_order</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ order for age direction forward differences for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.cohort_like" target="_top"><span style='white-space: nowrap'>cohort_like</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ cohort direction forward difference likelihood for 
+	
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.cohort_zeta" target="_top"><span style='white-space: nowrap'>cohort_zeta</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ added before log for cohort direction forward differences for 
+	
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.cohort_sigma" target="_top"><span style='white-space: nowrap'>cohort_sigma</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ standard deviation for cohort direction forward differences 
+	for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.cohort_order" target="_top"><span style='white-space: nowrap'>cohort_order</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ order for cohort direction forward differences for 
+	
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.cross_like" target="_top"><span style='white-space: nowrap'>cross_like</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ cross term forward difference likelihood for 
+	
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.cross_zeta" target="_top"><span style='white-space: nowrap'>cross_zeta</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ added before log for cross term forward differences for 
+	
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_in.cross_sigma" target="_top"><span style='white-space: nowrap'>cross_sigma</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ standard deviation for cross term forward differences 
+	for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr>
+</table>
+<br/>
+<b><a name="sfun_in.csv.function" id="sfun_in.csv.function">function</a></b>
+
+
+
+<br/>
+The value in the column with name <code><font color="blue">function</font></code> specifies the function 
+for the corresponding line 
+and has one of the following values :
+<code><font color="blue">S</font></code>,
+<code><font color="blue">C</font></code>,
+<code><font color="blue">iota</font></code>,
+<code><font color="blue">rho</font></code>,
+<code><font color="blue">chi</font></code>, or
+<code><font color="blue">omega</font></code>.
+For more details, see the 
+<a href="optimize.xml#Stochastic Functions" target="_top"><span style='white-space: nowrap'>stochastic&#xA0;functions</span></a>
+ 
+discussion in the optimizer documentation.
+
+<br/>
+<br/>
+<b><a name="sfun_in.csv.name" id="sfun_in.csv.name">name</a></b>
+
+
+<br/>
+The columns with names
+<code><font color="blue">prior_like</font></code>,
+<code><font color="blue">age_like</font></code>, and
+<code><font color="blue">cohort_like</font></code>,
+must value <code><font color="blue">gaussian</font></code> or <code><font color="blue">laplace</font></code>.
+This specifies the corresponding likelihood for the residuals.
+
+<br/>
+<br/>
+<b><a name="sfun_in.csv.zeta" id="sfun_in.csv.zeta">zeta</a></b>
+
+<br/>
+The columns with names
+<code><font color="blue">prior_zeta</font></code>,
+<code><font color="blue">age_zeta</font></code>, and
+<code><font color="blue">cohort_zeta</font></code>,
+contains the offset added before taking the log
+during the computation of the corresponding residuals.
+
+<br/>
+<br/>
+<b><a name="sfun_in.csv.sigma" id="sfun_in.csv.sigma">sigma</a></b>
+
+<br/>
+The columns with names
+<code><font color="blue">prior_sigma</font></code>,
+<code><font color="blue">age_sigma</font></code>, and
+<code><font color="blue">cohort_sigma</font></code>,
+contains the standard deviation for the corresponding residuals.
+
+<br/>
+<br/>
+<b><a name="sfun_in.csv.order" id="sfun_in.csv.order">order</a></b>
+
+
+
+<br/>
+The columns with name <code><font color="blue">age_order</font></code> and <code><font color="blue">cohort_order</font></code> 
+must have value <code><font color="blue">1</font></code> or <code><font color="blue">2</font></code>.
+These specify the order for the forward differences
+in the age and cohort directions.
+Note that the functions <code><font color="blue">S</font></code> and <code><font color="blue">C</font></code>
+can only use order <code><font color="blue">1</font></code> in the age direction.
+
+
+
+<br/>
+<br/>
+<b><big><a name="effect_in.csv" id="effect_in.csv">effect_in.csv</a></big></b>
+
+<br/>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>effect_in.csv</span></font></i></code>
+ specifies
+the measurement effect input information .
+This file has five columns with the following names:
+<code><font color="blue">integrand</font></code>, 
+<code><font color="blue">covariate</font></code>, 
+<code><font color="blue">lower</font></code>,
+<code><font color="blue">initial</font></code>, and 
+<code><font color="blue">upper</font></code>.
+
+<br/>
+<br/>
+<b><a name="effect_in.csv.integrand" id="effect_in.csv.integrand">integrand</a></b>
+
+<br/>
+The column with name <code><font color="blue">integrand</font></code> 
+must have one of the following values:
+<code><font color="blue">incidence</font></code>,
+<code><font color="blue">m_all</font></code>,
+<code><font color="blue">m_excess</font></code>,
+<code><font color="blue">m_other</font></code>,
+<code><font color="blue">m_prevalence</font></code>,
+<code><font color="blue">m_specific</font></code>,
+<code><font color="blue">relative_risk</font></code>, or
+<code><font color="blue">remission</font></code>.
+We use 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>i</mi>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>m</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+ to denote the integrand
+for the <i>m</i>-th effect; see optimizer 
+<a href="optimize.xml#effect_in.integrand" target="_top"><span style='white-space: nowrap'>integrand</span></a>
+.
+
+<br/>
+<br/>
+<b><a name="effect_in.csv.covariate" id="effect_in.csv.covariate">covariate</a></b>
+
+
+
+<br/>
+Each value in the <code><font color="blue">covariate</font></code> column
+must be one of the 
+<a href="dismod_pde_csv.xml#measure_in.csv.Covariates" target="_top"><span style='white-space: nowrap'>covariate</span></a>
+ names in
+the 
+<code><i><font color="black"><span style='white-space: nowrap'>measure_in.csv</span></font></i></code>
+ file
+(hence it must begin with the characters <code><font color="blue">x_</font></code>).
+Only covariate effects that appear in the 
+<code><i><font color="black"><span style='white-space: nowrap'>effect_in.csv</span></font></i></code>
+ file are
+included in the fit.
+We use 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>n</mi>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>m</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+ to denote the covariate
+for the <i>m</i>-th effect; see optimizer 
+<a href="optimize.xml#effect_in.covariate" target="_top"><span style='white-space: nowrap'>covariate</span></a>
+.
+
+<br/>
+<br/>
+<b><a name="effect_in.csv.lower" id="effect_in.csv.lower">lower</a></b>
+
+
+
+<br/>
+The lower limit 
+(constraint on fit) for this covariate effect. 
+The value <code><font color="blue">-inf</font></code> can be used to denote minus 
+<a href="dismod_pde_csv.xml#Infinity" target="_top"><span style='white-space: nowrap'>infinity</span></a>
+; i.e.,
+no lower limit.
+
+<br/>
+<br/>
+<b><a name="effect_in.csv.initial" id="effect_in.csv.initial">initial</a></b>
+
+
+
+<br/>
+The initial value (where the optimization procedure begins)
+for this covariate effect.
+For each covariate effect, 
+<code><i><font color="black"><span style='white-space: nowrap'>initial</span></font></i></code>
+ must satisfy
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>lower</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;&lt;=&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>initial</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;&lt;=&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>upper</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+<br/>
+<b><a name="effect_in.csv.upper" id="effect_in.csv.upper">upper</a></b>
+
+
+
+<br/>
+The upper limit 
+(constraint on fit) for this covariate effect. 
+The value <code><font color="blue">inf</font></code> can be used to denote plus 
+<a href="dismod_pde_csv.xml#Infinity" target="_top"><span style='white-space: nowrap'>infinity</span></a>
+; i.e.,
+no lower limit.
+It is ok if 
+
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>lower</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;==&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>initial</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;==&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>upper</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+in which case the corresponding value is used for this covariate effect,
+and it is not included in the optimization procedure.
+
+
+
+
+
+<br/>
+<br/>
+<b><big><a name="sfun_out.csv" id="sfun_out.csv">sfun_out.csv</a></big></b>
+
+<br/>
+If this command line argument is present,
+this is an output file that contains information for each point
+on the computational grid.
+<table><tr><td align='left'  valign='top'>
+
+<b>Name</b> 
+	</td><td align='left'  valign='top'>
+ <b>Value</b> 
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">age</font></code>   
+	</td><td align='left'  valign='top'>
+ age 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>a</mi>
+</mrow></math>
+
+ for this line of the file
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">cohort</font></code> 
+	</td><td align='left'  valign='top'>
+ cohort 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>c</mi>
+</mrow></math>
+
+ for this line of the file
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">time</font></code>  
+	</td><td align='left'  valign='top'>
+ time 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>t</mi>
+<mo stretchy="false">=</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">+</mo>
+<mi mathvariant='italic'>c</mi>
+</mrow></math>
+
+ for this line of the file
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">function</font></code> 
+	</td><td align='left'  valign='top'>
+ stochastic function index 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>q</mi>
+</mrow></math>
+
+ for this line of the file,
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_out.estimate" target="_top"><span style='white-space: nowrap'>estimate</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ final optimal estimate for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+ 
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_out.prior_residual" target="_top"><span style='white-space: nowrap'>prior_residual</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ direct prior residual for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_out.prior_scaled" target="_top"><span style='white-space: nowrap'>prior_scaled</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ scaled direct prior residual for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_out.age_residual" target="_top"><span style='white-space: nowrap'>age_residual</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ age direction residual for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_out.age_scaled" target="_top"><span style='white-space: nowrap'>age_scaled</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ scaled age direction residual for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_out.cohort_residual" target="_top"><span style='white-space: nowrap'>cohort_residual</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ cohort direction residual for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_out.cohort_scaled" target="_top"><span style='white-space: nowrap'>cohort_scaled</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ scaled cohort direction residual for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_out.cross_residual" target="_top"><span style='white-space: nowrap'>cross_residual</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ cross term residual for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#sfun_out.cross_scaled" target="_top"><span style='white-space: nowrap'>cross_scaled</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ scaled cross term residual for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+
+</td></tr>
+</table>
+Note that the output file has special structure in the following way:
+
+<ol type="1"><li>
+Output lines are in groups of six with the same value for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+;
+i.e., they corresponding to 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<msup><mi mathvariant='italic'>s</mi>
+<mi mathvariant='italic'>q</mi>
+</msup>
+<mo stretchy="false">(</mo>
+<mi mathvariant='italic'>a</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>c</mi>
+<mo stretchy="false">)</mo>
+</mrow></math>
+
+ 
+for 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>q</mi>
+<mo stretchy="false">=</mo>
+<mn>0</mn>
+<mo stretchy="false">,</mo>
+<mo stretchy="false">&#x02026;</mo>
+<mo stretchy="false">,</mo>
+<mn>5</mn>
+</mrow></math>
+
+.
+</li><li>
+
+The function index 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>q</mi>
+</mrow></math>
+
+ on each line in a group of six is different
+corresponds to one of the following stochastic functions:
+<code><font color="blue">S</font></code>, <code><font color="blue">C</font></code>, <code><font color="blue">iota</font></code>, <code><font color="blue">rho</font></code>, <code><font color="blue">chi</font></code>, or <code><font color="blue">omega</font></code>.
+</li></ol>
+
+
+
+<br/>
+<br/>
+<b><a name="sfun_out.csv.Scaled Residuals" id="sfun_out.csv.Scaled Residuals">Scaled Residuals</a></b>
+
+
+
+<ol type="1"><li>
+If a corresponding standard deviation 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='normal'>&#x003C3;</mi>
+<mo stretchy="false">=</mo>
+<mn>0</mn>
+</mrow></math>
+
+ or
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='normal'>&#x003C3;</mi>
+<mo stretchy="false">=</mo>
+<mo stretchy="false">&#x0221E;</mo>
+</mrow></math>
+
+, the scaled residual is zero.
+</li><li>
+
+Residuals that are not defined are set to zero.
+For example, the forward difference age residuals at the 
+maximum age value.
+</li><li>
+
+If 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mn>0</mn>
+<mo stretchy="false">&lt;</mo>
+<mi mathvariant='normal'>&#x003C3;</mi>
+<mo stretchy="false">&lt;</mo>
+<mo stretchy="false">&#x0221E;</mo>
+</mrow></math>
+
+, and it corresponds to a prior residual,
+the scaled residual is the residual divided 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='normal'>&#x003C3;</mi>
+</mrow></math>
+
+.
+</li><li>
+
+If 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mn>0</mn>
+<mo stretchy="false">&lt;</mo>
+<mi mathvariant='normal'>&#x003C3;</mi>
+<mo stretchy="false">&lt;</mo>
+<mo stretchy="false">&#x0221E;</mo>
+</mrow></math>
+
+, and it corresponds to a defined
+age (cohort) residual,
+the scaled residual is the residual divided 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='normal'>&#x003C3;</mi>
+</mrow></math>
+
+
+times the square root of the corresponding age (cohort) values.
+</li></ol>
+
+
+
+
+<br/>
+<br/>
+<b><big><a name="measure_out.csv" id="measure_out.csv">measure_out.csv</a></big></b>
+
+<br/>
+If this command line argument is present,
+all of the columns present in 
+<a href="dismod_pde_csv.xml#measure_in.csv" target="_top"><span style='white-space: nowrap'>measure_in.csv</span></a>
+ 
+are copied to 
+<code><i><font color="black"><span style='white-space: nowrap'>measure_out.csv</span></font></i></code>
+.
+In addition, this output file that contains information for each measurement.
+<table><tr><td align='left'  valign='top'>
+
+<b>Name</b> 
+	</td><td align='left'  valign='top'>
+ <b>Value</b> 
+</td></tr><tr><td align='left'  valign='top'>
+
+
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i></code>
+   
+	</td><td align='left'  valign='top'>
+ midpoint of the age interval for this measurement
+</td></tr><tr><td align='left'  valign='top'>
+
+
+<code><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i></code>
+ 
+	</td><td align='left'  valign='top'>
+ midpoint of the cohort interval for this measurement
+</td></tr><tr><td align='left'  valign='top'>
+
+
+<code><i><font color="black"><span style='white-space: nowrap'>time</span></font></i></code>
+  
+	</td><td align='left'  valign='top'>
+ midpoint of the time interval for this measurement.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#measure_out.model" target="_top"><span style='white-space: nowrap'>model</span></a>
+
+		</td><td align='left'  valign='top'>
+ model value for this measurement,
+		corresponding to <a href="optimize.xml#sfun_out.estimate" target="_top"><span style='white-space: nowrap'>estimate</span></a>
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#measure_out.adjusted" target="_top"><span style='white-space: nowrap'>adjusted</span></a>
+
+		</td><td align='left'  valign='top'>
+ covariate adjusted value for this measurement
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#measure_out.residual" target="_top"><span style='white-space: nowrap'>residual</span></a>
+
+		</td><td align='left'  valign='top'>
+ residual value for this measurement,
+		corresponding to estimate
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.xml#measure_out.scaled" target="_top"><span style='white-space: nowrap'>scaled</span></a>
+
+		</td><td align='left'  valign='top'>
+ scaled residual for this measurement,
+		corresponding to the estimate
+</td></tr>
+</table>
+<br/>
+<b><big><a name="effect_out.csv" id="effect_out.csv">effect_out.csv</a></big></b>
+
+<br/>
+If this command line argument is present,
+each line of this file contains information for a measurement effect.
+This file has three columns named 
+<code><font color="blue">integrand</font></code>, <code><font color="blue">covariate</font></code> and <code><font color="blue">effect</font></code>
+
+<br/>
+<br/>
+<b><a name="effect_out.csv.integrand" id="effect_out.csv.integrand">integrand</a></b>
+<br/>
+The column named <code><font color="blue">integrand</font></code> specifies the
+<a href="dismod_pde_csv.xml#measure_in.csv.integrand" target="_top"><span style='white-space: nowrap'>integrand</span></a>
+ 
+column in the 
+<code><i><font color="black"><span style='white-space: nowrap'>measure_in.csv</span></font></i></code>
+ file for this 
+measurement effect.
+
+<br/>
+<br/>
+<b><a name="effect_out.csv.covariate" id="effect_out.csv.covariate">covariate</a></b>
+<br/>
+The column named <code><font color="blue">covariate</font></code> specifies the
+<a href="dismod_pde_csv.xml#measure_in.csv.Covariates" target="_top"><span style='white-space: nowrap'>covariate</span></a>
+ 
+column in the 
+<code><i><font color="black"><span style='white-space: nowrap'>measure_in.csv</span></font></i></code>
+ file for this 
+measurement effect.
+
+<br/>
+<br/>
+<b><a name="effect_out.csv.effect" id="effect_out.csv.effect">effect</a></b>
+
+
+
+<br/>
+The value in the column named <code><font color="blue">estimate</font></code> is the 
+MAP estimate for this measurement effect.
+
+<br/>
+<br/>
+<b><big><a name="Example" id="Example">Example</a></big></b>
+<br/>
+The bash script <a href="get_started.sh.xml" target="_top"><span style='white-space: nowrap'>get_started.sh</span></a>
+ is a simple example and test
+of <code><font color="blue">dismod_pde_csv</font></code>.
+
+
+<hr/>Input File: cpp/dismod_pde_csv.cpp
+
+</body>
+</html>

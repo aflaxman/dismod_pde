@@ -1,0 +1,249 @@
+#! @PYTHON_PREFIX@/bin/python
+# $OMhelpKeyCharacter=&
+#
+# The following commands are only useful during testing of get_started.py
+# before dismod_pde is installed, you can ignore them:
+top_builddir='@abs_top_builddir@'
+top_srcdir='@abs_top_srcdir@'
+# ----------------------------------------------------------------------------
+#
+# &begin get_started.py&& &newlinech #&&
+# &spell
+# 	pde
+#	py
+#	dismod_pde_csv
+#	yyyymmdd
+# &&
+# &section get_started.py: Example and Test of dismod_pde_csv&&
+#
+# &head Syntax&&
+# &code ./get_started.py&&
+#
+# &head Purpose&&
+# This is a simple example and test of the 
+# dismod_pde csv interface &cref/dismod_pde_csv/&&. 
+# It exits with status zero if the test passes
+# and with status one if the test fails.
+# This example is located in the file
+#	&codei%
+#	%dismod_pde_prefix%/share/doc/dismod_pde-%yyyymmdd%/example/get_started.py
+# %&&
+# where &icode dismod_pde_prefix&& is the 
+# &cref/prefix/install/Prefix/&& 
+# specified during the install procedure. 
+#
+# &head Documentation&&
+# This program is a translation of &cref get_started.sh&& to python
+# which is has more documentation.
+#
+# &head Source Code&&
+# &code
+# &verbatim%example/get_started/get_started.py.in%0%# BEGIN_PY%# END_PY%1%&&
+# &&
+#
+# &end
+# BEGIN_PY
+# ----------------------------------------------------------------------------
+import sys
+import os
+import csv
+# ----------------------------------------------------------------------------
+# create parameter.csv
+parameter = \
+'''name,value
+age_grid,5 20
+cohort_grid,1960 1980 2000 2020
+max_ode_step,1
+print_level,5
+max_iteration,60
+converge_tolerance,1e-7'''
+f_out = open('parameter.csv', 'w')
+f_out.write(parameter)
+f_out.close()
+# ----------------------------------------------------------------------------
+# create effect_in.csv
+effect_in = \
+'''integrand,covariate,lower,initial,upper
+incidence,x_jill,0.09531,0.09531,0.09531
+m_excess,x_jill,0.09531,0.09531,0.09531
+remission,x_jack,-1.00000,0.00000,1.00000'''
+f_out = open('effect_in.csv', 'w')
+f_out.write(effect_in)
+f_out.close()
+# ----------------------------------------------------------------------------
+# create measure_in.csv
+measure_in = \
+'''meas_value,integrand,x_jill,x_jack,age_lower,age_upper,time_lower,time_upper,meas_like,meas_zeta,meas_sigma,c_notes
+0.9e-1,remission,0,1,5,10,1990,2010,gaussian,1,1e-5,no_comment
+0.9e-1,remission,0,1,10,15,1990,2010,gaussian,1,1e-5,no_comment
+0.9e-1,remission,0,1,15,20,1990,2010,gaussian,1,1e-5,no_comment
+1.0e-2,m_excess,0,1,5,15,1990,2010,gaussian,1,1e-5,no_comment
+1.0e-3,m_other,0,1,10,20,1990,2010,gaussian,1,1e-5,no_comment
+1.0e-4,incidence,0,1,5,15,1990,2010,gaussian,1,1e-5,no_comment
+1.0e-1,remission,1,0,10,20,1990,2000,gaussian,1,1e-5,no_comment
+1.1e-2,m_excess,1,0,5,15,1990,2000,gaussian,1,1e-5,no_comment
+1.0e-3,m_other,1,0,10,20,1990,2000,gaussian,1,1e-5,no_comment
+1.1e-4,incidence,1,0,5,15,1990,2000,gaussian,1,1e-5,no_comment'''
+f_out = open('measure_in.csv', 'w')
+f_out.write(measure_in)
+f_out.close()
+# ----------------------------------------------------------------------------
+# create template.csv
+os.system('rm -f template.csv')
+home_path    = os.getenv('HOME')
+dismod_pde_path = top_builddir + '/cpp/dismod_pde_csv'
+command      = dismod_pde_path + ' parameter.csv measure_in.csv template.csv'
+os.system(command)
+# ----------------------------------------------------------------------------
+# create sfun_in.csv
+f_in        = open('template.csv', 'r')
+template_in = csv.DictReader(f_in)
+f_out       = open('sfun_in.csv', 'w')
+sfun_in     = csv.writer( f_out, lineterminator='\n')
+#
+header  = [
+	'age', 'cohort', 'time', 'function',
+	'optimize_zeta', 'optimize_lower', 'optimize_initial', 'optimize_upper',
+	'prior_like',    'prior_mean',     'prior_zeta',       'prior_sigma',
+	'age_like',      'age_zeta',       'age_sigma',        'age_order',
+	'cohort_like',   'cohort_zeta',    'cohort_sigma',     'cohort_order',
+	'cross_like',    'cross_zeta',     'cross_sigma'
+]
+sfun_in.writerow( header )
+#
+for row in template_in :
+	# extract some values
+	function = row['function']
+	age      = float( row['age'] )
+	# set optimize values
+	row['optimize_zeta']               =   '1e-05'
+	row['optimize_lower']              =   '0.0'
+	row['optimize_initial']            = '0.05'
+	row['optimize_upper']              = '1.0'
+	if row['function'] == 'S' :
+		row['optimize_initial']   = '1.0'
+	#
+	# set prior values
+	row['prior_like']                  =   'gaussian'
+	row['prior_zeta']                  =   '1e-05'
+	row['prior_sigma']                 =   'inf'
+	row['prior_mean']                  =   '0.0'
+	if (function == 'S') :
+		row['prior_mean']         = '1.0'
+		if (age <= 5.1 ) :
+			row['prior_sigma']   = '0.0'
+	if (function == 'C') & (age <= 5.1 ) :
+		row['prior_sigma']        = '0.0'
+	#
+	# set age values
+	row['age_like']                    =   'gaussian'
+	row['age_zeta']                    =   '1e-05'
+	row['age_sigma']                   =   '0.1'
+	row['age_order']                   =   '1'
+	if (function == 'S') | (function == 'C') :
+		row['age_sigma']          =   '0.0'
+	#
+	# set cohort values
+	row['cohort_like']                 =   'gaussian'
+	row['cohort_zeta']                 =   '1e-05'
+	row['cohort_sigma']                =   '0.1'
+	row['cohort_order']                =   '1'
+	if (function == 'S') | (function == 'C') :
+		row['cohort_sigma']       =   'inf'
+	#
+	# set cross values
+	row['cross_like']                  =   'gaussian'
+	row['cross_zeta']                  =   '1e-05'
+	row['cross_sigma']                 =   'inf'
+	#
+	# write out row
+	temp = []
+	for field in header :
+		temp.append( row[field] )
+	sfun_in.writerow( temp )
+f_in.close()
+f_out.close()
+#
+# ----------------------------------------------------------------------------
+# create measure_out.csv sfun_out.csv and effect_out.csv
+command = top_builddir + \
+'''/cpp/dismod_pde_csv parameter.csv \
+	measure_in.csv     measure_out.csv   \
+	sfun_in.csv        sfun_out.csv \
+	effect_in.csv      effect_out.csv
+'''
+os.system(command)
+# ----------------------------------------------------------------------------
+# check effect_out.csv 
+f_in       = open('effect_out.csv', 'r')
+effect_out = csv.DictReader(f_in)
+check  = { 'x_jill' :  0.095310 , 'x_jack' : -0.10536 }
+ok     = True
+data   = []
+for row in effect_out :
+	file_value  = float( row['estimate'] )
+	check_value = check[ row['covariate'] ]
+	ok          = ok and abs(1.0 - file_value/check_value) < 5e-4
+	data.append([ file_value , check_value ] )
+if not ok :
+	for row in data : 
+		file_value  = row[0]
+ 		check_value = row[1]
+ 		rel_error   = 1.0 - file_value/check_value
+ 		print 'file_value =', file_value ,  \
+			', check_value =', check_value , \
+			', rel_error =', rel_error 
+	sys.exit('Error in effect_out.csv')
+f_in.close()
+# ----------------------------------------------------------------------------
+# check measure_out.csv
+f_in        = open('measure_out.csv', 'r')
+measure_out = csv.DictReader( f_in )
+check  = { 
+	'remission':.1 , 'm_excess':.01 , 'm_other':.001, 'incidence':.0001  }
+ok     = True
+data   = []
+for row in measure_out :
+	file_value  = float( row['model'] )
+	check_value = check[ row['integrand'] ]
+	ok          = ok and abs(file_value - check_value) < 1e-5
+	data.append([ file_value , check_value ] )
+if not ok :
+	for row in data : 
+		file_value  = row[0]
+ 		check_value = row[1]
+ 		rel_error   = 1.0 - file_value/check_value
+ 		print 'file_value =', file_value ,  \
+			', check_value =', check_value , \
+			', rel_error =', rel_error 
+	sys.exit('Error in measure_out.csv')
+f_in.close()
+# ----------------------------------------------------------------------------
+# check sfun_out.csv
+f_in      = open('sfun_out.csv', 'r')
+sfun_out  = csv.DictReader( f_in ) 
+check  = { 
+	'rho' : .1 , 'chi' : .01 , 'omega' : .001, 'iota' : .0001  }
+ok     = True
+data   = []
+for row in sfun_out :
+	function = row['function']
+	if function != 'S' and function != 'C' :
+		file_value  = float( row['estimate'] )
+		check_value = check[ row['function'] ]
+		ok          = ok and abs(1.0 - file_value/check_value) < 1e-5
+		data.append([ file_value , check_value ] )
+if not ok :
+	for row in data : 
+		file_value  = row[0]
+ 		check_value = row[1]
+ 		rel_error   = 1.0 - file_value/check_value
+ 		print 'file_value =', file_value ,  \
+			', check_value =', check_value , \
+			', rel_error =', rel_error 
+	sys.exit('Error in sfun_out.csv')
+f_in.close()
+# ----------------------------------------------------------------------------
+# No errors
+sys.exit(None)
+# END_PY

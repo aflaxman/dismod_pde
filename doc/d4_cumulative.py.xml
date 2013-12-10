@@ -1,0 +1,167 @@
+<?xml version='1.0'?>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:math='http://www.w3.org/1998/Math/MathML'
+>
+<head>
+<title>Plot the Cumulative Distribution for a Csv File Column</title>
+<meta name="description" id="description" content="Plot the Cumulative Distribution for a Csv File Column"/>
+<meta name="keywords" id="keywords" content=" "/>
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_d4_cumulative.py_xml.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="d4_contour.py.xml" target="_top">Prev</a>
+</td><td><a href="d4_plot.py.xml" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>csv</option>
+<option>python_csv</option>
+<option>d4_cumulative.py</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>csv-&gt;</option>
+<option>dismod_pde_csv</option>
+<option>python_csv</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>python_csv-&gt;</option>
+<option>d4_bubble.py</option>
+<option>d4_change_sfun_in.py</option>
+<option>d4_compare_sfun.py</option>
+<option>d4_contour.py</option>
+<option>d4_cumulative.py</option>
+<option>d4_plot.py</option>
+<option>d4_sfun_der.py</option>
+<option>d4_sfun_grid.py</option>
+<option>d4_simulate.py</option>
+</select>
+</td>
+<td>d4_cumulative.py</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>csv_file</option>
+<option>c_name</option>
+<option>f_name</option>
+<option>f_min</option>
+<option>f_max</option>
+<option>Nan</option>
+</select>
+</td>
+</tr></table><br/>
+  
+
+
+
+<center><b><big><big>Plot the Cumulative Distribution for a Csv File Column</big></big></b></center>
+<br/>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br/>
+
+<code><font color="blue"><span style='white-space: nowrap'>d4_cumulative.py&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>csv_file</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>c_name</span></font></i><font color="blue"><span style='white-space: nowrap'><br/>
+</span></font></code>
+
+<code><font color="blue"><span style='white-space: nowrap'>d4_cumulative.py&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>csv_file</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>c_name</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>f_name</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>f_min</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>f_max</span></font></i></code>
+
+
+<br/>
+<br/>
+<b><big><a name="csv_file" id="csv_file">csv_file</a></big></b>
+<br/>
+is the name of <a href="csv.xml" target="_top"><span style='white-space: nowrap'>csv</span></a>
+ file to containing the values to be plotted.
+
+<br/>
+<br/>
+<b><big><a name="c_name" id="c_name">c_name</a></big></b>
+<br/>
+name for the column we are plotting the cumulative distribution for
+(must contain numeric values).
+
+<br/>
+<br/>
+<b><big><a name="f_name" id="f_name">f_name</a></big></b>
+<br/>
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>f_name</span></font></i></code>
+ is present,
+it is the name of the column used for determining which lines to include.
+
+<br/>
+<br/>
+<b><big><a name="f_min" id="f_min">f_min</a></big></b>
+<br/>
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>f_min</span></font></i></code>
+ is present,
+it is the minimum value for the filtering column that corresponds to lines
+that are included.
+
+<br/>
+<br/>
+<b><big><a name="f_max" id="f_max">f_max</a></big></b>
+<br/>
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>f_min</span></font></i></code>
+ is present,
+it is the maximum value for the filtering column that corresponds to lines
+that are included. 
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>f_min</span></font></i><font color="blue"><span style='white-space: nowrap'>&#xA0;==&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>f_max</span></font></i></code>
+ as strings, then the filtering
+column is treated as a string column and only those lines with that
+same value are included.
+Otherwise the filtering column must contain numeric data.
+
+<br/>
+<br/>
+<b><big><a name="Nan" id="Nan">Nan</a></big></b>
+<br/>
+If the value in column 
+<code><i><font color="black"><span style='white-space: nowrap'>c_name</span></font></i></code>
+
+is not a number <code><font color="blue">nan</font></code>, it is not included in the plot.
+
+
+<hr/>Input File: python/d4_cumulative.py.in
+
+</body>
+</html>

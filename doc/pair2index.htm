@@ -1,0 +1,578 @@
+<html><head>
+<title>Convert Between Age-Cohort Pairs and a Single Grid Index</title>
+<meta name="description" id="description" content="Convert Between Age-Cohort Pairs and a Single Grid Index">
+<meta name="keywords" id="keywords" content=" grid convert pair index age-cohort age cohort time min max grid.age grid.cohort grid.time_lower grid.time_upper grid.size notation kappa(j l) u) valid age_index cohort_index grid_pack pack age_unpack unpack cohort_unpack grid_index to ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_pair2index_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="create_grid.htm" target="_top">Prev</a>
+</td><td><a href="pair2index.cpp.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>cpp</option>
+<option>pair2index</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>cpp-&gt;</option>
+<option>optimize</option>
+<option>create_grid</option>
+<option>pair2index</option>
+<option>csv_read</option>
+<option>str_char_vec</option>
+<option>atof_char_vec</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down0(this)'>
+<option>pair2index-&gt;</option>
+<option>pair2index.cpp</option>
+</select>
+</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>age</option>
+<option>cohort</option>
+<option>time_lower</option>
+<option>time_upper</option>
+<option>pair2index</option>
+<option>grid.age</option>
+<option>grid.cohort</option>
+<option>grid.time_lower</option>
+<option>grid.time_upper</option>
+<option>grid.size</option>
+<option>Notation</option>
+<option>---..kappa</option>
+<option>---..Computational Grid</option>
+<option>age_index</option>
+<option>cohort_index</option>
+<option>valid</option>
+<option>grid_pack</option>
+<option>age_unpack</option>
+<option>cohort_unpack</option>
+<option>grid_index</option>
+<option>Example</option>
+</select>
+</td>
+</tr></table><br>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;\newcommand{\W}[1]{\;&nbsp;#1&nbsp;\;}</span></code>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;\newcommand{\R}[1]{{\rm&nbsp;#1}}</span></code>
+
+
+
+
+<center><b><big><big>Convert Between Age-Cohort Pairs and a Single Grid Index</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><font color="blue"><span style='white-space: nowrap'>dismod_pde::pair2index&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i></code>
+
+
+<code><font color="blue"><span style='white-space: nowrap'>(</span></font><i><font color="black"><span style='white-space: nowrap'>age</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_lower</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_upper</span></font></i><font color="blue"><span style='white-space: nowrap'>)</span></font></code>
+
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+</span></font><i><font color="black"><span style='white-space: nowrap'>a</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>.age()<br>
+</span></font><i><font color="black"><span style='white-space: nowrap'>c</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>.cohort()<br>
+</span></font><i><font color="black"><span style='white-space: nowrap'>lower</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>.time_lower()<br>
+</span></font><i><font color="black"><span style='white-space: nowrap'>upper</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>.time_lower()<br>
+</span></font><i><font color="black"><span style='white-space: nowrap'>n_grid</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()<br>
+</span></font><i><font color="black"><span style='white-space: nowrap'>valid</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>.pack(</span></font><i><font color="black"><span style='white-space: nowrap'>age_index</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>cohort_index</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_pack</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>.unpack(</span></font><i><font color="black"><span style='white-space: nowrap'>age_unpack</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>cohort_unpack</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+<br>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br>
+The stochastic differential equations in dismod_pde 
+naturally expressed on a age-cohort grid
+(and that is how the computation is done).
+On the other hand, the user is interested in computing the
+stochastic function values in a rectangular region in age and time.
+The <code><font color="blue">pair2index</font></code> routines aid in computing the correspondence
+between age-cohort pairs to a unique single grid index.
+
+<br>
+<br>
+<b><big><a name="age" id="age">age</a></big></b>
+
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dismod_pde::vector&lt;double&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It specifies the grid of age values.
+We use 
+<code><i><font color="black"><span style='white-space: nowrap'>n_age</span></font></i></code>
+ to denote 
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()</span></font></code>
+ which
+must be greater than or equal two.
+The vector 
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i></code>
+ and must be strictly monotone increasing; i.e.,
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>for</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;1&nbsp;,</span></font><i><font color="black"><span style='white-space: nowrap'>...</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>n_age</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;1,&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;1]&nbsp;&lt;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>]<br>
+</span></font></code>
+<br>
+<b><big><a name="cohort" id="cohort">cohort</a></big></b>
+
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dismod_pde::vector&lt;double&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It specifies the grid of cohort values.
+We use 
+<code><i><font color="black"><span style='white-space: nowrap'>n_cohort</span></font></i></code>
+ to denote 
+<code><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()</span></font></code>
+
+which must be greater than or equal two.
+The vector 
+<code><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i></code>
+ must be strictly monotone increasing; i.e.,
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>for</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;1&nbsp;,</span></font><i><font color="black"><span style='white-space: nowrap'>...</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>n_cohort</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;1,&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;1]&nbsp;&lt;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>]<br>
+</span></font></code>
+The cohort grid must start at a low enough value so that
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i><font color="blue"><span style='white-space: nowrap'>[0]&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>n_age</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;1]&nbsp;&lt;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_lower</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The cohort grid must end at a high enough value so that
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_upper</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&lt;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>n_cohort</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;1]&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age</span></font></i><font color="blue"><span style='white-space: nowrap'>[0]<br>
+</span></font></code>
+<br>
+<b><big><a name="time_lower" id="time_lower">time_lower</a></big></b>
+
+
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>time_lower</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_lower</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It specifies the lower time limit for the time values that must be 
+surrounded by the valid age-cohort grid pairs.
+
+<br>
+<br>
+<b><big><a name="time_upper" id="time_upper">time_upper</a></big></b>
+
+
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>time_upper</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_upper</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It specifies the upper time limit for the time values that must be 
+surrounded by the valid age-cohort grid pairs.
+Furthermore, 
+<code><i><font color="black"><span style='white-space: nowrap'>time_upper</span></font></i></code>
+ must satisfy
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_lower</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&lt;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_upper</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+<br>
+<b><big><a name="pair2index" id="pair2index">pair2index</a></big></b>
+<br>
+Constructs a <code><font color="blue">pair2index</font></code> object called 
+<code><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i></code>
+.
+
+
+
+<br>
+<br>
+<b><big><a name="grid.age" id="grid.age">grid.age</a></big></b>
+
+<br>
+The return value for this function has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dismod_pde::vector&lt;double&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>a</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It is a copy of the 
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i></code>
+ vector used to construct 
+<code><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i></code>
+.  
+
+<br>
+<br>
+<b><big><a name="grid.cohort" id="grid.cohort">grid.cohort</a></big></b>
+
+<br>
+The return value for this function has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dismod_pde::vector&lt;double&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>c</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It is a copy of the 
+<code><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i></code>
+ vector used to construct 
+<code><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="grid.time_lower" id="grid.time_lower">grid.time_lower</a></big></b>
+
+<br>
+The return value for this function has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>lower</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It is a copy of the 
+<code><i><font color="black"><span style='white-space: nowrap'>time_lower</span></font></i></code>
+ value used to construct 
+<code><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="grid.time_upper" id="grid.time_upper">grid.time_upper</a></big></b>
+
+<br>
+The return value for this function has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>upper</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It is a copy of the 
+<code><i><font color="black"><span style='white-space: nowrap'>time_upper</span></font></i></code>
+ value used to construct 
+<code><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="grid.size" id="grid.size">grid.size</a></big></b>
+
+<br>
+The return value of this function has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>n_grid</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+Its value is the number of valid grid pairs
+which is also equal to the number if single grid index values.
+
+
+
+<br>
+<br>
+<b><big><a name="Notation" id="Notation">Notation</a></big></b>
+
+
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;J</span></code>
+ to denote 
+<code><i><font color="black"><span style='white-space: nowrap'>n_age</span></font></i></code>
+,
+<code>
+<span style='white-space: nowrap'>&nbsp;K</span></code>
+ to denote 
+<code><i><font color="black"><span style='white-space: nowrap'>n_cohort</span></font></i></code>
+,
+<code>
+<span style='white-space: nowrap'>&nbsp;t_l</span></code>
+ to denote 
+<code><i><font color="black"><span style='white-space: nowrap'>time_lower</span></font></i></code>
+, and
+<code>
+<span style='white-space: nowrap'>&nbsp;t_u</span></code>
+ to denote 
+<code><i><font color="black"><span style='white-space: nowrap'>time_upper</span></font></i></code>
+,
+For <code>
+<span style='white-space: nowrap'>&nbsp;0&nbsp;=&nbsp;1&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;J-1</span></code>
+, 
+we use <code>
+<span style='white-space: nowrap'>&nbsp;a_j</span></code>
+ to denote 
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>]</span></font></code>
+.
+For <code>
+<span style='white-space: nowrap'>&nbsp;k&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;K-1</span></code>
+, 
+we use <code>
+<span style='white-space: nowrap'>&nbsp;c_k</span></code>
+ to denote 
+<code><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>]</span></font></code>
+.
+
+<br>
+<br>
+<b><a name="Notation.kappa" id="Notation.kappa">kappa</a></b>
+
+
+<br>
+For <code>
+<span style='white-space: nowrap'>&nbsp;j&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;J-1</span></code>
+, we define
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+\begin{array}{rcl}<br>
+\kappa(j,&nbsp;l)&nbsp;<br>
+&amp;&nbsp;=&nbsp;&amp;&nbsp;<br>
+\max\{&nbsp;k&nbsp;\W{:}&nbsp;0&nbsp;\leq&nbsp;k&nbsp;&lt;&nbsp;K&nbsp;\W{\R{and}}&nbsp;c_k&nbsp;+&nbsp;a_j&nbsp;\leq&nbsp;t_l&nbsp;\}<br>
+\\<br>
+\kappa(j,&nbsp;u)&nbsp;<br>
+&amp;&nbsp;=&nbsp;&amp;&nbsp;<br>
+\min\{&nbsp;k&nbsp;\W{:}&nbsp;0&nbsp;\leq&nbsp;k&nbsp;&lt;&nbsp;K&nbsp;\W{\R{and}}&nbsp;c_k&nbsp;+&nbsp;a_1&nbsp;\geq&nbsp;t_u&nbsp;\}<br>
+\end{array}<br>
+\]&nbsp;</span></code>
+
+It follows from the assumptions on the 
+<a href="pair2index.htm#age" target="_top"><span style='white-space: nowrap'>age</span></a>
+ and 
+<a href="pair2index.htm#cohort" target="_top"><span style='white-space: nowrap'>cohort</span></a>
+ vectors that
+the sets corresponding to the maximums above are non-empty.
+
+<br>
+<br>
+<b><a name="Notation.Computational Grid" id="Notation.Computational Grid">Computational Grid</a></b>
+
+
+<br>
+The set of valid grid pairs (the computational grid) is
+
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+G&nbsp;<br>
+=<br>
+\bigcup_{j=0}^{J-1}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\bigcup_{k=\kappa(j,l)}^{\kappa(j,u)}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\{&nbsp;(j,k)&nbsp;\}<br>
+\]&nbsp;</span></code>
+
+
+<br>
+<br>
+<b><big><a name="age_index" id="age_index">age_index</a></big></b>
+
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>age_index</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age_index</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It specifies an age index (<code>
+<span style='white-space: nowrap'>&nbsp;j</span></code>
+ above).
+
+<br>
+<br>
+<b><big><a name="cohort_index" id="cohort_index">cohort_index</a></big></b>
+
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>cohort_index</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>cohort_index</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It specifies a cohort index (<code>
+<span style='white-space: nowrap'>&nbsp;k</span></code>
+ above).
+
+<br>
+<br>
+<b><big><a name="valid" id="valid">valid</a></big></b>
+
+
+
+<br>
+The return value 
+<code><i><font color="black"><span style='white-space: nowrap'>valid</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>valid</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The age-cohort pair 
+<code><font color="blue"><span style='white-space: nowrap'>(</span></font><i><font color="black"><span style='white-space: nowrap'>age_index</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>cohort_index</span></font></i><font color="blue"><span style='white-space: nowrap'>)</span></font></code>
+ is 
+in the computational grid (defined above) if and only if
+
+<code><i><font color="black"><span style='white-space: nowrap'>valid</span></font></i></code>
+ is true.
+
+<br>
+<br>
+<b><big><a name="grid_pack" id="grid_pack">grid_pack</a></big></b>
+
+
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>grid_pack</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_pack</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+Its input value does not matter.
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>valid</span></font></i></code>
+ is true,
+the return value of 
+<code><i><font color="black"><span style='white-space: nowrap'>grid_pack</span></font></i></code>
+ is the single index 
+corresponding to the specified grid pair,
+
+<code><i><font color="black"><span style='white-space: nowrap'>grid_pack</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&lt;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>n_grid</span></font></i></code>
+.
+The single index is different for every valid grid pair.
+<code><span style='white-space: nowrap'><br>
+<br>
+</span></code>If 
+<code><i><font color="black"><span style='white-space: nowrap'>valid</span></font></i></code>
+ is false,
+the return value of 
+<code><i><font color="black"><span style='white-space: nowrap'>grid_pack</span></font></i></code>
+ is not specified.
+
+
+
+
+<br>
+<br>
+<b><big><a name="age_unpack" id="age_unpack">age_unpack</a></big></b>
+
+
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>age_unpack</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age_unpack</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+Its input value does not matter.
+Upon return, it is the age index corresponding to 
+<code><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i></code>
+,
+
+<code><i><font color="black"><span style='white-space: nowrap'>age_unpack</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&lt;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>n_age</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="cohort_unpack" id="cohort_unpack">cohort_unpack</a></big></b>
+
+
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>cohort_unpack</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>cohort_unpack</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It input value does not matter.
+Upon return, it is the cohort index corresponding to 
+<code><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i></code>
+,
+
+<code><i><font color="black"><span style='white-space: nowrap'>cohort_unpack</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&lt;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>n_cohort</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="grid_index" id="grid_index">grid_index</a></big></b>
+
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+it is a single index that is a packed version of a valid age-cohort grid pair
+and hence must be less that 
+<code><i><font color="black"><span style='white-space: nowrap'>n_grid</span></font></i></code>
+.
+
+
+<br>
+<br>
+<b><big><a name="Example" id="Example">Example</a></big></b>
+<br>
+The file <a href="pair2index.cpp.htm" target="_top"><span style='white-space: nowrap'>pair2index.cpp</span></a>
+ 
+contains an example and test of <code><font color="blue">pair2index</font></code>.
+It returns true if <code><font color="blue">pair2index</font></code> passes the test and false
+otherwise.
+
+
+<hr>Input File: cpp/dismod_pde/pair2index.hpp
+
+</body>
+</html>

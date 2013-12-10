@@ -1,0 +1,252 @@
+<?xml version='1.0'?>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:math='http://www.w3.org/1998/Math/MathML'
+>
+<head>
+<title>d4_sfun_grid.py: Example and Test</title>
+<meta name="description" id="description" content="d4_sfun_grid.py: Example and Test"/>
+<meta name="keywords" id="keywords" content=" d4_sfun_grid.py example test "/>
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_sfun_grid.sh_xml.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="d4_sfun_grid.py.xml" target="_top">Prev</a>
+</td><td><a href="d4_simulate.py.xml" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>csv</option>
+<option>python_csv</option>
+<option>d4_sfun_grid.py</option>
+<option>sfun_grid.sh</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down4(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>csv-&gt;</option>
+<option>dismod_pde_csv</option>
+<option>python_csv</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>python_csv-&gt;</option>
+<option>d4_bubble.py</option>
+<option>d4_change_sfun_in.py</option>
+<option>d4_compare_sfun.py</option>
+<option>d4_contour.py</option>
+<option>d4_cumulative.py</option>
+<option>d4_plot.py</option>
+<option>d4_sfun_der.py</option>
+<option>d4_sfun_grid.py</option>
+<option>d4_simulate.py</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>d4_sfun_grid.py-&gt;</option>
+<option>sfun_grid.sh</option>
+</select>
+</td>
+<td>sfun_grid.sh</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Purpose</option>
+<option>Abort on Any Error</option>
+<option>Python Script that Creates An sfun_out.csv</option>
+<option>Check Time Bounds</option>
+<option>Create sfun_grid.csv</option>
+<option>Check sfun_grid.csv</option>
+<option>Final Message</option>
+</select>
+</td>
+</tr></table><br/>
+  
+ 
+<center><b><big><big>d4_sfun_grid.py: Example and Test</big></big></b></center>
+<br/>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br/>
+This bash shell script is a simple example and test of
+<code><font color="blue">d4_sfun_grid.py</font></code>.
+It exits with status zero if the test passes
+and with status one if the test fails.
+
+<br/>
+<br/>
+<b><big><a name="Abort on Any Error" id="Abort on Any Error">Abort on Any Error</a></big></b>
+
+<code><font color='blue'><pre style='display:inline'> 
+set -e
+</pre></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="Python Script that Creates An sfun_out.csv" id="Python Script that Creates An sfun_out.csv">Python Script that Creates An sfun_out.csv</a></big></b>
+
+<code><font color='blue'><pre style='display:inline'> 
+cat &lt;&lt; EOF &gt; create_sfun_out.py
+import csv
+import sys
+writer = csv.writer( open('sfun_out.csv', 'w') )
+
+list of possible values for function
+sfun_name = [ 'S', 'C', 'iota', 'rho', 'chi', 'omega' ] 
+list of column names in sfun_out.csv
+column_name = [ 'age', 'cohort', 'time', 'function', 'estimate' ]
+for major in [ 'prior' , 'age', 'cohort', 'cross' ] :
+	for minor in [ 'residual' , 'scaled' ] :
+		column_name.append( major + '_' + minor )
+n_col  = len(column_name)
+
+age        = [ 20, 40, 60 ]
+cohort     = [ 1900, 1920, 1940, 1980, 2000 ]
+time_start = age[-1] + cohort[0]   # 1960
+time_end   = age[0]  + cohort[-1]  # 2020
+n_age    = len(age)
+n_cohort = len(cohort)
+n_sfun   = len(sfun_name)
+step   = 1
+
+writer.writerow(column_name)
+for j in range( n_age ) :
+	a     = age[j]
+	start = n_cohort - 1
+	while a + cohort[start] &gt; time_start :
+		start = start - 1
+	stop   = 1
+	while a + cohort[stop-1] &lt; time_end :
+		stop = stop + 1
+	for k in range(start, stop, step ) :
+		c = cohort[k]
+		t = a + c
+		for q in range(n_sfun) :
+			row = [ a, c, t, sfun_name[q] ]
+			for m in range(4, n_col, step) :
+				row.append( t + 2. * a + 3. * m  + 4. * q  )
+			writer.writerow(row)
+
+
+sys.exit(None)
+EOF
+$top_builddir/python.sh \
+	create_sfun_out.py
+</pre></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="Check Time Bounds" id="Check Time Bounds">Check Time Bounds</a></big></b>
+
+<code><font color='blue'><pre style='display:inline'> 
+$top_builddir/python.sh \
+	$top_builddir/python/d4_sfun_grid.py sfun_out.csv &gt; sfun_grid.bnd
+if ! grep 'time_lower_bound *= *1960\.0' sfun_grid.bnd &gt; /dev/null
+then
+	echo &quot;sfun_grid.sh: time_lower_bound does not check&quot;
+	exit 1
+fi
+if ! grep 'time_upper_bound *= *2020\.0' sfun_grid.bnd &gt; /dev/null
+then
+	echo &quot;sfun_grid.sh: time_upper_bound does not check&quot;
+	exit 1
+fi
+</pre></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="Create sfun_grid.csv" id="Create sfun_grid.csv">Create sfun_grid.csv</a></big></b>
+
+<code><font color='blue'><pre style='display:inline'> 
+time_start='1960'
+time_end='2020'
+n_time='3'
+$top_builddir/python/d4_sfun_grid.py sfun_out.csv sfun_grid.csv \
+	$time_start $time_end $n_time
+</pre></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="Check sfun_grid.csv" id="Check sfun_grid.csv">Check sfun_grid.csv</a></big></b>
+
+<code><font color='blue'><pre style='display:inline'> 
+cat &lt;&lt; EOF &gt; check_d4_sfun_grid.py
+import csv
+import sys
+reader = csv.DictReader( open('sfun_grid.csv', 'r') )
+
+list of possible values for function
+sfun_index = { 'S' : 0, 'C' : 1, 'iota' : 2, 'rho' : 3, 'chi' : 4, 'omega' : 5 }
+list of column names in sfun_out.csv
+column_name = [ 'age', 'cohort', 'time', 'function', 'estimate' ]
+for major in [ 'prior' , 'age', 'cohort', 'cross' ] :
+	for minor in [ 'residual' , 'scaled' ] :
+		column_name.append( major + '_' + minor )
+n_col  = len(column_name)
+
+for row in reader :
+	q  = sfun_index[ row['function'] ]
+	a  = float( row['age'] )
+	t  = float( row['time'] ) 
+	for m in range(4, n_col, 1) :
+		name  = column_name[m]
+		value = float( row[name] )
+		check = t + 2. * a + 3. * m + 4. * q
+		assert abs( 1. - value/check) &lt; 1e-10
+sys.exit(None)
+EOF
+$top_builddir/python.sh \
+	check_d4_sfun_grid.py
+</pre></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="Final Message" id="Final Message">Final Message</a></big></b>
+<br/>
+If this shell script reaches here, then test has passed.
+<code><font color='blue'><pre style='display:inline'> 
+echo &quot;sfun_grid.sh: OK&quot;
+</pre></font></code>
+
+
+
+<hr/>Input File: example/sfun_grid.sh
+
+</body>
+</html>

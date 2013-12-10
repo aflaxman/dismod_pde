@@ -1,0 +1,216 @@
+#! @PYTHON_PREFIX@/bin/python
+# $begin d4_contour.py$$ $newlinech #$$ 
+# $spell
+#	pdf
+#	eps
+#	csv
+#	py
+# $$
+# $escape $$
+#
+# $section Contour Plots of Values in Csv File$$
+#
+# $head Syntax$$
+# $codei%d4_contour.py %csv_file% %plot_file% %title%$$
+# $codei%\
+#	%x_name% %x_min% %x_max% \
+#	%y_name% %y_min% %y_max% \
+#	%z_name% %z_min% %z_max% [%z_inc%]
+# %$$
+#
+# $head Purpose$$
+# Make a contour plot of the values in a csv file.
+#
+# $head csv_file$$
+# is the name of $cref/csv/$$ file to containing the values to be plotted.
+# The x, y, values must correspond to a rectangular array; i.e.
+# there is a vector $latex x$$ of all x column input values,
+# and a vector $latex y$$ of all y column input values and every
+# combination $latex x_i$$ and $latex y_j$$ appears
+# in the file $icode csv_file$$.
+#
+# $head plot_file$$
+# Is the name of the plot file stored to disk. The extension
+# for this file will determine the output format; e.g., $code .pdf$$
+# or $code .eps$$.
+# If $icode plot_file$$ is the string $code 'screen'$$,
+# the plot is displayed on the screen and $code d4_contour.py$$ waits
+# for the user to close the plot before returning.
+#
+# $head title$$
+# is the title placed at the top of the plot.
+#
+# $head x-axis$$
+# This is the horizontal axis in the plot.
+#
+# $subhead x_name$$
+# name for the column corresponding to the x-axis.
+# This column must contain numeric data.
+#
+# $subhead x_min$$
+# lower limit for the x-axis in the plot.
+# 
+# $subhead x_max$$
+# upper limit for the x-axis in the plot.
+#
+# $head y-axis$$
+# This is the vertical axis in the plot.
+#
+# $subhead y_name$$
+# name for the column corresponding to the y-axis.
+# This column must contain numeric data.
+#
+# $subhead y_min$$
+# lower limit for the y-axis in the plot.
+#
+# $subhead y_max$$
+# upper limit for the y-axis in the plot.
+#
+# $head z-axis$$
+# These arguments determine the variable corresponding to contour levels
+#
+# $subhead z_name$$
+# name for the column corresponding to the contour levels in the plot.
+# This column must contain numeric data.
+#
+# $subhead z_min$$
+# minimum contour level (this is also the first contour level).
+# If $icode z_inc$$ is not present, this is also used for the initial 
+# increment and it must be greater than zero.
+#
+# $subhead z_max$$
+# maximum contour level (all contour levels are less than this value).
+#
+# $subhead z_inc$$
+# This argument is optional.
+# If it is present, it is used as the increment between contour
+# levels. Otherwise, $icode z_min$$ is rounded down to a power of ten to
+# obtain the initial increment. In addition, in this case the increment is
+# increased as the level passes a power of ten.
+#
+# $end
+#
+import math
+import sys
+import csv
+import numpy 
+import matplotlib
+#
+usage='''
+d4_contour.py csv_file plot_file title \\
+	x_name x_min x_max \\
+	y_name y_min y_max \\
+	z_name z_min z_max [z_inc]
+
+csv_file:  csv file containing values to be plotted.
+plot_file: file where a copy of the plot will be stored.
+title:     title placed at the top of the plot.
+x_name:    column name for values on horizontal axis.
+x_min:     minimum value on horizontal axis.
+x_max:     maximum value on horizontal axis.
+y_name:    column name for values on vertical axis.
+y_min:     minimum value on vertical axis.
+y_max:     maximum value on vertical axis.
+z_name:    column name for values corresponding to contour levels.
+z_min:     minimum contour level (and increment when z_inc not present).
+z_max:     maximum contour level.
+z_inc:     increment between contour levels.
+'''
+argv = sys.argv
+if len(argv) != 13 and len(argv) != 14 :
+	print usage
+	print "expected 12 arguments counting coutour_csv.py but found"
+	for i in range( len(argv)-1 ) :
+		print 'argv[', i+1 , ']=', argv[i+1]
+	sys.exit(1)
+iarg       = 1
+csv_file   = argv[iarg]         ; iarg = iarg + 1
+plot_file  = argv[iarg]         ; iarg = iarg + 1
+title      = argv[iarg]         ; iarg = iarg + 1
+x_name     = argv[iarg]         ; iarg = iarg + 1
+x_min      = float(argv[iarg])  ; iarg = iarg + 1
+x_max      = float(argv[iarg])  ; iarg = iarg + 1
+y_name     = argv[iarg]         ; iarg = iarg + 1
+y_min      = float(argv[iarg])  ; iarg = iarg + 1
+y_max      = float(argv[iarg])  ; iarg = iarg + 1
+z_name     = argv[iarg]         ; iarg = iarg + 1
+z_min      = float(argv[iarg])  ; iarg = iarg + 1
+z_max      = float(argv[iarg])  ; iarg = iarg + 1
+assert iarg == 13
+if len(argv)  == 14 :
+	z_inc = float(argv[iarg])  ; iarg = iarg + 1
+	logscale = False
+else :
+	z_inc    = 10 ** math.floor( math.log10(z_min) )
+	logscale = True
+z_next   = z_min
+z_levels = [z_next]
+#
+while z_next < z_max :
+	z_next = z_next + z_inc
+	if logscale and z_next >= 9.5 * z_inc :
+		z_next = 10. * z_inc
+		z_inc  = z_next
+	z_levels.append(z_next)
+#
+if plot_file != 'screen' :
+	matplotlib.use('Agg') # no X-window display connect so can run remotely
+import matplotlib.pyplot as plt
+#
+# open csv.csv file
+fp_in       = open(csv_file, 'r')
+reader      = csv.DictReader(fp_in, skipinitialspace=True)
+#
+# read csv file data
+data  = []
+x_set = set([])
+y_set = set([])
+for row in reader :
+	# This kludge assumes that x and y are in years
+	x = round( float( row[x_name] ), 3 )
+	y = round( float( row[y_name] ), 3 )
+	if x_min <= x and x <= x_max and y_min <= y and y <= y_max :
+		z = float( row[z_name] )
+		data.append( [x, y, z] )
+		x_set.add(x)
+		y_set.add(y)
+n_data = len(data)
+if n_data == 0 :
+	print 'x_min = ', x_min, ', x_max = ', x_max
+	print 'y_min = ', y_min, ', y_max = ', y_max
+	sys.exit('d4_contour.py: no data within specified limits')
+n_x    = len(x_set)
+n_y    = len(y_set)
+if n_data != n_x * n_y :
+	print 'x_set = ', sorted( x_set )
+	print 'y_set = ', sorted( y_set )
+	print 'x_min = ', x_min, ', x_max = ', x_max, ', n_x = ', n_x
+	print 'y_min = ', y_min, ', y_max = ', y_max, ', n_y = ', n_y
+	sys.exit('d4_contour.py: data not rectangular in x and y')
+#
+x_vec  = numpy.array( sorted( x_set ) )
+y_vec  = numpy.array( sorted( y_set ) )
+x_map  = {}
+y_map  = {}
+for i in range(n_x) :
+	x_map[ x_vec[i] ] = i
+for j in range(n_y) :
+	y_map[ y_vec[j] ] = j
+#
+z_grid = numpy.array( numpy.zeros( (n_y, n_x) ) )
+for xyz in data :
+	i            = x_map[ xyz[0] ]
+	j            = y_map[ xyz[1] ]
+	z_grid[j, i] = xyz[2]
+x_grid, y_grid = numpy.meshgrid(x_vec, y_vec)
+cs             = plt.contour(x_grid, y_grid, z_grid, z_levels, colors='k')
+plt.clabel(cs, cs.levels, inline='True', fmt="%g", fontsize=10)
+#
+plt.xlabel(x_name)
+plt.ylabel(y_name)
+plt.title(title)
+#
+if plot_file == 'screen' :
+	plt.show()
+else :
+	plt.savefig(plot_file)

@@ -1,0 +1,288 @@
+#! @PYTHON_PREFIX@/bin/python
+# $begin d4_sfun_grid.py$$ $newlinech #$$ 
+# $spell
+# 	pde
+#	tl
+#	tu
+#	py
+#	omega
+#	dismod_pde
+#	csv
+#	sfun
+#	bl
+#	bu
+# $$
+# $latex \newcommand{\B}[1]{{\bf #1}}$$
+# $latex \newcommand{\W}[1]{{\; #1 \;}}$$
+#
+# $section Convert From Age-Cohort Grid to Age-Time Rectangular Grid$$
+#
+# $head Syntax$$
+# 
+# $codei%d4_sfun_grid.py %sfun_out.csv%
+# %$$
+# $codei%d4_sfun_grid.py %sfun_out.csv% %sfun_grid.csv%$$
+# $icode%time_start% %time_end% %n_time%$$
+#
+# $head Purpose$$
+# This program creates a csv file that has the same information as the
+# $cref/sfun_out.csv/dismod_pde_csv/sfun_out.csv/$$ file, but on a rectangular
+# grid in age and time.
+#
+# $head sfun_out.csv$$
+# is the name of $cref/sfun_out.csv/dismod_pde_csv/sfun_out.csv/$$ file output
+# by dismod_pde.
+#
+# $subhead age vector$$
+# We use $latex A_i$$ and $latex C_i$$ to denote the age an cohort
+# in the $th i$$ record of $icode sfun_out.csv$$. 
+# We use $latex a \in \B{R}^J$$ to denote a sorted vector containing 
+# the set of values $latex \{ A_i \}$$.
+#
+# $subhead time bounds$$
+# We define the lower and upper time bounds by
+# $latex \[
+# \begin{array}{rcl}
+#	tl & = & \max_{j > 0} \min_i \{ A_i + C_i \W{:} A_i = a_j \}
+#	\\
+#	tu & = & \min_{j > 0} \max_i \{ A_i + C_i \W{:} A_i = a_j \}
+# \end{array}
+# \] $$
+# If $icode sfun_out.csv$$, is the only command line argument,
+# these bounds are printed to standard output in the following format
+# $codei%
+#	time_lower_bound = %tl% 
+#	time_upper_bound = %tu%
+# %$$
+# 
+# $head sfun_grid.csv$$
+# is the name of the $cref csv$$ file written by $code d4_sfun_grid.py$$.
+# The first line has the column names, which are the same as for
+# $icode sfun_out.csv$$.
+# Let $latex a \in \B{R}^J$$ be the age vector (see above),
+# $latex t \in \B{R}^K$$ be the time vector (see below),
+# and $latex s$$ be the vector of function names; i.e.
+# $latex s = ( S , C , \iota , \rho , \chi , \omega )$$.
+# The output times values lines are in the following order:
+# For $latex j = 0 , \ldots , J-1$$,
+# for $latex k = 0, \ldots , K-1$$,
+# and for $latex q = 0, \ldots , N-1$$
+# the output line $codei%2 +  ( %j% * %K% + %k% ) * %N% + %q%$$
+# corresponds to age value $latex a_j$$
+# time value $latex t_k$$,
+# and function $latex s^q$$.
+#
+# $head time_start$$
+# this command line argument is a floating point value
+# that will be the first time grid point in the output file; i.e.,
+# the value of $latex t_0$$ above.
+# It must hold that
+# $codei%
+#	%time_lower_bound% <= %time_start%
+# %$$
+#
+# $head time_end$$
+# this command line argument is a floating point value
+# that will be the last time grid point in the output file; i.e.,
+# the value of $latex t_{K-1}$$ above.
+# It must hold that
+# $codei%
+#	%time_start% < %time_end% <= %time_upper_bound%
+# %$$
+#
+# $head n_time$$
+# this command line argument is a positive integer,
+# greater than or equal to two,
+# that specifies the number points $latex K$$ in the time grid.
+# Note that for $latex k = 0 , \ldots , K-1$$, 
+# $pre
+# $$$latex t_k = $$
+# $icode%time_start% + %k% * (%time_end% - %time_start%) / (%n_time% - 1)%$$
+#
+# $children%
+#	example/sfun_grid.sh
+# %$$
+# $head Example$$
+# $index example, d4_sfun_grid.py$$
+# The shell script $cref sfun_grid.sh$$ is an example and test
+# of $code d4_sfun_grid.py$$.
+#
+# $end
+#
+import sys
+import csv
+#
+usage='''
+d4_sfun_grid.py sfun_out.csv 
+d4_sfun_grid.py sfun_out.csv sfun_grid.csv time_start time_end n_time
+
+sfun_out.csv:  stochastic output function file created by dismod_pde_csv.
+sfun_grid.csv: same information as sfun_out.csv on rectangular age-time grid.
+time_start:    starting value for time in the output file sfun_grid.csv.
+time_end:      upper bound for time in the output file.
+n_time:        number of points in the output file time grid.
+'''
+argv = sys.argv
+if len(argv) != 2 and len(argv) != 6 :
+	sys.exit(usage)
+#
+# open sfun_out.csv file
+sfun_out    = argv[1]
+fp_in       = open(sfun_out, 'r')
+reader      = csv.DictReader(fp_in, skipinitialspace=True)
+#
+# read sfun_out.csv file and store as a list of dictionaries
+data = []
+try :
+	while True :
+		data.append( reader.next() )
+except StopIteration :
+	pass
+#
+# list of possible values for function
+sfun_name = [ 'S', 'C', 'iota', 'rho', 'chi', 'omega' ] 
+# list of column names in sfun_out.csvv
+column_name = [ 'age', 'cohort', 'time', 'function', 'estimate' ]
+for major in [ 'prior' , 'age', 'cohort', 'cross' ] :
+	for minor in [ 'residual' , 'scaled' ] :
+		column_name.append( major + '_' + minor )
+#
+# check the data file format and convert age, cohort to float
+assert len(data) % len(sfun_name) == 0 
+n_sfun   = len(sfun_name)
+n_record = len(data) / n_sfun
+for i in range(n_record) :
+	index = i * n_sfun
+	row     = data[index]
+	a       = float( row['age'] )
+	c       = float( row['cohort'] )
+	t       = float( row['time'] )
+	assert t == a + c
+	for q in range(n_sfun) :
+		row = data[index + q]
+		assert sfun_name[q] == row['function']
+		# convert function to integer index
+		row['function'] = q
+		# convert other fields to float values
+		for name in column_name :
+			row[name] = float(row[name])
+		# check that age, cohort, and time have not changed
+		assert a == row['age']
+		assert c == row['cohort']
+		assert t == row['time']
+#
+# determine the set of age values and sort them
+age = set([])
+for i in range(n_record) :
+	age.add( data[i * n_sfun]['age']  )
+age = list(age)
+age.sort()
+n_age = len(age)
+#
+# determine the lower and upper bounds for time
+time_lower_bound = float('-inf')
+time_upper_bound = float('inf')
+for j in range(n_age):
+	a        = age[j]
+	time_max = float('-inf')
+	time_min = float('inf')
+	for i in range(n_record) : 
+		index = i * n_sfun
+		row   = data[index]
+		if row['age'] == a :
+			time_max = max(time_max, row['time'])
+			time_min = min(time_min, row['time'])
+	time_lower_bound = max(time_lower_bound, time_min)
+	time_upper_bound = min(time_upper_bound, time_max)
+#
+if len(argv) == 2 :
+	print 'time_lower_bound =', time_lower_bound
+	print 'time_upper_bound =', time_upper_bound
+	sys.exit(None)
+#
+sfun_grid  = argv[2]
+time_start = float(argv[3])
+time_end   = float(argv[4])
+n_time     = int(argv[5])
+#
+if time_start < time_lower_bound :
+	print usage
+	print time_start, '= time_start < time_lower_bound =', time_lower_bound
+	sys.exit(1)
+#
+if time_end <= time_start :
+	print usage
+	print time_end, '= time_end <= time_start =', time_start
+	sys.exit(1)
+#
+if time_upper_bound < time_end :
+	print usage
+	print time_upper_bound, '= time_upper_bound < time_end =', time_end
+	sys.exit(1)
+#
+if n_time < 2 :
+	print usage
+	print n_time, '= ntime < 2'
+	sys.exit(1)
+#
+d_time  = (time_end - time_start) / float(n_time - 1)
+time    = [time_start + d_time * i for i in range(n_time) ]
+time[0]        = time_start
+time[n_time-1] = time_end
+#
+# now start the output file
+fp_out      = open(sfun_grid, 'w')
+writer      = csv.writer(fp_out)
+writer.writerow(column_name)
+#
+for j in range(n_age) :
+	a      = age[j]
+	# find all the input data for this age value
+	data_a = []
+	for row in data :
+		if row['age'] == a :
+			data_a.append(row)
+	assert len(data_a) % n_sfun == 0
+
+	# sort the data by time
+	data_a.sort(key = lambda row : row['time'] )
+
+	# number of time values for this age
+	n_tau = len(data_a) / n_sfun
+
+	# vector of time values for this age
+	tau   = [data_a[n_sfun * m]['time'] for m in range(n_tau)]
+
+	# for each output time
+	for k in range(n_time) :
+		tk = time[k]
+
+		# determine the surrounding tau value
+		m = 1
+		while tau[m] < tk :
+			if m + 1 >= n_tau :
+				print 'a = ', a, 'tk = ', tk, 'tau =', tau
+				assert False
+			m = m + 1
+		assert tau[m-1] <= tk and tk <= tau[m]
+
+		# interpolation factors
+		f_m   = (tk - tau[m-1]) / (tau[m] - tau[m-1]) 
+		f_m1  = (tau[m] - tk)   / (tau[m] - tau[m-1]) 
+
+		# now interpolate all the functions
+		for q in range(n_sfun) :
+			row_m  = data_a[n_sfun * m     + q]
+			row_m1 = data_a[n_sfun * (m-1) + q]
+			assert row_m['function']  == q
+			assert row_m1['function'] == q
+
+			# initialize the output row for this j, k, q
+			row = []
+			for name in column_name :
+				value  = f_m * row_m[name] + f_m1 * row_m1[name];
+				row.append( value )
+			assert column_name[3] == 'function'
+			row[3] = sfun_name[q]
+			writer.writerow(row)
+sys.exit(None)

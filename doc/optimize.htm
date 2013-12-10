@@ -1,0 +1,2689 @@
+<html><head>
+<title>Optimization of dismod_pde Objective Function</title>
+<meta name="description" id="description" content="Optimization of dismod_pde Objective Function">
+<meta name="keywords" id="keywords" content=" Stochastic_enum Likelihood_enum G value covariate X ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_optimize_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="cpp.htm" target="_top">Prev</a>
+</td><td><a href="ipopt_trace.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>cpp</option>
+<option>optimize</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>cpp-&gt;</option>
+<option>optimize</option>
+<option>create_grid</option>
+<option>pair2index</option>
+<option>csv_read</option>
+<option>str_char_vec</option>
+<option>atof_char_vec</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down0(this)'>
+<option>optimize-&gt;</option>
+<option>ipopt_trace</option>
+<option>optimize_xam.cpp</option>
+<option>dismoditis.cpp</option>
+</select>
+</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Stochastic Functions</option>
+<option>Stochastic_Enum</option>
+<option>Plus Infinity</option>
+<option>Not a Number</option>
+<option>Likelihood Functions</option>
+<option>---..Huber Loss Function</option>
+<option>---..Likelihood_Enum</option>
+<option>---..Residual Function</option>
+<option>Vector</option>
+<option>parameter</option>
+<option>---..max_ode_step</option>
+<option>---..print_level</option>
+<option>---..max_iteration</option>
+<option>---..converge_tolerance</option>
+<option>---..debug_output</option>
+<option>grid</option>
+<option>---..G</option>
+<option>---..age</option>
+<option>---..cohort</option>
+<option>---..time_lower</option>
+<option>---..time_upper</option>
+<option>sfun_in</option>
+<option>---..optimize_zeta</option>
+<option>---..optimize_lower</option>
+<option>---..optimize_initial</option>
+<option>---..optimize_upper</option>
+<option>---..prior_like</option>
+<option>---..prior_zeta</option>
+<option>---..prior_sigma</option>
+<option>---..prior_mean</option>
+<option>---..age_like</option>
+<option>---..age_zeta</option>
+<option>---..age_sigma</option>
+<option>---..age_order</option>
+<option>---..cohort_like</option>
+<option>---..cohort_zeta</option>
+<option>---..cohort_sigma</option>
+<option>---..cohort_order</option>
+<option>---..cross_like</option>
+<option>---..cross_zeta</option>
+<option>---..cross_sigma</option>
+<option>covariate_value</option>
+<option>measure_in</option>
+<option>---..integrand</option>
+<option>---..Integrand_Enum</option>
+<option>---..age_lower, age_upper</option>
+<option>---..time_lower, time_upper</option>
+<option>---..meas_like</option>
+<option>---..meas_zeta</option>
+<option>---..meas_sigma</option>
+<option>---..meas_value</option>
+<option>effect_in</option>
+<option>---..integrand</option>
+<option>---..covariate</option>
+<option>---..lower</option>
+<option>---..initial</option>
+<option>---..upper</option>
+<option>effect_out</option>
+<option>sfun_out</option>
+<option>---..estimate</option>
+<option>---..prior_residual</option>
+<option>---..prior_scaled</option>
+<option>---..age_residual</option>
+<option>---..age_scaled</option>
+<option>---..cohort_residual</option>
+<option>---..cohort_scaled</option>
+<option>---..cross_residual</option>
+<option>---..cross_scaled</option>
+<option>measure_out</option>
+<option>---..adjusted</option>
+<option>---..model</option>
+<option>---..residual</option>
+<option>---..scaled</option>
+<option>message</option>
+<option>MAP Optimization</option>
+<option>---..Objective</option>
+<option>---..Problem</option>
+<option>Example</option>
+</select>
+</td>
+</tr></table><br>
+<code>
+<span style='white-space: nowrap'>&nbsp;\newcommand{\B}[1]{{\bf&nbsp;#1}}</span></code>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;\newcommand{\R}[1]{{\rm&nbsp;#1}}</span></code>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;\newcommand{\W}[1]{\;&nbsp;#1&nbsp;\;}</span></code>
+
+
+
+<center><b><big><big>Optimization of dismod_pde Objective Function</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><font color="blue"><span style='white-space: nowrap'>#&nbsp;include&nbsp;&quot;optimize.hpp&quot;<br>
+</span></font></code>
+
+<code><i><font color="black"><span style='white-space: nowrap'>message</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;dismod_pde::optimize(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>parameter</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>covariate_value</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_out</span></font></i><font color="blue"><span style='white-space: nowrap'>,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>effect_in</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>effect_out</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+)</span></font></code>
+
+
+<br>
+<br>
+<b><big><a name="Stochastic Functions" id="Stochastic Functions">Stochastic Functions</a></big></b>
+<br>
+dismod_pde estimates the following stochastic functions of age and cohort:
+<table><tr><td align='left'  valign='top'>
+
+<b>Name</b> </td><td align='left'  valign='top'>
+ 
+	<b>Description</b> 
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">Stochastic_Enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code>
+<span style='white-space: nowrap'>&nbsp;q</span></code>
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;S(&nbsp;\cdot&nbsp;)</span></code>
+ </td><td align='left'  valign='top'>
+
+	fraction of cohort that are Susceptible to the condition
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">dismod_pde::S_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> 0
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;C(&nbsp;\cdot&nbsp;)</span></code>
+ </td><td align='left'  valign='top'>
+
+	fraction of cohort that have the Condition
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">dismod_pde::C_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> 1
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;\iota&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+ </td><td align='left'  valign='top'>
+
+	Incidence rate at which condition occurs
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">dismod_pde::iota_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> 2
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;\rho&nbsp;&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+ </td><td align='left'  valign='top'>
+
+	Remission rate at which condition is cured
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">dismod_pde::rho_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> 3
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;\chi&nbsp;&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+ </td><td align='left'  valign='top'>
+
+	eXcess mortality rate at which people die from the condition
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">dismod_pde::chi_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> 4
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;\omega&nbsp;&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+ </td><td align='left'  valign='top'>
+
+	Mortality rate at which people die from other causes
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">dismod_pde::omega_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> 5
+</td></tr>
+</table>
+For <code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;5</span></code>
+,
+we also use <code>
+<span style='white-space: nowrap'>&nbsp;s^q&nbsp;(a,&nbsp;c)</span></code>
+ for the stochastic functions above; e.g.,
+<code>
+<span style='white-space: nowrap'>&nbsp;s^3&nbsp;(&nbsp;a&nbsp;,&nbsp;c&nbsp;)&nbsp;=&nbsp;\rho&nbsp;(&nbsp;a&nbsp;,&nbsp;c&nbsp;)</span></code>
+.
+Note that the <code>
+<span style='white-space: nowrap'>&nbsp;q</span></code>
+ values corresponding to the different functions
+may change in future versions of <code><font color="blue">dismod_pde::optimize</font></code>.
+Hence it is better to use the <code><font color="blue">Stochastic_Enum</font></code> values for the
+stochastic function indices.
+
+<br>
+<br>
+<b><big><a name="Stochastic_Enum" id="Stochastic_Enum">Stochastic_Enum</a></big></b>
+
+
+<code><font color="blue"><br>
+dismod_pde::Stochastic_Enum</font></code> is an <code><font color="blue">enum</font></code>
+type with the values listed above.
+Sometimes the corresponding integer value <code>
+<span style='white-space: nowrap'>&nbsp;q</span></code>
+ is used to denote a 
+stochastic function in the documentation below.
+The vector
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dismod_pde::vector&lt;std::string&gt;&nbsp;dismod_pde::stochastic_enum.name()<br>
+</span></font></code>
+can be used to map from the indices <code>
+<span style='white-space: nowrap'>&nbsp;q</span></code>
+ to the corresponding string; 
+e.g., 
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dismod_pde::stochastic_enum.name()[&nbsp;dismod_pde::rho_enum&nbsp;]&nbsp;==&nbsp;&quot;rho&quot;<br>
+</span></font></code>
+Here and below we use the notation <code>
+<span style='white-space: nowrap'>&nbsp;Q</span></code>
+ for the number
+of stochastic functions; i.e.,
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;dismod_pde::n_stochastic_enum<br>
+</span></font></code>
+<br>
+<b><big><a name="Plus Infinity" id="Plus Infinity">Plus Infinity</a></big></b>
+<br>
+We use the notation <code>
+<span style='white-space: nowrap'>&nbsp;+&nbsp;\infty</span></code>
+ for the value
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>infinity</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;DISMOD4_PLUS_INFINITY<br>
+</span></font></code>
+where <code><font color="blue">DISMOD4_PLUS_INFINITY</font></code> is defined by
+<code><font color="blue">optimize.hpp</font></code>.
+
+
+<br>
+<br>
+<b><big><a name="Not a Number" id="Not a Number">Not a Number</a></big></b>
+<br>
+We use the notation <code>
+<span style='white-space: nowrap'>&nbsp;\R{nan}</span></code>
+ for the value
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>nan</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;dismod_pde::nan()<br>
+</span></font></code>
+where <code><font color="blue">dismod_pde::nan()</font></code> is defined by
+<code><font color="blue">optimize.hpp</font></code>.
+For a <code><font color="blue">double </font></code> value 
+<code><i><font color="black"><span style='white-space: nowrap'>x</span></font></i></code>
+,
+one should use the function
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dismod_pde::isnan(</span></font><i><font color="black"><span style='white-space: nowrap'>x</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+to determine if 
+<code><i><font color="black"><span style='white-space: nowrap'>x</span></font></i></code>
+ is not a number.
+
+
+<br>
+<br>
+<b><big><a name="Likelihood Functions" id="Likelihood Functions">Likelihood Functions</a></big></b>
+
+
+<br>
+<br>
+<b><a name="Likelihood Functions.Huber Loss Function" id="Likelihood Functions.Huber Loss Function">Huber Loss Function</a></b>
+<br>
+The Laplace <code>
+<span style='white-space: nowrap'>&nbsp;H(&nbsp;r,&nbsp;\sigma&nbsp;,1)</span></code>
+ and Gaussian <code>
+<span style='white-space: nowrap'>&nbsp;H(&nbsp;r,&nbsp;\sigma&nbsp;,2)</span></code>
+ 
+Huber loss functions are defined as follows:
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+H(&nbsp;r&nbsp;,&nbsp;\sigma&nbsp;,1)&nbsp;=&nbsp;\left\{&nbsp;\begin{array}{ll}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&amp;&nbsp;\R{if}&nbsp;\;&nbsp;\sigma&nbsp;=&nbsp;\infty&nbsp;&nbsp;\W{\R{or}}&nbsp;r&nbsp;=&nbsp;0&nbsp;\W{\R{or}}&nbsp;\R{isnan}(r)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\infty&nbsp;&amp;&nbsp;\R{otherwise&nbsp;\;&nbsp;if}&nbsp;\;&nbsp;\sigma&nbsp;=&nbsp;0<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\sqrt{2}&nbsp;\;&nbsp;|&nbsp;\;&nbsp;r&nbsp;/&nbsp;\sigma&nbsp;|^1&nbsp;&amp;&nbsp;\R{otherwise}<br>
+\end{array}&nbsp;\right.<br>
+\]&nbsp;</span></code>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+H(&nbsp;r&nbsp;,&nbsp;\sigma&nbsp;,2)&nbsp;=&nbsp;\left\{&nbsp;\begin{array}{ll}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&amp;&nbsp;\R{if}&nbsp;\;&nbsp;\sigma&nbsp;=&nbsp;\infty&nbsp;&nbsp;\W{\R{or}}&nbsp;r&nbsp;=&nbsp;0&nbsp;\W{\R{or}}&nbsp;\R{isnan}(r)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\infty&nbsp;&amp;&nbsp;\R{otherwise&nbsp;\;&nbsp;if}&nbsp;\;&nbsp;\sigma&nbsp;=&nbsp;0&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(&nbsp;r&nbsp;/&nbsp;\sigma&nbsp;)^2&nbsp;/&nbsp;2&nbsp;&amp;&nbsp;\R{otherwise}<br>
+\end{array}&nbsp;\right.<br>
+\]&nbsp;</span></code>
+
+Note that, up to terms that are constant for our application,
+these loss functions are the negative-log likelihood for the univariate 
+
+
+<br>
+<br>
+<b><a name="Likelihood Functions.Likelihood_Enum" id="Likelihood Functions.Likelihood_Enum">Likelihood_Enum</a></b>
+
+
+<code><font color="blue"><br>
+dismod_pde::Likelihood_Enum</font></code> is an <code><font color="blue">enum</font></code> type with the values 
+<code><font color="blue">dismod_pde::gaussian_enum</font></code> and <code><font color="blue">dismod_pde::laplace_enum</font></code>.
+You can use the vector
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dismod_pde::vector&lt;std::string&gt;&nbsp;dismod_pde::likelihood_enum.name()<br>
+</span></font></code>
+to map from the <code><font color="blue">enum</font></code> type to the corresponding string; 
+e.g., 
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dismod_pde::likelihood_enum.name()[&nbsp;dismod_pde::gaussian_enum&nbsp;]&nbsp;==&nbsp;&quot;gaussian&quot;<br>
+</span></font></code>
+<br>
+<b><a name="Likelihood Functions.Residual Function" id="Likelihood Functions.Residual Function">Residual Function</a></b>
+<br>
+The dismod_pde residual scaling function for 
+offset <code>
+<span style='white-space: nowrap'>&nbsp;\zeta</span></code>
+,
+model value <code>
+<span style='white-space: nowrap'>&nbsp;x</span></code>
+,
+and matching value <code>
+<span style='white-space: nowrap'>&nbsp;y</span></code>
+ is defined by
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+R(&nbsp;y&nbsp;,&nbsp;x&nbsp;,&nbsp;\zeta&nbsp;)&nbsp;=&nbsp;log(&nbsp;\zeta&nbsp;+&nbsp;y&nbsp;)&nbsp;-&nbsp;\log(&nbsp;\zeta&nbsp;+&nbsp;x&nbsp;)<br>
+\]&nbsp;</span></code>
+
+
+
+<br>
+<br>
+<b><big><a name="Vector" id="Vector">Vector</a></big></b>
+<br>
+The symbol <code><font color="blue">dismod_pde::vector</font></code> is a 
+<a href="http://www.coin-or.org/CppAD/Doc/simplevector.xml" target="_top"><span style='white-space: nowrap'>simple&nbsp;vector</span></a>
+ template type.
+
+
+
+<br>
+<br>
+<b><big><a name="parameter" id="parameter">parameter</a></big></b>
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>parameter</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dismod_pde::Optimize_Parameter_Struct&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>parameter</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The following fields of 
+<code><i><font color="black"><span style='white-space: nowrap'>parameter</span></font></i></code>
+ must be set
+to the corresponding values:
+
+<br>
+<br>
+<b><a name="parameter.max_ode_step" id="parameter.max_ode_step">max_ode_step</a></b>
+<br>
+The parameter
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>parameter</span></font></i><font color="blue"><span style='white-space: nowrap'>.max_ode_step<br>
+</span></font></code>
+determines the maximum age integration step to use when computing the functions
+<code>
+<span style='white-space: nowrap'>&nbsp;\tilde{S}_{j,k}&nbsp;(&nbsp;a&nbsp;)</span></code>
+ and 
+<code>
+<span style='white-space: nowrap'>&nbsp;\tilde{C}_{j,k}&nbsp;(&nbsp;a&nbsp;)</span></code>
+ as approximate solutions of an ODE; see
+<a href="optimize.htm#sfun_out.age_residual" target="_top"><span style='white-space: nowrap'>age_residual</span></a>
+ below.
+
+<code><i><font color="black"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&lt;&nbsp;parameter</span></font></i><font color="blue"><span style='white-space: nowrap'>.max_ode_step</span></font><i><font color="black"><span style='white-space: nowrap'><br>
+</span></font></i></code>
+<br>
+<b><a name="parameter.print_level" id="parameter.print_level">print_level</a></b>
+<br>
+The parameter
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>parameter</span></font></i><font color="blue"><span style='white-space: nowrap'>.print_level<br>
+</span></font></code>
+determines the level of output that is printed by the optimization 
+procedure.
+<table><tr><td align='left'  valign='top'>
+
+level <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code>  </td><td align='left'  valign='top'>
+ Description </td></tr><tr><td align='left'  valign='top'>
+
+0 </td><td align='left'  valign='top'>
+ 
+	no printing 
+</td></tr><tr><td align='left'  valign='top'>
+
+4 </td><td align='left'  valign='top'>
+
+	print a summary at the beginning and end of the optimization procedure
+</td></tr><tr><td align='left'  valign='top'>
+
+5 </td><td align='left'  valign='top'>
+ 
+	print a <a href="ipopt_trace.htm" target="_top"><span style='white-space: nowrap'>trace</span></a>
+ for each iteration of 
+	the optimization procedure.
+</td></tr>
+</table>
+<br>
+<b><a name="parameter.max_iteration" id="parameter.max_iteration">max_iteration</a></b>
+<br>
+The parameter
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>parameter</span></font></i><font color="blue"><span style='white-space: nowrap'>.max_iteration<br>
+</span></font></code>
+determines the maximum number of iterations that the optimizer
+should attempt before giving up on convergence as specified by 
+
+<code><i><font color="black"><span style='white-space: nowrap'>parameter</span></font></i><font color="blue"><span style='white-space: nowrap'>.converge_tolerance</span></font></code>
+.
+
+<br>
+<br>
+<b><a name="parameter.converge_tolerance" id="parameter.converge_tolerance">converge_tolerance</a></b>
+<br>
+The parameter
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>parameter</span></font></i><font color="blue"><span style='white-space: nowrap'>.converge_tolerance<br>
+</span></font></code>
+specifies the convergence criteria tolerance as a bound on the final value of
+<code><font color="blue">Dual infeasibility</font></code>,
+<code><font color="blue">Constraint violation</font></code>,
+<code><font color="blue">Complementarity</font></code>,
+as printed in the optimizer trace
+(see <a href="optimize.htm#parameter.print_level" target="_top"><span style='white-space: nowrap'>print_level</span></a>
+).
+
+<br>
+<br>
+<b><a name="parameter.debug_output" id="parameter.debug_output">debug_output</a></b>
+<br>
+The parameter
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bool&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>parameter</span></font></i><font color="blue"><span style='white-space: nowrap'>.debug_output<br>
+</span></font></code>
+specifies if extra debugging output should be generated
+(possibly at the expense of slower execution speed).
+
+
+
+<br>
+<br>
+<b><big><a name="grid" id="grid">grid</a></big></b>
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dismod_pde::pair2index&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It is a <a href="pair2index.htm" target="_top"><span style='white-space: nowrap'>pair2index</span></a>
+ object constructed in the following way
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dismod_pde::pair2index&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>(</span></font><i><font color="black"><span style='white-space: nowrap'>age</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_lower</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_upper</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+where 
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i></code>
+, 
+<code><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i></code>
+, 
+<code><i><font color="black"><span style='white-space: nowrap'>time_lower</span></font></i></code>
+, 
+and 
+<code><i><font color="black"><span style='white-space: nowrap'>time_upper</span></font></i></code>
+ are described directly below:
+
+<br>
+<br>
+<b><a name="grid.G" id="grid.G">G</a></b>
+
+<br>
+For <code>
+<span style='white-space: nowrap'>&nbsp;j&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;J-1</span></code>
+ and <code>
+<span style='white-space: nowrap'>&nbsp;k&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;K-1</span></code>
+, if
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>valid</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>.pack(</span></font><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+is true, then <code>
+<span style='white-space: nowrap'>&nbsp;(i,j)</span></code>
+ is in the computation grid <code>
+<span style='white-space: nowrap'>&nbsp;G</span></code>
+.
+We use <code>
+<span style='white-space: nowrap'>&nbsp;s_G</span></code>
+ to denote the stochastic function values
+on the computational grid; i.e.
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+s_G&nbsp;=&nbsp;\left\{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s_{j,k}^q&nbsp;\W{:}&nbsp;&nbsp;(j,&nbsp;k)&nbsp;\in&nbsp;G&nbsp;\W{\R{and}}&nbsp;q&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;Q-1&nbsp;<br>
+\right\}<br>
+\]&nbsp;</span></code>
+
+
+<br>
+<br>
+<b><a name="grid.age" id="grid.age">age</a></b>
+<br>
+The argument <a href="pair2index.htm#age" target="_top"><span style='white-space: nowrap'>age</span></a>
+ 
+in the 
+<code><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i></code>
+ constructor specifies the grid of age values.
+We use the notation 
+<code><i><font color="black"><span style='white-space: nowrap'>J</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()</span></font></code>
+
+and for <code>
+<span style='white-space: nowrap'>&nbsp;j&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;J-1</span></code>
+,
+we sometimes use <code>
+<span style='white-space: nowrap'>&nbsp;a_j</span></code>
+ for the value 
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>]</span></font></code>
+.   
+See <a href="optimize.htm#measure_in.age_lower, age_upper" target="_top"><span style='white-space: nowrap'>age_lower,&nbsp;age_upper</span></a>
+
+for extra conditions on 
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i></code>
+.
+
+<br>
+<br>
+<b><a name="grid.cohort" id="grid.cohort">cohort</a></b>
+<br>
+The argument <a href="pair2index.htm#cohort" target="_top"><span style='white-space: nowrap'>cohort</span></a>
+ 
+to the 
+<code><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i></code>
+ constructor specifies the grid of cohort values.
+We use the notation 
+<code><i><font color="black"><span style='white-space: nowrap'>K</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()</span></font></code>
+
+and for <code>
+<span style='white-space: nowrap'>&nbsp;k&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;K-1</span></code>
+,
+we sometimes use <code>
+<span style='white-space: nowrap'>&nbsp;c_k</span></code>
+ for the value 
+<code><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>]</span></font></code>
+.
+See <a href="optimize.htm#measure_in.time_lower, time_upper" target="_top"><span style='white-space: nowrap'>time_lower,&nbsp;time_upper</span></a>
+
+for extra conditions on 
+<code><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i></code>
+.
+
+<br>
+<br>
+<b><a name="grid.time_lower" id="grid.time_lower">time_lower</a></b>
+<br>
+The argument <a href="pair2index.htm#time_lower" target="_top"><span style='white-space: nowrap'>time_lower</span></a>
+ 
+to the 
+<code><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i></code>
+ constructor specifies the lower limit in time 
+for the age-cohort grid pairs that are to
+be included in the computations and results.
+
+<br>
+<br>
+<b><a name="grid.time_upper" id="grid.time_upper">time_upper</a></b>
+<br>
+The argument <a href="pair2index.htm#time_upper" target="_top"><span style='white-space: nowrap'>time_upper</span></a>
+ 
+to the 
+<code><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i></code>
+ constructor specifies the upper limit in time 
+for the age-cohort grid pairs that are to
+be included in the computations and results.
+
+
+
+<br>
+<br>
+<b><big><a name="sfun_in" id="sfun_in">sfun_in</a></big></b>
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dismod_pde::vector&lt;dismod_pde::Sfun_Input_Struct&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The size of this vector is
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()&nbsp;==&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+For <code>
+<span style='white-space: nowrap'>&nbsp;j&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;J-1</span></code>
+ and <code>
+<span style='white-space: nowrap'>&nbsp;k&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;K-1</span></code>
+, if
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>valid</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>.pack(</span></font><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+returns false, the corresponding age-cohort pair 
+is not in the computational grid.
+Otherwise, for <code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;Q-1</span></code>
+, the information stored in
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].</span></font><i><font color="black"><span style='white-space: nowrap'>field_name</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+corresponds to <code>
+<span style='white-space: nowrap'>&nbsp;s_{j,k}^q</span></code>
+; i.e.,
+the stochastic function specified by <code>
+<span style='white-space: nowrap'>&nbsp;q</span></code>
+
+at age <code>
+<span style='white-space: nowrap'>&nbsp;a_j</span></code>
+ and cohort <code>
+<span style='white-space: nowrap'>&nbsp;c_k</span></code>
+.
+The values for the 
+<code><i><font color="black"><span style='white-space: nowrap'>field_name</span></font></i></code>
+ are listed below:
+
+<ol type="1"><li>
+<a href="optimize.htm#sfun_in.optimize_zeta" target="_top"><span style='white-space: nowrap'>optimize_zeta</span></a>
+,
+	offset added before log in transformation of optimization problem.
+</li><li>
+
+<a href="optimize.htm#sfun_in.optimize_lower" target="_top"><span style='white-space: nowrap'>optimize_lower</span></a>
+,
+	specifies the lower bound for <code>
+<span style='white-space: nowrap'>&nbsp;s_{j,k}^q</span></code>
+ during the optimization.
+</li><li>
+
+<a href="optimize.htm#sfun_in.optimize_initial" target="_top"><span style='white-space: nowrap'>optimize_initial</span></a>
+,
+	specifies the initial value for <code>
+<span style='white-space: nowrap'>&nbsp;s_{j,k}^q</span></code>
+
+	where the optimization starts.
+</li><li>
+
+<a href="optimize.htm#sfun_in.optimize_upper" target="_top"><span style='white-space: nowrap'>optimize_upper</span></a>
+,
+	specifies the upper bound for <code>
+<span style='white-space: nowrap'>&nbsp;s_{j,k}^q</span></code>
+ during the optimization.
+</li><li>
+
+<a href="optimize.htm#sfun_in.prior_like" target="_top"><span style='white-space: nowrap'>prior_like</span></a>
+,
+	Huber loss function for direct prior on <code>
+<span style='white-space: nowrap'>&nbsp;s_{j,k}^q</span></code>
+
+</li><li>
+
+<a href="optimize.htm#sfun_in.prior_zeta" target="_top"><span style='white-space: nowrap'>prior_zeta</span></a>
+,
+	offset added before log in direct prior residual for <code>
+<span style='white-space: nowrap'>&nbsp;s_{j,k}^q</span></code>
+
+</li><li>
+
+<a href="optimize.htm#sfun_in.prior_sigma" target="_top"><span style='white-space: nowrap'>prior_sigma</span></a>
+,
+	standard deviation for direct prior on <code>
+<span style='white-space: nowrap'>&nbsp;s_{j,k}^q</span></code>
+
+</li><li>
+
+<a href="optimize.htm#sfun_in.prior_mean" target="_top"><span style='white-space: nowrap'>prior_mean</span></a>
+, 
+	value corresponding to zero direct prior residual for <code>
+<span style='white-space: nowrap'>&nbsp;s_{j,k}^q</span></code>
+
+</li><li>
+
+<a href="optimize.htm#sfun_in.age_like" target="_top"><span style='white-space: nowrap'>age_like</span></a>
+,
+	Huber loss function for age residual <code>
+<span style='white-space: nowrap'>&nbsp;A_{j,k}^{q,o}&nbsp;(s)</span></code>
+
+</li><li>
+
+<a href="optimize.htm#sfun_in.age_zeta" target="_top"><span style='white-space: nowrap'>age_zeta</span></a>
+,
+	offset added to before log in definition of 
+	<code>
+<span style='white-space: nowrap'>&nbsp;A_{j,k}^{q,o}&nbsp;(s)</span></code>
+
+</li><li>
+
+<a href="optimize.htm#sfun_in.age_sigma" target="_top"><span style='white-space: nowrap'>age_sigma</span></a>
+,
+	standard deviation factor for age residual <code>
+<span style='white-space: nowrap'>&nbsp;A_{j,k}^{q,o}&nbsp;(s)</span></code>
+
+</li><li>
+
+<a href="optimize.htm#sfun_in.age_order" target="_top"><span style='white-space: nowrap'>age_order</span></a>
+,
+	order for the age residual <code>
+<span style='white-space: nowrap'>&nbsp;A_{j,k}^{q,o}&nbsp;(s)</span></code>
+,
+	must be <code><font color="blue">1</font></code> for <code>
+<span style='white-space: nowrap'>&nbsp;S(&nbsp;\cdot&nbsp;)</span></code>
+, <code>
+<span style='white-space: nowrap'>&nbsp;C(&nbsp;\cdot&nbsp;)</span></code>
+.
+</li><li>
+
+<a href="optimize.htm#sfun_in.cohort_like" target="_top"><span style='white-space: nowrap'>cohort_like</span></a>
+,
+	Huber loss function for cohort residual <code>
+<span style='white-space: nowrap'>&nbsp;B_{j,k}^{q,o}&nbsp;(s)</span></code>
+
+</li><li>
+
+<a href="optimize.htm#sfun_in.cohort_zeta" target="_top"><span style='white-space: nowrap'>cohort_zeta</span></a>
+,
+	offset added to before log in definition of 
+	<code>
+<span style='white-space: nowrap'>&nbsp;B_{j,k}^{q,o}&nbsp;(s)</span></code>
+
+</li><li>
+
+<a href="optimize.htm#sfun_in.cohort_sigma" target="_top"><span style='white-space: nowrap'>cohort_sigma</span></a>
+,
+	standard deviation factor for cohort residual <code>
+<span style='white-space: nowrap'>&nbsp;B_{j,k}^{q,o}&nbsp;(s)</span></code>
+
+</li><li>
+
+<a href="optimize.htm#sfun_in.cohort_order" target="_top"><span style='white-space: nowrap'>cohort_order</span></a>
+,
+	order for the cohort residual <code>
+<span style='white-space: nowrap'>&nbsp;B_{j,k}^{o.q}&nbsp;(s)</span></code>
+
+</li><li>
+
+<a href="optimize.htm#sfun_in.cross_like" target="_top"><span style='white-space: nowrap'>cross_like</span></a>
+,
+	Huber loss function for cross residual <code>
+<span style='white-space: nowrap'>&nbsp;D_{j,k}^{q,o}&nbsp;(s)</span></code>
+
+</li><li>
+
+<a href="optimize.htm#sfun_in.cross_zeta" target="_top"><span style='white-space: nowrap'>cross_zeta</span></a>
+,
+	offset added to before log in definition of 
+	<code>
+<span style='white-space: nowrap'>&nbsp;D_{j,k}^{q,o}&nbsp;(s)</span></code>
+
+</li><li>
+
+<a href="optimize.htm#sfun_in.cross_sigma" target="_top"><span style='white-space: nowrap'>cross_sigma</span></a>
+,
+	standard deviation factor for cross residual <code>
+<span style='white-space: nowrap'>&nbsp;D_{j,k}^{q,o}&nbsp;(s)</span></code>
+
+</li></ol>
+
+
+<br>
+<br>
+<b><a name="sfun_in.optimize_zeta" id="sfun_in.optimize_zeta">optimize_zeta</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;\zeta_{j,k}^{o,q}</span></code>
+ to denote the offset added 
+before the log in the transformation that re-scales the optimization 
+problem.
+To be specific, 
+for each <code>
+<span style='white-space: nowrap'>&nbsp;(j,&nbsp;k)&nbsp;\in&nbsp;G</span></code>
+ and <code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;1&nbsp;,&nbsp;\ldots,&nbsp;Q-1</span></code>
+,
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\bar{s}_{j,k}^p&nbsp;=&nbsp;\log(&nbsp;\zeta_{j,k}^{o,q}&nbsp;+&nbsp;s_{j,k}^q&nbsp;)<br>
+\]&nbsp;</span></code>
+
+The optimization is done by an generic optimizer with respect to
+the transformed stochastic functions values <code>
+<span style='white-space: nowrap'>&nbsp;\bar{s}_G</span></code>
+.
+
+
+<br>
+<br>
+<b><a name="sfun_in.optimize_lower" id="sfun_in.optimize_lower">optimize_lower</a></b>
+<br>
+The lower bound for <code>
+<span style='white-space: nowrap'>&nbsp;s_{j,k}^q</span></code>
+ during the optimization
+procedure, is specified by 
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].optimize_lower<br>
+</span></font></code>
+We use the notation <code>
+<span style='white-space: nowrap'>&nbsp;s_{j,k}^{q,l}</span></code>
+ for this lower bound
+and <code>
+<span style='white-space: nowrap'>&nbsp;s_G^l</span></code>
+ for the vectors of all the lower bounds
+on the entire grid.
+
+<br>
+<br>
+<b><a name="sfun_in.optimize_initial" id="sfun_in.optimize_initial">optimize_initial</a></b>
+<br>
+The routine <code><font color="blue">optimize</font></code> is a local optimizer and as such it requires 
+a point to start the optimization procedure at. 
+The <code>
+<span style='white-space: nowrap'>&nbsp;&nbsp;s_{j,k}^q</span></code>
+ component of this starting point
+is specified by the value
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].optimize_initial<br>
+</span></font></code>
+All of these values must be greater than or equal zero.
+
+<br>
+<br>
+<b><a name="sfun_in.optimize_upper" id="sfun_in.optimize_upper">optimize_upper</a></b>
+<br>
+The upper bound for <code>
+<span style='white-space: nowrap'>&nbsp;s_{j,k}^q</span></code>
+ during the optimization
+procedure, is specified by 
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].optimize_upper<br>
+</span></font></code>
+where must be greater than or equal to corresponding lower bound.
+We use the notation <code>
+<span style='white-space: nowrap'>&nbsp;s_{j,k}^{q,u}</span></code>
+ for this upper bound
+and <code>
+<span style='white-space: nowrap'>&nbsp;s_G^u</span></code>
+ for the vectors of all the upper bounds
+on the entire grid.
+
+<br>
+<br>
+<b><a name="sfun_in.prior_like" id="sfun_in.prior_like">prior_like</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;h_{j,k}^{q,p}</span></code>
+ to denote the Huber loss function index for
+the direct prior for the stochastic function value <code>
+<span style='white-space: nowrap'>&nbsp;&nbsp;s_{j,k}^q</span></code>
+.
+This value is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dismod_pde::Likelihood_Enum&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].prior_like<br>
+</span></font></code>
+See <a href="optimize.htm#sfun_out.prior_residual" target="_top"><span style='white-space: nowrap'>prior_residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="sfun_in.prior_zeta" id="sfun_in.prior_zeta">prior_zeta</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;\zeta_{j,k}^{q,p}</span></code>
+ to denote the offset added before 
+the log in the calculation of the direct prior residual for 
+the stochastic function value <code>
+<span style='white-space: nowrap'>&nbsp;&nbsp;s_{j,k}^q</span></code>
+.
+This value is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].prior_zeta<br>
+</span></font></code>
+See <a href="optimize.htm#sfun_out.prior_residual" target="_top"><span style='white-space: nowrap'>prior_residual</span></a>
+.
+It must hold that <code>
+<span style='white-space: nowrap'>&nbsp;\zeta_{j,k}^{q,p}&nbsp;&gt;&nbsp;0</span></code>
+.
+
+<br>
+<br>
+<b><a name="sfun_in.prior_sigma" id="sfun_in.prior_sigma">prior_sigma</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;\sigma_{j,k}^{q,p}</span></code>
+ to denote the standard deviation
+of the direct prior for the stochastic function value <code>
+<span style='white-space: nowrap'>&nbsp;&nbsp;s_{j,k}^q</span></code>
+.
+This value is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].prior_sigma<br>
+</span></font></code>
+See <a href="optimize.htm#sfun_out.prior_residual" target="_top"><span style='white-space: nowrap'>prior_residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="sfun_in.prior_mean" id="sfun_in.prior_mean">prior_mean</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;\mu_{j,k}^q</span></code>
+ to denote
+the stochastic function value <code>
+<span style='white-space: nowrap'>&nbsp;s_{j,k}^q</span></code>
+
+at which the direct prior residual is zero.
+This value is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].prior_mean<br>
+</span></font></code>
+See <a href="optimize.htm#sfun_out.prior_residual" target="_top"><span style='white-space: nowrap'>prior_residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="sfun_in.age_like" id="sfun_in.age_like">age_like</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;h_{j,k}^{q,a}</span></code>
+ to denote the Huber loss function index for
+the age residual <code>
+<span style='white-space: nowrap'>&nbsp;A_{j,k}^{q,o}&nbsp;(s)</span></code>
+.
+This value is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].age_like<br>
+</span></font></code>
+See <a href="optimize.htm#sfun_out.age_residual" target="_top"><span style='white-space: nowrap'>age_residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="sfun_in.age_zeta" id="sfun_in.age_zeta">age_zeta</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;\zeta_{j,k}^{q,a}</span></code>
+ to denote the offset that is added before
+takeing the logs in the definition of<code>
+<span style='white-space: nowrap'>&nbsp;A_{j,k}^{q,o}&nbsp;(s)</span></code>
+.
+This value is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].age_zeta<br>
+</span></font></code>
+See <a href="optimize.htm#sfun_out.age_residual" target="_top"><span style='white-space: nowrap'>age_residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="sfun_in.age_sigma" id="sfun_in.age_sigma">age_sigma</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;\sigma_{j,k}^{q,a}</span></code>
+ to denote the standard deviation factor
+for the age residual <code>
+<span style='white-space: nowrap'>&nbsp;A_{j,k}^{q,o}&nbsp;(s)</span></code>
+.
+This value is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].age_sigma<br>
+</span></font></code>
+See <a href="optimize.htm#sfun_out.age_residual" target="_top"><span style='white-space: nowrap'>age_residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="sfun_in.age_order" id="sfun_in.age_order">age_order</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;o_{j,k}^{q,a}</span></code>
+ to denote the order
+for the age residual <code>
+<span style='white-space: nowrap'>&nbsp;A_{j,k}^{q,o}&nbsp;(s)</span></code>
+.
+This value is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].age_order<br>
+</span></font></code>
+It must have value one or two, and 
+must be one when 
+<code><i><font color="black"><span style='white-space: nowrap'>q</span></font></i></code>
+ corresponds to 
+<code>
+<span style='white-space: nowrap'>&nbsp;S(&nbsp;\cdot&nbsp;)</span></code>
+ (<code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;0</span></code>
+) or 
+<code>
+<span style='white-space: nowrap'>&nbsp;C(&nbsp;\cdot&nbsp;)</span></code>
+ (<code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;1</span></code>
+) .
+See <a href="optimize.htm#sfun_out.age_residual" target="_top"><span style='white-space: nowrap'>age_residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="sfun_in.cohort_like" id="sfun_in.cohort_like">cohort_like</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;h_{j,k}^{c,&nbsp;q}</span></code>
+ to denote the Huber function index for
+the cohort residual <code>
+<span style='white-space: nowrap'>&nbsp;B_{j,k}^{q,o}&nbsp;(s)</span></code>
+
+This value is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].cohort_like<br>
+</span></font></code>
+See <a href="optimize.htm#sfun_out.cohort_residual" target="_top"><span style='white-space: nowrap'>cohort_residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="sfun_in.cohort_zeta" id="sfun_in.cohort_zeta">cohort_zeta</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;\zeta_{j,k}^{c,&nbsp;q}</span></code>
+ to denote the offset that is added before
+taking the logs in the definition of <code>
+<span style='white-space: nowrap'>&nbsp;B_{j,k}^{q,o}&nbsp;(s)</span></code>
+
+This value is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].cohort_zeta<br>
+</span></font></code>
+See <a href="optimize.htm#sfun_out.cohort_residual" target="_top"><span style='white-space: nowrap'>cohort_residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="sfun_in.cohort_sigma" id="sfun_in.cohort_sigma">cohort_sigma</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;\sigma_{j,k}^{c,&nbsp;q}</span></code>
+ to denote the standard deviation factor for
+the cohort residual <code>
+<span style='white-space: nowrap'>&nbsp;B_{j,k}^{q,o}&nbsp;(s)</span></code>
+
+This value is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].cohort_sigma<br>
+</span></font></code>
+See <a href="optimize.htm#sfun_out.cohort_residual" target="_top"><span style='white-space: nowrap'>cohort_residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="sfun_in.cohort_order" id="sfun_in.cohort_order">cohort_order</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;o_{j,k}^{c,&nbsp;q}</span></code>
+ to denote the order
+for the cohort residual <code>
+<span style='white-space: nowrap'>&nbsp;B_{j,k}^{q,o}&nbsp;(s)</span></code>
+.
+This value is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].cohort_order<br>
+</span></font></code>
+and must have value one or two.
+See <a href="optimize.htm#sfun_out.cohort_residual" target="_top"><span style='white-space: nowrap'>cohort_residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="sfun_in.cross_like" id="sfun_in.cross_like">cross_like</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;h_{j,k}^{d,&nbsp;q}</span></code>
+ to denote the Huber function index for
+the cross residual <code>
+<span style='white-space: nowrap'>&nbsp;D_{j,k}^q&nbsp;(s)</span></code>
+
+This value is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].cross_like<br>
+</span></font></code>
+See <a href="optimize.htm#sfun_out.cross_residual" target="_top"><span style='white-space: nowrap'>cross_residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="sfun_in.cross_zeta" id="sfun_in.cross_zeta">cross_zeta</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;\zeta_{j,k}^{d,&nbsp;q}</span></code>
+ to denote the offset that is added before
+taking the logs in the definition of <code>
+<span style='white-space: nowrap'>&nbsp;D_{j,k}^{q,o}&nbsp;(s)</span></code>
+
+This value is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].cross_zeta<br>
+</span></font></code>
+See <a href="optimize.htm#sfun_out.cross_residual" target="_top"><span style='white-space: nowrap'>cross_residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="sfun_in.cross_sigma" id="sfun_in.cross_sigma">cross_sigma</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;\sigma_{j,k}^{d,&nbsp;q}</span></code>
+ to denote the standard deviation factor for
+the cross residual <code>
+<span style='white-space: nowrap'>&nbsp;D_{j,k}^{q,o}&nbsp;(s)</span></code>
+
+This value is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].cross_sigma<br>
+</span></font></code>
+See <a href="optimize.htm#sfun_out.cross_residual" target="_top"><span style='white-space: nowrap'>cross_residual</span></a>
+.
+
+
+
+<br>
+<br>
+<b><big><a name="covariate_value" id="covariate_value">covariate_value</a></big></b>
+
+
+
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>covariate_value</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dismod_pde::vector&lt;double&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>covariate_value</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+its size is equal to 
+<code><i><font color="black"><span style='white-space: nowrap'>L</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>N</span></font></i></code>
+ where
+
+<code><i><font color="black"><span style='white-space: nowrap'>L</span></font></i></code>
+ is the number of measurements and 
+<code><i><font color="black"><span style='white-space: nowrap'>N</span></font></i></code>
+ is the
+number of covariate columns.
+We define covariate matrix <code>
+<span style='white-space: nowrap'>&nbsp;X&nbsp;\in&nbsp;\B{R}^{L&nbsp;\times&nbsp;N}</span></code>
+ by
+<code><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></code>
+<code>
+<span style='white-space: nowrap'>&nbsp;X_{\ell,n}&nbsp;=&nbsp;</span></code>
+ 
+<code><i><font color="black"><span style='white-space: nowrap'>covariate_value</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>N</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>n</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;]</span></font></code>
+
+for 
+<code><i><font color="black"><span style='white-space: nowrap'>n</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;0&nbsp;,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>...</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>N</span></font></i><font color="blue"><span style='white-space: nowrap'>-1</span></font></code>
+ and
+
+<code><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;0&nbsp;,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>...</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>L</span></font></i><font color="blue"><span style='white-space: nowrap'>-1</span></font></code>
+.
+
+
+
+<br>
+<br>
+<b><big><a name="measure_in" id="measure_in">measure_in</a></big></b>
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dismod_pde::vector&lt;dismod_pde::Measure_Input_Struct&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The number of measurements <code>
+<span style='white-space: nowrap'>&nbsp;L</span></code>
+ is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>L</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()<br>
+</span></font></code>
+For 
+<code><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;0&nbsp;,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>...</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>L</span></font></i><font color="blue"><span style='white-space: nowrap'>-1</span></font></code>
+,
+the following fields of 
+<code><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>]</span></font></code>
+ must be set:
+
+<table><tr><td align='left'  valign='top'>
+
+<b>field name</b> </td><td align='left'  valign='top'>
+ <b>Description</b> 
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.htm#measure_in.integrand" target="_top"><span style='white-space: nowrap'>integrand</span></a>
+ </td><td align='left'  valign='top'>
+
+	The integrand used to model the measurement.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.htm#measure_in.age_lower, age_upper" target="_top"><span style='white-space: nowrap'>age_lower,&nbsp;age_upper</span></a>
+ </td><td align='left'  valign='top'>
+
+	The age limits for this measurement.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.htm#measure_in.time_lower, time_upper" target="_top"><span style='white-space: nowrap'>time_lower,&nbsp;time_upper</span></a>
+ 
+	</td><td align='left'  valign='top'>
+ The time limits for this measurement.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.htm#measure_in.meas_like" target="_top"><span style='white-space: nowrap'>meas_like</span></a>
+ </td><td align='left'  valign='top'>
+
+	Huber loss function used to model this measurement.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.htm#measure_in.meas_zeta" target="_top"><span style='white-space: nowrap'>meas_zeta</span></a>
+ </td><td align='left'  valign='top'>
+
+	Offset that is added before taking the log in the likelihood.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.htm#measure_in.meas_sigma" target="_top"><span style='white-space: nowrap'>meas_sigma</span></a>
+ </td><td align='left'  valign='top'>
+
+	Our model for the standard deviation of this measurement.
+</td></tr><tr><td align='left'  valign='top'>
+
+<a href="optimize.htm#measure_in.meas_value" target="_top"><span style='white-space: nowrap'>meas_value</span></a>
+ </td><td align='left'  valign='top'>
+
+	The value for this measurement. 
+</td></tr>
+</table>
+<br>
+<b><a name="measure_in.integrand" id="measure_in.integrand">integrand</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;I^{i(&nbsp;\ell&nbsp;)}&nbsp;(&nbsp;\cdot&nbsp;)</span></code>
+ to denote the integrand 
+for the <code>
+<span style='white-space: nowrap'>&nbsp;\ell</span></code>
+-th measurement.
+The value <code>
+<span style='white-space: nowrap'>&nbsp;i(&nbsp;\ell&nbsp;)</span></code>
+ is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dismod_pde::Integrand_Enum&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>]</span></font><i><font color="black"><span style='white-space: nowrap'>.integrand<br>
+</span></font></i></code>
+Each measurement is a definite integral of one of the following functions 
+with respect to age and time (plus some random noise):
+<table><tr><td align='left'  valign='top'>
+
+<b>Definition</b> 
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <b>integrand</b>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <b>Description</b>
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^\iota&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;\iota(&nbsp;\cdot&nbsp;)</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">incidence_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> incidence rate
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^\rho&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;\rho(&nbsp;\cdot&nbsp;)</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">remission_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> remission rate
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^\chi&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;\chi(&nbsp;\cdot&nbsp;)</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">m_excess_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> excess mortality rate
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^\omega&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;\omega(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">m_other_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> other cause mortality rate
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^w&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;\omega(&nbsp;\cdot&nbsp;)&nbsp;+&nbsp;\chi&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">m_with_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> with condition mortality rate
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^p&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;C(&nbsp;\cdot&nbsp;)&nbsp;/&nbsp;[&nbsp;S(&nbsp;\cdot&nbsp;)&nbsp;+&nbsp;C(&nbsp;\cdot&nbsp;)&nbsp;]</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">prevalence_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> prevalence
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^e&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;\chi(&nbsp;\cdot&nbsp;)&nbsp;I^p&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">m_prevalence_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> excess mortality rate times prevalence
+	
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^s&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;I^e&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;&nbsp;</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">m_specific_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> cause specific mortality rate
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^a&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\omega&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;+&nbsp;&nbsp;I^e&nbsp;(&nbsp;\cdot&nbsp;)</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">m_all_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> all cause mortality rate
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^\sigma&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;I^w&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;/&nbsp;I^a&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;&nbsp;</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">m_standard_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> standardized mortality ratio
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^r&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;I^w&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;/&nbsp;\omega&nbsp;(&nbsp;\cdot&nbsp;)</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">relative_risk_enum</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> relative risk ratio
+</td></tr>
+</table>
+<br>
+<b><a name="measure_in.Integrand_Enum" id="measure_in.Integrand_Enum">Integrand_Enum</a></b>
+
+<code><font color="blue"><br>
+dismod_pde::Integrand_Enum</font></code> is an <code><font color="blue">enum</font></code>
+type with the values listed above.
+Sometimes the corresponding integer value <code>
+<span style='white-space: nowrap'>&nbsp;i</span></code>
+ is used to denote a 
+integrand function in the documentation below.
+The vector
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;vector&lt;std::string&gt;&nbsp;dismod_pde::integrand_enum.name()<br>
+</span></font></code>
+can be used to map from the indices <code>
+<span style='white-space: nowrap'>&nbsp;i</span></code>
+ to the corresponding string; 
+e.g., 
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+dismod_pde::integrand_enum.name()[&nbsp;dismod_pde::relative_risk_enum&nbsp;]&nbsp;==&nbsp;&quot;relative_risk&quot;<br>
+</span></font></code>
+The number of possible integrands is equal to
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dismod_pde::n_integrand_enum<br>
+</span></font></code>
+<br>
+<b><a name="measure_in.age_lower, age_upper" id="measure_in.age_lower, age_upper">age_lower, age_upper</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;a_{l,&nbsp;\ell}</span></code>
+ and <code>
+<span style='white-space: nowrap'>&nbsp;a_{u,&nbsp;\ell}</span></code>
+ to denote the 
+lower and upper age integration limits for the <code>
+<span style='white-space: nowrap'>&nbsp;\ell</span></code>
+-th measurement.
+These values are specified by 
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>].age_lower<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>].age_upper<br>
+</span></font></code>
+For all <code>
+<span style='white-space: nowrap'>&nbsp;\ell</span></code>
+, it must hold that 
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_1&nbsp;\leq&nbsp;a_{l,&nbsp;\ell}&nbsp;\leq&nbsp;a_{u,&nbsp;\ell}&nbsp;\leq&nbsp;a_{J-1}<br>
+\]&nbsp;</span></code>
+
+
+<br>
+<br>
+<b><a name="measure_in.time_lower, time_upper" id="measure_in.time_lower, time_upper">time_lower, time_upper</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;t_{l,&nbsp;\ell}</span></code>
+ and <code>
+<span style='white-space: nowrap'>&nbsp;t_{u,&nbsp;\ell}</span></code>
+ to denote the 
+lower and upper time integration limits for  the <code>
+<span style='white-space: nowrap'>&nbsp;\ell</span></code>
+-th measurement.
+These values are specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>].time_lower<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>].time_upper<br>
+</span></font></code>
+For all <code>
+<span style='white-space: nowrap'>&nbsp;\ell</span></code>
+, it must hold that 
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c_1&nbsp;+&nbsp;a_{J-1}&nbsp;&lt;&nbsp;t_{l,&nbsp;\ell}&nbsp;\leq&nbsp;t_{u,&nbsp;\ell}&nbsp;&lt;&nbsp;c_{K-2}&nbsp;+&nbsp;a_1<br>
+\]&nbsp;</span></code>
+
+
+<br>
+<br>
+<b><a name="measure_in.meas_like" id="measure_in.meas_like">meas_like</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;h_\ell&nbsp;</span></code>
+ to denote the Huber function index 
+for the <code>
+<span style='white-space: nowrap'>&nbsp;\ell</span></code>
+-th measurement which is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>].meas_like<br>
+</span></font></code>
+See <a href="optimize.htm#measure_out.residual" target="_top"><span style='white-space: nowrap'>measure_out&nbsp;residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="measure_in.meas_zeta" id="measure_in.meas_zeta">meas_zeta</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;\zeta_\ell&nbsp;</span></code>
+ to denote the model offset 
+added before the log in the residual
+for the <code>
+<span style='white-space: nowrap'>&nbsp;\ell</span></code>
+-th measurement which is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>].meas_zeta<br>
+</span></font></code>
+See <a href="optimize.htm#measure_out.residual" target="_top"><span style='white-space: nowrap'>measure_out&nbsp;residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="measure_in.meas_sigma" id="measure_in.meas_sigma">meas_sigma</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;\sigma_\ell&nbsp;</span></code>
+ to denote the standard deviation 
+for the <code>
+<span style='white-space: nowrap'>&nbsp;\ell</span></code>
+-th measurement which is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>].meas_sigma<br>
+</span></font></code>
+See <a href="optimize.htm#measure_out.residual" target="_top"><span style='white-space: nowrap'>measure_out&nbsp;residual</span></a>
+.
+
+<br>
+<br>
+<b><a name="measure_in.meas_value" id="measure_in.meas_value">meas_value</a></b>
+<br>
+We use <code>
+<span style='white-space: nowrap'>&nbsp;z_\ell&nbsp;</span></code>
+ to denote the value
+for the <code>
+<span style='white-space: nowrap'>&nbsp;\ell</span></code>
+-th measurement which is specified by
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>].meas_value<br>
+</span></font></code>
+See <a href="optimize.htm#measure_out.residual" target="_top"><span style='white-space: nowrap'>measure_out&nbsp;residual</span></a>
+.
+
+
+
+
+<br>
+<br>
+<b><big><a name="effect_in" id="effect_in">effect_in</a></big></b>
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>effect_in</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dismod_pde::vector&lt;dismod_pde::Effect_Input_Struct&gt;&amp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>effect_in</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+and its size must be equal to 
+<code><i><font color="black"><span style='white-space: nowrap'>M</span></font></i></code>
+, the number of 
+measurement effects.
+For 
+<code><i><font color="black"><span style='white-space: nowrap'>m</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;0&nbsp;,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>...</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>M</span></font></i><font color="blue"><span style='white-space: nowrap'>-1</span></font></code>
+,
+the following fields of 
+<code><i><font color="black"><span style='white-space: nowrap'>effect_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>m</span></font></i><font color="blue"><span style='white-space: nowrap'>]</span></font></code>
+ must be set:
+
+<br>
+<br>
+<b><a name="effect_in.integrand" id="effect_in.integrand">integrand</a></b>
+<br>
+The measurement integrand for this effect is
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Integrand_Enum&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>effect_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>m</span></font></i><font color="blue"><span style='white-space: nowrap'>].integrand<br>
+</span></font></code>
+which is denoted by <code>
+<span style='white-space: nowrap'>&nbsp;i(m)</span></code>
+ below.
+
+<br>
+<br>
+<b><a name="effect_in.covariate" id="effect_in.covariate">covariate</a></b>
+<br>
+The covariate column for this measurement effect is
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size_t&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>effect_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>m</span></font></i><font color="blue"><span style='white-space: nowrap'>].covariate<br>
+</span></font></code>
+which is denoted by <code>
+<span style='white-space: nowrap'>&nbsp;n(m)</span></code>
+ below.
+
+<br>
+<br>
+<b><a name="effect_in.lower" id="effect_in.lower">lower</a></b>
+<br>
+The lower limit for this measurement effect during optimization is
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>effect_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>m</span></font></i><font color="blue"><span style='white-space: nowrap'>].lower<br>
+</span></font></code>
+<br>
+<b><a name="effect_in.initial" id="effect_in.initial">initial</a></b>
+<br>
+The initial value for this measurement effect during optimization is
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>effect_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>m</span></font></i><font color="blue"><span style='white-space: nowrap'>].initial<br>
+</span></font></code>
+<br>
+<b><a name="effect_in.upper" id="effect_in.upper">upper</a></b>
+<br>
+The upper limit for this measurement effect during optimization is
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>effect_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>m</span></font></i><font color="blue"><span style='white-space: nowrap'>].upper<br>
+</span></font></code>
+<br>
+<b><big><a name="effect_out" id="effect_out">effect_out</a></big></b>
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>effect_out</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dismod_pde::vector&lt;double&gt;&amp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>effect_out</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+and its size must be given by 
+
+<code><i><font color="black"><span style='white-space: nowrap'>effect_out</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>M</span></font></i></code>
+.  
+The input value of its elements does not matter.
+Upon return from <code><font color="blue">optimize</font></code>,
+for <code>
+<span style='white-space: nowrap'>&nbsp;m&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;M-1</span></code>
+, 
+
+<code><i><font color="black"><span style='white-space: nowrap'>effect_out</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>i</span></font></i><font color="blue"><span style='white-space: nowrap'>]</span></font></code>
+ is the optimal estimate for 
+the <i>m</i>-th measurement effect <code>
+<span style='white-space: nowrap'>&nbsp;\beta_m</span></code>
+
+
+
+
+
+<br>
+<br>
+<b><big><a name="sfun_out" id="sfun_out">sfun_out</a></big></b>
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dismod_pde::vector&lt;dismod_pde::Sfun_Output_Struct&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The size of this vector is
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()&nbsp;==&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>.size()&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The input value of the elements of 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i></code>
+ does not matter.
+For <code>
+<span style='white-space: nowrap'>&nbsp;j&nbsp;=&nbsp;0,&nbsp;...,&nbsp;J-1</span></code>
+ and <code>
+<span style='white-space: nowrap'>&nbsp;k&nbsp;=&nbsp;0&nbsp;,&nbsp;...&nbsp;,&nbsp;K-1</span></code>
+, if
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>valid</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid</span></font></i><font color="blue"><span style='white-space: nowrap'>.pack(</span></font><i><font color="black"><span style='white-space: nowrap'>j</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>k</span></font></i><font color="blue"><span style='white-space: nowrap'>,&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+returns false, the corresponding age-cohort pair 
+is not in the computational grid.
+Otherwise, Upon return from <code><font color="blue">optimize</font></code>,
+for <code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;Q-1</span></code>
+,
+the information stored in
+
+<code><font color="blue"><span style='white-space: nowrap'>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].</span></font><i><font color="black"><span style='white-space: nowrap'>field_name</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+corresponds to <code>
+<span style='white-space: nowrap'>&nbsp;s_{j,k}^q</span></code>
+; i.e., the stochastic function
+specified by <code>
+<span style='white-space: nowrap'>&nbsp;q</span></code>
+ at age <code>
+<span style='white-space: nowrap'>&nbsp;a_j</span></code>
+ and cohort <code>
+<span style='white-space: nowrap'>&nbsp;c_k</span></code>
+.
+The values for 
+<code><i><font color="black"><span style='white-space: nowrap'>field_name</span></font></i></code>
+ are listed directly below:
+
+<ol type="1"><li>
+<a href="optimize.htm#sfun_out.estimate" target="_top"><span style='white-space: nowrap'>estimate</span></a>
+,
+	final estimate returned by the optimization process.
+</li><li>
+
+<a href="optimize.htm#sfun_out.prior_residual" target="_top"><span style='white-space: nowrap'>prior_residual</span></a>
+,
+	prior residuals corresponding to final estimate.
+</li><li>
+
+<a href="optimize.htm#sfun_out.prior_scaled" target="_top"><span style='white-space: nowrap'>prior_scaled</span></a>
+,
+	scaled prior residuals corresponding to final estimate.
+</li><li>
+
+<a href="optimize.htm#sfun_out.age_residual" target="_top"><span style='white-space: nowrap'>age_residual</span></a>
+,
+	age residuals corresponding to final estimate.
+</li><li>
+
+<a href="optimize.htm#sfun_out.age_scaled" target="_top"><span style='white-space: nowrap'>age_scaled</span></a>
+,
+	scaled age residuals corresponding to final estimate.
+</li><li>
+
+<a href="optimize.htm#sfun_out.cohort_residual" target="_top"><span style='white-space: nowrap'>cohort_residual</span></a>
+,
+	cohort residuals corresponding to final estimate.
+</li><li>
+
+<a href="optimize.htm#sfun_out.cohort_scaled" target="_top"><span style='white-space: nowrap'>cohort_scaled</span></a>
+,
+	scaled cohort residuals corresponding to final estimate.
+</li><li>
+
+<a href="optimize.htm#sfun_out.cross_residual" target="_top"><span style='white-space: nowrap'>cross_residual</span></a>
+,
+	cross residuals corresponding to final estimate.
+</li><li>
+
+<a href="optimize.htm#sfun_out.cross_scaled" target="_top"><span style='white-space: nowrap'>cross_scaled</span></a>
+,
+	scaled cross residuals corresponding to final estimate.
+</li></ol>
+
+
+<br>
+<br>
+<b><a name="sfun_out.estimate" id="sfun_out.estimate">estimate</a></b>
+<br>
+The <code>
+<span style='white-space: nowrap'>&nbsp;&nbsp;s_{j,k}^q</span></code>
+ component is of the final estimate
+returned by the optimizer is
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_in</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].estimate<br>
+</span></font></code>
+<br>
+<b><a name="sfun_out.prior_residual" id="sfun_out.prior_residual">prior_residual</a></b>
+<br>
+The return value of
+
+<code><font color="blue"><span style='white-space: nowrap'>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].prior_residual<br>
+</span></font></code>
+is set to the direct prior residual.
+Note that this is defined for every <code>
+<span style='white-space: nowrap'>&nbsp;(j,&nbsp;k)&nbsp;\in&nbsp;G</span></code>
+.
+To be specific,
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+P_{j,k}^q&nbsp;(&nbsp;s_G&nbsp;)&nbsp;=&nbsp;R&nbsp;\left(&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s_{j,k}^q&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\W{,}&nbsp;\mu_{j,k}^q&nbsp;\W{,}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\zeta_{j,k}^{q,p}&nbsp;<br>
+\right)<br>
+\]&nbsp;</span></code>
+
+where <code>
+<span style='white-space: nowrap'>&nbsp;s_G</span></code>
+ is the return
+<a href="optimize.htm#sfun_out.estimate" target="_top"><span style='white-space: nowrap'>estimate</span></a>
+.
+
+<br>
+<br>
+<b><a name="sfun_out.prior_scaled" id="sfun_out.prior_scaled">prior_scaled</a></b>
+<br>
+The return value of
+
+<code><font color="blue"><span style='white-space: nowrap'>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].prior_scaled<br>
+</span></font></code>
+is set to the scaled residual for the direct prior which is defined by
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+\left\{&nbsp;\begin{array}{ll}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\left.&nbsp;P_{j,k}^q&nbsp;(&nbsp;s_G&nbsp;)&nbsp;\right/&nbsp;&nbsp;\sigma_{j,k}^{q,p}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;\R{if}&nbsp;\;&nbsp;0&nbsp;&lt;&nbsp;\sigma_{j,k}^{q,p}&nbsp;&lt;&nbsp;+&nbsp;\infty<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\R{nan}&nbsp;&amp;&nbsp;\R{Otherwise}<br>
+\end{array}&nbsp;\right.<br>
+\]&nbsp;</span></code>
+
+
+<br>
+<br>
+<b><a name="sfun_out.age_residual" id="sfun_out.age_residual">age_residual</a></b>
+<br>
+The return value of
+
+<code><font color="blue"><span style='white-space: nowrap'>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].age_residual<br>
+</span></font></code>
+is set to the age residual <code>
+<span style='white-space: nowrap'>&nbsp;A_{j,k}^{q,o}&nbsp;(s)</span></code>
+ (defined below).
+For <code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;Q-1</span></code>
+,
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+A_{j,k}^{q,1}&nbsp;(&nbsp;s_G&nbsp;)&nbsp;=&nbsp;\R{nan}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\W{\Leftarrow}&nbsp;&nbsp;(j+1,k)&nbsp;\;&nbsp;\R{not&nbsp;\;&nbsp;in}&nbsp;\;&nbsp;G&nbsp;<br>
+\]&nbsp;</span></code>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+A_{j,k}^{q,2}&nbsp;(&nbsp;s_G&nbsp;)&nbsp;=&nbsp;\R{nan}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\W{\Leftarrow}&nbsp;(j+2,k)&nbsp;\;&nbsp;\R{not&nbsp;\;&nbsp;in}&nbsp;\;&nbsp;G&nbsp;<br>
+\]&nbsp;</span></code>
+
+For <code>
+<span style='white-space: nowrap'>&nbsp;(j,&nbsp;k)&nbsp;\in&nbsp;G</span></code>
+ such that <code>
+<span style='white-space: nowrap'>&nbsp;(j+1,k)&nbsp;\in&nbsp;G</span></code>
+,
+<code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;2&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;Q-1</span></code>
+, and 
+<code>
+<span style='white-space: nowrap'>&nbsp;a_j&nbsp;\leq&nbsp;\alpha&nbsp;\leq&nbsp;a_{j+1}</span></code>
+, 
+we define the function
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+\tilde{s}^q_{j,k}&nbsp;(&nbsp;\alpha&nbsp;)&nbsp;=&nbsp;<br>
+\frac{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s^q_{j,k}&nbsp;(&nbsp;a_{j+1}&nbsp;-&nbsp;\alpha&nbsp;)&nbsp;+&nbsp;s^q_{j+1,k}&nbsp;(&nbsp;\alpha&nbsp;-&nbsp;a_j&nbsp;)&nbsp;<br>
+}{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_{j+1}&nbsp;-&nbsp;a_j&nbsp;<br>
+}&nbsp;<br>
+\]&nbsp;</span></code>
+ 
+We define the functions
+<code>
+<span style='white-space: nowrap'>&nbsp;\tilde{S}_{j,k}&nbsp;(&nbsp;a&nbsp;)</span></code>
+ (<code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;0</span></code>
+) and 
+<code>
+<span style='white-space: nowrap'>&nbsp;\tilde{C}_{j,k}&nbsp;(&nbsp;a&nbsp;)</span></code>
+ (<code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;1</span></code>
+) 
+as approximate solutions for the following ODE:
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+\begin{array}{rcl}<br>
+\tilde{S}_{j,k}&nbsp;(&nbsp;a_j&nbsp;)&nbsp;&amp;&nbsp;=&nbsp;&amp;&nbsp;S_{j,k}&nbsp;<br>
+\\<br>
+\tilde{C}_{j,k}&nbsp;(&nbsp;a_j&nbsp;)&nbsp;&amp;&nbsp;=&nbsp;&amp;&nbsp;C_{j,k}&nbsp;<br>
+\\<br>
+\partial_\alpha&nbsp;\tilde{S}_{j,k}&nbsp;(&nbsp;\alpha&nbsp;&nbsp;)&nbsp;<br>
+&amp;&nbsp;=&nbsp;&amp;<br>
+-&nbsp;[&nbsp;\tilde{\iota}_{j,k}&nbsp;(&nbsp;\alpha&nbsp;)&nbsp;+&nbsp;\tilde{\omega}_{j,k}&nbsp;(&nbsp;\alpha&nbsp;)&nbsp;]&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\;&nbsp;\tilde{S}_{j,k}&nbsp;(&nbsp;\alpha&nbsp;)&nbsp;<br>
++&nbsp;\tilde{\rho}_{j,k}&nbsp;(&nbsp;\alpha&nbsp;)&nbsp;\;&nbsp;\tilde{C}_{j,k}&nbsp;(&nbsp;\alpha&nbsp;)<br>
+\\<br>
+\partial_&nbsp;\alpha&nbsp;&nbsp;\tilde{C}_{j,k}&nbsp;(&nbsp;&nbsp;\alpha&nbsp;&nbsp;)&nbsp;<br>
+&amp;&nbsp;=&nbsp;&amp;<br>
+\tilde{\iota}_{j,k}&nbsp;(&nbsp;\alpha&nbsp;)&nbsp;\;&nbsp;\tilde{S}_{j,k}&nbsp;(&nbsp;\alpha&nbsp;)&nbsp;<br>
+-&nbsp;[&nbsp;&nbsp;\tilde{\rho}_{j,k}&nbsp;(&nbsp;\alpha&nbsp;)&nbsp;+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\tilde{\omega}_{j,k}&nbsp;(&nbsp;\alpha&nbsp;)&nbsp;+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\tilde{\chi}_{j,k}&nbsp;(&nbsp;\alpha&nbsp;)&nbsp;]&nbsp;\;&nbsp;\tilde{C}_{j,k}&nbsp;(&nbsp;\alpha&nbsp;)<br>
+\end{array}<br>
+\]&nbsp;</span></code>
+
+The parameter
+<a href="optimize.htm#parameter.max_ode_step" target="_top"><span style='white-space: nowrap'>max_ode_step</span></a>
+ 
+determines how accurately we approximate the solution of this ODE;
+i.e., <code>
+<span style='white-space: nowrap'>&nbsp;\tilde{s}_{j,k}^q&nbsp;(&nbsp;\alpha&nbsp;)</span></code>
+ for <code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;0,&nbsp;1</span></code>
+.
+We define the first order age residuals 
+for <code>
+<span style='white-space: nowrap'>&nbsp;S</span></code>
+ (<code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;0</span></code>
+)
+and for <code>
+<span style='white-space: nowrap'>&nbsp;C</span></code>
+ (<code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;1</span></code>
+)
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+A_{j,k}^{q,1}&nbsp;(&nbsp;s_G&nbsp;)&nbsp;<br>
+=<br>
+R&nbsp;\left(&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\tilde{s}_{j,k}^q&nbsp;(&nbsp;&nbsp;a_{j+1}&nbsp;)&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\W{,}&nbsp;s_{j+1,k}&nbsp;\W{,}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\zeta_{j,k}^{q,a}&nbsp;<br>
+\right)<br>
+%<br>
+\W{\Leftarrow}&nbsp;(j+1,k)&nbsp;\in&nbsp;G&nbsp;<br>
+\]&nbsp;</span></code>
+
+For <code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;2&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;Q-1</span></code>
+, we define the 
+first order age residual functions
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+A_{j,k}^{q,1}&nbsp;(&nbsp;s_G&nbsp;)&nbsp;<br>
+=<br>
+R&nbsp;\left(&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s_{j+1,k}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\W{,}&nbsp;s_{j,k}^q&nbsp;\W{,}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\zeta_{j,k}^{q,a}&nbsp;<br>
+\right)<br>
+%<br>
+\W{\Leftarrow}&nbsp;(j+1,k)&nbsp;\in&nbsp;G&nbsp;<br>
+\]&nbsp;</span></code>
+
+For <code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;2,&nbsp;\ldots,&nbsp;Q-1</span></code>
+,
+we define the second order age residual functions
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+A_{j,k}^{q,2}&nbsp;(&nbsp;s_G&nbsp;)&nbsp;<br>
+=<br>
+\left[&nbsp;<br>
+\frac{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;\left(&nbsp;s_{j+2,k}&nbsp;\W{,}&nbsp;s_{j+1,k}^q&nbsp;\W{,}&nbsp;\zeta_{j,k}^{q,a}&nbsp;\right)<br>
+}{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_{j+2}&nbsp;-&nbsp;a_{j+1}&nbsp;<br>
+}<br>
+-<br>
+\frac{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;\left(&nbsp;s_{j+1,k}&nbsp;\W{,}&nbsp;s_{j,k}^q&nbsp;\W{,}&nbsp;\zeta_{j,k}^{q,a}&nbsp;\right)<br>
+}{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_{j+1}&nbsp;-&nbsp;a_{j}&nbsp;<br>
+}<br>
+\right]<br>
+%<br>
+\W{\Leftarrow}&nbsp;(j+2,k)&nbsp;\in&nbsp;G&nbsp;<br>
+\]&nbsp;</span></code>
+
+
+<br>
+<br>
+<b><a name="sfun_out.age_scaled" id="sfun_out.age_scaled">age_scaled</a></b>
+<br>
+The return the value of 
+
+<code><font color="blue"><span style='white-space: nowrap'>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].age_scaled<br>
+</span></font></code>
+is set to the scaled age residual which is defined by
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+\left\{&nbsp;\begin{array}{ll}<br>
+A_{j,k}^{q,1}&nbsp;(&nbsp;s_G&nbsp;)&nbsp;/&nbsp;\sigma_{j,k}^{q,a}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;\R{if}&nbsp;\;&nbsp;o_{j,k}^{q,a}&nbsp;=&nbsp;1&nbsp;\W{\R{and}}&nbsp;0&nbsp;&lt;&nbsp;\sigma_{j,k}^{q,a}&nbsp;&lt;&nbsp;+&nbsp;\infty<br>
+\\<br>
+A_{j,k}^{q,2}&nbsp;(&nbsp;s_G&nbsp;)&nbsp;/&nbsp;\sigma_{j,k}^{q,a}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;\R{if}&nbsp;\;&nbsp;o_{j,k}^{q,a}&nbsp;=&nbsp;2&nbsp;\W{\R{and}}&nbsp;0&nbsp;&lt;&nbsp;\sigma_{j,k}^{q,a}&nbsp;&lt;&nbsp;+&nbsp;\infty<br>
+\\<br>
+\R{nan}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;\R{Otherwise}<br>
+\end{array}&nbsp;\right.<br>
+\]&nbsp;</span></code>
+
+
+<br>
+<br>
+<b><a name="sfun_out.cohort_residual" id="sfun_out.cohort_residual">cohort_residual</a></b>
+<br>
+The return value of
+
+<code><font color="blue"><span style='white-space: nowrap'>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].cohort_residual<br>
+</span></font></code>
+is set to the age residual <code>
+<span style='white-space: nowrap'>&nbsp;B_{j,k}^{q,o}&nbsp;(s)</span></code>
+ (defined below).
+For <code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;Q-1</span></code>
+,
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+B_{j,k}^{q,1}&nbsp;(&nbsp;s_G&nbsp;)&nbsp;=&nbsp;\R{nan}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\W{\Leftarrow}&nbsp;&nbsp;(j,k+1)&nbsp;\;&nbsp;\R{not&nbsp;\;&nbsp;in}&nbsp;\;&nbsp;G&nbsp;<br>
+\]&nbsp;</span></code>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+B_{j,k}^{q,2}&nbsp;(&nbsp;s_G&nbsp;)&nbsp;=&nbsp;\R{nan}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\W{\Leftarrow}&nbsp;(j,k+2)&nbsp;\;&nbsp;\R{not&nbsp;\;&nbsp;in}&nbsp;\;&nbsp;G&nbsp;<br>
+\]&nbsp;</span></code>
+
+We define the first order cohort residual functions
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+B_{j,k}^{q,1}&nbsp;(&nbsp;s_G&nbsp;)&nbsp;<br>
+=<br>
+R&nbsp;\left(&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s_{j,k+1}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\W{,}&nbsp;s_{j,k}^q&nbsp;\W{,}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\zeta_{j,k}^{q,a}&nbsp;<br>
+\right)<br>
+%<br>
+\W{\Leftarrow}&nbsp;(j,&nbsp;k+1)&nbsp;\in&nbsp;G&nbsp;<br>
+\]&nbsp;</span></code>
+
+We define the second order age residual functions
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+B_{j,k}^{q,2}&nbsp;(&nbsp;s_G&nbsp;)&nbsp;<br>
+=<br>
+\left[&nbsp;<br>
+\frac{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;\left(&nbsp;s_{j,k+2}&nbsp;\W{,}&nbsp;s_{j,k+1}^q&nbsp;\W{,}&nbsp;\zeta_{j,k}^{q,a}&nbsp;\right)<br>
+}{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c_{k+2}&nbsp;-&nbsp;c_{k+1}&nbsp;<br>
+}<br>
+-<br>
+\frac{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;\left(&nbsp;s_{j,k+1}&nbsp;\W{,}&nbsp;s_{j,k}^q&nbsp;\W{,}&nbsp;\zeta_{j,k}^{q,a}&nbsp;\right)<br>
+}{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c_{k+1}&nbsp;-&nbsp;c_{k}&nbsp;<br>
+}<br>
+\right]<br>
+%<br>
+\W{\Leftarrow}&nbsp;(j,&nbsp;k+2)&nbsp;\in&nbsp;G&nbsp;<br>
+\]&nbsp;</span></code>
+
+
+<br>
+<br>
+<b><a name="sfun_out.cohort_scaled" id="sfun_out.cohort_scaled">cohort_scaled</a></b>
+<br>
+The return the value of 
+
+<code><font color="blue"><span style='white-space: nowrap'>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].cohort_scaled<br>
+</span></font></code>
+is set to the scaled age residual which is defined by
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+\left\{&nbsp;\begin{array}{ll}<br>
+B_{j,k}^{q,1}&nbsp;(&nbsp;s_G&nbsp;)&nbsp;/&nbsp;\sigma_{j,k}^{q,c}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;\R{if}&nbsp;\;&nbsp;o_{j,k}^{q,c}&nbsp;=&nbsp;1&nbsp;\W{\R{and}}&nbsp;0&nbsp;&lt;&nbsp;\sigma_{j,k}^{q,c}&nbsp;&lt;&nbsp;+&nbsp;\infty<br>
+\\<br>
+B_{j,k}^{q,2}&nbsp;(&nbsp;s_G&nbsp;)&nbsp;/&nbsp;\sigma_{j,k}^{q,c}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;\R{if}&nbsp;\;&nbsp;o_{j,k}^{q,c}&nbsp;=&nbsp;2&nbsp;\W{\R{and}}&nbsp;0&nbsp;&lt;&nbsp;\sigma_{j,k}^{q,c}&nbsp;&lt;&nbsp;+&nbsp;\infty<br>
+\\<br>
+\R{nan}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;\R{Otherwise}<br>
+\end{array}&nbsp;\right.<br>
+\]&nbsp;</span></code>
+
+
+<br>
+<br>
+<b><a name="sfun_out.cross_residual" id="sfun_out.cross_residual">cross_residual</a></b>
+<br>
+The return value of
+
+<code><font color="blue"><span style='white-space: nowrap'>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].cross_residual<br>
+</span></font></code>
+is set to the age residual <code>
+<span style='white-space: nowrap'>&nbsp;D_{j,k}^q&nbsp;(s)</span></code>
+ (defined below).
+For <code>
+<span style='white-space: nowrap'>&nbsp;q&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;Q-1</span></code>
+,
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+D_{j,k}^q&nbsp;(&nbsp;s_G&nbsp;)&nbsp;=&nbsp;\R{nan}&nbsp;\W{\Leftarrow}&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(j,k+1)&nbsp;\;&nbsp;\R{or}&nbsp;\;&nbsp;(j+1,k)&nbsp;\;&nbsp;\R{or}&nbsp;\;&nbsp;(j+1,k+1)&nbsp;\;&nbsp;\R{not&nbsp;\;&nbsp;in}&nbsp;\;&nbsp;G&nbsp;<br>
+\]&nbsp;</span></code>
+
+otherwise
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+D_{j,k}^q&nbsp;(&nbsp;s_G&nbsp;)&nbsp;<br>
+=<br>
+\frac{&nbsp;<br>
+R&nbsp;\left(&nbsp;s^q_{j+1,k+1}&nbsp;\W{,}&nbsp;s^q_{j+1,k}&nbsp;\W{,}&nbsp;\zeta_{j,k}^{q,d}&nbsp;\right)<br>
+-<br>
+R&nbsp;\left(&nbsp;s^q_{j,k+1}&nbsp;\W{,}&nbsp;s^q_{j,k}&nbsp;\W{,}&nbsp;\zeta_{j,k}^{q,d}&nbsp;\right)<br>
+}{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\sqrt{(&nbsp;c_{k+1}&nbsp;-&nbsp;c_k&nbsp;)&nbsp;(&nbsp;a_{j+1}&nbsp;-&nbsp;a_j&nbsp;)&nbsp;}<br>
+}<br>
+\]&nbsp;</span></code>
+
+
+<br>
+<br>
+<b><a name="sfun_out.cross_scaled" id="sfun_out.cross_scaled">cross_scaled</a></b>
+<br>
+The return the value of 
+
+<code><font color="blue"><span style='white-space: nowrap'>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out</span></font></i><font color="blue"><span style='white-space: nowrap'>[&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>grid_index</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;*&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>Q</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>].cross_scaled<br>
+</span></font></code>
+is set to the scaled age residual which is defined by
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+\left\{&nbsp;\begin{array}{ll}<br>
+D_{j,k}^q&nbsp;(&nbsp;s_G&nbsp;)&nbsp;/&nbsp;\sigma_{j,k}^{q,d}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;\R{if}&nbsp;\;&nbsp;0&nbsp;&lt;&nbsp;\sigma_{j,k}^{q,c}&nbsp;&lt;&nbsp;+&nbsp;\infty<br>
+\\<br>
+\R{nan}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;\R{Otherwise}<br>
+\end{array}&nbsp;\right.<br>
+\]&nbsp;</span></code>
+
+
+
+
+<br>
+<br>
+<b><big><a name="measure_out" id="measure_out">measure_out</a></big></b>
+<br>
+The argument 
+<code><i><font color="black"><span style='white-space: nowrap'>measure_out</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dismod_pde::vector&lt;dismod_pde::Measure_Output_Struct&gt;&amp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_out</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+and it has size <code>
+<span style='white-space: nowrap'>&nbsp;L</span></code>
+.
+The input value of its elements does not matter.
+Upon return,
+For <code>
+<span style='white-space: nowrap'>&nbsp;\ell&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;L-1</span></code>
+, the value of 
+
+<code><font color="blue"><span style='white-space: nowrap'>&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_out</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>].</span></font><i><font color="black"><span style='white-space: nowrap'>field_name</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+has been set as follows:
+<ol type="1"><li>
+<a href="optimize.htm#measure_out.model" target="_top"><span style='white-space: nowrap'>model</span></a>
+,
+is the value that 
+<a href="optimize.htm#sfun_out.estimate" target="_top"><span style='white-space: nowrap'>estimate</span></a>
+ and
+<a href="optimize.htm#effect_out" target="_top"><span style='white-space: nowrap'>effect_out</span></a>
+
+predict for the integrand; i.e. <code>
+<span style='white-space: nowrap'>&nbsp;\bar{I}_\ell&nbsp;(s)</span></code>
+.
+</li><li>
+
+<a href="optimize.htm#measure_out.adjusted" target="_top"><span style='white-space: nowrap'>adjusted</span></a>
+,
+is the value that 
+<a href="optimize.htm#effect_out" target="_top"><span style='white-space: nowrap'>effect_out</span></a>
+
+yields for the covariate adjusted measurements <code>
+<span style='white-space: nowrap'>&nbsp;Z_\ell&nbsp;(&nbsp;\beta&nbsp;)</span></code>
+.
+</li><li>
+
+<a href="optimize.htm#measure_out.residual" target="_top"><span style='white-space: nowrap'>residual</span></a>
+,
+is the log transformed measurement minus the log transformed model
+</li><li>
+
+<a href="optimize.htm#measure_out.scaled" target="_top"><span style='white-space: nowrap'>scaled</span></a>
+,
+is a scaled version of the residual. 
+</li></ol>
+
+
+<br>
+<br>
+<b><a name="measure_out.adjusted" id="measure_out.adjusted">adjusted</a></b>
+<br>
+Let <code>
+<span style='white-space: nowrap'>&nbsp;\beta</span></code>
+ be the vector of covariate effects
+corresponding to the 
+<a href="optimize.htm#effect_out" target="_top"><span style='white-space: nowrap'>effect_out</span></a>
+.
+We define the covariate adjusted measurement function by
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+\begin{array}{rcl}<br>
+\delta&nbsp;(&nbsp;\ell&nbsp;,&nbsp;m&nbsp;)&nbsp;&amp;&nbsp;=&nbsp;&amp;&nbsp;\left\{&nbsp;\begin{array}{ll}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1&nbsp;&amp;&nbsp;\R{if}&nbsp;\;&nbsp;i(\ell)&nbsp;=&nbsp;i(m)&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&amp;&nbsp;\R{otherwise}<br>
+\end{array}&nbsp;\right.<br>
+\\<br>
+Z_\ell&nbsp;(&nbsp;\beta&nbsp;)&nbsp;&nbsp;&amp;&nbsp;=&nbsp;&amp;&nbsp;z_\ell&nbsp;\;&nbsp;\exp&nbsp;\left(&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-&nbsp;\sum_{m=0}^{M-1}&nbsp;\delta&nbsp;(&nbsp;\ell,&nbsp;m&nbsp;)&nbsp;X_{\ell,&nbsp;n(m)}&nbsp;\beta_m&nbsp;<br>
+\right)<br>
+\end{array}<br>
+\]&nbsp;</span></code>
+
+See 
+<a href="optimize.htm#covariate_value" target="_top"><span style='white-space: nowrap'>covariate_value</span></a>
+ for the definition
+of <code>
+<span style='white-space: nowrap'>&nbsp;X</span></code>
+,
+<a href="optimize.htm#effect_in.integrand" target="_top"><span style='white-space: nowrap'>effect_in</span></a>
+ for the definition
+of the integrand index <code>
+<span style='white-space: nowrap'>&nbsp;i(m)</span></code>
+, and
+<a href="optimize.htm#measure_in.integrand" target="_top"><span style='white-space: nowrap'>measure_in</span></a>
+ for the definition
+of the integrand index <code>
+<span style='white-space: nowrap'>&nbsp;i(\ell)</span></code>
+.
+The return value of
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_out</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>].adjusted<br>
+</span></font></code>
+is equal to <code>
+<span style='white-space: nowrap'>&nbsp;Z_\ell&nbsp;(&nbsp;\beta&nbsp;)</span></code>
+.
+
+<br>
+<br>
+<b><a name="measure_out.model" id="measure_out.model">model</a></b>
+<br>
+Let <code>
+<span style='white-space: nowrap'>&nbsp;s_G</span></code>
+ be the stochastic functions,
+on the computational grid <code>
+<span style='white-space: nowrap'>&nbsp;G</span></code>
+,
+corresponding to the final
+<a href="optimize.htm#sfun_out.estimate" target="_top"><span style='white-space: nowrap'>estimate</span></a>
+.
+The return value of
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;double&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_out</span></font></i><font color="blue"><span style='white-space: nowrap'>[</span></font><i><font color="black"><span style='white-space: nowrap'>ell</span></font></i><font color="blue"><span style='white-space: nowrap'>].model<br>
+</span></font></code>
+is given by <code>
+<span style='white-space: nowrap'>&nbsp;\bar{I}_\ell&nbsp;(&nbsp;s_G&nbsp;)</span></code>
+ defined below:
+<code><span style='white-space: nowrap'><br>
+<br>
+</span></code>The midpoints for the age and time limits are denoted by
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+\begin{array}{rcl}<br>
+\bar{a}_\ell&nbsp;&amp;&nbsp;=&nbsp;&amp;&nbsp;(&nbsp;a_{l,\ell}&nbsp;+&nbsp;a_{u,\ell}&nbsp;)&nbsp;/&nbsp;2<br>
+\\<br>
+\bar{t}_\ell&nbsp;&amp;&nbsp;=&nbsp;&amp;&nbsp;(&nbsp;t_{l,\ell}&nbsp;+&nbsp;t_{u,\ell}&nbsp;)&nbsp;/&nbsp;2<br>
+\end{array}<br>
+\]&nbsp;</span></code>
+
+The indices <code>
+<span style='white-space: nowrap'>&nbsp;\jmath&nbsp;(&nbsp;\ell&nbsp;)</span></code>
+,
+<code>
+<span style='white-space: nowrap'>&nbsp;\underline{\kappa}(&nbsp;\ell&nbsp;)</span></code>
+, and
+<code>
+<span style='white-space: nowrap'>&nbsp;\overline{\kappa}(&nbsp;\ell&nbsp;)</span></code>
+ are defined by
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+\begin{array}{rcl}<br>
+a_{\jmath&nbsp;(\ell)}&nbsp;\leq&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;\bar{a}_\ell&nbsp;&amp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&nbsp;&nbsp;a_{&nbsp;\jmath(\ell)+1}<br>
+\\<br>
+c_{\underline{\kappa}(\ell)}&nbsp;\leq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;\bar{t}_\ell&nbsp;-&nbsp;a_{\jmath&nbsp;(\ell)}&nbsp;&amp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&nbsp;c_{\underline{\kappa}(\ell)&nbsp;+&nbsp;1}&nbsp;<br>
+\\<br>
+c_{\overline{\kappa}(\ell)}&nbsp;\leq<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;\bar{t}_\ell&nbsp;-&nbsp;a_{\jmath&nbsp;(\ell)+1}&nbsp;&amp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;&nbsp;c_{\overline{\kappa}(\ell)&nbsp;+&nbsp;1}&nbsp;<br>
+\end{array}<br>
+\]&nbsp;</span></code>
+
+The notation <code>
+<span style='white-space: nowrap'>&nbsp;i(&nbsp;\ell&nbsp;)</span></code>
+ is the integrand index for 
+the <code>
+<span style='white-space: nowrap'>&nbsp;\ell</span></code>
+-th measurement;
+see <a href="optimize.htm#measure_in.integrand" target="_top"><span style='white-space: nowrap'>integrand</span></a>
+.
+We define <code>
+<span style='white-space: nowrap'>&nbsp;\bar{I}_\ell&nbsp;(s)&nbsp;</span></code>
+ as the bilinear interpolant 
+of <code>
+<span style='white-space: nowrap'>&nbsp;I^{i(\ell)}&nbsp;(&nbsp;\cdot&nbsp;)</span></code>
+,
+with respect to age and time, 
+evaluated at age <code>
+<span style='white-space: nowrap'>&nbsp;\bar{a}_\ell</span></code>
+ and time <code>
+<span style='white-space: nowrap'>&nbsp;\bar{t}_\ell</span></code>
+.
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+\begin{array}{rcl}<br>
+\bar{I}_\ell&nbsp;(&nbsp;s_G&nbsp;)<br>
+&amp;&nbsp;=&nbsp;&amp;<br>
+I_{\jmath&nbsp;(&nbsp;\ell&nbsp;)&nbsp;,&nbsp;\underline{\kappa}&nbsp;(&nbsp;\ell&nbsp;)}&nbsp;^{i(&nbsp;\ell&nbsp;)&nbsp;}<br>
+(&nbsp;s_G&nbsp;)<br>
+\frac{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_{&nbsp;\jmath&nbsp;(&nbsp;\ell&nbsp;)&nbsp;+&nbsp;1&nbsp;}&nbsp;-&nbsp;\bar{a}_\ell<br>
+}{&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_{&nbsp;\jmath&nbsp;(&nbsp;\ell&nbsp;)&nbsp;+&nbsp;1&nbsp;}&nbsp;-&nbsp;&nbsp;a_{&nbsp;\jmath&nbsp;(&nbsp;\ell&nbsp;)&nbsp;}<br>
+}<br>
+\frac{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_{\jmath(&nbsp;\ell&nbsp;)}&nbsp;+&nbsp;c_{\underline{\kappa}&nbsp;(&nbsp;\ell&nbsp;)&nbsp;+&nbsp;1}&nbsp;-&nbsp;&nbsp;\bar{t}_\ell<br>
+}{&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c_{&nbsp;\underline{\kappa}&nbsp;(&nbsp;\ell&nbsp;)&nbsp;+&nbsp;1&nbsp;}&nbsp;-&nbsp;&nbsp;c_{&nbsp;\underline{\kappa}&nbsp;(&nbsp;\ell&nbsp;)&nbsp;}<br>
+}<br>
+\\<br>
+&amp;&nbsp;+&nbsp;&amp;<br>
+I_{\jmath&nbsp;(&nbsp;\ell&nbsp;),&nbsp;\underline{\kappa}&nbsp;(&nbsp;\ell&nbsp;)&nbsp;+&nbsp;1}^{i(&nbsp;\ell&nbsp;)&nbsp;}<br>
+(&nbsp;s_G&nbsp;)<br>
+\frac{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_{&nbsp;\jmath&nbsp;(&nbsp;\ell&nbsp;)&nbsp;}&nbsp;-&nbsp;\bar{a}_\ell<br>
+}{&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_{&nbsp;\jmath&nbsp;(&nbsp;\ell&nbsp;)&nbsp;+&nbsp;1&nbsp;}&nbsp;-&nbsp;&nbsp;a_{&nbsp;\jmath&nbsp;(&nbsp;\ell&nbsp;)&nbsp;}<br>
+}<br>
+\frac{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\bar{t}_\ell&nbsp;-&nbsp;a_{\jmath&nbsp;(&nbsp;\ell&nbsp;)}&nbsp;-&nbsp;c_{\underline{\kappa}&nbsp;(&nbsp;\ell&nbsp;)}<br>
+}{&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c_{&nbsp;\underline{\kappa}&nbsp;(&nbsp;\ell&nbsp;)&nbsp;+&nbsp;1&nbsp;}&nbsp;-&nbsp;&nbsp;c_{&nbsp;\underline{\kappa}&nbsp;(&nbsp;\ell&nbsp;)&nbsp;}<br>
+}<br>
+\\<br>
+&amp;&nbsp;+&nbsp;&amp;<br>
+I_{\jmath&nbsp;(&nbsp;\ell&nbsp;)&nbsp;+&nbsp;1&nbsp;,&nbsp;\overline{\kappa}&nbsp;(&nbsp;\ell&nbsp;)}&nbsp;^{i(&nbsp;\ell&nbsp;)&nbsp;}<br>
+(&nbsp;s_G&nbsp;)<br>
+\frac{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\bar{a}_\ell&nbsp;-&nbsp;a_{&nbsp;\jmath&nbsp;(&nbsp;\ell&nbsp;)&nbsp;}<br>
+}{&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_{&nbsp;\jmath&nbsp;(&nbsp;\ell&nbsp;)&nbsp;+&nbsp;1&nbsp;}&nbsp;-&nbsp;&nbsp;a_{&nbsp;\jmath&nbsp;(&nbsp;\ell&nbsp;)&nbsp;}<br>
+}<br>
+\frac{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_{\jmath&nbsp;(&nbsp;\ell&nbsp;)+1}&nbsp;+&nbsp;c_{\overline{\kappa}&nbsp;(&nbsp;\ell&nbsp;)+1}&nbsp;-&nbsp;&nbsp;\bar{t}_\ell<br>
+}{&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c_{\overline{\kappa}&nbsp;(&nbsp;\ell&nbsp;)+1}&nbsp;-&nbsp;&nbsp;c_{\overline{\kappa}(&nbsp;\ell&nbsp;)}<br>
+}<br>
+\\<br>
+&amp;&nbsp;+&nbsp;&amp;<br>
+I_{\jmath&nbsp;(&nbsp;\ell&nbsp;)&nbsp;+&nbsp;1&nbsp;,&nbsp;\overline{\kappa}&nbsp;(&nbsp;\ell&nbsp;)&nbsp;+&nbsp;1}^{i(&nbsp;\ell&nbsp;)&nbsp;}<br>
+(&nbsp;s_G&nbsp;)<br>
+\frac{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\bar{a}_\ell&nbsp;-&nbsp;a_{&nbsp;\jmath&nbsp;(&nbsp;\ell&nbsp;)&nbsp;}<br>
+}{&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a_{&nbsp;\jmath&nbsp;(&nbsp;\ell&nbsp;)&nbsp;+&nbsp;1&nbsp;}&nbsp;-&nbsp;&nbsp;a_{&nbsp;\jmath&nbsp;(&nbsp;\ell&nbsp;)&nbsp;}<br>
+}<br>
+\frac{&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\bar{t}_\ell&nbsp;-&nbsp;&nbsp;a_{\jmath&nbsp;(&nbsp;\ell&nbsp;)+1}&nbsp;-&nbsp;c_{\overline{\kappa}&nbsp;(&nbsp;\ell&nbsp;)}<br>
+}{&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c_{\overline{\kappa}&nbsp;(&nbsp;\ell&nbsp;)+1}&nbsp;-&nbsp;&nbsp;c_{\overline{\kappa}(&nbsp;\ell&nbsp;)}<br>
+}<br>
+\end{array}<br>
+\]&nbsp;</span></code>
+
+
+<br>
+<br>
+<b><a name="measure_out.residual" id="measure_out.residual">residual</a></b>
+<br>
+For <code>
+<span style='white-space: nowrap'>&nbsp;\ell&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;L-1</span></code>
+,
+we use <code>
+<span style='white-space: nowrap'>&nbsp;R_\ell&nbsp;(&nbsp;s_G&nbsp;,&nbsp;\beta&nbsp;)</span></code>
+ to denote the measurement residuals 
+which are defined by
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+R_\ell&nbsp;(&nbsp;s_G&nbsp;,&nbsp;\beta&nbsp;)&nbsp;&nbsp;<br>
+=&nbsp;&nbsp;<br>
+R&nbsp;\left[&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Z_\ell&nbsp;(&nbsp;\beta&nbsp;)&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\W{,}&nbsp;\bar{I}_\ell&nbsp;(&nbsp;s_G&nbsp;)&nbsp;\W{,}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\zeta_\ell&nbsp;<br>
+\right]<br>
+\]&nbsp;</span></code>
+
+
+<br>
+<br>
+<b><a name="measure_out.scaled" id="measure_out.scaled">scaled</a></b>
+<br>
+For <code>
+<span style='white-space: nowrap'>&nbsp;\ell&nbsp;=&nbsp;0&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;L-1</span></code>
+,
+the scaled residual is defined by
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+\left\{&nbsp;\begin{array}{ll}&nbsp;<br>
+R_\ell(&nbsp;s_G&nbsp;,&nbsp;\beta&nbsp;)&nbsp;/&nbsp;\sigma_\ell&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;\R{if}&nbsp;\;&nbsp;0&nbsp;&lt;&nbsp;\sigma_\ell&nbsp;&lt;&nbsp;+&nbsp;\infty<br>
+\\<br>
+\R{nan}<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&amp;&nbsp;\R{otherwise}<br>
+\end{array}&nbsp;\right.<br>
+\]&nbsp;</span></code>
+
+
+
+
+<br>
+<br>
+<b><big><a name="message" id="message">message</a></big></b>
+<br>
+The return value 
+<code><i><font color="black"><span style='white-space: nowrap'>message</span></font></i></code>
+ has prototype
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;std::string&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>message</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+Upon return, it has one of the following values:
+<code><font color='blue'><pre style='display:inline'> 
+	&quot;optimize: failed for unknown reason&quot;
+	&quot;optimize: success&quot;
+	&quot;optimize: estimate is not as accurate as desired&quot;
+	&quot;optimize: maximum number of iterations exceeded&quot;
+	&quot;optimize: stopped because step size was to small&quot;
+	&quot;optimize: stopped because estimate was diverging&quot;
+</pre></font></code>
+
+
+<br>
+<br>
+<b><big><a name="MAP Optimization" id="MAP Optimization">MAP Optimization</a></big></b>
+
+
+<br>
+<br>
+<b><a name="MAP Optimization.Objective" id="MAP Optimization.Objective">Objective</a></b>
+<br>
+The MAP objective corresponding to the residuals and likelihoods above is
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+\begin{array}{rcl}<br>
+f(&nbsp;s_G&nbsp;,&nbsp;\beta&nbsp;)<br>
+&amp;&nbsp;=&nbsp;&amp;&nbsp;<br>
+\sum_{(j,k)&nbsp;\in&nbsp;G}&nbsp;<br>
+\sum_{q=0}^5<br>
+H&nbsp;\left[<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A^{q,o}_{j,k}&nbsp;(&nbsp;s_G&nbsp;)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\W{,}&nbsp;\sigma^{q,a}_{j,k}&nbsp;\W{,}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;h^{q,a}_{j,k}&nbsp;<br>
+\right]&nbsp;<br>
++<br>
+H&nbsp;\left[<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B^{q,o}_{j,k}&nbsp;(&nbsp;s_G&nbsp;)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\W{,}&nbsp;\sigma^{q,c}_{j,k}&nbsp;\W{,}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;h^{q,c}_{j,k}&nbsp;<br>
+\right]&nbsp;<br>
+\\<br>
+&amp;&nbsp;+&nbsp;&amp;<br>
+\sum_{(j,k)&nbsp;\in&nbsp;G}&nbsp;<br>
+\sum_{q=0}^5<br>
+H&nbsp;\left[<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D^q_{j,k}&nbsp;(&nbsp;s_G&nbsp;)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\W{,}&nbsp;\sigma^{q,d}_{j,k}&nbsp;\W{,}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;h^{q,d}_{j,k}&nbsp;<br>
+\right]&nbsp;<br>
++<br>
+\sum_{(j,k)&nbsp;\in&nbsp;G}&nbsp;<br>
+\sum_{q=0}^5<br>
+H&nbsp;\left[<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P^q_{j,k}&nbsp;(&nbsp;s_G&nbsp;)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\W{,}&nbsp;\sigma^{q,p}_{j,k}&nbsp;\W{,}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;h^{q,p}_{j,k}&nbsp;<br>
+\right]&nbsp;<br>
+\\<br>
+&amp;&nbsp;+&nbsp;&amp;<br>
+\sum_{\ell&nbsp;=&nbsp;1}^L&nbsp;<br>
+H&nbsp;\left[<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R_\ell&nbsp;(&nbsp;s_G&nbsp;,&nbsp;\beta&nbsp;)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\W{,}&nbsp;\sigma_\ell&nbsp;\W{,}&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;h_\ell&nbsp;<br>
+\right]&nbsp;<br>
+\end{array}<br>
+\]&nbsp;</span></code>
+
+
+<br>
+<br>
+<b><a name="MAP Optimization.Problem" id="MAP Optimization.Problem">Problem</a></b>
+<br>
+The return 
+<a href="optimize.htm#sfun_out.estimate" target="_top"><span style='white-space: nowrap'>estimate</span></a>
+ <code>
+<span style='white-space: nowrap'>&nbsp;s_G</span></code>
+ and
+<a href="optimize.htm#effect_out" target="_top"><span style='white-space: nowrap'>effect_out</span></a>
+ <code>
+<span style='white-space: nowrap'>&nbsp;\beta</span></code>
+ are approximate
+solutions of the MAP estimate problem
+<code>
+<span style='white-space: nowrap'>&nbsp;\[<br>
+\begin{array}{rll}<br>
+\R{minimize}&nbsp;&amp;&nbsp;<br>
+f&nbsp;(&nbsp;s_G&nbsp;,&nbsp;\beta&nbsp;)&nbsp;\W{\R{w.r.t}}&nbsp;(&nbsp;s_G&nbsp;,&nbsp;\beta&nbsp;)&nbsp;<br>
+\\<br>
+\R{subject&nbsp;\;&nbsp;to}&nbsp;&amp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s_G^l&nbsp;\leq&nbsp;&nbsp;s_G&nbsp;\leq&nbsp;s_G^u&nbsp;\W{\R{and}}&nbsp;\beta^l&nbsp;\leq&nbsp;\beta&nbsp;\leq&nbsp;\beta^u<br>
+\end{array}<br>
+\]&nbsp;</span></code>
+
+The optimization is done with respect to the re-scaled variables
+<code>
+<span style='white-space: nowrap'>&nbsp;\bar{s}_G</span></code>
+; see
+<a href="optimize.htm#sfun_in.optimize_zeta" target="_top"><span style='white-space: nowrap'>optimize_zeta</span></a>
+.
+
+
+
+<br>
+<br>
+<b><big><a name="Example" id="Example">Example</a></big></b>
+<br>
+The file <a href="optimize_xam.cpp.htm" target="_top"><span style='white-space: nowrap'>optimize_xam.cpp</span></a>
+ contains an example and test
+of <code><font color="blue">optimize</font></code>.
+It returns true if <code><font color="blue">optimize</font></code> passes the test
+and false if it fails.
+The file <a href="dismoditis.cpp.htm" target="_top"><span style='white-space: nowrap'>dismoditis.cpp</span></a>
+ is another example and test
+of <code><font color="blue">optimize</font></code>.
+
+
+<hr>Input File: cpp/dismod_pde/optimize.hpp
+
+</body>
+</html>

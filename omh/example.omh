@@ -1,0 +1,19 @@
+$begin example$$
+$dollar !$$
+$spell
+	pde
+	chmod
+	dismod_pde_csv
+$$
+$index dismod_pde_csv, example$$
+$index example, dismod_pde_csv$$
+
+$section dismod_pde Examples$$
+
+$childtable%
+	example/get_started/get_started.sh.in%
+	example/diabetes/diabetes.sh.in%
+	example/gaussian/gaussian.sh.in
+%$$
+
+$end

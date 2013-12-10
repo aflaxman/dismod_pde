@@ -1,0 +1,353 @@
+#! /bin/bash -e
+# $OMhelpKeyCharacter=&
+#
+# The following commands are only useful during testing of diabetes.sh before
+# dismod_pde is installed, you can ignore them:
+top_builddir=@abs_top_builddir@
+top_srcdir=@abs_top_srcdir@
+# ----------------------------------------------------------------------------
+# &begin get_started.sh&& &newlinech #&&
+# &spell
+# 	pde
+#	rel
+#	yyyymmdd
+#	mv
+#	newlines
+#	srcdir
+#	builddir
+#	sys
+#	py
+#	skipinitialspace
+#	covariates
+#	rm
+#	inf
+#	omega
+#	dismod
+#	csv
+#	covariate
+#	sfun
+#	tr
+#	sed
+#	cpp
+#	fi
+# &&
+#
+# &section get_started.sh: Example and Test of dismod_pde_csv&&
+# &index get_started, dismod_pde_csv&&
+# &index dismod_pde_csv, example&&
+# &index dismod_pde_csv, get_started&&
+# &index test, dismod_pde_csv&&
+# &index example, dismod_pde_csv&&
+#
+# &children%
+#	example/get_started/get_started.py.in%&&
+# &head Syntax&&
+# &codei% ./get_started.sh
+# %&&
+# &cref|./get_started.py|get_started.py|&&
+#
+# &head Purpose&&
+# This is a simple example and test of the 
+# dismod_pde csv interface &cref/dismod_pde_csv/&&. 
+# It exits with status zero if the test passes
+# and with status one if the test fails.
+# This example is located in the file
+#	&codei%
+#	%dismod_pde_prefix%/share/doc/dismod_pde-%yyyymmdd%/example/get_started.sh
+# %&&
+# where &icode dismod_pde_prefix&& is the 
+# &cref/prefix/install/Prefix/&& 
+# specified during the install procedure. 
+#
+# &head python_path&&
+# The following command sets the directory where the dismod_pde python
+# scripts are located. This should not be necessary once dismod_pde is installed.
+# &codep
+python_path="$top_builddir/python"
+# && 
+#
+# &head dismod_pde_path&&
+# The following command sets the directory where the binary &code dismod_pde_csv&&
+# file is located. This should not be necessary once dismod_pde is installed.
+# &codep
+dismod_pde_path="$top_builddir/cpp"
+# && 
+#
+# &head parameter.csv&&
+# The first thing we do is create the
+# &cref/parameter.csv/dismod_pde_csv/parameter.csv/&& file 
+# as follows:
+# &codep 
+cat << EOF > parameter.csv
+name,value
+age_grid,5 20
+cohort_grid,1960 1980 2000 2020
+max_ode_step,1
+print_level,5
+max_iteration,60
+converge_tolerance,1e-3
+EOF
+# &&
+# For this example,
+# we use large values for &code delta_age&& and &code delta_cohort&&
+# so that the resulting file &code sfun_in.csv&& is small.
+# Note that the first and last lines above are bash command that
+# instruct bash to create the file &code parameter.csv&& with the
+# contents between them.
+#
+# &head effect_in.csv&&
+# Next we create the
+# &cref/effect_in.csv/dismod_pde_csv/effect_in.csv/&& input file.
+# For this example, 
+# the covariate information will be who made the measurements,
+# Jill or Jack:
+# &codep
+cat << EOF > effect_in.csv
+integrand,covariate,lower,initial,upper
+incidence,x_jill,0.09531,0.09531,0.09531
+m_excess,x_jill,0.09531,0.09531,0.09531
+remission,x_jack,-1.00000,0.00000,1.00000
+EOF
+# &&
+# We know that Jill is reports incidence and excess mortality data to be 1.1 
+# times the actual value.
+# We suspect that Jack reports remission data incorrectly, but we do not
+# know to what extent.
+# Note that log(1.1) = 0.095310 which is the fixed measurement effect for Jill.
+# Also note that log(.9) = -0.10536 will be the unknown measurement
+# effect for Jack.
+#
+# &head measure_in.csv&&
+# Next we create the
+# &cref/measure_in.csv/dismod_pde_csv/measure_in.csv/&& file.
+# For this example, the stochastic rate functions are constant
+# and we measure them directly.  To be specific, their values are 
+# &latex \rho ( \cdot ) = 10^{-1}&&, 
+# &latex \chi ( \cdot ) = 10^{-2}&&,
+# &latex \omega ( \cdot )  = 10^{-3}&& and
+# &latex \iota ( \cdot ) = 10^{-4}&&,
+# &codep
+cat << EOF > measure_in.csv
+meas_value,integrand,x_jill,x_jack,age_lower,age_upper,time_lower,time_upper,meas_like,meas_zeta,meas_sigma,c_notes
+0.9e-1,remission,0,1,5,10,1990,2010,gaussian,1,1e-5,no_comment
+0.9e-1,remission,0,1,10,15,1990,2010,gaussian,1,1e-5,no_comment
+0.9e-1,remission,0,1,15,20,1990,2010,gaussian,1,1e-5,no_comment
+1.0e-2,m_excess,0,1,5,15,1990,2010,gaussian,1,1e-5,no_comment
+1.0e-3,m_other,0,1,10,20,1990,2010,gaussian,1,1e-5,no_comment
+1.0e-4,incidence,0,1,5,15,1990,2010,gaussian,1,1e-5,no_comment
+1.0e-1,remission,1,0,10,20,1990,2000,gaussian,1,1e-5,no_comment
+1.1e-2,m_excess,1,0,5,15,1990,2000,gaussian,1,1e-5,no_comment
+1.0e-3,m_other,1,0,10,20,1990,2000,gaussian,1,1e-5,no_comment
+1.1e-4,incidence,1,0,5,15,1990,2000,gaussian,1,1e-5,no_comment
+EOF
+# &&
+# Note that we had Jack take multiple remission measurements so that
+# we can estimate how accurate these measurements are.
+#
+# &head template.csv&&
+# Remove the file 
+# &cref/template.csv/dismod_pde_csv/sfun_in.csv/Output Template/&& 
+# (if it exists) and then recreate it.
+# &codep
+echo 'create template.csv'
+rm -f template.csv
+echo 'dismod_pde_csv parameter.csv measure_in.csv template.csv'
+$dismod_pde_path/dismod_pde_csv parameter.csv measure_in.csv template.csv
+# &&
+#
+# &head sfun_in.csv&&
+# Next we create the file &cref/sfun_in.csv/dismod_pde_csv/&& 
+# using &code template.csv&& and &cref d4_change_sfun_in.py&&:
+# The initial condition is $latex S(5, t) = 1$$ and
+# $latex C(5, t) = 0$$.
+# &codep
+zeta=1e-5
+zero_inf='0.0 if a <= 5.1 else inf'
+$python_path/d4_change_sfun_in.py template.csv sfun_in.csv \
+-comment            'zeta      lower       initial       upper' \
+-optimize_S         $zeta       0.00          1.00         1.0  \
+-optimize_C         $zeta       0.00          0.05         1.0  \
+-optimize_iota      $zeta       0.00          0.05         1.0  \
+-optimize_rho       $zeta       0.00          0.05         1.0  \
+-optimize_chi       $zeta       0.00          0.05         1.0  \
+-optimize_omega     $zeta       0.00          0.05         1.0  \
+\
+-comment            'like       zeta          sigma       mean' \
+-prior_S         gaussian      $zeta     "$zero_inf"      1.00  \
+-prior_C         gaussian      $zeta     "$zero_inf"      0.00  \
+-prior_iota      gaussian      $zeta            inf       0.00  \
+-prior_rho       gaussian      $zeta            inf       0.00  \
+-prior_chi       gaussian      $zeta            inf       0.00  \
+-prior_omega     gaussian      $zeta            inf       0.00  \
+\
+-comment            'like       zeta          sigma      order' \
+-age_S           gaussian      $zeta            0.0         1   \
+-age_C           gaussian      $zeta            0.0         1   \
+-age_iota        gaussian      $zeta           1e-1         1   \
+-age_rho         gaussian      $zeta           1e-1         1   \
+-age_chi         gaussian      $zeta           1e-1         1   \
+-age_omega       gaussian      $zeta           1e-1         1   \
+\
+-comment            'like       zeta          sigma      order' \
+-cohort_S        gaussian      $zeta            inf         1   \
+-cohort_C        gaussian      $zeta            inf         1   \
+-cohort_iota     gaussian      $zeta           1e-1         1   \
+-cohort_rho      gaussian      $zeta           1e-1         1   \
+-cohort_chi      gaussian      $zeta           1e-1         1   \
+-cohort_omega    gaussian      $zeta           1e-1         1   \
+\
+-comment            'name       zeta            sigma' \
+-cross_S         gaussian      $zeta              inf  \
+-cross_C         gaussian      $zeta              inf  \
+-cross_iota      gaussian      $zeta              inf  \
+-cross_rho       gaussian      $zeta              inf  \
+-cross_chi       gaussian      $zeta              inf  \
+-cross_omega     gaussian      $zeta              inf  
+# &&
+#
+# &head Running dismod_pde_csv&&
+# Next we create the files
+# &cref/measure_out.csv/dismod_pde_csv/measure_out.csv/&&,
+# &cref/sfun_out.csv/dismod_pde_csv/sfun_out.csv/&&, and
+# &cref/effect_out.csv/dismod_pde_csv/effect_out.csv/&&,
+# by running &code dismod_pde_csv&&.
+# &codep
+$dismod_pde_path/dismod_pde_csv parameter.csv \
+	measure_in.csv     measure_out.csv   \
+	sfun_in.csv        sfun_out.csv \
+	effect_in.csv      effect_out.csv
+# &&
+#
+# &head effect_out.csv&&
+# The file &cref/effect_out.csv/dismod_pde_csv/effect_out.csv/&&
+# (displayed below)
+# contains the fitting results for the measurement effects;
+# i.e., &latex \beta&&.  
+# &code
+# &verbatim%build/example/get_started/effect_out.csv%&&
+# &&
+# 
+# &subhead Check effect_out.csv&&
+# &codep
+echo 'check effect_out.csv'
+cat << EOF > check_effect_out.py
+import csv
+import sys
+file   = open('effect_out.csv', 'r')
+reader = csv.DictReader(file, skipinitialspace=True)
+check  = { 'x_jill' :  0.095310 , 'x_jack' : -0.10536 }
+ok     = True
+data   = []
+for r in reader :
+	file_value  = float( r['estimate'] )
+	check_value = check[ r['covariate'] ]
+	ok          = ok and abs(1.0 - file_value/check_value) < 1e-5
+	data.append(r)
+if ok :
+	sys.exit(None)
+for r in data :
+	file_value  = float( r['estimate'] )
+	check_value = check[ r['covariate'] ]
+	rel_error   = 1.0 - file_value/check_value
+	if abs(1.0 - file_value/check_value) >= 1e-5 :
+		print 'file_value =', file_value ,  \
+			', check_value =', check_value , \
+			', rel_error =', rel_error 
+sys.exit('Error in effect_out.csv')
+EOF
+$top_builddir/python.sh check_effect_out.py
+# &&
+#
+# &head measure_out.csv&&
+# The file &cref/measure_out.csv/dismod_pde_csv/measure_out.csv/&&
+# (displayed below)
+# contains the fitting results for the measurements.
+# Note that the measurement effects have been used to correct the data to
+# its proper value.
+# Also note that if &code meas_sigma&& is zero or infinity,
+# the corresponding scaled residual is &code nan&&.
+# &code
+# &verbatim%build/example/get_started/measure_out.csv%&&
+# &&
+#
+# &subhead Check measure_out.csv&&
+# &codep
+echo 'check measure_out.csv'
+cat << EOF > check_measure_out.py
+import csv
+import sys
+file   = open('measure_out.csv', 'r')
+reader = csv.DictReader(file, skipinitialspace=True)
+check  = { 
+'remission':.1 , 'm_excess':.01 , 'm_other':.001, 'incidence':.0001  }
+ok     = True
+data   = []
+for r in reader :
+	file_value  = float( r['model'] )
+	check_value = check[ r['integrand'] ]
+	ok          = ok and abs(file_value - check_value) < 1e-5
+	data.append(r)
+if ok :
+	sys.exit(None)
+for r in data :
+	file_value  = float( r['model'] )
+	check_value = check[ r['integrand'] ]
+	print 'file_value =', file_value, ', check_value =', check_value
+sys.exit('Error in measure_out.csv')
+EOF
+$top_builddir/python.sh check_measure_out.py
+# && 
+#
+# &head sfun_out.csv&&
+# The file &cref/sfun_out.csv/dismod_pde_csv/sfun_out.csv/&&
+# (displayed below)
+# contains the fitting results for the stochastic functions;
+# i.e., &latex S, C, \iota, \rho, \chi, \omega&&.
+# Note that if a &latex \sigma&& value is zero or infinity,
+# the corresponding scaled residual is &code nan&&.
+# &code
+# &verbatim%build/example/get_started/sfun_out.csv%&&
+# &&
+# 
+# &subhead Check sfun_out.csv&&
+# &codep
+echo 'check sfun_out.csv'
+cat << EOF > check_sfun_out.py
+import csv
+import sys
+file   = open('sfun_out.csv', 'r')
+reader = csv.DictReader(file, skipinitialspace=True)
+check  = { 
+'rho' : .1 , 'chi' : .01 , 'omega' : .001, 'iota' : .0001  }
+ok     = True
+data   = []
+for r in reader :
+	function = r['function']
+	if function != 'S' and function != 'C' :
+		file_value  = float( r['estimate'] )
+		check_value = check[ r['function'] ]
+		ok          = ok and abs(1.0 - file_value/check_value) < 1e-3
+	data.append(r)
+if ok :
+	sys.exit(None)
+for r in data :
+	function = r['function']
+	if function != 'S' and function != 'C' :
+		file_value  = float( r['estimate'] )
+		check_value = check[ r['function'] ]
+		rel_error   = 1.0 - file_value/check_value
+		print 'file_value =', file_value , \
+			', check_value =', check_value , \
+			', rel_error =', rel_error
+sys.exit('Error in sfun_out.csv')
+EOF
+$top_builddir/python.sh \
+	check_sfun_out.py
+# &&
+# 
+# &head Final Message&&
+# If this shell script reaches here, then all the tests have passed.
+# &codep
+echo 'get_started.sh: OK'
+# &&
+# &end

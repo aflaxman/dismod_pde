@@ -1,0 +1,391 @@
+<?xml version='1.0'?>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:math='http://www.w3.org/1998/Math/MathML'
+>
+<head>
+<title>A dismod_pde C++ Optimize Example and Test</title>
+<meta name="description" id="description" content="A dismod_pde C++ Optimize Example and Test"/>
+<meta name="keywords" id="keywords" content=" example c++ optimize "/>
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_dismoditis.cpp_xml.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="optimize_xam.cpp.xml" target="_top">Prev</a>
+</td><td><a href="dismoditis.sh.xml" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>cpp</option>
+<option>optimize</option>
+<option>dismoditis.cpp</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>cpp-&gt;</option>
+<option>optimize</option>
+<option>create_grid</option>
+<option>pair2index</option>
+<option>csv_read</option>
+<option>str_char_vec</option>
+<option>atof_char_vec</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>optimize-&gt;</option>
+<option>ipopt_trace</option>
+<option>optimize_xam.cpp</option>
+<option>dismoditis.cpp</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down0(this)'>
+<option>dismoditis.cpp-&gt;</option>
+<option>dismoditis.sh</option>
+</select>
+</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Create Simulated Data and Results in C++ Source</option>
+</select>
+</td>
+</tr></table><br/>
+
+
+
+<center><b><big><big>A dismod_pde C++ Optimize Example and Test</big></big></b></center>
+<br/>
+<b><big><a name="Create Simulated Data and Results in C++ Source" id="Create Simulated Data and Results in C++ Source">Create Simulated Data and Results in C++ Source</a></big></b>
+<br/>
+The source code below uses the external variables
+<code><font color="blue"> dismoditis_data</font></code> and <code><font color="blue"> dismoditis_sim</font></code>
+which are created by <a href="dismoditis.sh.xml" target="_top"><span style='white-space: nowrap'>dismoditis.sh</span></a>
+
+with the help of <a href="d4_simulate.py.xml" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+.
+
+<code><font color="blue">
+<pre style='display:inline'> 
+# include &lt;dismod_pde/create_grid.hpp&gt;
+# include &lt;dismod_pde/optimize.hpp&gt;
+
+// measurement data as defined by dismoditis_data.cpp
+extern dismod_pde::Measure_Input_Struct dismoditis_data[];
+extern size_t n_dismoditis_data;
+
+// solution as defined by dismoditis_sim.cpp
+extern double dismoditis_sim[];
+extern size_t n_dismoditis_sim;
+
+namespace { // BEGIN empty namespace
+
+dismod_pde::vector&lt;double&gt; solution(const dismod_pde::pair2index&amp;  grid)
+{	using dismod_pde::vector;
+
+	// some temporaries
+	size_t i, q;
+	size_t j_sim, k_sim;
+	size_t i_grid, j_grid, k_grid;
+	
+
+	// copy into solution into dismod_pde vector so that indexing gets checked
+	size_t n_simulated = n_dismoditis_sim;
+	vector&lt;double&gt; simulated(n_simulated);
+	for(i = 0; i &lt; n_simulated; i++)
+		simulated[i] = dismoditis_sim[i];
+	
+	const size_t n_stochastic = dismod_pde::n_stochastic_enum;
+	const size_t n_function   = 2 + n_stochastic;
+	const size_t n_row        = n_dismoditis_sim / n_function;
+	assert( n_simulated == n_row * n_function );
+
+	// extract the age values corresponding to the solution
+	size_t n_age_sim = 0;
+	while( simulated[ n_age_sim * n_function + 0 ]  == simulated[0] )
+		n_age_sim++;
+	vector&lt;double&gt; age_sim(n_age_sim);
+	for(j_sim = 0; j_sim &lt; n_age_sim; j_sim++)
+		age_sim[j_sim] = simulated[j_sim * n_function + 1 ];
+
+	// extract the cohort grid corresponding to the solution
+	size_t n_cohort_sim = n_row / n_age_sim;
+	vector&lt;double&gt; cohort_sim(n_cohort_sim);
+	for(k_sim = 0; k_sim &lt; n_cohort_sim; k_sim++)
+		cohort_sim[k_sim] = simulated[k_sim * n_age_sim * n_function + 0 ]; 
+
+	// now values on the grid
+	size_t n_grid = grid.size();
+	vector&lt;double&gt; result(n_grid * n_stochastic);
+	vector&lt;double&gt; age_grid    = grid.age();
+	vector&lt;double&gt; cohort_grid = grid.cohort();
+
+	// now fill it in
+	for(i_grid = 0; i_grid &lt; n_grid; i_grid++)
+	{	grid.unpack(j_grid, k_grid, i_grid);
+
+		// age and cohort values for this point on the grid
+		double a = age_grid[j_grid];
+		double c = cohort_grid[k_grid];
+
+		// corresponding age and cohort indices in solution
+		size_t j_sim = 0;
+		while( age_sim[j_sim] &lt; a &amp;&amp; j_sim &lt; n_age_sim - 1 )
+			j_sim++;
+		if( j_sim &gt; 0 )
+			j_sim--;
+		size_t k_sim = 0;
+		while( cohort_sim[k_sim] &lt; c &amp;&amp; k_sim &lt; n_cohort_sim - 1 )
+			k_sim++;
+		if( k_sim &gt; 0 )
+			k_sim--;
+
+		// now use bin-linear interpolation to convert from
+		// surrounding solution values to grid value
+		double da_sim = age_sim[j_sim    + 1] - age_sim[j_sim];
+		double dc_sim = cohort_sim[k_sim + 1] - cohort_sim[k_sim];
+		double r_j   = (age_sim[j_sim    + 1] - a) / da_sim;
+		double r_k   = (cohort_sim[k_sim + 1] - c) / dc_sim;
+		double r_jp  = (a - age_sim[j_sim    + 0]) / da_sim;
+		double r_kp  = (c - cohort_sim[k_sim + 0]) / dc_sim;
+		for(q = 0; q &lt; n_stochastic; q++)
+		{	i   = (k_sim *     n_age_sim + j_sim)     * n_function + q + 2;
+			double f_j_k = simulated[i]; 
+			//
+			i   = (k_sim *     n_age_sim + j_sim + 1) * n_function + q + 2;
+			double f_jp_k = simulated[i]; 
+			//
+			i   = ((k_sim+1) * n_age_sim + j_sim)     * n_function + q + 2;
+			double f_j_kp = simulated[i]; 
+			//
+			i   = ((k_sim+1) * n_age_sim + j_sim + 1) * n_function + q + 2;
+			double f_jp_kp = simulated[i]; 
+			//
+			// bilinear interpolation sum
+			double sum = 0.;
+			sum += r_j  * r_k  * f_j_k;
+			sum += r_jp * r_k  * f_jp_k;
+			sum += r_j  * r_kp * f_j_kp;
+			sum += r_jp * r_kp * f_jp_kp;
+			//
+			result[ i_grid * n_stochastic + q ] = sum;;
+		}
+	}
+	return result;
+}
+
+bool test_case(double delta_age, double delta_cohort)
+{
+	bool ok = true;
+
+	size_t n_stochastic = dismod_pde::n_stochastic_enum;
+	double infinity     = DISMOD4_PLUS_INFINITY;
+
+	// import the dismod_pde vector type
+	using dismod_pde::vector;
+
+	// import the dismod_pde stochastic function names
+	using dismod_pde::S_enum;
+	using dismod_pde::C_enum;
+	using dismod_pde::iota_enum;
+	using dismod_pde::rho_enum;
+	using dismod_pde::chi_enum;
+	using dismod_pde::omega_enum;
+	using dismod_pde::gaussian_enum;
+	using dismod_pde::laplace_enum;
+	using dismod_pde::vector;
+
+	// temporary indices
+	size_t i, j, k, ell, i_grid;
+
+	// copy the measurement data into structure expected by dismod_pde
+	size_t n_measure = n_dismoditis_data;
+	vector&lt;dismod_pde::Measure_Input_Struct&gt; measure_in(n_measure);
+	for(ell = 0; ell &lt; n_measure; ell++)
+		measure_in[ell] = dismoditis_data[ell];
+
+	// object that packs non-rectangular grid in a linear array
+	dismod_pde::pair2index grid = dismod_pde::create_grid(
+			delta_age, delta_cohort, measure_in
+	);
+
+	// grid siz and number of stochastic function values
+	size_t n_grid       = grid.size();
+	size_t n_state      = n_stochastic * n_grid;
+
+	// dismod_pde parameter struucture
+	dismod_pde::Optimize_Parameter_Struct parameter;
+
+	// maximum step size used for to approximate the ODE for S and C in age
+	parameter.max_ode_step           = 1.;
+
+	// level of printing during optimization
+	parameter.print_level            = 5;
+
+	// maximum number of optimizer iterations
+	parameter.max_iteration          = 80;
+
+	// optimizer convergence criteria
+	parameter.converge_tolerance     = 1e-6;
+
+	// extra debugging output 
+	// (currently forces a retape every time the function argument changes)
+	parameter.debug_output           = false;
+
+	vector&lt;dismod_pde::Sfun_Input_Struct&gt; sfun_in(n_state);
+	for(i = 0; i &lt; n_state; i++)
+	{
+		sfun_in[i].prior_like            = gaussian_enum;
+		sfun_in[i].age_like              = gaussian_enum;
+		sfun_in[i].cohort_like           = gaussian_enum;
+		sfun_in[i].cross_like            = gaussian_enum;
+
+		sfun_in[i].prior_zeta            = 1.;
+		sfun_in[i].age_zeta              = 1.;
+		sfun_in[i].cohort_zeta           = 1.;
+		sfun_in[i].cross_zeta            = 1.;
+
+		sfun_in[i].prior_sigma           = infinity;
+		sfun_in[i].age_sigma             = 1e-4;
+		sfun_in[i].cohort_sigma          = 1e-4;
+		sfun_in[i].cross_sigma           = infinity;
+
+		sfun_in[i].prior_mean            = .05;
+		sfun_in[i].age_order             = 1;
+		sfun_in[i].cohort_order          = 1;
+	}
+	// make ODE deterministic for S and C in the age direction
+	for(i_grid = 0; i_grid &lt; n_grid; i_grid++)
+	{	grid.unpack(j, k, i_grid);
+		i = i_grid * n_stochastic;
+		if( j == 0 )
+		{	// use prior to set initial condition for S
+			sfun_in[i + S_enum].prior_sigma = 0.;
+			sfun_in[i + S_enum].prior_mean  = 1.;
+
+			// use prior to set initial condition for C
+			sfun_in[i + C_enum].prior_sigma = 0.;
+			sfun_in[i + C_enum].prior_mean  = 0.;
+		}
+		// Make age direction of ODE deterministic for S and C
+		// extra values corresponding to j(u, k) are not used
+		sfun_in[i + S_enum].age_sigma       = 0.;
+		sfun_in[i + C_enum].age_sigma       = 0.;
+
+		// Turn off cohort direction residuals for S and C
+		// sfun_in[i + S_enum].cohort_sigma       = infinity;
+		// sfun_in[i + C_enum].cohort_sigma       = infinity;
+	}
+
+
+	for(i = 0; i &lt; n_state; i++)
+	{	sfun_in[i].optimize_zeta  = 1.0;	
+		sfun_in[i].optimize_lower = 0.0;
+		// initialize the estimate as equal to the prior
+		sfun_in[i].optimize_initial = sfun_in[i].prior_mean;
+		sfun_in[i].optimize_upper   = 1.0;
+	}
+
+	// no covariate information
+	vector&lt;double&gt;                       covariate_value(0);
+	vector&lt;dismod_pde::Effect_Input_Struct&gt; effect_in(0);
+
+	// information returned by optimize
+	vector&lt;dismod_pde::Sfun_Output_Struct&gt;    sfun_out(n_state);
+	vector&lt;dismod_pde::Measure_Output_Struct&gt; measure_out(n_measure);
+	vector&lt;double&gt;                         effect_out;
+	std::string                            message;
+	/*
+	compute the estimate 
+	*/
+	message = dismod_pde::optimize(
+		parameter,     grid,          covariate_value,
+		sfun_in,       sfun_out, 
+		measure_in,    measure_out,
+		effect_in,     effect_out
+	);
+
+	// check that message is as expected
+	ok &amp;= (message == &quot;optimize: success&quot;);
+
+	// check the solution against the simulated values
+	vector&lt;double&gt; simulated = solution(grid);
+	double max_rel_diff = 0.;
+	for(i = 0; i &lt; n_state; i++) 
+	{	double rel_diff  = fabs( 
+			1. - (sfun_out[i].estimate + 1e-3) / (simulated[i] + 1e-3)
+		);
+		max_rel_diff = std::max(max_rel_diff, rel_diff);
+		if( rel_diff &gt;= 2e-2 )
+		{	size_t q      = i % n_stochastic;
+			size_t i_grid = i / n_stochastic;
+			grid.unpack(j, k, i_grid);
+			std::cout &lt;&lt; &quot;rel_diff = &quot; &lt;&lt; rel_diff;
+			std::cout &lt;&lt; &quot;, age = &quot;    &lt;&lt; grid.age()[j];
+			std::cout &lt;&lt; &quot;, cohort = &quot; &lt;&lt; grid.cohort()[k];
+			std::cout &lt;&lt; &quot;, estimate = &quot; &lt;&lt; sfun_out[i].estimate;
+			std::cout &lt;&lt; &quot;, simulated = &quot; &lt;&lt; simulated[i];
+			std::cout &lt;&lt; &quot;, q = &quot; &lt;&lt; q;
+			std::cout &lt;&lt; std::endl;
+		}
+	}
+	ok  &amp;= max_rel_diff &lt;= 2e-2;
+	return ok;
+}
+
+	
+} // END empty namespace
+
+bool dismoditis(void)
+{	bool ok             = true;
+	double delta_age    = 20;
+	double delta_cohort = 20;
+	std::cout &lt;&lt; &quot;starting dismoditis:&quot; &lt;&lt; std::endl;
+	ok &amp;= test_case(delta_age, delta_cohort);
+	if( ok )
+		std::cout &lt;&lt; &quot;OK: dismoditis&quot; &lt;&lt; std::endl;
+	else std::cout &lt;&lt; &quot;Error&quot; &lt;&lt; std::endl;
+	return ok;
+
+}
+</pre>
+
+</font></code>
+
+
+<hr/>Input File: test/dismoditis.cpp
+
+</body>
+</html>

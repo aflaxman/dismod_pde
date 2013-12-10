@@ -1,0 +1,127 @@
+#! @PYTHON_PREFIX@/bin/python
+# $begin d4_cumulative.py$$ $newlinech #$$ 
+# $spell
+#	csv
+#	py
+# $$
+# $escape $$
+#
+# $section Plot the Cumulative Distribution for a Csv File Column$$
+#
+# $head Syntax$$
+# $codei%d4_cumulative.py %csv_file% %c_name%
+# %$$
+# $codei%d4_cumulative.py %csv_file% %c_name% %f_name% %f_min% %f_max%$$
+#
+# $head csv_file$$
+# is the name of $cref/csv/$$ file to containing the values to be plotted.
+#
+# $head c_name$$
+# name for the column we are plotting the cumulative distribution for
+# (must contain numeric values).
+#
+# $head f_name$$
+# If $icode f_name$$ is present,
+# it is the name of the column used for determining which lines to include.
+#
+# $head f_min$$
+# If $icode f_min$$ is present,
+# it is the minimum value for the filtering column that corresponds to lines
+# that are included.
+#
+# $head f_max$$
+# If $icode f_min$$ is present,
+# it is the maximum value for the filtering column that corresponds to lines
+# that are included. 
+# If $icode%f_min% == %f_max%$$ as strings, then the filtering
+# column is treated as a string column and only those lines with that
+# same value are included.
+# Otherwise the filtering column must contain numeric data.
+#
+# $head Nan$$
+# If the value in column $icode c_name$$
+# is not a number $code nan$$, it is not included in the plot.
+#
+# $end
+#
+from numpy import isnan
+import sys
+import csv
+import matplotlib.pyplot as plt
+#
+usage='''
+d4_cumulative.py csv_file c_name
+d4_cumulative.py csv_file c_name f_name f_min f_max
+
+csv_file:  csv file containing values to be plotted.
+c_name:    column name for values we are plotting cumulative distribution for.
+f_name:    column name for values that determine which lines to include.
+f_min:     minimum value corresponding to a line to include.
+f_max:     maximum value corresponding to a line to include.
+'''
+argv = sys.argv
+if len(argv) != 3 and len(argv) != 6 :
+	print usage
+	print "expected 3 or 6 args counting d4_cumulative.py, found", len(argv)
+	sys.exit(1)
+iarg      = 1
+csv_file  = argv[iarg]         ; iarg = iarg + 1
+c_name    = argv[iarg]         ; iarg = iarg + 1
+if len(argv) > 3 :
+	f_name    = argv[iarg]         ; iarg = iarg + 1
+	f_min     = argv[iarg]         ; iarg = iarg + 1
+	f_max     = argv[iarg]         ; iarg = iarg + 1
+else :
+	f_name    = ""
+	f_min     = ""
+	f_max     = ""
+#
+assert iarg == len(argv)
+#
+f_string    = f_min == f_max
+if not f_string :
+	f_min = float(f_min)
+	f_max = float(f_max)
+#
+# open csv_file
+fp_in     = open(csv_file, 'r')
+reader    = csv.DictReader(fp_in, skipinitialspace=True)
+# read csv_file data
+data      = []
+for row in reader :
+	if f_name == "" :
+		include = True
+	elif f_string :
+		include = row[f_name] == f_min
+	else :
+		f = float(row[f_name])
+		include = f_min <= f and f <= f_max
+	if include :
+		value = float(row[c_name] )
+		if not isnan(value) :
+			data.append( float(row[c_name]) )
+# sort the data
+data.sort()
+# duplicate all the data
+x = []
+y = []
+for i in range(len(data)) :
+	x.append(i)
+	x.append(i+1)
+	y.append(data[i])
+	y.append(data[i])
+x.append( len(data)-1 )
+y.append( data[len(data)-1] )
+# plot value versus index
+plt.plot(x, y)  
+plt.xlabel('count')
+plt.ylabel(c_name)
+title = 'Cumulative Distribution of ' + c_name
+if f_name != "" :
+	title = title + ' for '
+	if f_string :
+		title = title + f_name + ' = ' + str(f_min)
+	else :
+		title = title + str(f_min) + ' <= ' + f_name + ' <= ' + str(f_max)
+plt.title(title)
+plt.show()

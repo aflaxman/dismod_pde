@@ -1,0 +1,688 @@
+<html><head>
+<title>Simulated dismod_pde Data and Solution Files</title>
+<meta name="description" id="description" content="Simulated dismod_pde Data and Solution Files">
+<meta name="keywords" id="keywords" content=" ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_d4_simulate.py_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="sfun_grid.sh.htm" target="_top">Prev</a>
+</td><td><a href="cpp.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>csv</option>
+<option>python_csv</option>
+<option>d4_simulate.py</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>csv-&gt;</option>
+<option>dismod_pde_csv</option>
+<option>python_csv</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>python_csv-&gt;</option>
+<option>d4_bubble.py</option>
+<option>d4_change_sfun_in.py</option>
+<option>d4_compare_sfun.py</option>
+<option>d4_contour.py</option>
+<option>d4_cumulative.py</option>
+<option>d4_plot.py</option>
+<option>d4_sfun_der.py</option>
+<option>d4_sfun_grid.py</option>
+<option>d4_simulate.py</option>
+</select>
+</td>
+<td>d4_simulate.py</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>Convention</option>
+<option>measure_in.csv</option>
+<option>solution.csv</option>
+<option>age_init</option>
+<option>age_step</option>
+<option>age_min, age_max</option>
+<option>age_bound</option>
+<option>time_add</option>
+<option>time_step</option>
+<option>time_min, time_max</option>
+<option>time_bound</option>
+<option>expressions</option>
+<option>---..iota_expr</option>
+<option>---..rho_expr</option>
+<option>---..chi_expr</option>
+<option>---..omega_expr</option>
+<option>measure</option>
+<option>---..Offset Log Transform</option>
+<option>---..integrand</option>
+<option>---..number</option>
+<option>---..like</option>
+<option>---..sim_zeta</option>
+<option>---..fit_zeta</option>
+<option>---..sim_cv</option>
+<option>---..fit_cv</option>
+<option>Testing dismod_pde_csv</option>
+<option>Testing optimize</option>
+</select>
+</td>
+</tr></table><br>
+ 
+ 
+
+
+<center><b><big><big>Simulated dismod_pde Data and Solution Files</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><font color="blue"><span style='white-space: nowrap'>d4_simulate.py&nbsp;\<br>
+-files&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>measure_in.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>solution.csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;\<br>
+-age&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age_init</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age_step</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age_min</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age_max</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age_bound</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;\<br>
+-time&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_add</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_step</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_min</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_max</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_bound</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;\<br>
+-iota&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>iota_expr</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;\<br>
+-rho&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>rho_expr</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;\<br>
+-chi&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>chi_expr</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&nbsp;\<br>
+-omega&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>omega_expr</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;\<br>
+-measure&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>integrand</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>number</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>like</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sim_zeta</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>fit_zeta</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sim_cv</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>fit_cv</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;<br>
+</span></font></code>
+<br>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br>
+This is a preliminary simulation program that
+generates data to be analyzed by <a href="dismod_pde_csv.htm" target="_top"><span style='white-space: nowrap'>dismod_pde_csv</span></a>
+ and <a href="optimize.htm" target="_top"><span style='white-space: nowrap'>optimize</span></a>
+. 
+
+<br>
+<br>
+<b><big><a name="Convention" id="Convention">Convention</a></big></b>
+<br>
+The order of the command line flags (arguments that begin with a minus sign)
+does not matter, but the order of the values following each of the flags 
+does matter. 
+In addition, with the exception of the
+<a href="d4_simulate.py.htm#measure" target="_top"><span style='white-space: nowrap'>measure</span></a>
+ group,
+each of the command line arguments must be present once and only once.
+
+<br>
+<br>
+<b><big><a name="measure_in.csv" id="measure_in.csv">measure_in.csv</a></big></b>
+<br>
+This command line argument specifies the name of the measurement
+output file generated by <code><font color="blue">d4_simulate.py</font></code>.
+This file has the same format and meaning as
+<a href="dismod_pde_csv.htm#measure_in.csv" target="_top"><span style='white-space: nowrap'>measure_in.csv</span></a>
+ in <code><font color="blue">dismod_pde_csv</font></code>.
+
+<br>
+<br>
+<b><big><a name="solution.csv" id="solution.csv">solution.csv</a></big></b>
+<br>
+This command line argument specifies the name of the solution
+output file generated by <code><font color="blue">d4_simulate.py</font></code>
+The solution file give the actual values of the 
+<a href="optimize.htm#Stochastic Functions" target="_top"><span style='white-space: nowrap'>stochastic&nbsp;functions</span></a>
+
+that were used to simulate the data. 
+The fields in the solution file are
+<table><tr><td align='left'  valign='top'>
+
+<b>Field</b>  </td><td align='left'  valign='top'>
+ <b>Description</b>   
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">age</font></code>    </td><td align='left'  valign='top'>
+ age for the corresponding line of data
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">cohort</font></code> </td><td align='left'  valign='top'>
+ cohort for the corresponding line of data
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">time</font></code>   </td><td align='left'  valign='top'>
+ time for the corresponding line of data (age + cohort)
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">S</font></code>      </td><td align='left'  valign='top'>
+ <code>
+<span style='white-space: nowrap'>&nbsp;S(&nbsp;\cdot&nbsp;)</span></code>
+ for this (age, cohort)
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">C</font></code>      </td><td align='left'  valign='top'>
+ <code>
+<span style='white-space: nowrap'>&nbsp;C(&nbsp;\cdot&nbsp;)</span></code>
+ for this (age, cohort)
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">iota</font></code>   </td><td align='left'  valign='top'>
+ <code>
+<span style='white-space: nowrap'>&nbsp;\iota(&nbsp;\cdot&nbsp;)</span></code>
+ for this (age, cohort)
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">rho</font></code>    </td><td align='left'  valign='top'>
+ <code>
+<span style='white-space: nowrap'>&nbsp;\rho&nbsp;(&nbsp;\cdot&nbsp;)</span></code>
+ for this (age, cohort)
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">chi</font></code>    </td><td align='left'  valign='top'>
+ <code>
+<span style='white-space: nowrap'>&nbsp;\chi&nbsp;(&nbsp;\cdot&nbsp;)</span></code>
+ for this (age, cohort)
+</td></tr><tr><td align='left'  valign='top'>
+
+<code><font color="blue">omega</font></code>  </td><td align='left'  valign='top'>
+ <code>
+<span style='white-space: nowrap'>&nbsp;\omega&nbsp;(&nbsp;\cdot&nbsp;)</span></code>
+ for this (age, cohort)
+</td></tr>
+</table>
+The solution is written on a rectangular grid in age, and cohort
+that surrounds all of the measurement age and time intervals.
+The lines are written with age varying first, then cohort.
+An extra buffer of plus and minus 
+<code><i><font color="black"><span style='white-space: nowrap'>time_add</span></font></i></code>
+ are included
+before the minimum time and after the maximum time.
+
+<br>
+<br>
+<b><big><a name="age_init" id="age_init">age_init</a></big></b>
+<br>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>age_init</span></font></i></code>
+
+specifies the initial age before which the susceptible population fraction 
+is one and the with condition fraction is zero; i.e.,
+their derivatives are zero for ages before 
+<code><i><font color="black"><span style='white-space: nowrap'>age_init</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="age_step" id="age_step">age_step</a></big></b>
+<br>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>age_step</span></font></i></code>
+ 
+specifies the difference between age values is the solution file.
+It must be a positive integer.
+
+<br>
+<br>
+<b><big><a name="age_min, age_max" id="age_min, age_max">age_min, age_max</a></big></b>
+<br>
+The command line arguments
+
+<code><i><font color="black"><span style='white-space: nowrap'>age_min</span></font></i></code>
+, and
+
+<code><i><font color="black"><span style='white-space: nowrap'>age_max</span></font></i></code>
+,
+specify the minimum lower age limit and maximum upper age limit 
+for a simulated measurement age range.
+These must be positive integers.
+We sometimes use <code>
+<span style='white-space: nowrap'>&nbsp;a_n</span></code>
+ and <code>
+<span style='white-space: nowrap'>&nbsp;a_x</span></code>
+ below to denote these 
+minimum and maximum age limits.
+
+<br>
+<br>
+<b><big><a name="age_bound" id="age_bound">age_bound</a></big></b>
+<br>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>age_bound</span></font></i></code>
+ is the maximum
+difference 
+<code><i><font color="black"><span style='white-space: nowrap'>age_upper</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age_lower</span></font></i></code>
+ for a single measurement.
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&lt;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age_bound</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&lt;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age_max</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>age_min</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It must be a non-negative integer.
+
+<br>
+<br>
+<b><big><a name="time_add" id="time_add">time_add</a></big></b>
+<br>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>time_add</span></font></i></code>
+ 
+specifies the amount of time subtracted from the minimum time,
+and added to the maximum time, before computing the necessary output
+cohort limits.
+It must be a positive integer.
+
+<br>
+<br>
+<b><big><a name="time_step" id="time_step">time_step</a></big></b>
+<br>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>time_step</span></font></i></code>
+ 
+specifies the difference between time (and cohort)
+values int the solution file.
+It must be a positive integer.
+
+<br>
+<br>
+<b><big><a name="time_min, time_max" id="time_min, time_max">time_min, time_max</a></big></b>
+<br>
+The command line arguments
+
+<code><i><font color="black"><span style='white-space: nowrap'>time_min</span></font></i></code>
+, and
+
+<code><i><font color="black"><span style='white-space: nowrap'>time_max</span></font></i></code>
+,
+specify the minimum lower time limit and maximum upper time limit 
+for a simulated measurement time range.
+These must be positive integers.
+
+<br>
+<br>
+<b><big><a name="time_bound" id="time_bound">time_bound</a></big></b>
+<br>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>time_bound</span></font></i></code>
+ is the maximum
+difference 
+<code><i><font color="black"><span style='white-space: nowrap'>time_upper</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_lower</span></font></i></code>
+ for a single measurement.
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0&nbsp;&lt;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_bound</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;&lt;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_max</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;-&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>time_min</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+It must be a non-negative integer.
+
+<br>
+<br>
+<b><big><a name="expressions" id="expressions">expressions</a></big></b>
+<br>
+The simulated value for the corresponding stochastic function as expressions
+where a is age and c is cohort; for example,
+<code><font color='blue'><pre style='display:inline'> 
+	'1e-4 * max(0. ,  (20.10 - c/100.) )'
+</pre></font></code>
+ 
+would have value zero for cohort 2010 and value 1e-4 for cohort 
+1910.
+These expressions are limited to the variables <code><font color="blue">a</font></code> (age),
+<code><font color="blue">c</font></code> (cohort), <code><font color="blue">t</font></code> (time), 
+the operators <code><font color="blue">+</font></code>, <code><font color="blue">-</font></code>, <code><font color="blue">*</font></code>, <code><font color="blue">/</font></code>, <code><font color="blue">**</font></code>,
+the functions <code><font color="blue">min</font></code>, <code><font color="blue">max</font></code>, <code><font color="blue">exp</font></code>, and numeric constants.
+
+<br>
+<br>
+<b><a name="expressions.iota_expr" id="expressions.iota_expr">iota_expr</a></b>
+<br>
+This expression defines the value for incidence in the simulation.
+
+<br>
+<br>
+<b><a name="expressions.rho_expr" id="expressions.rho_expr">rho_expr</a></b>
+<br>
+This expression defines the value for remission in the simulation.
+
+<br>
+<br>
+<b><a name="expressions.chi_expr" id="expressions.chi_expr">chi_expr</a></b>
+<br>
+This expression defines the value for excess mortality
+(mortality caused by the condition)  in the simulation.
+
+<br>
+<br>
+<b><a name="expressions.omega_expr" id="expressions.omega_expr">omega_expr</a></b>
+<br>
+This expression defines the value for other cause mortality
+(mortality not caused by the condition)  in the simulation.
+
+<br>
+<br>
+<b><big><a name="measure" id="measure">measure</a></big></b>
+<br>
+The <code><font color="blue">-measure</font></code> may appear any number of times with a different
+<a href="d4_simulate.py.htm#measure.integrand" target="_top"><span style='white-space: nowrap'>integrand</span></a>
+ 
+each time (and must appear at least once).
+
+<br>
+<br>
+<b><a name="measure.Offset Log Transform" id="measure.Offset Log Transform">Offset Log Transform</a></b>
+<br>
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>zeta</span></font></i></code>
+ is an offset value,
+
+<code><i><font color="black"><span style='white-space: nowrap'>model</span></font></i></code>
+ is the model for the data without noise,
+and 
+<code><i><font color="black"><span style='white-space: nowrap'>noise</span></font></i></code>
+ is a measurement noise value,
+the data is given by the relation
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log(&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>zeta</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>data</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;)&nbsp;=&nbsp;log(&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>zeta</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>model</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;)&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>noise</span></font></i><font color="blue"><span style='white-space: nowrap'><br>
+</span></font></code>
+The corresponding approximate coefficient of variation is
+
+<code><font color="blue"><span style='white-space: nowrap'><br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>cv</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;=&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sigma</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;/&nbsp;(</span></font><i><font color="black"><span style='white-space: nowrap'>zeta</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;+&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>model</span></font></i><font color="blue"><span style='white-space: nowrap'>)<br>
+</span></font></code>
+where 
+<code><i><font color="black"><span style='white-space: nowrap'>sigma</span></font></i></code>
+ is the standard deviation of the 
+<code><i><font color="black"><span style='white-space: nowrap'>noise</span></font></i></code>
+.
+
+<br>
+<br>
+<b><a name="measure.integrand" id="measure.integrand">integrand</a></b>
+<br>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>integrand</span></font></i></code>
+ is one of the
+integrands listed below:
+<table><tr><td align='left'  valign='top'>
+
+<b>Definition</b> 
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <b>integrand</b>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <b>Description</b>
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^\iota&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;\iota(&nbsp;\cdot&nbsp;)</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">incidence</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> incidence rate
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^\rho&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;\rho(&nbsp;\cdot&nbsp;)</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">remission</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> remission rate
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^\chi&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;\chi(&nbsp;\cdot&nbsp;)</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">m_excess</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> excess mortality rate
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^\omega&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;\omega(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">m_other</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> other cause mortality rate
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^w&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;\omega(&nbsp;\cdot&nbsp;)&nbsp;+&nbsp;\chi&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">m_with</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> with condition mortality rate
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^p&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;C(&nbsp;\cdot&nbsp;)&nbsp;/&nbsp;[&nbsp;S(&nbsp;\cdot&nbsp;)&nbsp;+&nbsp;C(&nbsp;\cdot&nbsp;)&nbsp;]</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">prevalence</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> prevalence
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^e&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;\chi(&nbsp;\cdot&nbsp;)&nbsp;I^p&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">m_prevalence</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> excess mortality rate times prevalence
+	
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^s&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;I^e&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;&nbsp;</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">m_specific</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> cause specific mortality rate
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^a&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\omega&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;+&nbsp;&nbsp;I^e&nbsp;(&nbsp;\cdot&nbsp;)</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">m_all</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> all cause mortality rate
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^\sigma&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;I^w&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;/&nbsp;I^a&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;&nbsp;</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">m_standard</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> standardized mortality ratio
+
+</td></tr><tr><td align='left'  valign='top'>
+
+<code>
+<span style='white-space: nowrap'>&nbsp;I^r&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;=&nbsp;I^w&nbsp;(&nbsp;\cdot&nbsp;)&nbsp;/&nbsp;\omega&nbsp;(&nbsp;\cdot&nbsp;)</span></code>
+
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> <code><font color="blue">relative_risk</font></code>
+	</td><td align='left'  valign='top'>
+ <code><span style='white-space: nowrap'>&nbsp;&nbsp;</span></code> relative risk ratio
+</td></tr>
+</table>
+For example, <code><font color="blue">&quot;incidence remission m_excess m_all&quot;</font></code>
+would specify that the corresponding measurements are to be included
+in 
+<code><i><font color="black"><span style='white-space: nowrap'>measure_in.csv</span></font></i></code>
+.
+
+<br>
+<br>
+<b><a name="measure.number" id="measure.number">number</a></b>
+<br>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>number</span></font></i></code>
+ specifies the
+number of measurements to simulate and output in the file
+
+<code><i><font color="black"><span style='white-space: nowrap'>measure_in.csv</span></font></i></code>
+ (for this integrand).
+If it is an integer, it is a direct specification of the number
+of data points and the location and span for the points is chosen at random.
+If 
+<code><i><font color="black"><span style='white-space: nowrap'>number</span></font></i></code>
+ contains a decimal point, 
+the points are on a rectangular grid in age and time,
+the minimum age (time) grid value is 
+<code><i><font color="black"><span style='white-space: nowrap'>age_min</span></font></i></code>
+ (
+<code><i><font color="black"><span style='white-space: nowrap'>time_min</span></font></i></code>
+),
+the maximum age (time) grid value is 
+<code><i><font color="black"><span style='white-space: nowrap'>age_max</span></font></i></code>
+ (
+<code><i><font color="black"><span style='white-space: nowrap'>time_max</span></font></i></code>
+).
+In this case, the integer part of 
+<code><i><font color="black"><span style='white-space: nowrap'>number</span></font></i></code>
+ specifies the number of
+age points and the factional part specifies the number of time points; e.g,
+the value <code><font color="blue">10.20</font></code> specifies 10 age grid values and 20 time grid values
+for a total of 200 data points.
+
+<br>
+<br>
+<b><a name="measure.like" id="measure.like">like</a></b>
+<br>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>like</span></font></i></code>
+ is the
+likelihood of the noise added to the simulated measurements.
+Currently <code><font color="blue">gaussian</font></code> is the only valid choice.
+
+<br>
+<br>
+<b><a name="measure.sim_zeta" id="measure.sim_zeta">sim_zeta</a></b>
+<br>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>sim_zeta</span></font></i></code>
+ is the value of 
+<code><i><font color="black"><span style='white-space: nowrap'>zeta</span></font></i></code>
+
+in the
+<a href="d4_simulate.py.htm#measure.Offset Log Transform" target="_top"><span style='white-space: nowrap'>offset&nbsp;log&nbsp;transform</span></a>
+
+during simulation of the 
+<code><i><font color="black"><span style='white-space: nowrap'>data</span></font></i></code>
+ value.
+
+<br>
+<br>
+<b><a name="measure.fit_zeta" id="measure.fit_zeta">fit_zeta</a></b>
+<br>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>fit_zeta</span></font></i></code>
+ is the value of 
+<code><i><font color="black"><span style='white-space: nowrap'>zeta</span></font></i></code>
+
+in the during fitting; i.e.,
+the corresponding offset is placed in
+<a href="d4_simulate.py.htm#measure_in.csv" target="_top"><span style='white-space: nowrap'>measure_in.csv</span></a>
+.
+Note that the difference 
+<code><i><font color="black"><span style='white-space: nowrap'>fit_zeta</span></font></i><font color="blue"><span style='white-space: nowrap'>-</span></font><i><font color="black"><span style='white-space: nowrap'>sim_zeta</span></font></i></code>
+ corresponds to a
+bias in the simulated fit.
+
+<br>
+<br>
+<b><a name="measure.sim_cv" id="measure.sim_cv">sim_cv</a></b>
+<br>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>sim_cv</span></font></i></code>
+ is the
+approximation coefficient of variation 
+for the noise added to the simulated measurements.
+
+<br>
+<br>
+<b><a name="measure.fit_cv" id="measure.fit_cv">fit_cv</a></b>
+<br>
+The command line argument 
+<code><i><font color="black"><span style='white-space: nowrap'>fit_cv</span></font></i></code>
+ is the
+approximate coefficient of variation 
+for the measurement noise during fitting; i.e.
+the corresponding standard deviation is placed in
+<a href="d4_simulate.py.htm#measure_in.csv" target="_top"><span style='white-space: nowrap'>measure_in.csv</span></a>
+.
+
+<br>
+<br>
+<b><big><a name="Testing dismod_pde_csv" id="Testing dismod_pde_csv">Testing dismod_pde_csv</a></big></b>
+<br>
+The routine <a href="d4_compare_sfun.py.htm" target="_top"><span style='white-space: nowrap'>d4_compare_sfun.py</span></a>
+
+is meant be used to compare the results obtained by <a href="dismod_pde_csv.htm" target="_top"><span style='white-space: nowrap'>dismod_pde_csv</span></a>
+
+with the true solution used by <a href="d4_simulate.py.htm" target="_top"><span style='white-space: nowrap'>d4_simulate.py</span></a>
+ to generate
+the corresponding data.
+
+<br>
+<br>
+<b><big><a name="Testing optimize" id="Testing optimize">Testing optimize</a></big></b>
+<br>
+The bash shell script <a href="dismoditis.sh.htm" target="_top"><span style='white-space: nowrap'>dismoditis.sh</span></a>
+ uses
+by <code><font color="blue">d4_simulate.py</font></code> to create CSV files that it then 
+converts to C++ source code.
+The C++ routine <a href="dismoditis.cpp.htm" target="_top"><span style='white-space: nowrap'>dismoditis.cpp</span></a>
+ is an example and test of
+<a href="optimize.htm" target="_top"><span style='white-space: nowrap'>optimize</span></a>
+ that use these C++ measurement and solution files.
+
+
+<hr>Input File: python/d4_simulate.py.in
+
+</body>
+</html>

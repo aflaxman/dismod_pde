@@ -1,0 +1,255 @@
+<html><head>
+<title>Create Derived Stochastic Function Output Files</title>
+<meta name="description" id="description" content="Create Derived Stochastic Function Output Files">
+<meta name="keywords" id="keywords" content=" ">
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_d4_sfun_der.py_htm.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="d4_plot.py.htm" target="_top">Prev</a>
+</td><td><a href="d4_sfun_grid.py.htm" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>csv</option>
+<option>python_csv</option>
+<option>d4_sfun_der.py</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down3(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>csv-&gt;</option>
+<option>dismod_pde_csv</option>
+<option>python_csv</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>python_csv-&gt;</option>
+<option>d4_bubble.py</option>
+<option>d4_change_sfun_in.py</option>
+<option>d4_compare_sfun.py</option>
+<option>d4_contour.py</option>
+<option>d4_cumulative.py</option>
+<option>d4_plot.py</option>
+<option>d4_sfun_der.py</option>
+<option>d4_sfun_grid.py</option>
+<option>d4_simulate.py</option>
+</select>
+</td>
+<td>d4_sfun_der.py</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>sfun_out_csv</option>
+<option>sfun_der_csv</option>
+<option>dvar_j</option>
+<option>expr_j</option>
+</select>
+</td>
+</tr></table><br>
+ 
+
+
+
+<center><b><big><big>Create Derived Stochastic Function Output Files</big></big></b></center>
+<br>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br>
+
+<code><font color="blue"><span style='white-space: nowrap'>d4_sfun_der.py&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_out_csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>sfun_der_csv</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;\<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>dvar_1</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>expr_1</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>&nbsp;...&nbsp;</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>dvar_N</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>expr_N</span></font></i></code>
+
+
+<br>
+<br>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br>
+This program converts a dismod_pde stochastic function output file; e.g.,
+<a href="dismod_pde_csv.htm#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+,
+to from cycling though quantities to one quantity per column.
+
+<br>
+<br>
+<b><big><a name="sfun_out_csv" id="sfun_out_csv">sfun_out_csv</a></big></b>
+<br>
+is the name the input file; e.g.,
+<a href="dismod_pde_csv.htm#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+ or
+<a href="d4_sfun_grid.py.htm#sfun_grid.csv" target="_top"><span style='white-space: nowrap'>sfun_grid.csv</span></a>
+.
+In general it can be any file that has the same column names and 
+same grouping of the rows; i.e., for a given value of 
+<code><font color="blue">age</font></code>, <code><font color="blue">cohort</font></code> and <code><font color="blue">time</font></code>, the corresponding rows are
+grouped together and
+the <code><font color="blue">function</font></code> column cycles through the values
+<code><font color="blue">S</font></code>,
+<code><font color="blue">C</font></code>,
+<code><font color="blue">iota</font></code>,
+<code><font color="blue">rho</font></code>,
+<code><font color="blue">chi</font></code>, and
+<code><font color="blue">omega</font></code>.
+
+<br>
+<br>
+<b><big><a name="sfun_der_csv" id="sfun_der_csv">sfun_der_csv</a></big></b>
+<br>
+is the name of the file written by <code><font color="blue">d4_sfun_der.py</font></code>.
+The first line has the column names, 
+
+<code><i><font color="black"><span style='white-space: nowrap'>dvar_1</span></font></i></code>
+, 
+<code><i><font color="black"><span style='white-space: nowrap'>dvar_2</span></font></i></code>
+ ...
+The other lines contain the corresponding values for
+with one line for each value of age and cohort in 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i></code>
+.
+Each line corresponds to all the functions and one value for
+
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i></code>
+, 
+<code><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i></code>
+ and <code><font color="blue">time</font></code>.
+
+<br>
+<br>
+<b><big><a name="dvar_j" id="dvar_j">dvar_j</a></big></b>
+<br>
+For <code>
+<span style='white-space: nowrap'>&nbsp;j&nbsp;=&nbsp;1&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;N</span></code>
+, 
+<code><i><font color="black"><span style='white-space: nowrap'>dvar_j</span></font></i></code>
+ is the 
+name for the <i>j</i>-th derived variable; i.e., the <i>j</i>-th column
+in 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_der.csv</span></font></i></code>
+.
+
+<br>
+<br>
+<b><big><a name="expr_j" id="expr_j">expr_j</a></big></b>
+<br>
+For <code>
+<span style='white-space: nowrap'>&nbsp;j&nbsp;=&nbsp;1&nbsp;,&nbsp;\ldots&nbsp;,&nbsp;N</span></code>
+, 
+<code><i><font color="black"><span style='white-space: nowrap'>expr_j</span></font></i></code>
+ is the 
+expression for the <i>j</i>-th derived variable in terms of 
+the variables in 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i></code>
+ and other derived variables
+that are defined before it (smaller value of 
+<code><i><font color="black"><span style='white-space: nowrap'>j</span></font></i></code>
+).
+The following variables are defined by 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i></code>
+:
+<ol type="1"><li>
+The variables 
+<code><i><font color="black"><span style='white-space: nowrap'>age</span></font></i></code>
+, 
+<code><i><font color="black"><span style='white-space: nowrap'>cohort</span></font></i></code>
+, 
+<code><i><font color="black"><span style='white-space: nowrap'>time</span></font></i></code>
+ are
+the corresponding constant values for the six lines in a group of
+
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i></code>
+ input.
+</li><li>
+
+For each value of 
+<code><i><font color="black"><span style='white-space: nowrap'>q</span></font></i></code>
+ in the set 
+
+<code><i><font color="black"><span style='white-space: nowrap'>{</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;S&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>,</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;C&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>,</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;iota&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>,</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;rho&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>,</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;chi&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>,</span></font></i><font color="blue"><span style='white-space: nowrap'>&nbsp;omega&nbsp;</span></font><i><font color="black"><span style='white-space: nowrap'>}</span></font></i></code>
+,
+variables that begin with 
+<code><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>_</span></font></code>
+ have values coming from
+a line in 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i></code>
+ that has 
+<code><i><font color="black"><span style='white-space: nowrap'>q</span></font></i></code>
+ in its
+<code><font color="blue">function</font></code> column.
+</li><li>
+
+The possible variable names are 
+
+<code><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>_estimate</span></font></code>
+,
+
+<code><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>_prior_residual</span></font></code>
+,
+
+<code><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>_prior_scaled</span></font></code>
+,
+
+<code><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>_age_residual</span></font></code>
+,
+
+<code><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>_age_scaled</span></font></code>
+,
+
+<code><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>_cohort_residual</span></font></code>
+,
+
+<code><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>_cohort_scaled</span></font></code>
+.
+</li><li>
+
+For each possible 
+<code><i><font color="black"><span style='white-space: nowrap'>name</span></font></i></code>
+ list above,
+the value for 
+<code><i><font color="black"><span style='white-space: nowrap'>q</span></font></i><font color="blue"><span style='white-space: nowrap'>_</span></font><i><font color="black"><span style='white-space: nowrap'>name</span></font></i></code>
+ comes from the column 
+
+<code><i><font color="black"><span style='white-space: nowrap'>name</span></font></i></code>
+ in the 
+<code><i><font color="black"><span style='white-space: nowrap'>sfun_out.csv</span></font></i></code>
+.
+</li></ol>
+
+
+<hr>Input File: python/d4_sfun_der.py.in
+
+</body>
+</html>

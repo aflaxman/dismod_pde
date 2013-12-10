@@ -1,0 +1,351 @@
+#! @PYTHON_PREFIX@/bin/python
+# $begin d4_change_sfun_in.py$$ $newlinech #$$
+# $escape $$ $comment so can use \ as a normal character in codei$$
+# $spell
+# 	pde
+#	exp
+#	inf
+#	dismod
+#	sfun
+#	py
+#	csv
+#	omega
+# $$
+#
+# $section Change The dismod_pde Stochastic Function Input File$$
+# $index sfun_in.csv, change$$
+# $index template.csv, change$$
+# $index input, change sfun_in.csv$$
+#
+# $head Syntax$$
+# $codei%d4_change_sfun_in.py %input.csv% %output.csv%  \
+#	%[% -comment  %comment% %]% \
+#	%[% -optimize_%sfun% %zeta% %lower% %initial% %upper% %]% \
+#	%[% -prior_%sfun%    %name% %zeta% %sigma% %mean%  %]% \
+#	%[% -age_%sfun%      %name% %zeta% %sigma% %order% %]% \
+#	%[% -cohort_%sfun%   %name% %zeta% %sigma% %order% %]%
+#	%[% -cross_%sfun%    %name% %zeta% %sigma% %]%$$
+#
+# $head Expressions$$
+# The expressions mentioned below uses the variables 
+# $code a$$ for age, 
+# $code c$$ for cohort, 
+# $code t$$ for time which is equal to age plus cohort,
+# $code inf$$ for plus infinity,
+# $code gaussian$$ for $code 'gaussian'$$, and
+# $code laplace$$ for $code 'laplace'$$.
+# The expressions are otherwise limited to the conditional expression syntax,
+# the operators $code +$$, $code -$$, $code *$$, $code /$$, $code **$$,
+# the $code max$$ function, the $code exp$$ function, and numeric constants.
+#
+# $head input.csv$$
+# is the first command line argument to $code d4_change_sfun_in.py$$.
+# It is a $cref/sfun_in.csv/dismod_pde_csv/sfun_in.csv/$$ file
+# that is input to $code d4_change_sfun_in.py$$.
+#
+# $head output.csv$$
+# is the second command line argument to $code d4_change_sfun_in.py$$.
+# It is a  $cref/sfun_in.csv/dismod_pde_csv/sfun_in.csv/$$ file that is 
+# output by $code d4_change_sfun_in.py$$. 
+# The values in this file are the same as in $icode input.csv$$ 
+# except that terms that appear on the 
+# command line are changed to the values specified on the command line.
+#
+# $head sfun$$
+# each appearance of $icode sfun$$ in the syntax above
+# is one of the following:
+# $code C$$,
+# $code S$$,
+# $code iota$$, 
+# $code rho$$, 
+# $code chi$$, or
+# $code omega$$.
+#
+# $head comment$$
+# $index initial, change$$
+# each appearance of $icode comment$$ in the syntax above
+# is a comment about the corresponding stochastic function $icode sfun$$.
+#
+# $head lower$$
+# $index lower, change$$
+# each appearance of $icode lower$$ in the syntax above
+# is an expression specifying the corresponding lower value for the 
+# optimization procedure.
+#
+# $head initial$$
+# $index initial, change$$
+# each appearance of $icode initial$$ in the syntax above
+# is an expression specifying the corresponding initial value for the 
+# optimization procedure.
+#
+# $head upper$$
+# $index upper, change$$
+# each appearance of $icode upper$$ in the syntax above
+# is an expression specifying the corresponding upper value for the 
+# optimization procedure.
+#
+# $head name$$
+# $index name, sfun_in.csv$$
+# each appearance of $icode name$$ in the syntax above
+# is an expression that evaluates to one of the following:
+# $code gaussian$$, $code laplace$$.
+# It specifies which likelihood is used for the corresponding residuals.
+#
+# $head zeta$$
+# $index zeta, change$$
+# each appearance $icode zeta$$ in the syntax above
+# is an expression for the $latex \zeta$$ term in the scaling transformation;
+# i.e. the value that is added to the stochastic function before taking the 
+# log. In the case of $codei%optimize_%sfun%$$ this is for the transformation
+# of the optimization problem. In the other cases, the log values are then 
+# subtracted to get the corresponding residuals.
+#
+# $head sigma$$
+# $index sigma, change$$
+# each appearance $icode sigma$$ in the syntax above
+# is an expression for the standard deviation of the corresponding 
+# residual.
+#
+# $head mean$$
+# $index mean, change$$
+# each appearance $icode mean$$ in the syntax above
+# is an expression for direct prior mean of the corresponding 
+# stochastic function. 
+#
+# $head order$$
+# $index order, change$$
+# each appearance of $icode order$$ is $code 1$$ or $code 2$$.
+# It specifies the order for the corresponding differences.
+#
+# $children%
+#	example/change_sfun_in.sh
+# %$$
+# $head Example$$
+# $index example, d4_change_sfun_in.py$$
+# The shell script $cref change_sfun_in.sh$$ is an example and test
+# of $code d4_change_sfun_in.py$$.
+#
+# $end
+# ------------------------------------------------------------------------
+import sys
+import csv
+#
+usage='''
+d4_change_sfun_in.py input.csv output.csv \\
+	[ -comment   %comment% ] \\
+	[ -optimize_%sfun%  %zeta% %lower% %initial% %upper% ]    \\
+	[ -prior_%sfun%     %name% %zeta%  %sigma%   %mean%  ] \\
+	[ -age_%sfun%       %name% %zeta%  %sigma%   %order% ] \\
+	[ -cohort_%sfun%    %name% %zeta%  %sigma%   %order% ] 
+	[ -cross_%sfun%     %name% %zeta%  %sigma% ] 
+
+%sfun%    is one of the following: C, S, iota, rho, chi, omega.
+%comment% a comment about the corresponding stochastic function.
+%lower%   expression for lower limit during optimization procedure.
+%initial% expression for initial value during optimization procedure.
+%upper%   expression for upper limit during optimization procedure.
+%name%    expression that evaluates to gaussian or laplace.
+%zeta%    expression for amount added to values before taking logs.
+%sigma%   expression for standard deviation for differences (residuals).
+%mean%    expression for mean of corresponding direct prior.
+%order%   expression for order for corresponding differences.  
+'''
+#
+argv      = sys.argv
+def error_exit(iarg) :
+	print usage
+	print 'Error detected as last of the following command line arguments:'
+	msg=""
+	for i in range(iarg+1) :
+		msg = msg + '"' + argv[i] + '" '
+	sys.exit(msg)
+#
+if len(argv) < 3 :
+	print usage
+	sys.exit('less that 4 arguments counting d4_sfun_in.py')
+#
+input_csv       = argv[1]
+output_csv      = argv[2]
+#
+# store rest of cmd line information in sfun_all, option_all, expression_all
+sfun_all        = []
+option_all      = []
+expression_all  = []
+#
+sfun_list       = " C S iota rho chi omega "
+option_list     = " optimize prior age cohort cross "
+value_len       = { 
+	'optimize' : 4 , 'prior' : 4  , 'age' : 4 , 'cohort' : 4  , 'cross' : 3
+}
+value_label     = {
+	'optimize' : ['zeta', 'lower', 'initial', 'upper' ],
+	'prior'    : ['like', 'zeta',  'sigma',   'mean'  ],
+	'age'      : ['like', 'zeta',  'sigma',   'order' ],
+	'cohort'   : ['like', 'zeta',  'sigma',   'order' ],
+	'cross'    : ['like', 'zeta',  'sigma'            ]
+}
+iarg            = 3
+# skip comments
+print 'd4_change_sfun.py: command line arguments:'
+if iarg < len(argv) :
+	flag = argv[iarg]
+	while flag == '-comment' and iarg < len(argv) :
+		if iarg + 1 >= len(argv) :
+			print 'd4_change_sfun_in.py: missing value after -comment'
+			error_exit(iarg)
+		iarg = iarg + 2
+		flag = argv[iarg]
+while iarg < len(argv) :
+	minus    = flag.find('-')
+	space    = flag.find(' ')
+	underbar = flag.find('_')
+	if space != -1 or minus != 0 or underbar < 4 or len(flag) - underbar < 2 : 
+		error_exit(iarg)
+	option = flag[ 1 : underbar ]
+	sfun   = flag[ (underbar+1) : len(flag) ]
+	if sfun_list.find(sfun) == -1 or option_list.find(option) == -1 :
+		error_exit(iarg)
+	if iarg + value_len[option] >= len(argv) :
+		print 'd4_change_sfun_in.py: missing values after ' + flag
+		error_exit(iarg)
+	#
+	iarg            = iarg + 1
+	expression_list = []
+	for i in range( value_len[option] ) :
+		expression_list.append(argv[iarg])
+		iarg = iarg + 1
+	sfun_all.append(sfun)
+	option_all.append(option)
+	expression_all.append( expression_list )
+	#
+	label = value_label[option]
+	line = option + '_' + sfun + ':' + label[0] + '=' + expression_list[0]
+	for i in range( value_len[option] - 1 ) :
+		line = line + ', ' + label[1+i] + '=' + expression_list[1+i]
+	print line
+	#
+	if iarg < len(argv) :
+		flag  = argv[iarg]
+	# skip comments
+	while flag == '-comment' and iarg < len(argv) :
+		if iarg + 1 >= len(argv) :
+			print 'd4_change_sfun_in.py: missing value after -comment'
+			error_exit(iarg)
+		iarg = iarg + 2
+		flag = argv[iarg]
+# --------------------------------------------------------------------------
+# safe evalutation of expressions defined on the command line
+def safe_eval(expression, a, c) :
+	from math import exp
+	t        = a + c
+	inf      = float('inf')
+	gaussian = 'gaussian'
+	laplace  = 'laplace'
+	loc = {
+		'a' : a , 
+		'c' : c , 
+		'exp' : exp ,
+		'gaussian' : gaussian ,
+		'inf' : inf ,
+		'laplace'  : laplace ,
+		'max' : max , 
+		't' : t
+	}
+	glo = {'__builtins__' : None}
+	return eval(expression, glo, loc)
+# ----------------------------------------------------------------------------
+n_all     = len(sfun_all)
+fp_input  = open(input_csv, 'r')
+fp_output = open(output_csv, 'w')
+reader    = csv.DictReader(fp_input, skipinitialspace=True)
+fieldnames   = [ 
+	'age',
+	'cohort',
+	'time',
+	'function',
+
+	'optimize_zeta', 
+	'optimize_lower', 
+	'optimize_initial', 
+	'optimize_upper', 
+
+	'prior_like',
+	'prior_mean',
+	'prior_zeta', 
+	'prior_sigma', 
+
+	'age_like',
+	'age_zeta',
+	'age_sigma', 
+	'age_order',
+
+	'cohort_like',
+	'cohort_zeta',
+	'cohort_sigma',
+	'cohort_order',
+
+	'cross_like',
+	'cross_zeta',
+	'cross_sigma'
+]
+writer = csv.DictWriter(fp_output, fieldnames);
+header = {}
+for name in fieldnames :
+	header[name] = name
+writer.writerow(header)
+for row in reader :
+	sfun = row['function']
+	a    = float( row['age'] )
+	c    = float( row['cohort'] )
+	for i in range(n_all) :
+		if sfun == sfun_all[i] :
+			if option_all[i] == 'comment' :
+				pass
+			elif option_all[i] == 'optimize'  :
+				expression               = expression_all[i][0]
+				row['optimize_zeta']     = safe_eval(expression, a, c)
+				expression               = expression_all[i][1]
+				row['optimize_lower']    = safe_eval(expression, a, c)
+				expression               = expression_all[i][2]
+				row['optimize_initial']  = safe_eval(expression, a, c)
+				expression               = expression_all[i][3]
+				row['optimize_upper']    = safe_eval(expression, a, c)
+			elif option_all[i] == 'prior'  :
+				expression               = expression_all[i][0]
+				row['prior_like']        = safe_eval(expression, a, c)
+				expression               = expression_all[i][1]
+				row['prior_zeta']        = safe_eval(expression, a, c)
+				expression               = expression_all[i][2]
+				row['prior_sigma']       = safe_eval(expression, a, c)
+				expression               = expression_all[i][3]
+				row['prior_mean']        = safe_eval(expression, a, c)
+			elif option_all[i] == 'age'  :
+				expression               = expression_all[i][0]
+				row['age_like']          = safe_eval(expression, a, c)
+				expression               = expression_all[i][1]
+				row['age_zeta']          = safe_eval(expression, a, c)
+				expression               = expression_all[i][2]
+				row['age_sigma']         = safe_eval(expression, a, c)
+				expression               = expression_all[i][3]
+				row['age_order']         = safe_eval(expression, a, c)
+			elif option_all[i] == 'cohort'  :
+				expression               = expression_all[i][0]
+				row['cohort_like']       = safe_eval(expression, a, c)
+				expression               = expression_all[i][1]
+				row['cohort_zeta']       = safe_eval(expression, a, c)
+				expression               = expression_all[i][2]
+				row['cohort_sigma']      = safe_eval(expression, a, c)
+				expression               = expression_all[i][3]
+				row['cohort_order']      = safe_eval(expression, a, c)
+			elif option_all[i] == 'cross'  :
+				expression               = expression_all[i][0]
+				row['cross_like']        = safe_eval(expression, a, c)
+				expression               = expression_all[i][1]
+				row['cross_zeta']        = safe_eval(expression, a, c)
+				expression               = expression_all[i][2]
+				row['cross_sigma']       = safe_eval(expression, a, c)
+			else :
+				print 'option_all[i] =', option_all[i]
+				sys.exit('d4_change_sfun_in.py: program error')
+	writer.writerow(row)
+fp_output.close()

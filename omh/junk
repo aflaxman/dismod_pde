@@ -1,0 +1,63 @@
+Index: install.omh
+===================================================================
+--- install.omh	(revision 6190)
++++ install.omh	(working copy)
+@@ -59,17 +59,17 @@
+ $tend
+ 
+ $head Unpack Distribution$$
+-Let $icode version$$ be either $code 2013.0101$$ or $code 2013.0.0$$.
++Let $icode version$$ be either $code code 2013.0404$$ or $code code 2013.0404$$.
+ The following commands will create the distribution directory
+ $codei%dismod_pde-%version%$$ and change into that directory:
+ $codei%
+ 	tar -xzf dismod_pde-%version%.tgz
+ 	cd dismod_pde-%version%
+ %$$
+-If you are using version $code 2013.0.0$$, you should now switch
++If you are using version $code code 2013.0404$$, you should now switch
+ to the instructions in 
+ $codep
+-	dismod_pde-2013.0.0/doc/install.htm
++	dismod_pde-code 2013.0404/doc/install.htm
+ $$
+ Otherwise, continue with the instructions below.
+ 	
+@@ -87,7 +87,7 @@
+ 	./build.sh external
+ %$$
+ will download and compile these packages in the 
+-$code dismod_pde-2013.0205/external$$ directory.
++$code dismod_pde-code 2013.0404/external$$ directory.
+ It will then install the packages using the prefixes
+ $code @HOME/prefix/ipopt$$,
+ $code @HOME/prefix/cppad$$, and
+@@ -178,23 +178,23 @@
+ the example directory,
+ and the developer documentation directory,
+ $codei%
+-	%dismod_pde_prefix%/share/doc/dismod_pde-2013.0205/doc
+-	%dismod_pde_prefix%/share/doc/dismod_pde-2013.0205/example
+-	%dismod_pde_prefix%/share/doc/dismod_pde-2013.0205/doxydoc
++	%dismod_pde_prefix%/share/doc/dismod_pde-code 2013.0404/doc
++	%dismod_pde_prefix%/share/doc/dismod_pde-code 2013.0404/example
++	%dismod_pde_prefix%/share/doc/dismod_pde-code 2013.0404/doxydoc
+ %$$
+ 
+ $head Prefix$$
+ You can change the $icode dismod_pde_prefix$$ by 
+ opening the file
+ $codei%
+-	dismod_pde-2013.0205/build.sh
++	dismod_pde-code 2013.0404/build.sh
+ %$$ 
+ in your editor and making the following change:
+ $codei%
+ 	DISMOD4_PREFIX="@HOME/prefix/dismod_pde"  %->% DISMOD4_PREFIX=%dismod_pde_prefix%
+ %$$ 
+ where $icode dismod_pde_prefix$$ is the directory you choose.
+-Then return to the $code dismod_pde-2013.0205$$ directory and 
++Then return to the $code dismod_pde-code 2013.0404$$ directory and 
+ execute the commands
+ $codei%
+ 	./build.sh configure

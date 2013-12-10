@@ -1,0 +1,18 @@
+$begin cpp$$
+$spell
+	pde
+	dismod
+$$
+
+$section The C++ Interface to dismod_pde$$
+
+$contents%
+     cpp/dismod_pde/optimize.hpp%
+     cpp/dismod_pde/create_grid.hpp%
+     cpp/dismod_pde/pair2index.hpp%
+	cpp/dismod_pde/csv_read.hpp%
+	cpp/dismod_pde/str_char_vec.hpp%
+	cpp/dismod_pde/atof_char_vec.hpp
+%$$
+
+$end

@@ -1,0 +1,615 @@
+<?xml version='1.0'?>
+<html xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:math='http://www.w3.org/1998/Math/MathML'
+>
+<head>
+<title>get_started.sh: Example and Test of dismod_pde_csv</title>
+<meta name="description" id="description" content="get_started.sh: Example and Test of dismod_pde_csv"/>
+<meta name="keywords" id="keywords" content=" get_started dismod_pde_csv example test "/>
+<style type='text/css'>
+body { color : black }
+body { background-color : white }
+A:link { color : blue }
+A:visited { color : purple }
+A:active { color : purple }
+</style>
+<script type='text/javascript' language='JavaScript' src='_get_started.sh_xml.js'>
+</script>
+</head>
+<body>
+<table><tr>
+<td><a href="example.xml" target="_top">Prev</a>
+</td><td><a href="get_started.py.xml" target="_top">Next</a>
+</td><td>
+<select onchange='choose_across0(this)'>
+<option>Index-&gt;</option>
+<option>contents</option>
+<option>reference</option>
+<option>index</option>
+<option>search</option>
+<option>external</option>
+</select>
+</td>
+<td>
+<select onchange='choose_up0(this)'>
+<option>Up-&gt;</option>
+<option>dismod_pde</option>
+<option>example</option>
+<option>get_started.sh</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down2(this)'>
+<option>dismod_pde-&gt;</option>
+<option>whats_new</option>
+<option>install</option>
+<option>csv</option>
+<option>cpp</option>
+<option>example</option>
+<option>wish_list</option>
+<option>bug_list</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down1(this)'>
+<option>example-&gt;</option>
+<option>get_started.sh</option>
+<option>diabetes.sh</option>
+<option>gaussian.sh</option>
+</select>
+</td>
+<td>
+<select onchange='choose_down0(this)'>
+<option>get_started.sh-&gt;</option>
+<option>get_started.py</option>
+</select>
+</td>
+<td>
+<select onchange='choose_current0(this)'>
+<option>Headings-&gt;</option>
+<option>Syntax</option>
+<option>Purpose</option>
+<option>python_path</option>
+<option>dismod_pde_path</option>
+<option>parameter.csv</option>
+<option>effect_in.csv</option>
+<option>measure_in.csv</option>
+<option>template.csv</option>
+<option>sfun_in.csv</option>
+<option>Running dismod_pde_csv</option>
+<option>effect_out.csv</option>
+<option>---..Check effect_out.csv</option>
+<option>measure_out.csv</option>
+<option>---..Check measure_out.csv</option>
+<option>sfun_out.csv</option>
+<option>---..Check sfun_out.csv</option>
+<option>Final Message</option>
+</select>
+</td>
+</tr></table><br/>
+<center><b><big><big>get_started.sh: Example and Test of dismod_pde_csv</big></big></b></center>
+<br/>
+<b><big><a name="Syntax" id="Syntax">Syntax</a></big></b>
+
+<br/>
+
+<code><font color="blue"><span style='white-space: nowrap'>&#xA0;./get_started.sh<br/>
+</span></font></code>
+<a href="get_started.py.xml" target="_top"><span style='white-space: nowrap'>./get_started.py</span></a>
+
+
+<br/>
+<br/>
+<b><big><a name="Purpose" id="Purpose">Purpose</a></big></b>
+<br/>
+This is a simple example and test of the 
+dismod_pde csv interface <a href="dismod_pde_csv.xml" target="_top"><span style='white-space: nowrap'>dismod_pde_csv</span></a>
+. 
+It exits with status zero if the test passes
+and with status one if the test fails.
+This example is located in the file
+	
+<code><font color="blue"><span style='white-space: nowrap'><br/>
+&#xA0;&#xA0;&#xA0;&#xA0;&#xA0;</span></font><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i><font color="blue"><span style='white-space: nowrap'>/share/doc/dismod_pde-</span></font><i><font color="black"><span style='white-space: nowrap'>yyyymmdd</span></font></i><font color="blue"><span style='white-space: nowrap'>/example/get_started.sh<br/>
+</span></font></code>
+where 
+<code><i><font color="black"><span style='white-space: nowrap'>dismod_pde_prefix</span></font></i></code>
+ is the 
+<a href="install.xml#Prefix" target="_top"><span style='white-space: nowrap'>prefix</span></a>
+ 
+specified during the install procedure. 
+
+<br/>
+<br/>
+<b><big><a name="python_path" id="python_path">python_path</a></big></b>
+<br/>
+The following command sets the directory where the dismod_pde python
+scripts are located. This should not be necessary once dismod_pde is installed.
+<code><font color='blue'><pre style='display:inline'> 
+python_path=&quot;$top_builddir/python&quot;
+</pre></font></code>
+ 
+
+<br/>
+<br/>
+<b><big><a name="dismod_pde_path" id="dismod_pde_path">dismod_pde_path</a></big></b>
+<br/>
+The following command sets the directory where the binary <code><font color="blue">dismod_pde_csv</font></code>
+file is located. This should not be necessary once dismod_pde is installed.
+<code><font color='blue'><pre style='display:inline'> 
+dismod_pde_path=&quot;$top_builddir/cpp&quot;
+</pre></font></code>
+ 
+
+<br/>
+<br/>
+<b><big><a name="parameter.csv" id="parameter.csv">parameter.csv</a></big></b>
+<br/>
+The first thing we do is create the
+<a href="dismod_pde_csv.xml#parameter.csv" target="_top"><span style='white-space: nowrap'>parameter.csv</span></a>
+ file 
+as follows:
+<code><font color='blue'><pre style='display:inline'> 
+cat &lt;&lt; EOF &gt; parameter.csv
+name,value
+age_grid,5 20
+cohort_grid,1960 1980 2000 2020
+max_ode_step,1
+print_level,5
+max_iteration,60
+converge_tolerance,1e-3
+EOF
+</pre></font></code>
+
+For this example,
+we use large values for <code><font color="blue">delta_age</font></code> and <code><font color="blue">delta_cohort</font></code>
+so that the resulting file <code><font color="blue">sfun_in.csv</font></code> is small.
+Note that the first and last lines above are bash command that
+instruct bash to create the file <code><font color="blue">parameter.csv</font></code> with the
+contents between them.
+
+<br/>
+<br/>
+<b><big><a name="effect_in.csv" id="effect_in.csv">effect_in.csv</a></big></b>
+<br/>
+Next we create the
+<a href="dismod_pde_csv.xml#effect_in.csv" target="_top"><span style='white-space: nowrap'>effect_in.csv</span></a>
+ input file.
+For this example, 
+the covariate information will be who made the measurements,
+Jill or Jack:
+<code><font color='blue'><pre style='display:inline'> 
+cat &lt;&lt; EOF &gt; effect_in.csv
+integrand,covariate,lower,initial,upper
+incidence,x_jill,0.09531,0.09531,0.09531
+m_excess,x_jill,0.09531,0.09531,0.09531
+remission,x_jack,-1.00000,0.00000,1.00000
+EOF
+</pre></font></code>
+
+We know that Jill is reports incidence and excess mortality data to be 1.1 
+times the actual value.
+We suspect that Jack reports remission data incorrectly, but we do not
+know to what extent.
+Note that log(1.1) = 0.095310 which is the fixed measurement effect for Jill.
+Also note that log(.9) = -0.10536 will be the unknown measurement
+effect for Jack.
+
+<br/>
+<br/>
+<b><big><a name="measure_in.csv" id="measure_in.csv">measure_in.csv</a></big></b>
+<br/>
+Next we create the
+<a href="dismod_pde_csv.xml#measure_in.csv" target="_top"><span style='white-space: nowrap'>measure_in.csv</span></a>
+ file.
+For this example, the stochastic rate functions are constant
+and we measure them directly.  To be specific, their values are 
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='normal'>&#x003C1;</mi>
+<mo stretchy="false">(</mo>
+<mo stretchy="false">&#x000B7;</mo>
+<mo stretchy="false">)</mo>
+<mo stretchy="false">=</mo>
+<msup><mn>10</mn>
+<mrow><mn>-1</mn>
+</mrow>
+</msup>
+</mrow></math>
+
+, 
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='normal'>&#x003C7;</mi>
+<mo stretchy="false">(</mo>
+<mo stretchy="false">&#x000B7;</mo>
+<mo stretchy="false">)</mo>
+<mo stretchy="false">=</mo>
+<msup><mn>10</mn>
+<mrow><mn>-2</mn>
+</mrow>
+</msup>
+</mrow></math>
+
+,
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='normal'>&#x003C9;</mi>
+<mo stretchy="false">(</mo>
+<mo stretchy="false">&#x000B7;</mo>
+<mo stretchy="false">)</mo>
+<mo stretchy="false">=</mo>
+<msup><mn>10</mn>
+<mrow><mn>-3</mn>
+</mrow>
+</msup>
+</mrow></math>
+
+ and
+
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='normal'>&#x003B9;</mi>
+<mo stretchy="false">(</mo>
+<mo stretchy="false">&#x000B7;</mo>
+<mo stretchy="false">)</mo>
+<mo stretchy="false">=</mo>
+<msup><mn>10</mn>
+<mrow><mn>-4</mn>
+</mrow>
+</msup>
+</mrow></math>
+
+,
+<code><font color='blue'><pre style='display:inline'> 
+cat &lt;&lt; EOF &gt; measure_in.csv
+meas_value,integrand,x_jill,x_jack,age_lower,age_upper,time_lower,time_upper,meas_like,meas_zeta,meas_sigma,c_notes
+0.9e-1,remission,0,1,5,10,1990,2010,gaussian,1,1e-5,no_comment
+0.9e-1,remission,0,1,10,15,1990,2010,gaussian,1,1e-5,no_comment
+0.9e-1,remission,0,1,15,20,1990,2010,gaussian,1,1e-5,no_comment
+1.0e-2,m_excess,0,1,5,15,1990,2010,gaussian,1,1e-5,no_comment
+1.0e-3,m_other,0,1,10,20,1990,2010,gaussian,1,1e-5,no_comment
+1.0e-4,incidence,0,1,5,15,1990,2010,gaussian,1,1e-5,no_comment
+1.0e-1,remission,1,0,10,20,1990,2000,gaussian,1,1e-5,no_comment
+1.1e-2,m_excess,1,0,5,15,1990,2000,gaussian,1,1e-5,no_comment
+1.0e-3,m_other,1,0,10,20,1990,2000,gaussian,1,1e-5,no_comment
+1.1e-4,incidence,1,0,5,15,1990,2000,gaussian,1,1e-5,no_comment
+EOF
+</pre></font></code>
+
+Note that we had Jack take multiple remission measurements so that
+we can estimate how accurate these measurements are.
+
+<br/>
+<br/>
+<b><big><a name="template.csv" id="template.csv">template.csv</a></big></b>
+<br/>
+Remove the file 
+<a href="dismod_pde_csv.xml#sfun_in.csv.Output Template" target="_top"><span style='white-space: nowrap'>template.csv</span></a>
+ 
+(if it exists) and then recreate it.
+<code><font color='blue'><pre style='display:inline'> 
+echo 'create template.csv'
+rm -f template.csv
+echo 'dismod_pde_csv parameter.csv measure_in.csv template.csv'
+$dismod_pde_path/dismod_pde_csv parameter.csv measure_in.csv template.csv
+</pre></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="sfun_in.csv" id="sfun_in.csv">sfun_in.csv</a></big></b>
+<br/>
+Next we create the file <a href="dismod_pde_csv.xml" target="_top"><span style='white-space: nowrap'>sfun_in.csv</span></a>
+ 
+using <code><font color="blue">template.csv</font></code> and <a href="d4_change_sfun_in.py.xml" target="_top"><span style='white-space: nowrap'>d4_change_sfun_in.py</span></a>
+:
+The initial condition is $latex S(5, t) = 1$$ and
+$latex C(5, t) = 0$$.
+<code><font color='blue'><pre style='display:inline'> 
+zeta=1e-5
+zero_inf='0.0 if a &lt;= 5.1 else inf'
+$python_path/d4_change_sfun_in.py template.csv sfun_in.csv \
+-comment            'zeta      lower       initial       upper' \
+-optimize_S         $zeta       0.00          1.00         1.0  \
+-optimize_C         $zeta       0.00          0.05         1.0  \
+-optimize_iota      $zeta       0.00          0.05         1.0  \
+-optimize_rho       $zeta       0.00          0.05         1.0  \
+-optimize_chi       $zeta       0.00          0.05         1.0  \
+-optimize_omega     $zeta       0.00          0.05         1.0  \
+\
+-comment            'like       zeta          sigma       mean' \
+-prior_S         gaussian      $zeta     &quot;$zero_inf&quot;      1.00  \
+-prior_C         gaussian      $zeta     &quot;$zero_inf&quot;      0.00  \
+-prior_iota      gaussian      $zeta            inf       0.00  \
+-prior_rho       gaussian      $zeta            inf       0.00  \
+-prior_chi       gaussian      $zeta            inf       0.00  \
+-prior_omega     gaussian      $zeta            inf       0.00  \
+\
+-comment            'like       zeta          sigma      order' \
+-age_S           gaussian      $zeta            0.0         1   \
+-age_C           gaussian      $zeta            0.0         1   \
+-age_iota        gaussian      $zeta           1e-1         1   \
+-age_rho         gaussian      $zeta           1e-1         1   \
+-age_chi         gaussian      $zeta           1e-1         1   \
+-age_omega       gaussian      $zeta           1e-1         1   \
+\
+-comment            'like       zeta          sigma      order' \
+-cohort_S        gaussian      $zeta            inf         1   \
+-cohort_C        gaussian      $zeta            inf         1   \
+-cohort_iota     gaussian      $zeta           1e-1         1   \
+-cohort_rho      gaussian      $zeta           1e-1         1   \
+-cohort_chi      gaussian      $zeta           1e-1         1   \
+-cohort_omega    gaussian      $zeta           1e-1         1   \
+\
+-comment            'name       zeta            sigma' \
+-cross_S         gaussian      $zeta              inf  \
+-cross_C         gaussian      $zeta              inf  \
+-cross_iota      gaussian      $zeta              inf  \
+-cross_rho       gaussian      $zeta              inf  \
+-cross_chi       gaussian      $zeta              inf  \
+-cross_omega     gaussian      $zeta              inf  
+</pre></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="Running dismod_pde_csv" id="Running dismod_pde_csv">Running dismod_pde_csv</a></big></b>
+<br/>
+Next we create the files
+<a href="dismod_pde_csv.xml#measure_out.csv" target="_top"><span style='white-space: nowrap'>measure_out.csv</span></a>
+,
+<a href="dismod_pde_csv.xml#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+, and
+<a href="dismod_pde_csv.xml#effect_out.csv" target="_top"><span style='white-space: nowrap'>effect_out.csv</span></a>
+,
+by running <code><font color="blue">dismod_pde_csv</font></code>.
+<code><font color='blue'><pre style='display:inline'> 
+$dismod_pde_path/dismod_pde_csv parameter.csv \
+	measure_in.csv     measure_out.csv   \
+	sfun_in.csv        sfun_out.csv \
+	effect_in.csv      effect_out.csv
+</pre></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="effect_out.csv" id="effect_out.csv">effect_out.csv</a></big></b>
+<br/>
+The file <a href="dismod_pde_csv.xml#effect_out.csv" target="_top"><span style='white-space: nowrap'>effect_out.csv</span></a>
+
+(displayed below)
+contains the fitting results for the measurement effects;
+i.e., 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='normal'>&#x003B2;</mi>
+</mrow></math>
+
+.  
+<code><font color="blue">
+<br/>
+<pre style='display:inline'>integrand,covariate,estimate
+incidence,x_jill,0.09531
+m_excess,x_jill,0.09531
+remission,x_jack,-0.105361
+</pre><br/>
+</font></code><br/>
+<b><a name="effect_out.csv.Check effect_out.csv" id="effect_out.csv.Check effect_out.csv">Check effect_out.csv</a></b>
+
+<code><font color='blue'><pre style='display:inline'> 
+echo 'check effect_out.csv'
+cat &lt;&lt; EOF &gt; check_effect_out.py
+import csv
+import sys
+file   = open('effect_out.csv', 'r')
+reader = csv.DictReader(file, skipinitialspace=True)
+check  = { 'x_jill' :  0.095310 , 'x_jack' : -0.10536 }
+ok     = True
+data   = []
+for r in reader :
+	file_value  = float( r['estimate'] )
+	check_value = check[ r['covariate'] ]
+	ok          = ok and abs(1.0 - file_value/check_value) &lt; 1e-5
+	data.append(r)
+if ok :
+	sys.exit(None)
+for r in data :
+	file_value  = float( r['estimate'] )
+	check_value = check[ r['covariate'] ]
+	rel_error   = 1.0 - file_value/check_value
+	if abs(1.0 - file_value/check_value) &gt;= 1e-5 :
+		print 'file_value =', file_value ,  \
+			', check_value =', check_value , \
+			', rel_error =', rel_error 
+sys.exit('Error in effect_out.csv')
+EOF
+$top_builddir/python.sh check_effect_out.py
+</pre></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="measure_out.csv" id="measure_out.csv">measure_out.csv</a></big></b>
+<br/>
+The file <a href="dismod_pde_csv.xml#measure_out.csv" target="_top"><span style='white-space: nowrap'>measure_out.csv</span></a>
+
+(displayed below)
+contains the fitting results for the measurements.
+Note that the measurement effects have been used to correct the data to
+its proper value.
+Also note that if <code><font color="blue">meas_sigma</font></code> is zero or infinity,
+the corresponding scaled residual is <code><font color="blue">nan</font></code>.
+<code><font color="blue">
+<br/>
+<pre style='display:inline'>age,cohort,time,integrand,meas_value,adjusted,model,residual,scaled,x_jill,x_jack,age_lower,age_upper,time_lower,time_upper,meas_like,meas_zeta,meas_sigma,c_notes
+7.5,1992.5,2000,remission,0.09,0.1,0.1,6.68077e-14,6.68077e-09,0,1,5,10,1990,2010,gaussian,1,1e-5,no_comment
+12.5,1987.5,2000,remission,0.09,0.1,0.1,-5.45397e-15,-5.45397e-10,0,1,10,15,1990,2010,gaussian,1,1e-5,no_comment
+17.5,1982.5,2000,remission,0.09,0.1,0.1,-7.77156e-14,-7.77156e-09,0,1,15,20,1990,2010,gaussian,1,1e-5,no_comment
+10,1990,2000,m_excess,0.01,0.01,0.01,-6.60989e-12,-6.60989e-07,0,1,5,15,1990,2010,gaussian,1,1e-5,no_comment
+15,1985,2000,m_other,0.001,0.001,0.001,9.08586e-13,9.08586e-08,0,1,10,20,1990,2010,gaussian,1,1e-5,no_comment
+10,1990,2000,incidence,0.0001,0.0001,0.0001,-9.00083e-11,-9.00083e-06,0,1,5,15,1990,2010,gaussian,1,1e-5,no_comment
+15,1980,1995,remission,0.1,0.1,0.1,2.08916e-13,2.08916e-08,1,0,10,20,1990,2000,gaussian,1,1e-5,no_comment
+10,1985,1995,m_excess,0.011,0.01,0.01,6.97264e-12,6.97264e-07,1,0,5,15,1990,2000,gaussian,1,1e-5,no_comment
+15,1980,1995,m_other,0.001,0.001,0.001,-2.41019e-11,-2.41019e-06,1,0,10,20,1990,2000,gaussian,1,1e-5,no_comment
+10,1985,1995,incidence,0.00011,0.0001,0.0001,-7.57953e-11,-7.57953e-06,1,0,5,15,1990,2000,gaussian,1,1e-5,no_comment
+</pre><br/>
+</font></code><br/>
+<b><a name="measure_out.csv.Check measure_out.csv" id="measure_out.csv.Check measure_out.csv">Check measure_out.csv</a></b>
+
+<code><font color='blue'><pre style='display:inline'> 
+echo 'check measure_out.csv'
+cat &lt;&lt; EOF &gt; check_measure_out.py
+import csv
+import sys
+file   = open('measure_out.csv', 'r')
+reader = csv.DictReader(file, skipinitialspace=True)
+check  = { 
+'remission':.1 , 'm_excess':.01 , 'm_other':.001, 'incidence':.0001  }
+ok     = True
+data   = []
+for r in reader :
+	file_value  = float( r['model'] )
+	check_value = check[ r['integrand'] ]
+	ok          = ok and abs(file_value - check_value) &lt; 1e-5
+	data.append(r)
+if ok :
+	sys.exit(None)
+for r in data :
+	file_value  = float( r['model'] )
+	check_value = check[ r['integrand'] ]
+	print 'file_value =', file_value, ', check_value =', check_value
+sys.exit('Error in measure_out.csv')
+EOF
+$top_builddir/python.sh check_measure_out.py
+</pre></font></code>
+ 
+
+<br/>
+<br/>
+<b><big><a name="sfun_out.csv" id="sfun_out.csv">sfun_out.csv</a></big></b>
+<br/>
+The file <a href="dismod_pde_csv.xml#sfun_out.csv" target="_top"><span style='white-space: nowrap'>sfun_out.csv</span></a>
+
+(displayed below)
+contains the fitting results for the stochastic functions;
+i.e., 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='italic'>S</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='italic'>C</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='normal'>&#x003B9;</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='normal'>&#x003C1;</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='normal'>&#x003C7;</mi>
+<mo stretchy="false">,</mo>
+<mi mathvariant='normal'>&#x003C9;</mi>
+</mrow></math>
+
+.
+Note that if a 
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="inline"><mrow>
+<mi mathvariant='normal'>&#x003C3;</mi>
+</mrow></math>
+
+ value is zero or infinity,
+the corresponding scaled residual is <code><font color="blue">nan</font></code>.
+<code><font color="blue">
+<br/>
+<pre style='display:inline'>age,cohort,time,function,estimate,prior_residual,prior_scaled,age_residual,age_scaled,cohort_residual,cohort_scaled,cross_residual,cross_scaled
+5,1960,1965,S,1,0,nan,2.62811e-14,nan,0,nan,1.70575e-10,nan
+5,1960,1965,C,-3.38813e-21,0,nan,2.79421e-12,nan,0,nan,-1.54444e-08,nan
+5,1960,1965,iota,0.0001,2.3979,nan,-2.77876e-09,-2.77876e-08,-2.51968e-07,-2.51968e-06,2.11959e-09,nan
+5,1960,1965,rho,0.1,9.21044,nan,9.49991e-08,9.49991e-07,1.4696e-07,1.4696e-06,-5.93186e-09,nan
+5,1960,1965,chi,0.01,6.90876,nan,7.76868e-08,7.76868e-07,-2.69371e-08,-2.69371e-07,-2.41883e-08,nan
+5,1960,1965,omega,0.001,4.61512,nan,-2.1324e-07,-2.1324e-06,-1.68487e-07,-1.68487e-06,-1.22236e-09,nan
+5,1980,1985,S,1,0,nan,2.17673e-14,nan,0,nan,-1.90389e-10,nan
+5,1980,1985,C,-3.38813e-21,0,nan,2.25775e-12,nan,0,nan,5.02489e-09,nan
+5,1980,1985,iota,0.0001,2.3979,nan,3.39336e-08,3.39336e-07,-9.78017e-08,-9.78017e-07,9.98264e-09,nan
+5,1980,1985,rho,0.1,9.21044,nan,-7.74384e-09,-7.74384e-08,-1.03283e-08,-1.03283e-07,-7.13216e-09,nan
+5,1980,1985,chi,0.01,6.90876,nan,-3.41267e-07,-3.41267e-06,-8.4658e-07,-8.4658e-06,3.27805e-08,nan
+5,1980,1985,omega,0.001,4.61512,nan,-2.34411e-07,-2.34411e-06,8.18652e-08,8.18652e-07,1.54231e-08,nan
+5,2000,2005,S,1,0,nan,2.17708e-14,nan,0,nan,nan,nan
+5,2000,2005,C,-3.38813e-21,0,nan,2.12097e-12,nan,0,nan,nan,nan
+5,2000,2005,iota,0.0001,2.3979,nan,2.06838e-07,2.06838e-06,2.13434e-07,2.13434e-06,nan,nan
+5,2000,2005,rho,0.1,9.21044,nan,-1.31277e-07,-1.31277e-06,-2.26221e-07,-2.26221e-06,nan,nan
+5,2000,2005,chi,0.01,6.90875,nan,2.26508e-07,2.26508e-06,-5.03156e-08,-5.03156e-07,nan,nan
+5,2000,2005,omega,0.001,4.61512,nan,3.27248e-08,3.27248e-07,4.97986e-08,4.97986e-07,nan,nan
+5,2020,2025,S,1,0,nan,nan,nan,nan,nan,nan,nan
+5,2020,2025,C,-3.38813e-21,0,nan,nan,nan,nan,nan,nan,nan
+5,2020,2025,iota,0.0001,2.3979,nan,nan,nan,nan,nan,nan,nan
+5,2020,2025,rho,0.1,9.21044,nan,nan,nan,nan,nan,nan,nan
+5,2020,2025,chi,0.01,6.90875,nan,nan,nan,nan,nan,nan,nan
+5,2020,2025,omega,0.001,4.61512,nan,nan,nan,nan,nan,nan,nan
+20,1960,1980,S,0.98432,-0.0158038,nan,nan,nan,2.95445e-09,nan,nan,nan
+20,1960,1980,C,0.00072314,4.29475,nan,nan,nan,-2.67505e-07,nan,nan,nan
+20,1960,1980,iota,0.0001,2.3979,nan,nan,nan,-2.15255e-07,-2.15255e-06,nan,nan
+20,1960,1980,rho,0.1,9.21044,nan,nan,nan,4.42171e-08,4.42171e-07,nan,nan
+20,1960,1980,chi,0.01,6.90876,nan,nan,nan,-4.45891e-07,-4.45891e-06,nan,nan
+20,1960,1980,omega,0.001,4.61512,nan,nan,nan,-1.89658e-07,-1.89658e-06,nan,nan
+20,1980,2000,S,0.98432,-0.0158038,nan,nan,nan,-3.29763e-09,nan,nan,nan
+20,1980,2000,C,0.00072314,4.29475,nan,nan,nan,8.70336e-08,nan,nan,nan
+20,1980,2000,iota,0.0001,2.3979,nan,nan,nan,7.51026e-08,7.51026e-07,nan,nan
+20,1980,2000,rho,0.1,9.21044,nan,nan,nan,-1.33861e-07,-1.33861e-06,nan,nan
+20,1980,2000,chi,0.01,6.90875,nan,nan,nan,-2.78805e-07,-2.78805e-06,nan,nan
+20,1980,2000,omega,0.001,4.61512,nan,nan,nan,3.49002e-07,3.49002e-06,nan,nan
+20,2000,2020,S,0.98432,-0.0158038,nan,nan,nan,nan,nan,nan,nan
+20,2000,2020,C,0.00072314,4.29475,nan,nan,nan,nan,nan,nan,nan
+20,2000,2020,iota,0.0001,2.3979,nan,nan,nan,nan,nan,nan,nan
+20,2000,2020,rho,0.1,9.21044,nan,nan,nan,nan,nan,nan,nan
+20,2000,2020,chi,0.01,6.90875,nan,nan,nan,nan,nan,nan,nan
+20,2000,2020,omega,0.001,4.61512,nan,nan,nan,nan,nan,nan,nan
+</pre><br/>
+</font></code><br/>
+<b><a name="sfun_out.csv.Check sfun_out.csv" id="sfun_out.csv.Check sfun_out.csv">Check sfun_out.csv</a></b>
+
+<code><font color='blue'><pre style='display:inline'> 
+echo 'check sfun_out.csv'
+cat &lt;&lt; EOF &gt; check_sfun_out.py
+import csv
+import sys
+file   = open('sfun_out.csv', 'r')
+reader = csv.DictReader(file, skipinitialspace=True)
+check  = { 
+'rho' : .1 , 'chi' : .01 , 'omega' : .001, 'iota' : .0001  }
+ok     = True
+data   = []
+for r in reader :
+	function = r['function']
+	if function != 'S' and function != 'C' :
+		file_value  = float( r['estimate'] )
+		check_value = check[ r['function'] ]
+		ok          = ok and abs(1.0 - file_value/check_value) &lt; 1e-3
+	data.append(r)
+if ok :
+	sys.exit(None)
+for r in data :
+	function = r['function']
+	if function != 'S' and function != 'C' :
+		file_value  = float( r['estimate'] )
+		check_value = check[ r['function'] ]
+		rel_error   = 1.0 - file_value/check_value
+		print 'file_value =', file_value , \
+			', check_value =', check_value , \
+			', rel_error =', rel_error
+sys.exit('Error in sfun_out.csv')
+EOF
+$top_builddir/python.sh \
+	check_sfun_out.py
+</pre></font></code>
+
+
+<br/>
+<br/>
+<b><big><a name="Final Message" id="Final Message">Final Message</a></big></b>
+<br/>
+If this shell script reaches here, then all the tests have passed.
+<code><font color='blue'><pre style='display:inline'> 
+echo 'get_started.sh: OK'
+</pre></font></code>
+
+
+<hr/>Input File: example/get_started/get_started.sh.in
+
+</body>
+</html>
