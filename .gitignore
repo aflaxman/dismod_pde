@@ -1,0 +1,8 @@
+external/
+external.log
+build/
+configure.log
+make.log
+test.log
+*~
+*.pyc
