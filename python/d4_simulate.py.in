@@ -250,6 +250,11 @@
 # 	$cnext $pre  $$ standardized mortality ratio
 # 
 # $rnext
+# $latex I^{C} ( \cdot ) = C  $$
+# 	$cnext $pre  $$ $code pop_C$$
+# 	$cnext $pre  $$ with-condition population size
+# 
+# $rnext
 # $latex I^r ( \cdot ) = I^w ( \cdot ) / \omega ( \cdot )$$
 # 	$cnext $pre  $$ $code relative_risk$$
 # 	$cnext $pre  $$ relative risk ratio
@@ -452,7 +457,7 @@ while count_arg < num_arg :
 		}
 		measure.append( entry )
 	else:
-		msg = 'd4_simulat.py: command line argument number %d \n' % count_arg
+		msg = 'd4_simulate.py: command line argument number %d \n' % count_arg
 		msg = msg + 'unknown flag = ' + flag 
 		print usage
 		sys.exit(msg)
@@ -537,7 +542,7 @@ meas_fields = [
 	'meas_sigma'       ,
 	'meas_value'
 ]
-integrand_name = [     # names used for measurement model itegrands
+integrand_name = [     # names used for measurement model integrands
 	'incidence'       ,  # 0:     = iota
 	'remission'       ,  # 1:     = rho
 	'm_excess'        ,  # 2:     = chi
@@ -548,7 +553,8 @@ integrand_name = [     # names used for measurement model itegrands
 	'm_specific'      ,  # 7:     = I^e
 	'm_all'           ,  # 8: I^a = omega + I^e
 	'm_standard'      ,  # 9: I^s = I^w / I^a
-	'relative_risk'      #10: I^w / omega
+	'pop_C'           ,  #10:     = C
+	'relative_risk'      #11: I^w / omega
 ]
 # --------------------------------------------------------------------------
 # safe evalutation of expressions defined on the command line
@@ -608,6 +614,7 @@ def dismod_ode(a, y) :
 	m_specific    = m_prevalence
 	m_all         = o + m_prevalence
 	m_standard    = m_with / m_all
+	pop_C         = C
 	relative_risk = m_with / o
 	dy = numpy.array([ 
 		dS,
@@ -622,6 +629,7 @@ def dismod_ode(a, y) :
 		m_specific,
 		m_all,
 		m_standard,
+		pop_C,
 		relative_risk
 	])
 	return dy

@@ -725,6 +725,11 @@ $latex I^w ( \cdot ) = \omega( \cdot ) + \chi ( \cdot ) $$
 	$cnext $pre  $$ with condition mortality rate
 
 $rnext
+$latex I^C ( \cdot ) = C( \cdot )$$
+	$cnext $pre  $$ $code pop_C_enum$$
+	$cnext $pre  $$ with-condition population size
+
+$rnext
 $latex I^p ( \cdot ) = C( \cdot ) / [ S( \cdot ) + C( \cdot ) ]$$
 	$cnext $pre  $$ $code prevalence_enum$$
 	$cnext $pre  $$ prevalence

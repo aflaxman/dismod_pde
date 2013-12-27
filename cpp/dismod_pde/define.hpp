@@ -204,6 +204,8 @@ enum Integrand_Enum {
 	m_standard_enum,
 	/// with condition mortality
 	m_with_enum,
+	/// with-condition population size 
+	pop_C_enum, 
 	/// prevalence 
 	prevalence_enum, 
 	/// relative risk
@@ -244,6 +246,7 @@ public:
 			"m_specific"     ,
 			"m_standard"     ,
 			"m_with"         ,
+			"pop_C"          ,
 			"prevalence"     ,
 			"relative_risk"  ,
 			"remission"

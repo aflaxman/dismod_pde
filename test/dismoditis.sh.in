@@ -40,7 +40,8 @@ $python_path/d4_simulate.py \
 -measure     incidence     $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
 -measure     remission     $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
 -measure     m_excess      $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
--measure     relative_risk $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv 
+-measure     relative_risk $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv \
+-measure     pop_C         $number $like $sim_zeta $fit_zeta $sim_cv $fit_cv
 # 
 # Python script that converts dismoditis_data.csv and dismoditis_sim.csv to C++
 cat << EOF > dismoditis.py
@@ -73,6 +74,7 @@ name_map    = {
 	'm_specific'       : '     dismod_pde::m_specific_enum'   ,
 	'm_all'            : '     dismod_pde::m_all_enum'        ,
 	'm_standard'       : '     dismod_pde::m_standard_enum'   ,
+	'pop_C'            : '     dismod_pde::pop_C_enum'   ,
 	'relative_risk'    : '     dismod_pde::relative_risk_enum'
 }
 #

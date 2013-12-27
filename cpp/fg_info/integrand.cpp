@@ -97,6 +97,11 @@ AD<double> FG_info::compute_integrand(
 		result  = omega + chi;
 		break;
 
+		case pop_C_enum:
+		C       = state[index + C_enum];
+		result  = C;
+		break;
+
 		case prevalence_enum:
 		C       = state[index + C_enum]; 
 		S       = state[index + S_enum]; 
