@@ -1,5 +1,5 @@
 #! /bin/bash -e
-# Script that runs version of python specified during Dismod4 configure command
+# Script that runs version of python specified during DisMod-PDE configure command
 escape="#"
 star="\"'*'\""
 dquote='\\"'
